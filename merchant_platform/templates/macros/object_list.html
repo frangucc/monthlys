@@ -1,0 +1,11 @@
+{% macro :ol_heading, add_url: nil do |title, add_url| %}
+  <h1>{{ title }}{% if add_url %} <a class="add" href="{{ add_url }}">Add</a>{% end %}</h1>
+{% end %}
+
+{% macro :pagination do |page| %}
+<div class="pagination">
+  {% if page[:next_page] %}<a href="?page={{ page[:next_page] }}" class="next">Next</a>{% end %}
+  {% if page[:prev_page] %}<a href="?page={{ page[:prev_page] }}" class="prev">Previous</a>{% end %}
+  <p class="viewing">Viewing {{ page[:current_items_base] }} - {{ page[:current_items_top] }} of {{ page[:count] }}</p>
+</div>
+{% end %}

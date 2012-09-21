@@ -1,0 +1,22 @@
+<%= email_for(shipment_email_url(@shipment)) do %>
+  <tr>
+    <td>
+      <div style="width: 560px; padding: 15px 30px 35px 30px; background: #fff; border-left: 1px solid #dbeef2; border-right: 1px solid #dbeef2; margin: 0; border-bottom: 1px solid #dbeef2; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+
+        <h1 style="font-family: Arial, sans-serif; margin: 0; font-size: 32px; font-weight: normal; text-align: center; font-weight: bold;">Shipping Notification</h1>
+        <p style="font-family: Arial, sans-serif; margin: 0 0 20px; font-size: 24px; font-weight: normal; color: #a4a8a9; text-align: center;">Your order has been shipped</p>
+
+        <div style="margin: 30px 0 0 0; font-family: Arial, sans-serif; font-size: 14px; color: #545454; padding: 0; line-height: 22px; text-align: left;">
+          <p>Hey <%= @user.first_name || @user.email %>,</p>
+
+          <p>Your <%= @shipment.subscription.plan.name %> shipment from Monthlys is on the way! Your shipment was sent via <strong><%= @shipment.carrier %></strong> and can be tracked with the number <strong><%= @shipment.tracking_number %></strong></p>
+
+          <p>At Monthlys, we are continually adding new subscriptions to great products and services in your area and often run limited time offers and promotions - so check www.monthlys.com often!</p>
+
+          <p>If you have any questions or concerns, please feel free to email us at support@monthlys.com.</p>
+          <p>We look forward to continuing to serve you.</p>
+        </div>
+      </div>
+    </td>
+  </tr>
+<% end %>

@@ -1,0 +1,18 @@
+<%
+  # locals:
+  #   or_link (optional)
+%>
+<div class="highlight-wrapper call-to-action-bar">
+  <div class="wrapper">
+    <p>
+      <span class="text">Plans <%= starting_at_price(@merchant.cheapest_plan) %></span>
+      <%= link_to "#{ (@merchant.has_one_plan_only?) ? 'View Plan Details' : 'Browse Our Plans' }", merchant_storefront_plans_path(@merchant.custom_site_url), class: 'btn-dark' %>
+      <span class="or">or</span>
+      <% if true && defined?(or_link) && or_link == :about %>
+        <%= link_to 'Read about us', merchant_storefront_about_path(@merchant.custom_site_url), class: 'btn-light' %>
+      <% else %>
+        <%= link_to 'Learn how it works', merchant_storefront_how_it_works_path(@merchant.custom_site_url), class: 'btn-light' %>
+      <% end %>
+    </p>
+  </div>
+</div>

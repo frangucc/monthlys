@@ -1,0 +1,182 @@
+/*
+ Consumer Site  Styles
+ *= require_self
+*/
+@import url("//fonts.googleapis.com/css?family=Lobster");
+
+@import "../html5-reset";
+
+@import "handpicked";
+@import "get_10_off";
+
+/** Layout **/
+body {
+  background: #dff2f6;
+  font-family: Helvetica, Arial, sans-serif;
+}
+a {
+  outline: 0;
+}
+div.clearfix {
+  clear: both;
+}
+
+header.main, footer.main, section.main {
+  width: 620px;
+  margin: auto;
+  border: solid #cdebf2;
+}
+header.main {
+  margin-top: 40px;
+  border-width: 1px 1px 0;
+  background: #fff url(../facebook/header_bg.png) repeat-x 0 1px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding-top: 30px;
+
+  h1 {
+    width: 305px;
+    height: 90px;
+    text-indent: -9999px;
+    overflow: hidden;
+    margin: auto;
+    background: url(../facebook/logo.png) no-repeat;
+    padding-bottom: 15px;
+  }
+}
+footer.main {
+  margin-bottom: 40px;
+  border-width: 1px;
+  background: #f8fafb url(../facebook/footer_bg.png) repeat-x left bottom;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  a {
+    text-align: center;
+    font-size: 26px;
+    color: #343638;
+    display: block;
+    padding: 30px 0;
+    line-height: 32px;
+    outline: 0;
+
+    strong {
+      padding-right: 45px;
+      background: url(../facebook/footer.png) no-repeat right top;
+    }
+  }
+}
+section.main {
+  background: #fff;
+  border-width: 0 1px;
+}
+
+hgroup.plan-list-heading {
+  padding: 30px;
+
+  h1 {
+    font-size: 26px;
+    line-height: 30px;
+    font-weight: normal;
+    text-align: center;
+    color: #343638;
+    margin: 0 0 7px;
+  }
+  h2 {
+    font-size: 14px;
+    color: #757575;
+    font-weight: normal;
+    text-align: center;
+  }
+}
+
+ul.plan-list {
+  padding: 0 28px 10px;
+  float: left;
+  width: 564px;
+
+  li {
+    float: left;
+    width: 270px;
+
+    &:nth-child(2n) {
+      float: right;
+    }
+
+    article {
+      border: 1px solid #e5e5e5;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 25px;
+
+      div.image {
+        width: 230px;
+        height: 168px;
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 10px;
+        border-radius: 5px;
+
+        img {
+          display: block;
+          border-radius: 5px;
+        }
+
+        .shadow {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          box-shadow: 0 0 2px rgba(0, 0, 0, 0.2) inset;
+        }
+      }
+
+      h1 {
+        font-size: 14px;
+        line-height: 18px;
+        margin: 0 0 2px;
+
+        a {
+          color: #0273dc;
+          display: block;
+          white-space: nowrap;
+          width: 100%;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+      p {
+        font-size: 11px;
+        color: #757575;
+
+        span.price {
+          display: block;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}
+
+div.how-it-works {
+  border-top: 1px solid #cdebf2;
+  padding: 25px 0;
+
+  ul {
+    padding: 0 28px;
+    background: url(../facebook/howitworks_bg.png);
+  }
+  li {
+    float: left;
+    width: 188px;
+    text-align: center;
+  }
+  img {
+    margin-bottom: 5px;
+  }
+  figcaption {
+    font-size: 12px;
+    color: #545454;
+  }
+}

@@ -1,0 +1,6 @@
+$('#shipping').html("<%= escape_javascript render(partial: 'shipping', locals: {
+  shipping_infos: @shipping_infos,
+  selected_id: params[:selected_id].to_i || @subscription.shipping_info_id,
+  plan: @plan,
+  merchant: @merchant
+}) %>");

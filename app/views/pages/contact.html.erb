@@ -1,0 +1,46 @@
+<% content_for(:title) { 'Contact' } %>
+
+<div class="sidebar">
+  <%= render partial: 'pages/navigation' %>
+</div>
+
+<div class="content">
+  <hgroup>
+    <h1>Contact</h1>
+  </hgroup>
+
+  <%= form_for :contact, url: contact_path do |f| %>
+    <p class="field">
+      <%= f.label :name, 'Full Name', class: 'required' %>
+      <%= f.text_field :name, value: @contact.name %>
+    </p>
+    <p class="field">
+      <%= f.label :email, 'Email', class: 'required' %>
+      <%= f.text_field :email, value: @contact.email %>
+    </p>
+    <p class="field">
+      <%= f.label :content, 'Message', class: 'required' %>
+      <%= f.text_area :content, value: @contact.content %>
+    </p>
+    <p><%= f.submit 'Send', class: 'btn secondary' %></p>
+  <% end %>
+
+  <section class="contact-info">
+    <div class="google-map">
+      <div id="map-canvas"></div>
+    </div>
+    <h1>Monthlys Chicago Headquarters</h1>
+    <p>600 West Chicago Avenue, Suite 700</p>
+    <p>Chicago IL, 60610</p>
+
+    <ul>
+      <!--<li class="phone">1-312-906-7474</li>-->
+      <li class="twitter"><%= link_to 'MonthlysInc', 'http://twitter.com/MonthlysInc', target: '_blank' %></li>
+      <li class="email">support@monthlys.com</li>
+    </ul>
+  </section>
+</div>
+
+<% content_for(:javascript) do %>
+  <%= requirejs('pages/contact') %>
+<% end %>

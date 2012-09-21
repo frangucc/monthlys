@@ -1,0 +1,109 @@
+<section class="wrapper">
+  <ul class="banners">
+    <li class="save-time">
+      <h1>Save time &amp; shop locally</h1>
+      <p>Get fresh local goods delivered on a recurring basis with <strong>Subscribe and Save</strong>.</p>
+    </li>
+    <li class="save-money">
+      <h1>Save money</h1>
+      <p>Take advantage of exclusive <strong>Saving opportunities</strong>.</p>
+    </li>
+  </ul>
+</section>
+
+<section class="small-highlights wrapper">
+  <hgroup class="block">
+    <p class="pink-label">incredibly innovative</p>
+    <h1>at-home services</h1>
+  </hgroup>
+
+  <ul class="items">
+    <li>
+      <a href="/plans/96">
+        <img src="/assets/featured/small_highlights/local/dog-walking-service.jpg" alt="">
+        <p class="title">Paws Across Chicago</p>
+        <p class="description">Dog Walking Services</p>
+      </a>
+    </li>
+    <li>
+      <a href="/plans/139">
+        <img src="/assets/featured/small_highlights/local/air-brush-tan.jpg" alt="">
+        <p class="title">LA Tan</p>
+        <p class="description">Sunless Tanning</p>
+      </a>
+    </li>
+    <li>
+      <a href="/plans/19">
+        <img src="/assets/featured/small_highlights/local/maid-service.jpg" alt="">
+        <p class="title">Happy Maids, Inc.</p>
+        <p class="description">Home Cleaning Services</p>
+      </a>
+    </li>
+    <li>
+      <a href="/plans/118">
+        <img src="/assets/featured/small_highlights/local/personal-training.jpg" alt="">
+        <p class="title">In-Home Fitness</p>
+        <p class="description">Save $10.00</p>
+      </a>
+    </li>
+    <li>
+      <a href="/plans/81">
+        <img src="/assets/featured/small_highlights/local/laundry-service.jpg" alt="">
+        <p class="title">The Laundry Bag</p>
+        <p class="description">Laundry Valet</p>
+      </a>
+    </li>
+    <li>
+      <a href="/plans/67">
+        <img src="/assets/featured/small_highlights/local/cooking.jpg" alt="">
+        <p class="title">Chef Daniel</p>
+        <p class="description">Gourmet Cooking Lessons</p>
+      </a>
+    </li>
+
+    <li>
+      <a href="/plans/143">
+        <img src="/assets/featured/small_highlights/local/moksha.jpg" alt="">
+        <p class="title">Moksha Yoga</p>
+        <p class="description">Yoga Membership</p>
+      </a>
+    </li>
+    <li>
+      <a href="/plans/163">
+        <img src="/assets/featured/small_highlights/local/cwebber.jpg" alt="">
+        <p class="title">Christy Webber Landscapes</p>
+        <p class="description">Lawn Maintenance</p>
+      </a>
+    </li>
+    <li>
+      <a href="/plans/206">
+        <img src="/assets/featured/small_highlights/local/book.jpg" alt="">
+        <p class="title">Just the Right Book</p>
+        <p class="description">Book of the Month Clubs</p>
+      </a>
+    </li>
+  </ul>
+</section>
+
+<section class="video">
+  <div class="wrapper">
+    <%= link_to record_path, class: 'user-image' do %>
+      <%= image_tag('/assets/featured/videoreview.png') %>
+      <span class="points-90">Record your video and earn 90 points</span>
+    <% end %>
+    <hgroup>
+      <h1>Featured Video Reviews</h1>
+      <h2>Earn credits for reviewing your experiences</h2>
+    </hgroup>
+    <%= link_to 'Record Yours', record_path, class: 'record-yours' %>
+    <%= render partial: 'video_reviews/list', locals: { video_reviews: @video_reviews } %>
+  </div>
+</section>
+
+<% content_for :javascript do %>
+  require(['require', 'pages/featured'], function (require) {
+    require(['pages/featured'], function(view) {
+      view.init();
+    });
+  });
+<% end %>

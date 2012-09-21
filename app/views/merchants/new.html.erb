@@ -1,0 +1,151 @@
+<% content_for(:title) { 'Apply for a Merchant Account' } %>
+
+<aside class="sidebar">
+  <section class="devices">
+    <%= image_tag 'business/form-box1.png' %>
+    <h1>Works on all devices</h1>
+    <p>We're building a cross-platform game-changing experience for merchants and customers.</p>
+  </section>
+  <section class="howitworks video-popup" data-youtube="//www.youtube.com/embed/5pCdarnvtMU?autoplay=1&showinfo=0">
+    <%= image_tag 'business/form-box2.png' %>
+    <h1>How it works</h1>
+    <p>We work with the best local businesses to give customers what they want on a recurring basis.</p>
+  </section>
+  <section class="share">
+    <h1>Like it? Share it?</h1>
+    <ul>
+      <li>
+        <!-- FACEBOOK -->
+        <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+      </li>
+      <li>
+        <!-- TWITTER -->
+        <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      </li>
+      <li>
+        <!-- GOOGLE PLUS -->
+        <g:plusone></g:plusone>
+        <script type="text/javascript">
+          (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
+      </li>
+    </ul>
+  </section>
+</aside>
+
+<section class="form">
+  <hgroup>
+    <h1>Apply for a Merchant Account on Monthlys</h1>
+    <h2>Tell us about your business. We'll review and respond shortly.</h2>
+  </hgroup>
+
+  <%= form_for @merchant do |f| %>
+    <%= error_messages_for(@merchant)%>
+
+    <% unless user_signed_in? %>
+      <fieldset>
+        <legend>Login Information</legend>
+        <%= f.fields_for :users do |u| %>
+          <div class="field required">
+            <%= u.label :email, 'Email', class: 'title' %>
+            <%= u.email_field :email, autocomplete: 'off' %>
+          </div>
+
+          <div class="field required">
+            <%= u.label :password, 'Create Password', class: 'title' %>
+            <%= u.password_field :password, autocomplete: 'off' %>
+          </div>
+
+          <div class="field required">
+            <%= u.label :zipcode_str, 'Zip Code', class: 'title' %>
+            <%= u.text_field :zipcode_str, value: session[:zipcode] %>
+          </div>
+        <% end %>
+      </fieldset>
+    <% end %>
+
+    <fieldset>
+      <legend>Business Info</legend>
+      <div class="field required">
+        <%= f.label :business_name, 'Business Name', class: 'title' %>
+        <%= f.text_field :business_name %>
+      </div>
+      <div class="field required">
+        <div class="label title">Contact Name</div>
+        <div class="input firstname">
+          <%= f.label :contact_name, 'First Name' %>
+          <%= f.text_field :contact_name %>
+        </div>
+        <div class="input lastname">
+          <%= f.label :contact_last_name, 'Last Name' %>
+          <%= f.text_field :contact_last_name %>
+        </div>
+      </div>
+      <div class="field required">
+        <%= f.label :email, 'Business Email Address', class: 'title' %>
+        <%= f.text_field :email %>
+      </div>
+      <div class="field">
+        <%= f.label :business_type, 'Business Type' %>
+        <%= f.text_field :business_type %>
+      </div>
+      <div class="field">
+        <%= f.label :website, 'Website URL' %>
+        <%= f.text_field :website %>
+      </div>
+      <div class="field">
+        <%= f.label :comments, "Tell us a little bit about your business" %>
+        <%= f.text_area :comments %>
+      </div>
+      <div class="field">
+        <%= f.label :phone, 'Phone Number' %>
+        <%= f.text_field :phone %>
+      </div>
+      <div class="field">
+        <%= f.label :address1 %>
+        <%= f.text_field :address1 %>
+      </div>
+      <div class="field">
+        <%= f.label :address2 %>
+        <%= f.text_field :address2 %>
+      </div>
+      <div class="field">
+        <%= f.label :city %>
+        <%= f.text_field :city %>
+      </div>
+      <div class="field">
+        <%= f.label :state, 'State / Province' %>
+        <div class="input state">
+          <%= f.text_field :state %>
+        </div>
+        <div class="input zip">
+          <%= f.label :zipcode, 'Zip Code' %>
+          <%= f.text_field :zipcode %>
+        </div>
+      </div>
+
+      <div class="terms required">
+        <%= check_box :merchant, :terms %>
+        <%= label_tag 'merchant[terms]' do %>
+          <span class="title">I accept the <%= link_to 'Terms and Conditions', "#{root_url}merchant-terms-and-conditions.pdf" %></span>
+        <% end %>
+      </div>
+    </fieldset>
+    
+    <%= f.submit "Submit", :class => "btn secondary" %>
+  <% end %>
+
+</section>

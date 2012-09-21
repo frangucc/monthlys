@@ -1,0 +1,5 @@
+<%= render partial: 'form' %>
+
+<% content_for :javascript do %>
+  <%= requirejs('views/billing_infos/new'); %>
+<% end %>

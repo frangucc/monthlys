@@ -1,0 +1,19 @@
+<% if user_signed_in? %>
+  <% if @user.errors.any? %>
+    $('#colorbox #messages').displayMessage('error', <%= @user.errors.full_messages.to_json.html_safe %>);
+    $.colorbox.resize();
+  <% else %>
+    window.location.href = window.location.href;
+    $.colorbox.close();
+  <% end %>
+
+<% else %>
+  <% if @zipcode.errors.any? %>
+    $('#colorbox #messages').displayMessage('error', <%= @zipcode.errors.full_messages.to_json.html_safe %>);
+    $.colorbox.resize();
+  <% else %>
+    window.location.href = window.location.href;
+    $.colorbox.close();
+  <% end %>
+
+<% end %>

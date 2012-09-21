@@ -1,0 +1,22 @@
+<section class="tertiary-highlight">
+  <h1><%= group[:title] %></h1>
+  <p class="subheading"><%= group[:subtitle] %></p>
+
+
+  <ul class="items">
+    <% group[:superhub_plans].sort_by(&:ordering).each do |sp| %>
+      <li>
+        <a href="<%= plan_path(sp.plan) %>">
+          <%= image_tag((sp.image.blank?) ? sp.plan.thumbnail.url : sp.image.url) %>
+          <p class="title"><%= (sp.title.blank?) ? sp.plan.name : sp.title %></p>
+          <p class="description">for <%= sp.plan.cheapest_plan_recurrence_explanation %></p>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+
+  <% unless group[:label] %>
+    <div class="group-label group-label-<%= group[:label] %>"><%= group[:label_display] %></div>
+  <% end %>
+  <div class="clearfix"></div>
+</section>

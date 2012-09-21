@@ -1,0 +1,37 @@
+<div class="video">
+  <a href="#"><%= image_tag("content/how-it-works/play_video.jpg") %></a>
+</div>
+<section class="steps">
+  <article class="step1">
+    <hgroup>
+      <h1>Step 1</h1>
+      <h2>Discover curated recurring subscriptions</h2>
+    </hgroup>
+    <p>From fresh foods to lawn care, find subscriptions that improve your standard of living.</p>
+  </article>
+  <article class="step2">
+    <hgroup>
+      <h1>Step 2</h1>
+      <h2>Subscribe with the <br /> flip of a switch</h2>
+    </hgroup>
+    <p>Turn on your services and enjoy the convenience of recurring subscriptions. Turn services off when you no longer need them.</p>
+  </article>
+  <article class="step3">
+    <hgroup>
+      <h1>Step 3</h1>
+      <h2>Join the <br />conversation</h2>
+    </hgroup>
+    <p>Interact with your service providers and other subscribers. Manage all your subscriptions in one hip place.</p>
+  </article>
+</section>
+<div class="below">
+  <ul>
+    <li class="fair_cost"><a href="/quality">Fair Cost and Quality</a></li>
+    <li class="why_subscriptions"><a href="/why-monthlys">Why Subscriptions?</a></li>
+    <li class="guarantee"><a href="/guarantee">Satisfaction Guarantee</a></li>
+  </ul>
+</div>
+
+<% content_for(:javascript) do %>
+  <%= requirejs('pages/how_it_works') %>
+<% end %>

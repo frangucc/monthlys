@@ -1,0 +1,40 @@
+{% extends :base %}
+
+{% block(:content) do %}
+
+{% wizard_steps(step: 1) %}
+
+{% 
+  wizard_heading(
+    heading: "Welcome " + current_user.first_name + "!",
+    paragraph: "Here you will setup your account, plans and storefront. Also you can preview it at anytime."
+  )
+%}
+
+<form action="" method="post">
+{% 
+  wizard_radio_options(name: 'assistance', options: [
+    {
+      image: "/mp/img/welcome-default.png",
+      heading: "Setup Assistance",
+      paragraph: "Select this option if you would like a member of the Monthlys merchandising team to setup your account.",
+      value: "yes"
+    },
+    {
+      image: "/mp/img/welcome-default.png",
+      heading: "No Assistance",
+      paragraph: "Select this option if you would like to setup your account. You may ask for assistance later.",
+      value: "no"
+    }
+  ])
+%}
+
+{%
+  wizard_nav(
+    next_text: 'Next step',
+    back_text: false
+  );
+%}
+</form>
+
+{% end %}

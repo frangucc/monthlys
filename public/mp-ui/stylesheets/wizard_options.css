@@ -1,0 +1,121 @@
+.wizard_options .options {
+  float: left;
+  width: 100%;
+}
+.wizard_options .option {
+  float: left;
+  width: 50%;
+  cursor: pointer;
+}
+.wizard_options .option .image {
+  width: 100px;
+  height: 90px;
+  overflow: hidden;
+  margin: 0 auto 25px;
+}
+.wizard_options .option.deselected .image img {
+  margin-top: -90px;
+}
+.wizard_options .option h2 {
+  font-size: 16px;
+  font-weight: normal;
+  color: #222;
+  text-shadow: 1px 1px 0 #fff;
+  margin-bottom: 15px;
+}
+.wizard_options .option p {
+  color: #565656;
+  font-size: 13px;
+  line-height: 20px;
+  text-shadow: 1px 1px 0 #fff;
+  margin-bottom: 20px;
+}
+.wizard_options .option a.checkbox {
+  display: block;
+  overflow: hidden;
+  width: 35px;
+  height: 32px;
+  background: url(../images/welcome_checkbox.png);
+  position: absolute;
+  bottom: 27px;
+  left: 50%;
+  margin-left: -17px;
+}
+.wizard_options .option.deselected a.checkbox {
+  background-position: left bottom;
+}
+.wizard_options .option a input {
+  visibility: hidden;
+}
+
+.wizard_options .option .frame {
+  position: relative;
+  top: -7px;
+  padding: 37px 61px 69px 60px;
+  margin-right: -1px;
+  border: 1px solid #c5c8cb;
+  box-shadow: 0 0 1px #fff inset;
+  text-align: center;
+  border-radius: 3px;
+  background: #e4e6e8 no-repeat center 30px;
+  z-index: 10;
+  height: 80%;
+}
+.wizard_options .option.deselected .frame {
+  border: 1px solid #e6e7e8;
+  background-color: #f5f7f9;
+  padding: 30px 61px 62px 60px;
+  border-radius: 0;
+  top: 0;
+  z-index: 1;
+}
+.wizard_options .option.first.deselected .frame {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.wizard_options .option.last.deselected .frame {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.wizard_options .option .readmore {
+  display: none;
+  width: 145px;
+  margin: 0 auto 30px;
+  background: url(../images/wizard_options_readmore_bg.png);
+}
+.wizard_options .option .readmore .left {
+  background: url(../images/wizard_options_readmore_left.png) no-repeat left top;
+}
+.wizard_options .option .readmore .right {
+  background: url(../images/wizard_options_readmore_right.png) no-repeat right top;
+  height: 42px;
+  line-height: 42px;
+  font-size: 14px;
+  color: #565656;
+  text-align: center;
+}
+.wizard_options .readmore:hover,
+.wizard_options .readmore:hover .left {
+  background-position: left -46px;
+}
+.wizard_options .readmore:hover .right {
+  background-position: right -46px;
+}
+.wizard_options .readmore:active,
+.wizard_options .readmore:active .left {
+  background-position: left -92px;
+}
+.wizard_options .readmore:active .right {
+  background-position: right -92px;
+}
+
+.wizard_options .option .tooltip {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: url(../images/wizard_options_tooltip.png);
+  display: none;
+  width: 22px;
+  height: 22px;
+}

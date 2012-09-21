@@ -1,0 +1,26 @@
+<% content_for(:title) { 'New Shipping Info' } %>
+
+<%= render partial: 'shared/settings_navigation' %>
+
+<section class="content">
+  <hgroup class="main">
+    <h1>New Shipping Information</h1>
+    <h2 class="breadcrumb"><%= breadcrumbs_for(:my_settings_section, 'New Shipping Info') %></h2>
+  </hgroup>
+
+  <%= form_for @shipping_info, url: ms_path(shipping_infos_path), html: { class: 'settings-form' } do |form| %>
+    <%= error_messages_for(@address_validator, custom_validator: true) if @address_validator %>
+    <%= render partial: 'form', locals: { form: form } %>
+    <div class="field submit">
+      <%= submit_tag 'Add this shipping info', class: 'btn secondary' %>
+    </div>
+  <% end %>
+</section>
+
+<% content_for(:javascript) do %>
+  require(['require', 'shipping_infos/form'], function (require) {
+    require(['shipping_infos/form'], function(view) {
+      view.init();
+    });
+  });
+<% end %>

@@ -1,0 +1,98 @@
+.list_business_content {
+  background: #fff;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  float: left;
+}
+.list_business_content .heading {
+  padding: 30px 40px;
+  border-bottom: 1px solid #ccc;
+}
+.list_business_content .heading h1 {
+  margin-bottom: 0;
+}
+.list_business_content .wizard_form {
+  display: block;
+  padding: 30px 40px;
+}
+.list_business_content .wizard_form .last {
+  background: url(../images/wizard_form_shadow_bg.png) no-repeat top center;
+  background-size: 100%;
+  padding-top: 40px;
+  float: left;
+  width: 100%;
+}
+.list_business_content .wizard_form .focus input {
+  font-weight: bold;
+}
+.list_business_content .wizard_form .location {
+  height: 66px;
+}
+.list_business_content .wizard_form .city {
+  float: left;
+  margin: 0 15px;
+}
+.list_business_content .wizard_form .city .input {
+  width: 230px;
+}
+.list_business_content .wizard_form .city .input input {
+  width: 206px;
+}
+.list_business_content .wizard_form .state {
+  float: left;
+  margin: 0 15px 0 0;
+}
+.list_business_content .wizard_form .state .input {
+  width: 122px;
+}
+.list_business_content .wizard_form .state .input input {
+  width: 98px;
+}
+.list_business_content .wizard_form .zip {
+  float: left;
+  margin: 0;
+}
+.list_business_content .wizard_form .zip .input {
+  width: 122px;
+}
+.list_business_content .wizard_form .zip .input input {
+  width: 98px;
+}
+.list_business_content .wizard_form .address {
+  margin-bottom: 40px;
+}
+.list_business_content .wizard_form .city .input.error input {
+  width: 208px;
+}
+.list_business_content .wizard_form .state .input.error input {
+  width: 68px;
+}
+.list_business_content .wizard_form .zip .input.error {
+  width: 152px;
+}
+
+.list_business_content .footer .terms {
+  padding: 14px 0 0 165px;
+  font-size: 14px;
+  color: #565656;
+}
+.list_business_content .footer .terms a {
+  color: #0273dc;
+}
+.list_business_content .footer .terms a.checkbox {
+  position: relative;
+  width: 13px;
+  height: 14px;
+  background: url(../images/wizard_form_checkbox.png);
+  overflow: hidden;
+  float: left;
+  margin-right: 10px;
+}
+.list_business_content .footer .terms a.checkbox input {
+  position: absolute;
+  left: -100px;
+}
+
+.list_business_content .list_business_terms_modal {
+  display: none;
+}

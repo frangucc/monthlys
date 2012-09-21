@@ -1,0 +1,322 @@
+<% content_for(:title) { @plan.name } %>
+
+<% if @plan.inactive? %>
+  <p class="flash-info message">
+    <strong>This plan is Inactive:</strong>
+    it's been disabled by its provider or our admins.
+    <%= link_to "Browse active plans in your area", root_path %>
+  </p>
+<% elsif @plan.pending? %>
+  <p class="flash-info message">
+    <strong>This plan is Pending Approval:</strong>
+    it's only for preview purposes so you can't actually subscribe to it just yet.
+    <%= link_to "Browse active plans in your area", root_path %>
+  </p>
+<% end %>
+
+<%= render partial: 'shared/sidebar' %>
+
+<div class="plan-wrapper">
+  <article class="plan">
+    <hgroup class="main <%= @deal_coupon && @deal_source ? 'deal-available' : '' %>">
+      <h1 class="plan-name"><%= @plan.name %> <span>by <%= @plan.merchant.business_name %></span></h1>
+      <% unless merchant_storefront? %>
+        <h2 class="breadcrumb"><%= breadcrumbs_for(:plan, @plan) %></h2>
+      <% end %>
+
+      <% if @is_on_sale %><div class="on-sale">On sale</div><% end %>
+    </hgroup>
+
+    <% if @deal_coupon && @deal_source %>
+      <p class="deal-site-users-message">
+        <%= image_tag @deal_source.image.url, alt: @deal_source.name %>
+        Welcome<% if @deal_source %> <strong><%= @deal_source.name %></strong> users<% end %>!
+        Take advantage of this promo and get <strong><%= @deal_coupon.pretty_discount %></strong> off on your first payment.
+      </p>
+    <% end %>
+
+    <div class="left">
+      <h2 class="plan-phrase"><strong class="label">The value: </strong><%= @plan.short_description %></h2>
+      <div class="plan-image<% if @plan.merchant.video_url.blank? %> image-nav<% else %> plan-video<% end %>">
+        <% unless @plan.merchant.video_url.blank? %>
+          <% autoplay = params[:autoplay] == '1' %>
+          <iframe class="youtube hidden" width="100%" height="314" scrollbars="no" border="no" src="<%= get_youtube_video_embed(@plan.merchant.video_url, autoplay) %>" data-autoplay="<%= autoplay %>"></iframe>
+          <% unless autoplay %>
+            <%= image_tag(@plan.attachments.first.image, alt: @plan.name, class: 'carousel-source') %>
+          <% end %>
+          <a class="play" href="#"></a>
+        <% else %>
+          <% @plan.attachments.each do |attachment| %>
+            <%= image_tag(attachment.image.url, alt: '') %>
+          <% end %>
+        <% end %>
+        <a href="http://pinterest.com/pin/create/button/?url=<%= ms_url(plan_path(@plan)) %>&media=<%= @plan.attachments.first.image.url %>&description=<%= @plan.name %> on Monthlys" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+      </div>
+
+      <% if !@deal_coupon && @featured_coupon %>
+        <section class="coupon">
+          <h1>Coupon code <span class="available">available</span> <span class="coupon-code"><%= @featured_coupon.coupon_code %></span></h1>
+          <p class="details">Enter your coupon code in the checkout and get <%= @featured_coupon.pretty_discount %> off.</p>
+        </section>
+      <% end %>
+
+      <div class="plan-info">
+        <ul class="tabs-headers">
+          <% unless @plan.details.empty? %>
+            <li><a href="#details">Plan Details</a></li>
+          <% end %>
+          <% if @video_reviews.any? %>
+            <li><a href="#reviews">Video Reviews</a></li>
+          <% end %>
+          <li><a href="#about">About</a></li>
+          <% if @plan.shippable? %>
+            <li><a href="#shipping">Shipping Info</a></li>
+          <% end %>
+        </ul>
+        <section id="details" class="markdown">
+          <%= markdown(@plan.details) %>
+        </section>
+        <% if @video_reviews.any? %>
+          <section id="reviews">
+            <%= link_to ms_path(record_path), class:'record' do %>
+              <h1>Record your 2 minute video review</h1>
+              <h2>Your personal review, easy &amp; fun!</h2>
+            <% end %>
+            <%= render partial: 'video_reviews/list', locals: { video_reviews: @video_reviews } %>
+          </section>
+        <% end %>
+        <section id="about" class="markdown">
+          <%= markdown(@plan.description) %>
+        </section>
+        <% if @plan.shippable? %>
+          <section id="shipping" class="markdown">
+            <%= markdown(@plan.shipping_info) %>
+          </section>
+        <% end %>
+
+      </div>
+    </div>
+    <div class="right">
+      <% unless @plan.pending? && @plan_recurrences.empty? %>
+        <div class="plan-price <%= @is_on_sale ? 'on-sale' : '' %> <%= @deal_coupon ? 'param-coupon' : '' %>">
+          <% if @plan.cheapest_plan_recurrence.fake_amount %>
+            <p class="old-price">List price: <strong><%= @plan.cheapest_plan_recurrence.fake_amount %></strong></p>
+          <% end %>
+          <p class="current-price">
+            Get it
+            <% if (@plan.upsell_strategy == :none) || (@plan.upsell_strategy == :per_time_commitment) %>
+              <%= @plan.plan_recurrences.first.shipping_desc %>
+            <% end %>
+            for
+            <strong class="main-price"><%= @plan.cheapest_plan_recurrence_explanation %></strong>
+          </p>
+          <% if @deal_coupon %>
+            <p id="first-time-fee">
+              First time fee: <span class="figure"></span>
+              <span class="scissors"></span>
+            </p>
+          <% end %>
+        </div>
+
+        <div class="configuration">
+          <%= render partial: 'plans/configuration/plan_recurrences', locals: {
+            plan_recurrences: @plan_recurrences,
+            plan: @plan,
+            selected_plan_recurrence: @selected_plan_recurrence
+          } %>
+          <%= render partial: 'plans/configuration/option_groups', locals: {
+            option_groups: @option_groups,
+            selected_options_id: [],
+            selected_plan_recurrence: @selected_plan_recurrence
+          } %>
+
+          <% if @plan.shippable? && @plan.type_key != :services %>
+            <p class="plan-nextcutoff">
+              <% if !@is_subscribed %>
+                Subscribe by <%= SubscriptionsScheduleService.next_cutoff_date_after(Date.current, @merchant).strftime('%B %d') %> to receive the next shipment.
+              <% end %>
+            </p>
+          <% end %>
+
+          <% if @plan.active? %>
+            <a href="#" id="buy-now" class="btn tertiary">Buy Now</a>
+          <% elsif @plan.coming_soon? %>
+            <a href="#" id="pre-order" class="btn tertiary">Pre Order</a>
+          <% end %>
+
+          <section class="plan-as-gift">
+            <%= link_to '#', class:'gift-now' do %>
+              <%= image_tag('/assets/plan_detail/gift.png', alt:'Gift') %>
+            <% end %>
+            <h1><%= link_to 'Buy this as a gift', '#', class:'gift-now'%></h1>
+            <p>Send this as a gift to a friend or family member. Learn <%= link_to 'how it works', '#gifting-hiw', id: 'show-gifting-hiw' %>.</p>
+          </section>
+
+          <% if @has_archive %>
+            <section id="plan-subscription-archive">
+              <%= link_to '#' do %>
+                <%= image_tag('/assets/plan_detail/subscription_archive.png', alt:'Subscription archive') %>
+              <% end %>
+              <h1><%= link_to 'View subscription archive', '#' %></h1>
+              <p>See all our previous and schedules deliveries for this plan.</p>
+            </section>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="plan-share">
+        <ul>
+          <li class="facebook">
+            <!-- Facebook -->
+            <div class="fb-like" data-send="false" data-width="450" data-show-faces="false"></div>
+            <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=232019300151936";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+          </li>
+          <li class="twitter">
+            <!-- Twitter -->
+            <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          </li>
+          <li class="googleplus">
+            <!-- Google plus -->
+            <g:plusone></g:plusone>
+            <script type="text/javascript">
+              (function() {
+                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                po.src = 'https://apis.google.com/js/plusone.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+              })();
+            </script>
+          </li>
+          <li class="pinterest">
+            <a href="http://pinterest.com/pin/create/button/?url=<%= ms_url(plan_path(@plan)) %>&media=<%= @plan.attachments.first.image.url %>&description=<%= @plan.name %> on Monthlys" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+          </li>
+        </ul>
+      </div>
+
+      <% unless @plan.buying_aid.empty? %>
+        <section class="limited-availability">
+          <h1>On Sale & Limited Availability</h1>
+          <p><%= @plan.buying_aid %></p>
+        </section>
+      <% end %>
+
+      <% if @free_shipping %>
+        <section class="free-shipping">
+          <h1>Free Shipping</h1>
+          <p>Subscribe today and get free shipping on all shipments.</p>
+        </section>
+      <% end %>
+
+      <section class="about-merchant">
+        <h1>About this Merchant</h1>
+        <%= image_tag(@plan.merchant.logo.url, alt: @plan.merchant.business_name) %>
+        <h2><%= @plan.merchant.business_name %></h2>
+        <p>
+          <% if @plan.merchant.location.nil? %>
+            <%= @plan.merchant.location %>
+          <% else %>
+            <%= @plan.merchant.marketing_phrase %>
+          <% end %>
+        </p>
+        <div class="clearfix"></div>
+      </section>
+
+      <% if @related_plans.any? %>
+        <section class="related-plans">
+          <h1>More plans from <%= @plan.merchant.business_name %></h1>
+          <ul>
+            <% @related_plans.each do |plan| %>
+              <li>
+                <article>
+                  <%= link_to ms_path(plan_path(plan)), title: plan.name, class: 'image' do %>
+                    <%= image_tag(plan.thumbnail.url, alt: plan.name) %>
+                  <% end %>
+                  <h1><%= link_to plan.name, ms_path(plan_path(plan)) %></h1>
+                  <p>for <%= plan.cheapest_plan_recurrence_explanation %></p>
+                  <%= link_to 'View', ms_path(plan_path(plan)), title: plan.name, class: 'btn tertiary' %>
+                </article>
+              </li>
+            <% end %>
+          </ul>
+        </section>
+      <% end %>
+
+      <% if @featured_video_review %>
+        <section class="featured-video-review">
+          <h1 class="block-title">Featured Video Review</h1>
+          <%= render partial: 'video_reviews/list', locals: { video_reviews: @featured_video_review } %>
+        </section>
+      <% end %>
+
+      <section class="newsletter">
+        <h1>Get exclusive offers from Monthlys!</h1>
+        <%= render partial: 'newsletter_subscribers/form' %>
+      </section>
+    </div>
+  </article>
+
+  <div class="hidden">
+    <section id="gifting-hiw">
+      <h1 class="main">How does gifting work?</h1>
+      <ol>
+        <li class="step first">
+          <h1>Select 'Buy this as a gift'</h1>
+          <p>Tell us the giftees's name, email and shipping address. Decide if you want it to be a surprise or if you want to send them an instant heads up via email.</p>
+        </li>
+        <li class="step second">
+          <h1>We deliver your gift and/or email notification</h1>
+          <p>Your giftee will get the gift and description of the plan, crediting you as the gifter.</p>
+        </li>
+      </ol>
+      <img src="/assets/plan_detail/gift_message.png" alt="Email notification to giftee">
+      <%= link_to 'Buy Now as a Gift', '#', class: 'btn big tertiary gift-now' %>
+    </section>
+  </div>
+</div>
+
+<%# JS templates: this must be included before the js that uses it %>
+<%= render(partial: 'js/subscription_archive') %>
+
+<% content_for :javascript do %>
+  <%
+    routes = {
+      configuratorCheckout: ms_path(checkout_plan_configurator_path(@plan)),
+      zipcodeConfirmation: zipcode_confirmation_plan_configurator_path(@plan),
+      displayTotals: display_totals_plan_configurator_path(@plan)
+    }
+    if @subscription
+      routes[:confirmReactivateSubscription] = ms_path(confirm_reactivate_subscription_path(@subscription))
+      routes[:confirmDestroySubscription] = ms_path(confirm_destroy_subscription_path(@subscription))
+    end
+  %>
+  var routes = <%= routes.to_json.html_safe %>;
+
+  require(['require', 'plans/show'], function (require) {
+    require(['plans/show'], function(view) {
+      view.init({
+        planId: <%= @plan.id %>,
+        configuratorOptions: {
+          deliversToUser: <%= !@plan.shippable? || @location_supported || @merchant.nationwide? %>,
+          source: <%= @deal_source ? "'#{@deal_source.url_code}'" : 'undefined' %>,
+          coupon: <%= @deal_coupon ? "'#{@deal_coupon.coupon_code}'" : 'undefined' %>
+        },
+        planMerchant: {
+          business_name: "<%= @merchant.business_name %>",
+          location: {
+            show: <%= @merchant.show_location?.inspect %>,
+            lat: "<%= @merchant.lat %>",
+            lng: "<%= @merchant.lng %>"
+          }
+        }
+      });
+    });
+
+  });
+<% end %>

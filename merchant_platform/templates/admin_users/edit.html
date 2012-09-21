@@ -1,0 +1,23 @@
+{% extends :form_base %}
+
+{% block(:body_class) do %}admin-user-edit{% end %}
+
+{% block(:content_title) do %}
+<a href="..">Admin users</a> &raquo; {% if edit %}{{ record.full_name }}{% else %}New{% end %}
+{% end %}
+
+{% block(:content_form) do %}
+<div class="shadow">
+  {% display_non_field_errors(form: form) %}
+  {% display_fields(form: form) %}
+  {% if edit %}
+  <div class="field">
+    <label for="">Password</label>
+    <div class="control">
+      ************
+      (<a href="{{ url_for(:admin_user_change_password, id: record.id) }}">Change</a>)
+    </div>
+  </div>
+  {% end %}
+</div>
+{% end %}

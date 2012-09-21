@@ -1,0 +1,24 @@
+.big-icon {
+  margin: 0 auto;
+  background-color: $base-color;
+  display: block;
+  width: 190px;
+  height: 80px;
+
+  span {
+    display: block;
+    width: 190px;
+    height: 80px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-image: url(/assets/merchant-storefront/icons.png);
+  }
+
+  &.high_quality    span { background-position:  0      0 }
+  &.convenience     span { background-position: -190px  0 }
+  &.speedy_service  span { background-position: -380px  0 }
+  &.simple_payments span { background-position: -570px  0 }
+  &.flip            span { background-position: -760px  0 }
+  &.pick            span { background-position: -950px  0 }
+  &.confirm         span { background-position: -1140px 0 }
+}

@@ -1,0 +1,6 @@
+{% macro :wizard_nav do |back_text, next_text| %}
+<div class="wizard_nav">
+  {% if back_text != false %} {% button(value: back_text, css_class: 'back') %} {% end %}
+  {% if next_text != false %} {% button(value: next_text, css_class: 'next') %} {% end %}
+</div>
+{% end %}

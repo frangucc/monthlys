@@ -1,0 +1,11 @@
+{% extends :base %}
+
+{% block(:content) do %}
+<h2>Delete Plan</h2>
+<form action="{{ url_for(:plan_delete, id: plan.id) }}" method="post">
+  Are you sure you want to delete the plan <strong>{{ plan.name }}</strong>?
+
+  <input type="hidden" name="_method" value="DELETE" />
+  {% button(value: "Delete", css_class: 'delete') %}
+</form>
+{% end %}

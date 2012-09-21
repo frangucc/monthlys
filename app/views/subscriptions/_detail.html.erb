@@ -1,0 +1,65 @@
+<%#
+  Locals:
+    - subscription
+    - view
+%>
+
+<article class="subscription<%= ' expired' if subscription.expired? %><%= ' canceled' if subscription.canceled? %><%= ' active' if subscription.active? %>">
+  <div class="subscription-actions">
+    <% if %w(index show).include?(view) %>
+      <% if subscription.canceled? %>
+        <%= link_to 'Reactivate', ms_path(confirm_reactivate_subscription_path(subscription)), class: 'btn secondary reactivate' %>
+      <% elsif subscription.expired? && subscription.plan.active? %>
+        <%= link_to 'Resubscribe', ms_path(new_subscription_path(previous_subscription_id: subscription.id)), class: 'btn secondary resubscribe' %>
+      <% end %>
+
+      <% if subscription.expired? %>
+        <%= link_to 'Configure', '#', class: 'configure disabled', title: 'Configure' %>
+      <% else %>
+        <%= link_to 'Configure', ms_path(edit_subscription_path(subscription)), class: 'configure', title: 'Configure this subscription' %>
+      <% end %>
+    <% end %>
+    <% if view == 'index' %>
+      <%= link_to 'View', ms_path(subscription_path(subscription)), class: 'view', title: 'View Details' %>
+    <% end %>
+  </div>
+
+  <%= link_to ms_path(subscription_path(subscription)) do %>
+    <%= image_tag subscription.plan.thumbnail.url, class: 'subscription-thumbnail', alt: subscription.plan.name %>
+  <% end %>
+
+  <div class="subscription-info">
+    <hgroup>
+      <% if view == 'index' %>
+        <h1 class="plan"><%= link_to subscription.plan.name, ms_path(subscription_path(subscription)) %></h1>
+      <% end %>
+      <h2 class="merchant">From: <strong><%= subscription.plan.merchant.business_name %></strong></h2>
+    </hgroup>
+
+    <dl>
+      <dt>Next renewal date:</dt>
+      <dd><%= subscription.renewal_date ? subscription.renewal_date.to_s(:short) : 'Will not renew' %></dd>
+    </dl>
+
+    <p class="price">
+      <strong>Total $ <%= pretty_price(subscription.recurrent_total) %></strong>
+      <%= subscription.plan_recurrence.billing_desc %>
+    </p>
+
+    <% if subscription.is_past_due? %>
+      <% if subscription.expired? %>
+        <p class="message flash-error">
+          <strong>Payment failure.</strong>
+          This subscription expired due to payment errors.
+        </p>
+      <% else %>
+        <p class="message flash-error">
+          <strong>This subscription is past due.</strong>
+          We will try to collect the payment again in a few days.
+          Please <%= link_to 'edit your billing', ms_path(edit_billing_info_path) %> info if necessary.
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="clearfix"></div>
+</article>

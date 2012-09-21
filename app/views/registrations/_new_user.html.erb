@@ -1,0 +1,40 @@
+<%
+  # Locals
+  #  - title
+  #  - redirect_to
+%>
+
+<%= form_for @user, url: registration_path(@user) do |f| %>
+  <hgroup>
+    <h1><%= title %></h>
+    <h2>Join Monthlys. Get better quality. Save time and money.</h2>
+  </hgroup>
+
+  <%= hidden_field_tag 'redirect_to', redirect_to %>
+
+  <div class="messages"></div>
+
+  <p class="field">
+    <%= f.label :email, 'Your Email' %>
+    <%= f.text_field :email, autocomplete: 'off' %>
+  </p>
+
+  <% if @user.password_required? %>
+    <p class="field">
+      <%= f.label :password, 'Create Password' %>
+      <%= f.password_field :password, autocomplete: 'off' %>
+    </p>
+  <% end %>
+
+  <p class="field">
+    <%= f.label :zipcode_str, 'Primary Zip Code' %>
+    <%= f.text_field :zipcode_str, value: session[:zipcode] %>
+  </p>
+
+  <p class="sign_in">Already on Monthlys? <%= link_to 'Sign In', new_user_session_path, id: 'sign-in-link' %></p>
+  <p class="sign_up"><%= f.submit 'Create Account', class: 'btn secondary' %></p>
+
+  <div class="or"><span>or</span></div>
+
+  <p class="facebook"><%= link_to 'Sign Up with Facebook', '/auth/facebook' %></p>
+<% end %>

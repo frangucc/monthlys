@@ -1,0 +1,13 @@
+Rapi is the lib that handles all recurly requests and manages the related data on the system models and mantaining those in sync.
+
+TODOs
+=====
+
+ * Implement plan/subscription shipping support
+ * Avoid not-modified recurly requests (local db hash cache)
+ * Cache billing info
+ * Improve error handling
+ * Implement push notification
+ * Delayed jobs
+ * Manage states for plans and options
+ * Optimize db queries, eager loading.

@@ -1,0 +1,26 @@
+.first_plan_basic_content {
+  background: #fff;
+  padding: 30px 0;
+  float: left;
+  width: 100%;
+}
+.first_plan_basic_content .padding {
+  padding: 0 40px;
+}
+.first_plan_basic_content .wizard_form .section {
+  background: url(../images/wizard_form_shadow_bg.png) no-repeat top center;
+  background-size: 100%;
+  padding-top: 40px;
+  float: left;
+  width: 100%;
+}
+.first_plan_basic_content .wizard_form .offer_type .input.select {
+  float: left;
+  width: 244px;
+}
+.first_plan_basic_content .wizard_form .offer_type .input.select.step1 {
+  margin-right: 15px;
+}
+.first_plan_basic_content .wizard_form .offer_type span {
+  clear: left;
+}

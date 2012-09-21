@@ -1,0 +1,39 @@
+{% extends :base %}
+
+{% block(:body_class) do %}storefront-edit{% end %}
+
+{% block(:content) do %}
+  {% wizard_steps(step: 1) %}
+  <form action="" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <div class="wizard_form">
+      {% wizard_heading(heading: "Marketing Configuration",
+                        paragraph: "Here you'll configurate the marketplace, custom site and point of sale.") %}
+      <div class="fields">
+        <div class="shadow">
+          {% display_non_field_errors(form: form) %}
+          {% wizard_check_options(options: form.fields.keys.map{|name|
+              {
+                image: "/mp/img/default_merchant.png",
+                name: name,
+                heading: form[name].label,
+                paragraph: form[name].help_text,
+                selected: form[name].value,
+                value: "yes"
+              }
+            })
+          %}
+        </div>
+      </div>
+    </div>
+
+    {% wizard_nav(next_text: 'Save', back_text: false) %}
+  </form>
+{% end %}
+
+{% block(:javascript) do %}
+<script type="text/javascript">
+  require(['widgets/wizard_check_options'], function (wizard_check_options) {
+      wizard_check_options();
+  });
+</script>
+{% end %}

@@ -1,0 +1,71 @@
+.document_list .add_document {
+  float: left;
+  width: 136px;
+  height: 42px;
+  padding-left: 52px;
+  line-height: 42px;
+  background: url(../images/document_list_add_document.png);
+  font-size: 14px;
+  color: #565656;
+}
+.document_list ul.documents {
+  float: left;
+  width: 100%;
+}
+.document_list .document_list_item {
+  float: left;
+  width: 504px;
+  background: url(../images/document_list_item_bg.png);
+  margin-bottom: 15px;
+  position: relative;
+  clear: left;
+}
+.document_list .top {
+  background: url(../images/document_list_item_top.png) no-repeat top left;
+  float: left;
+  width: 100%;
+}
+.document_list .bottom {
+  background: url(../images/document_list_item_bottom.png) no-repeat bottom left;
+  float: left;
+  width: 100%;
+  padding-bottom: 26px;
+}
+.document_list .remove_document {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: url(../images/first_plan_addons_question_list_item_remove.png);
+  display: block;
+  font-size: 11px;
+  text-align: center;
+  color: #969696;
+  line-height: 32px;
+  width: 62px;
+  padding-left: 17px;
+}
+.document_list .remove_document:hover {
+  background-position: left bottom;
+  color: #f75757;
+}
+.document_list .heading {
+  height: 42px;
+  line-height: 42px;
+  margin-bottom: 10px;
+  padding-left: 52px;
+  font-size: 14px;
+  font-weight: normal;
+  color: #565656;
+}
+.document_list label {
+  width: 90px !important;
+}
+.document_list .side {
+  margin-left: 105px !important;
+}
+.document_list .input {
+  width: 386px !important;
+}
+.document_list .input input {
+  width: 362px !important;
+}

@@ -1,0 +1,7 @@
+<h1 class="main">Reactivate</h1>
+<div class="modal-form">
+  <%= form_for @subscription, url: ms_path(reactivate_subscription_path(@subscription)), method: :post do |f| %>
+    <p>Are you sure you want to reactivate this subscription?</p>
+    <%= f.submit 'Reactivate', class: 'btn secondary' %>
+  <% end %>
+</div>

@@ -1,0 +1,45 @@
+<%= render partial: 'shared/head', locals: { type: :business } %>
+
+<body class="<%= body_class %> <%= yield(:body_class) %>">
+
+  <div class="global-wrapper">
+    <header class="main wrapper">
+      <%= link_to "Monthlys for business", root_path, class: 'logo' %>
+      <nav class="main-nav">
+        <ul>
+          <li class="merchants first"><%= link_to "Merchants", business_merchants_path %></li>
+          <li class="tour"><%= link_to "Tour", business_platform_path %></li>
+          <li class="marketplace"><%= link_to "Marketplace", business_marketplace_path %></li>
+          <li class="customize"><%= link_to "Customize", business_custom_path %></li>
+          <li class="reviews"><%= link_to "Reviews", business_reviews_path %></li>
+          <li class="get-started sign_in"><%= link_to "Get started!", new_merchant_path %></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="main">
+      <div class="wrapper main-content">
+        <%= display_flash %>
+        <%= yield %>
+      </div>
+    </section>
+
+    <footer class="main wrapper">
+      <ul>
+        <li><%= link_to "Businesses on Monthlys", business_merchants_path %></li>
+        <li><%= link_to "Merchant Dashboard", business_platform_path %></li>
+        <li><%= link_to "The Marketplace", business_marketplace_path %></li>
+        <li><%= link_to "Custom Site", business_custom_path %></li>
+        <li><%= link_to "Features", business_features_path %></li>
+        <li><%= link_to "Reviews", business_reviews_path %></li>
+        <li><%= link_to "Why Monthlys?", business_why_path %></li>
+      </ul>
+    </footer>
+  </div>
+
+  <%= yield :javascript_inclusions %>
+  <%= javascript_tag do %>
+    <%= requirejs('business/scripts') %>;
+    <%= yield :javascript %>
+  <% end %>
+</body>

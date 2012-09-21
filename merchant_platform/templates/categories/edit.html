@@ -1,0 +1,10 @@
+{% extends :form_base %}
+
+{% block(:body_class) do %}category-edit{% end %}
+
+{% block(:content_title) do %}Category{% end %}
+
+{% block(:content_form) do %}
+  {% display_non_field_errors(form: form) %}
+  {% display_fields(form: form) %}
+{% end %}

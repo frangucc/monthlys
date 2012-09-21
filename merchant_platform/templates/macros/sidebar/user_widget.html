@@ -1,0 +1,14 @@
+{% macro :user_widget do %}
+<div class="user_widget">
+  <div class="image">
+    <img src="{{ user_gravatar(current_user) }}" />
+  </div>
+  <hgroup>
+    <h1>{{ current_user.company_name? ? current_user.company_name : "Test company" }}</h1>
+    <h2>Hi {{ current_user.first_name || "Francesco" }}!</h2>
+  </hgroup>
+  {% if current_user.roles? :mp_admin %}
+    {% merchant_switcher(show_button: false) %}
+  {% end %}
+</div>
+{% end %}

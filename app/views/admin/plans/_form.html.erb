@@ -1,0 +1,78 @@
+<%= semantic_form_for [:admin, @plan] do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name, hint: 'Label of the plan, to show on the front-end.' %>
+    <%= f.input :is_featured, as: :boolean %>
+    <%= f.input :plan_type, {
+      as: :select,
+      collection: PlanType.get_all_subtypes.map {|k, _| [PlanType.get_subtype_str(k), k] },
+      include_blank: false
+    } %>
+    <%= f.input :merchant, include_blank: false %>
+    <%= f.input :categories %>
+    <%= f.input :tags, as: :select, collection: Tag.order("keyword ASC").all, include_blank: false %>
+    <% if @plan.coupons.any? %>
+      <%= f.input :featured_coupon, as: :select, collection: @plan.coupons, hint: 'This coupon will show up on the plan detail page, under tha main image.' %>
+    <% end %>
+    <%= f.input :initial_count %>
+    <div id="plan-images-wrapper">
+      <label>Main images</label>
+      <div class="side">
+        <a href=# id="add-master-image">Add a master image</a>
+        <div id="images" style="display: none;">
+          <input name="plan[images][]" type="file" class="master-image" />
+        </div>
+      </div>
+    </div>
+    <%= f.input :thumbnail, as: :file, hint: "Thumbnail ideal size: 241x176px" %>
+    <%= f.input :icon, as: :file, hint: "Icon ideal size: 30x30px" %>
+    <%= f.input :merchant_storefront_image, as: :file, hint: "Image ideal size: 1150x485px. This image will only be visible on the merchant's custom storefront hormepage." %>
+    <%= f.input :activated_at, as: :date, hint: "This will be used to display the plans on 'latest' filters." %>
+  <% end %>
+
+  <fieldset class="inputs custom-fieldset">
+    <h2>Status</h2>
+    <p>
+      <%= f.radio_button :status, 'pending' %>
+      <%= f.label :status_pending, 'Pending' %>
+    </p>
+    <p class="hint">Not available on plan listings. Users cannot subscribe to plans in this status. Pending plans can only be accessed with the plan's unique hash (which can be found on the view page of this plan).</p>
+    <p>
+      <%= f.radio_button :status, 'coming_soon' %>
+      <%= f.label :status_coming_soon, 'Coming Soon' %>
+    </p>
+    <p class="hint">Available on plan listings. Users cannot subscribe to plans in this status, they can just pre-order them to be notified when they become available.</p>
+    <p>
+      <%= f.radio_button :status, 'active' %>
+      <%= f.label :status_active, 'Active' %>
+    </p>
+    <p class="hint">Available on plan listings. Users can subscribe to plans in this status.</p>
+    <p>
+      <%= f.radio_button :status, 'inactive' %>
+      <%= f.label :status_inactive, 'Inactive' %>
+    </p>
+    <p class="hint">Not available on plan listings. Users cannot subscribe to plans in this status. They will be able to access it if they have the URL, but they wont be able to subscribe.</p>
+    <p>
+      <%= f.radio_button :status, 'discarded' %>
+      <%= f.label :status_discarded, 'Discarded' %>
+    </p>
+    <p class="hint">These won't show up anywhere on the site. Please note plans with subscriptions can't be discarded.</p>
+    <p>
+      <%= f.radio_button :status, 'hidden' %>
+      <%= f.label :status_hidden, 'Hidden' %>
+    </p>
+    <p class="hint">Not available on plan listing, however, users can access them if they have the URL and subscribe to them.</p>
+  </fieldset>
+
+  <%= f.inputs do %>
+    <%= f.input :marketing_phrase %>
+    <%= f.input :short_description %>
+    <%= f.input :description %>
+    <%= f.input :shipping_info %>
+    <%= f.input :details %>
+    <%= f.input :notes_to_customer, label: "Notes to the customer", hint: "Shows up on the checkout page, please do not include dates or prices on this field." %>
+    <%= f.input :buying_aid, hint: "Shows up on the sidebar under the 'On Sale & Limited Availability' header." %>
+  <% end %>
+
+  <%= f.buttons :commit %>
+<% end %>
+<script type="text/javascript" src="/assets/admin/plans/edit.js"></script>

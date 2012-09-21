@@ -1,0 +1,16 @@
+Hello <%= @user.full_name || @user.email %>, you've been refunded
+
+Find the refund information below.
+
+Refund details
+
+- Amount
+  $ <%= pretty_price(@refund.amount) %>
+
+- Invoice
+  <%= @invoice.to_s %>
+
+- Plan
+  <%= @plan.name %>
+
+&copy; Monthlys 2012. All Rights Reserved. 1-866-797-7954

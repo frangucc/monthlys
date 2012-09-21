@@ -1,0 +1,18 @@
+<div class="main-sidebar settings-sidebar">
+  <section class="subscriptions-nav first">
+    <h1>My Account</h1>
+    <ul>
+      <li class="subscriptions"><%= link_to 'My Subscriptions', ms_path(subscriptions_path) %></li>
+      <li class="coupons"><%= link_to 'My Coupons', ms_path(coupons_path) %></li>
+      <li class="settings parent">
+        <%= link_to 'My Settings', ms_path(edit_settings_path) %>
+        <ul>
+          <li class="personal"><%= link_to 'Personal Info', ms_path(edit_settings_path) %></li>
+          <li class="billing"><%= link_to 'Billing Info', ms_path(billing_info_path) %></li>
+          <li class="shipping"><%= link_to 'Shipping Info', ms_path(shipping_infos_path) %></li>
+          <li class="password"><%= link_to 'Password', ms_path(edit_password_settings_path) %></li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</div>

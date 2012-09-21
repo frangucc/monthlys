@@ -1,0 +1,66 @@
+body.merchant_storefront-pages-how_it_works {
+
+  section.main {
+
+    section.faqs {
+      article {
+        margin-bottom: 3em;
+
+        h1 {
+          text-align: left;
+          font-size: 1em;
+          border: 0;
+          height: auto;
+          margin-bottom: 1em;
+        }
+        p {
+          font-size: 0.9em;
+          color: $text-color;
+          line-height: 1.5em;
+          margin-bottom: 0.8em;
+        }
+      }
+    }
+
+    section.faqs.tabbed {
+      ul {
+        float: left;
+        width: 47%;
+        border-right: 1px solid $border-color;
+        margin-bottom: 30px;
+
+        li {
+          padding-left: 15px;
+          line-height: 2.6em;
+          font-size: 1em;
+          color: $title-color;
+          cursor: pointer;
+          position: relative;
+
+          &.selected {
+            background: $base-color;
+            color: $link-over-base;
+
+            span {
+              display: block;
+              height: 0;
+              width: 0;
+              border-top: 1.3em solid transparent;
+              border-bottom: 1.3em solid transparent;
+              border-left: 13px solid $base-color;
+              position: absolute;
+              right: -13px;
+              top: 0;
+            }
+          }
+        }
+      }
+      article {
+        float: right;
+        width: 50%;
+      }
+    }
+
+  }
+
+}

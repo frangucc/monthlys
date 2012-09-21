@@ -1,0 +1,12 @@
+<%
+  # Locals
+  #   - plan_recurrences
+  #   - plan
+  #   - selected_plan_recurrence
+%>
+
+<div class="plan-recurrence configurator-dropdown">
+  <% pr_input = plan_recurrences_drop_down(plan, plan_recurrences, selected_plan_recurrence) %>
+  <%= pr_input[:label] %>
+  <%= pr_input[:input] %>
+</div>

@@ -1,0 +1,43 @@
+{% extends :base %}
+
+{% block(:body_class) do %}object-index subscriptions-index{% end %}
+
+{% block(:content) do %}
+
+{% ol_heading(title: 'Subscriptions') %}
+
+<table class="object-listing">
+  <thead>
+    <th>ID</th>
+    <th>Members</th>
+    <th>Plans</th>
+    <th>Status</th>
+    <th>Ship / Bill</th>
+    <th>Created</th>
+    <!--<th>Next Invoice</th>
+    <th>Next Shipping</th>-->
+    <th>Actions</th>
+  </thead>
+
+  <tbody>
+    {% subscriptions.each do |subscription| %}
+      {% recurrence = subscription.plan_recurrence %}
+      <tr>
+        <td>{{ subscription.id }}</td>
+        <td>{{ subscription.user.full_name }}</td>
+        <td>{{ subscription.plan.name }}</td>
+        <td>{{ subscription.state.capitalize }}</td>
+        <td>{{ recurrence.shipping_desc.capitalize }} / {{ recurrence.billing_recurrence_in_words.capitalize }}</td>
+        <td>{{ subscription.created_at.strftime("%-d %b %l:%M %P") }}</td>
+        <!--<td>TODO</td>
+        <td>TODO</td>-->
+        <td>
+          <a class="view" title="View" href="{{ url_for(:subscription_view, id: subscription.id) }}">View</a>
+        </td>
+      </tr>
+    {% end %}
+  </tbody>
+</table>
+
+{% pagination(page: page) %}
+{% end %}

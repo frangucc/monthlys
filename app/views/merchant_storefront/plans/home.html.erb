@@ -1,0 +1,75 @@
+<% content_for(:title) { @merchant.business_name } %>
+
+<section>
+  <div class="wrapper">
+    <hgroup class="content-headings">
+      <h1><%= @merchant.storefront_heading %></h1>
+      <h2><%= @merchant.tagline %></h2>
+    </hgroup>
+  </div>
+
+
+  <% if @plans.any? %>
+    <div class="wrapper">
+      <section class="plan-slider">
+        <h1 class="hidden">Plans from <%= @merchant.business_name %></h1>
+        <a href="#" class="arrow">Previous</a>
+
+        <% @plans.each do |plan| %>
+          <article>
+            <%= image_tag plan.merchant_storefront_image.url %>
+            <div class="plan-info">
+              <p class="featured"><span>Featured</span></p>
+              <span class="arrow"></span>
+              <h1><%= plan.name %></h1>
+              <p class="price"><%= starting_at_price(plan) %></p>
+              <p class="description"><%= plan.short_description %></p>
+              <%= link_to 'Pick Choices', ms_path(plan_path(plan, anchor: 'on')), class: 'btn-subscribe' %>
+            </div>
+          </article>
+        <% end %>
+      </section>
+    </div>
+
+    <%= render partial: 'merchant_storefront/shared/call_to_action_bar' %>
+
+    <div class="wrapper">
+      <section>
+        <h1 class="strike-through"><span>Just a few reasons our customers love us</span></h1>
+        <ul class="grid icon-grid">
+          <li class="col4">
+            <%= big_icon(:convenience) %>
+            <h1>Convenience</h1>
+            <p>Using Monthlys is effortless. Just sign up, sit back, relax, and enjoy.<p>
+          </li>
+
+          <li class="col4">
+            <%= big_icon(:speedy_service) %>
+            <h1>Speedy service</h1>
+            <p>We'll send you an email to let you know we’re on our way and when your next subscription is ready.<p>
+          </li>
+
+          <li class="col4">
+            <%= big_icon(:high_quality) %>
+            <h1>High quality</h1>
+            <p>We want to ensure you have a great experience. We always offer the best quality.<p>
+          </li>
+
+          <li class="col4">
+            <%= big_icon(:simple_payments) %>
+            <h1>Simple Payments</h1>
+            <p>We automatically charge your credit card, so you don't need to be here to pay every time.<p>
+          </li>
+        </ul>
+      </section>
+    </div>
+  <% else %>
+    <div class="wrapper">
+      <p class="empty-notice">This merchant doesn't have any plans.</p>
+    </div>
+  <% end %>
+</section>
+
+<% content_for(:javascript) do %>
+  <%= requirejs('merchant_storefront/plans/home') %>
+<% end %>

@@ -1,0 +1,156 @@
+<%= semantic_form_for [:admin, @merchant] do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :business_name %>
+    <%= f.input :marketing_phrase %>
+    <%= f.input :commission_rate, hint: 'In percentage' %>
+    <%= f.input :first_installment, hint: 'In percentage' %>
+    <%= f.input :cutoff_day, input_html: { disabled: @merchant.subscriptions.any? }, hint: 'This field will only be enabled for merchants without subscriptions.' %>
+    <%= f.input :email %>
+    <%= f.input :contact_name %>
+    <%= f.input :contact_last_name %>
+    <%= f.input :phone %>
+    <%= f.input :website %>
+    <%= f.input :is_active, :label => "Is active?" %>
+    <%= f.input :terms_of_service, :hint => "Markdown is available for this field." %>
+    <%= f.input :custom_message_type, as: :select, include_blank: false, collection: [
+      ['Don\'t allow gift messages.', 'none'],
+      ['Allow message on shipment and gift emails.', 'shipment_message'],
+      ['Do not allow message on shipment, but allow gift emails.', 'monthlys_message']
+    ] %>
+  <% end %>
+
+  <%= f.inputs do %>
+    <%= f.input :address1 %>
+    <%= f.input :address2 %>
+    <%= f.input :zipcode %>
+    <%= f.input :city %>
+    <%= f.input :state %>
+    <%= f.input :country, :as => :string %>
+    <%= f.input :show_location, :default => true %>
+  <% end %>
+
+  <%= f.inputs do %>
+    <%= f.input :video_url, :hint => "Input the youtube URL as it is, like: 'http://www.youtube.com/watch?v=XXXXXX', where XXXXXX is the video ID on youtube." %>
+    <%= f.input :image, :as => :file, :hint => "Image ideal size: 76x76px"%>
+    <%= f.input :logo, :as => :file, :hint => "Image ideal proportion: Square. The system will generate 2 versions of this image automatically (55x55 and 115x115px)."%>
+  <% end %>
+
+  <h2>Area of service Availability</h2>
+  <fieldset class="inputs custom-fieldset">
+    <p>
+      <%= f.radio_button :delivery_type, Merchant::DELIVERY_TYPE::NATIONWIDE %>
+      <%= f.label :"delivery_type_#{Merchant::DELIVERY_TYPE::NATIONWIDE}", 'Nationwide' %>
+    </p>
+    <p>
+      <%= f.radio_button :delivery_type, Merchant::DELIVERY_TYPE::CITY_LIST %>
+      <%= f.label :"delivery_type_#{Merchant::DELIVERY_TYPE::CITY_LIST}", 'In the following cities:' %>
+      <%= f.select :city_ids, City.all.map{|city| [city.to_s, city.id] }, {}, {:multiple => "multiple"} %>
+      <% if @merchant.errors.size > 0 && @merchant.city_list? && @merchant.cities.empty? %>
+        <p class="field-error-message">Please select at least one city.</p>
+      <% end %>
+    </p>
+    <p>
+      <%= f.radio_button :delivery_type, Merchant::DELIVERY_TYPE::STATE_LIST %>
+      <%= f.label :"delivery_type_#{Merchant::DELIVERY_TYPE::STATE_LIST}", 'In the following states:' %>
+      <%= f.select :state_ids, State.all.map {|state| [state.code, state.id] }, {}, { multiple: "multiple" } %>
+      <% if @merchant.errors.size > 0 && @merchant.state_list? && @merchant.states.empty? %>
+        <p class="field-error-message">Please select at least one state.</p>
+      <% end %>
+    </p>
+    <p>
+      <%= f.radio_button :delivery_type, Merchant::DELIVERY_TYPE::ZIPCODE_LIST %>
+      <%= f.label :"delivery_type_#{Merchant::DELIVERY_TYPE::ZIPCODE_LIST}", 'In the following zipcodes' %>
+      <%= f.text_field :zipcodes_list %>
+      <% if @merchant.errors.size > 0 && @merchant.zipcode_list? && @merchant.zipcodes.empty? %>
+        <p class="field-error-message">Invalid zipcodes provided.</p>
+      <% end %>
+    </p>
+  </fieldset>
+
+  <h2>Shipping Rates <span>per service</span></h2>
+  <fieldset id="shipping-types" class="inputs custom-fieldset">
+    <p>
+      <%= f.radio_button :shipping_type, 'free' %>
+      <%= f.label :shipping_type_free, 'Free' %>
+    </p>
+    <p class="hint">Shipping has no cost or it's included on the plan's price.</p>
+
+    <p>
+      <%= f.radio_button :shipping_type, 'flat_rate' %>
+      <%= f.label :shipping_type_flat_rate, 'Flat Rate' %>
+    </p>
+    <p class="hint">Shipping to every possible delivery address costs the same.</p>
+
+    <div id="flat_rate" class="hidden">
+      <%= f.label :shipping_rate, 'Enter a shipping rate' %> (in USD)
+      <%= f.text_field :shipping_rate %>
+    </div>
+
+    <p>
+      <%= f.radio_button :shipping_type, 'state_dependant' %>
+      <%= f.label :shipping_type_state_dependant, 'State Dependant' %>
+    </p>
+    <p class="hint">Shipping to each different state has a different shipping percentage associated to it. <br/>
+      This percentage is calculated over the total recurring amount of the subscription (plan price + selected option prices).</p>
+
+    <ul id="state_dependant" class="hidden">
+      <%= f.fields_for :shipping_prices do |shipping_price| %>
+        <li>
+          <%= shipping_price.label :percentage, shipping_price.object.state.code %>
+          <%= shipping_price.text_field :percentage %>% /service
+          <%= shipping_price.text_field :state_id, class: 'hidden' %>
+        </li>
+      <% end %>
+    </ul>
+  </fieldset>
+
+  <h2>Taxation Policy</h2>
+  <fieldset id="tax-policy" class="inputs custom-fieldset">
+    <p>
+      <%= f.radio_button :taxation_policy, 'no_taxes' %>
+      <%= f.label :taxation_policy_no_taxes, 'I\'m not required to add taxes' %>
+    </p>
+    <p>
+      <%= f.radio_button :taxation_policy, 'tax_plans' %>
+      <%= f.label :taxation_policy_tax_plans, 'I\'m required to add taxes over my products/services' %>
+    </p>
+    <p>
+      <%= f.radio_button :taxation_policy, 'tax_plans_plus_shippings' %>
+      <%= f.label :taxation_policy_tax_plans_plus_shippings, 'I\'m required to add taxes over my products/services plus their shipping expenses' %>
+    </p>
+  </fieldset>
+
+  <div id="tax-rates" class="hidden">
+    <h2>Taxation Rates</h2>
+    <fieldset class="inputs custom-fieldset">
+      <ul>
+        <%= f.fields_for :tax_rates do |tax_rate| %>
+          <li>
+            <%= tax_rate.label :percentage, tax_rate.object.state.code %>
+            <%= tax_rate.text_field :percentage %>%
+            <%= tax_rate.text_field :state_id, class: 'hidden' %>
+          </li>
+        <% end %>
+      </ul>
+    </fieldset>
+  </div>
+
+  <h2>Custom Storefront</h2>
+  <%= f.inputs :id => 'storefront' do %>
+    <%= f.input :custom_site, :label => "Has a custom storefront?" %>
+    <%= f.input :custom_site_url, :hint => "The name of the merchant with hyphens(-) instead of spaces, example 'wonder-bakery'." %>
+    <%= f.input :custom_site_base_color, :hint => "A color in hex, example: '5b396b'." %>
+    <%= f.input :storefront_heading, :label => "Heading" %>
+    <%= f.input :tagline %>
+    <%= f.input :about, :hint => "A brief story about the merchant. You may use markdown in this field." %>
+    <%= f.input :faqs %>
+    <%= f.input :facebook_url %>
+    <%= f.input :twitter_url %>
+    <%= f.input :storefront_logo, :as => :file, :hint => "No size contraints for this one."%>
+    <%= f.input :about_image, :as => :file, :hint => "Image ideal size: 1150x430px"%>
+    <%= f.input :related_merchants %>
+  <% end %>
+
+  <%= f.buttons :commit %>
+<% end %>
+<script type="text/javascript" src="/assets/admin/merchants/edit.js"></script>

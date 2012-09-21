@@ -1,0 +1,29 @@
+{% extends :base %}
+
+{% block(:body_class) do %}login{% end %}
+
+{% block(:layout) do %}
+<div class="login">
+  <div class="m">
+    <img src="/mp/img/login-monthlys.png" />
+  </div>
+  <form method="post">
+    {% if form.bound? && form.errors %}
+      <p>Please correct the errors below</p>
+
+      {% if form.bound? && form.non_field_errors %}
+        <ul>
+          {% form.non_field_errors.each do |error| %}<li>{{ error }}</li>{% end %}
+        </ul>
+      {% end %}
+    {% end %}
+
+    <div class="arrow"></div>
+    <h1>Sign In</h1>
+    <input type="email" name="{{ form[:email].name }}" placeholder="{{ form[:email].label }}" />
+    <input type="password" name="{{ form[:password].name }}" placeholder="{{ form[:password].label }}" />
+    {% button(value: "Sign In", css_class: 'next') %}
+    <p>Not a member yet? <a href="/business">Sign Up!</a></p>
+  </form>
+</div>
+{% end %}

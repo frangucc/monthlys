@@ -1,0 +1,315 @@
+/* Slider Arrows **************************************************************/
+
+@mixin slider-arrows-big($top) {
+  .next,
+  .prev,
+  .next span,
+  .prev span {
+    background: transparent url(/assets/icons.png) bottom center;
+    height: 50px;
+    width: 50px;
+    display: block;
+  }
+
+  .next,
+  .prev {
+    position: absolute;
+    top: $top;
+  }
+  .prev { background-position: 0 200px; left: -65px; }
+  .next { background-position: 0 150px; right: -65px; }
+
+  .prev span,
+  .next span {
+    -webkit-transition: opacity .7s linear 0s;
+    -moz-transition: opacity .7s linear 0s;
+    -o-transition: opacity .7s linear 0s;
+    opacity: 0;
+  }
+  .prev span { background-position: 0 100px; }
+  .next span { background-position: 0 50px; }
+  .prev span:hover { opacity: 1 }
+  .next span:hover { opacity: 1 }
+}
+
+
+@mixin slider-arrows-medium($margintop) {
+  .next,
+  .prev {
+    background: transparent url(/assets/icons.png) bottom center;
+    height: 32px;
+    width: 32px;
+    margin-top: $margintop;
+    float: left;
+  }
+  .prev { background-position: 0 264px }
+  .next { background-position: 0 232px }
+}
+
+
+/* Stylable select **************************************************************/
+
+@mixin stylable-select {
+  a.stylableselect {
+    display: block;
+    border-radius: 3px;
+    border: 1px solid #cfcfcf;
+    position: relative;
+    height: 40px;
+    outline: 0;
+    background: #fbfbfb;
+
+    &.focused {
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      border-color: #c0c0c0;
+    }
+
+    select {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+    }
+
+    .display {
+      white-space: nowrap;
+      overflow: hidden;
+      float: left;
+      line-height: 40px;
+      color: #262626;
+      font-size: 13px;
+      width: 77%;
+      padding: 0 4%;
+      text-overflow: ellipsis;
+
+      &.empty {
+        color: #c0c0c0;
+      }
+    }
+    .handle {
+      float: right;
+      width: 14%;
+      height: 100%;
+      text-indent: -9999px;
+      overflow: hidden;
+      border-left: 1px solid #cfcfcf;
+      background: url(/assets/stylableselect/arrowdown.png) no-repeat center center;
+    }
+    .list {
+      position: absolute;
+      z-index: 1000;
+      left: -1px;
+      top: 100%;
+      width: 120%;
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+      max-height: 300px;
+      overflow: auto;
+      border: 1px solid #CFCFCF;
+
+      .apply,
+      .listitem {
+        float: left;
+        width: 90%;
+        padding: 7px 5%;
+        margin-top: -1px;
+        border-top: 1px solid #cfcfcf;
+        border-left: 0;
+        background: #fff;
+        font-size: 13px;
+      }
+
+      .listitem {
+
+        &.selected {
+          background: #efefef;
+        }
+
+        &.active {
+          background: #ffffc2;
+        }
+
+        &:hover {
+          @include linear-gradient(#1b81df, #0373dc);
+
+          .optionvalue {
+            color: #fff;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+          }
+          .optiondata {
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+            color: #a7d4ff;
+          }
+        }
+
+        .optiondata {
+          font-size: 12px;
+          color: #4b993a;
+          line-height: 14px;
+          display: block;
+        }
+        .optionvalue {
+          display: block;
+          text-overflow: ellipsis;
+          color: #262626;
+          line-height: 14px;
+          margin-bottom: 2px;
+        }
+      }
+      .apply {
+        line-height: 22px;
+        border-radius: 5px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        background: #fff;
+        text-indent: 20px;
+
+        &:hover {
+          background: #efefef;
+        }
+      }
+    }
+
+    &.multiple {
+
+      .listitem {
+        padding: 7px 4%;
+        width: 92%;
+
+        input {
+          display: none;
+        }
+        .optionvalue, .optiondata {
+          padding-left: 25px;
+        }
+        .optionvalue {
+          background: url(/assets/checkbox.png) no-repeat left top;
+        }
+
+        &.active {
+          .optionvalue {
+            background-position: 0 -28px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/* Totals display (for checkout) **************************************************************************/
+
+@mixin totals-display {
+  clear: both;
+  border-top: 1px solid #ece4e6;
+  padding: 20px;
+  background: #fefceb;
+  float: left;
+  width: 100%;
+  margin: 20px 0;
+  border: 1px solid #ece4e6;
+  border-top: 0;
+  @include box-sizing(border-box);
+
+  legend {
+    display: none;
+  }
+  div.coupon-field {
+    float: left;
+    width: 50%;
+    p {
+      margin-bottom: 0;
+    }
+    .message {
+      clear: both;
+    }
+    label {
+      font-weight: bold;
+      font-size: 14px;
+      color: #545454;
+      line-height: 20px;
+      float: left;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    input,
+    button {
+      @include box-sizing(border-box);
+      height: 35px;
+    }
+    input {
+      float: left;
+      margin-right: 5%;
+    }
+    button {
+      float: left;
+      width: 30%;
+
+      &.valid {
+        background: #00cc00;
+      }
+    }
+  }
+  #confirmation {
+    dl {
+      float: right;
+      width: 50%;
+      font-size: 16px;
+      text-align: right;
+      color: #545454;
+      line-height: 30px;
+
+      dt {
+        float: left;
+        width: 70%;
+      }
+      dd {
+        float: right;
+        width: 30%;
+      }
+      .important {
+        font-size: 26px;
+        font-weight: bold;
+        line-height: 40px;
+      }
+      .discount {
+        color: #67B731;
+      }
+    }
+  }
+}
+
+
+/* Video Review list item **************************************************************************/
+
+@mixin video-review {
+  clear: both;
+  overflow: auto;
+  display: block;
+  overflow: auto;
+  padding: 10px 0;
+  position: relative;
+  img {
+    width: 100px;
+    float: left;
+    margin-right: 10px;
+    @include frame;
+    padding: 3px;
+  }
+  h1,
+  p {
+    margin: 0;
+    color: #333;
+  }
+  &:hover {
+    cursor: pointer;
+    &::before {
+      content:'';
+      position:absolute;
+      top: 31px;
+      left: 31px;
+      width: 41px;
+      height: 41px;
+      background: url(/assets/plan_detail/play.png) no-repeat center center;
+      z-index: 333;
+    }
+  }
+}

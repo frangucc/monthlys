@@ -1,0 +1,2 @@
+module Marketing::UserAttachmentsHelper
+end

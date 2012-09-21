@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+set -e
+
+PROGNAME=$(basename $0)
+ASSETS_PATH="public/assets"
+FILENAME="all.js"
+PROJECT_DIR="$(dirname "$0")/.."
+
+# Parse opts
+DIGEST=0
+while getopts ":d" optname
+do
+    case "$optname" in
+        "d")
+            DIGEST=1
+            ;;
+        "?")
+            echo "${PROGNAME}: Error: Unknown option $OPTARG" 1>&2
+            exit 1
+            ;;
+    esac
+done
+
+cd $PROJECT_DIR > /dev/null 2>&1
+mkdir -p public/assets
+
+# Build all.js
+echo 'Compiling javascripts...'
+node bin/r.js -o app/assets/javascripts/build.js
+echo "Compiled $ASSETS_PATH/$FILENAME"
+
+# If needed build digest version
+if [ $DIGEST == "1" ]; then
+    echo
+    echo "Generating digest alternative..."
+
+    checksum() {
+        (md5sum < "$1" 2> /dev/null; test $? = 127 && md5 < "$1") | cut -d' ' -f1
+    }
+
+    DIGEST_JSON="config/jsdigests.json"
+    MD5=$(checksum $ASSETS_PATH/$FILENAME)
+    DIGEST_FILE="all-${MD5}.js"
+
+    cp $ASSETS_PATH/$FILENAME  $ASSETS_PATH/$DIGEST_FILE
+    echo "Created $DIGEST_FILE."
+
+    echo "{ \"$FILENAME\": \"$DIGEST_FILE\" }" > $DIGEST_JSON
+    echo "Updated $DIGEST_JSON."
+fi

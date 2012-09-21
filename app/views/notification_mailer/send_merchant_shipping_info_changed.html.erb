@@ -1,0 +1,63 @@
+<table style="width: 600px; margin: auto;">
+  <tr>
+    <td colspan="2" style="padding-bottom: 20px;"><%= image_tag('email_logo.png') %></td>
+  </tr>
+  <tr valign="top">
+    <td colspan="2">
+      <h1 style="font-size: 20px; color: #565656; margin-bottom: 4px; margin-top: 0;">Shipping information changed</h1>
+      <p style="font-size: 13px; color: #565656; line-height: 16px;">
+        <%= @user.full_name || @user.email %> changed one of his shipping information.
+      </p>
+      <p style="font-size: 13px; color: #565656; line-height: 16px;">
+        Find the new shipping info information below.
+      </p>
+    </td>
+  </tr>
+
+  <!-- Previous Shipping info -->
+  <tr>
+    <td colspan="2">
+      <h2 style="font-size: 18px; margin-bottom: 20px; color: #565656;">His previous shipping info was:</h2>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">
+      <%= @old_shipping_info_desc.join('<br />').html_safe %>
+    </td>
+  </tr>
+
+  <!-- New Shipping info -->
+  <tr>
+    <td colspan="2">
+      <h2 style="font-size: 18px; margin-bottom: 20px; color: #565656;">His new shipping info is:</h2>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">
+      <%= @new_shipping_info_desc.join('<br />').html_safe %>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="2">
+      <h2 style="font-size: 18px; margin-bottom: 20px; color: #565656;">Subscriptions affected were:</h2>
+    </td>
+  </tr>
+  <% @subscriptions.each do |subscription| %>
+    <tr>
+      <td colspan="2" style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">
+        <%= subscription.plan.name %> for
+        <%= subscription.plan_recurrence.pretty_explanation %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<div style="width: 600px; margin: 30px auto 0; padding: 30px 0 10px; border-top: 1px solid #d9d9d9; font-size: 11px; color: #565656;">
+  <table width="100%">
+    <tr>
+      <td>&copy; Monthlys 2012. All Rights Reserved. 1-866-797-7954</td>
+      <td style="text-align: right">Follow Us: <a href="http://twitter.com/">Twitter</a> | <a href="http://facebook.com/">Facebook</a></td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,67 @@
+/* Marketing Pages ************************************************/
+
+/* Generic Styles for all marketing pages */
+body.marketing-pages-controller,
+body.user_preferences-controller,
+body.marketing-user_attachments-controller {
+
+  /* Headings */
+  .main-heading,
+  .secondary-heading,
+  .tertiary-heading {
+    text-align: center;
+    text-shadow: 1px 1px 0 white;
+    color: #054356;
+    margin-bottom: 20px;
+  }
+  .main-heading {
+    font-size: 40px;
+    line-height: 40px;
+  }
+  .secondary-heading {
+    color: #054356;
+    font-size: 34px;
+    margin-bottom: 1em;
+    font-weight: normal;
+  }
+  .tertiary-heading {
+    color: #808486;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: normal;
+  }
+
+  /* Full width blocks */
+  section.main > .wrapper {
+    width: auto;
+  }
+  .block {
+    padding: 30px 0 40px;
+    border-bottom: 1px solid #E3E3E3;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  /* Rewards */
+  .rewards {
+    section {
+      width: 20%;
+      padding-left: 10%;
+      margin-right: 5%;
+      float: left;
+      background: transparent url(marketing/pages/rewards/cash.png) left center no-repeat;
+      min-height: 72px;
+
+      &.last {
+        margin: 0;
+      }
+      &.exclusivity {
+        background-image: url(marketing/pages/rewards/diamond.png);
+      }
+      &.samples {
+        background-image: url(marketing/pages/rewards/gift.png);
+      }
+    }
+  }
+}

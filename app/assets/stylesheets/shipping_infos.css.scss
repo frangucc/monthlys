@@ -1,0 +1,101 @@
+body.shipping_infos-controller {
+  .shipping-info-item {
+    position: relative;
+  	border: 1px solid #bebebe;
+    background: url(/assets/seal.png) transparent right bottom no-repeat;
+    @include border-radius(5px);
+  	padding: 3%;
+  	width: 25.5%;
+  	margin-right: 2%;
+  	margin-bottom: 25px;
+  	float: left;
+    color: #535353;
+  	&.default {
+      background-color: #fffbdb;
+      background-image: url(/assets/seal-softened.png);
+    }
+    &.last {
+      margin-right: 0;
+  	}
+    h1 {
+      clear: none;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+    .actions {
+      position: absolute;
+      top: 10px;
+      right: 5px;
+      a {
+        background: url(/assets/icons.png) transparent left top no-repeat;
+        width: 16px;
+        height: 16px;
+        display: block;
+        float: left;
+        margin-right: 5px;
+        span {
+          display: none;
+        }
+        &.edit {
+          background-position: 0 -16px;
+        }
+      }
+    }
+  }
+
+  ul.related-subscriptions {
+    li {
+      width: 400px;
+      border: 1px solid #d9e5e8;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 25px;
+      min-height: 100px;
+
+      img {
+        float: left;
+        width: 120px;
+        padding: 5px;
+        border: 1px solid #d9e5e8;
+        border-radius: 3px;
+      }
+      hgroup, p {
+        margin-left: 150px;
+      }
+      hgroup {
+        margin-bottom: 10px;
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+      h1 {
+        font-size: 14px;
+        margin: 0;
+      }
+      h2, p {
+        font-size: 12px;
+        color: #545454;
+        margin-bottom: 0;
+        line-height: 16px;
+      }
+      p {
+        font-weight: bold;
+
+        strong {
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}
+
+body.shipping_infos-edit_confirmation {
+  .inner-wrapper {
+    overflow: auto;
+  }
+  a.btn.secondary, a.btn.fifthary {
+    float: left;
+    margin-right: 15px;
+    width: 100px;
+  }
+}

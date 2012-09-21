@@ -1,0 +1,32 @@
+<% if show_get_started? %>
+  <div class="wrapper clearfix">
+    <section class="get_started">
+      <div class="tape"></div>
+      <div class="box">
+        <h1><span>Hi there!</span> Here's all you need to get started...</h1>
+        <ol>
+          <li>
+            <figure>
+              <%= image_tag 'get_started_step1.png' %>
+              <figcaption><span>1</span> Like it? Flip it on</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <%= image_tag 'get_started_step2.png' %>
+              <figcaption><span>2</span> Pick your options</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <%= image_tag 'get_started_step3.png' %>
+              <figcaption><span>3</span> Confirm and enjoy!</figcaption>
+            </figure>
+          </li>
+        </ol>
+        <%= link_to 'Dismiss', '#', class: 'close' %>
+      </div>
+      <div class="shadow_under"></div>
+    </section>
+  </div>
+<% end %>

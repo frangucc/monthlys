@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% yield_block(:title) do %}Welcome{% end %} - Merchant Platform - Monthlys</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Monthlys">
+
+    <link href="/mp/css/base.css" rel="stylesheet">
+    <link href="/mp/css/autosuggest.css" rel="stylesheet">
+
+    <script>
+        var dojoConfig = {
+            baseUrl: "/mp/js/",
+            async: true,
+            tlmSiblingOfDojo: false,
+            packages: [
+                { name: 'jquery', location: 'lib', main: 'jquery' },
+                { name: 'dojo', location: 'lib/dojo' }
+            ]
+        };
+    </script>
+    <script src="/mp/js/lib/dojo.js"></script>
+
+    <script>define.amd.jQuery = true;</script>
+  </head>
+
+  <body class="{% yield_block(:body_class) %}">
+
+    {% yield_block(:layout) do %}
+    <div class="layout">
+      {% yield_block(:sidebar) do %}
+      <div id="sidebar">
+        {% user_widget() %}
+        {% nav_widget() %}
+      </div>
+      {% end %}
+      <div class="content-wrapper">
+        <div class="content">
+          {% yield_block(:content) do %}{% end %}
+        </div>
+      </div>
+    </div>
+    {% end %}
+
+    {% yield_block(:javascript) %}
+  </body>
+</html>

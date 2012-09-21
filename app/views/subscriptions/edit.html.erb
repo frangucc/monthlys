@@ -1,0 +1,111 @@
+<% content_for(:title) { "Configure #{@subscription.plan.name} subscription" } %>
+
+<%= render partial: 'shared/settings_navigation' %>
+
+<section class="content">
+  <hgroup class="main">
+    <h1><%= @subscription.plan.name %></h1>
+    <h2 class="breadcrumb"><%= breadcrumbs_for(:subscription, @subscription) %></h2>
+  </hgroup>
+
+  <section class="subscription-detail">
+    <%= render partial: 'subscriptions/detail', locals: { subscription: @subscription, view: 'edit' } %>
+  </section>
+
+  <section class="subscription-form">
+    <div class="message flash-info">
+      <p>Changes will be placed on the next renewal date: <strong><%= l(@subscription.renewal_date.to_date, format: :short) %></strong>.</p>
+      <% if @subscription.canceled? %>
+        <p>Your subscription is currently canceled, after you submit these changes it <strong>will be reactivated</strong>.</p>
+      <% end %>
+    </div>
+
+    <div id="update_messages"></div>
+
+    <%= form_tag '', id: 'subscription_dummy_form' do |f| %>
+      <% plan_recurrence_input = plan_recurrences_drop_down(@plan, @plan_recurrences, @subscription.plan_recurrence) %>
+      <%= plan_recurrence_input[:input] unless plan_recurrence_input[:has_multiple_options] %>
+
+      <table>
+        <%# Plan recurrence %>
+        <tr>
+          <td class="label">
+            <% if plan_recurrence_input[:has_multiple_options] %>
+              <%= plan_recurrence_input[:label] %>
+            <% else %>
+              Frequency
+            <% end %>
+          </td>
+          <td class="info-cell">
+            <% if plan_recurrence_input[:has_multiple_options] %>
+              <div class="plan-recurrence configurator-dropdown">
+                <%= plan_recurrence_input[:input] %>
+              </div>
+            <% else %>
+              <% pr = @subscription.plan_recurrence %>
+              <%= "#{pr.shipping_desc} for $#{pr.pretty_amount}#{pr.billing_desc}" %> (Only choice).
+            <% end %>
+          </td>
+        </tr>
+
+        <%# Option groups %>
+        <% @option_groups.each_with_index do |option_group, index| %>
+          <tr>
+            <td class="label">
+              <label for="options_id_<%= index%>"><%= option_group.description %></label>
+            </td>
+            <td class="info-cell">
+              <div class="option-group configurator-dropdown">
+                <%= select_tag "subscription[options_id][#{index}]", options_for_select(drop_down_options(option_group, @subscription.plan_recurrence), @subscription.options.map(&:id)), multiple: option_group.allow_multiple? %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+
+        <%# Shipping Info %>
+        <% if @plan.shippable? %>
+          <tr>
+            <td class="label">
+              <label for="shipping_info_id">Shipping info</label>
+            </td>
+            <td class="info-cell">
+              <div class="configurator-dropdown">
+                <%= select_tag :shipping_info_id, options_for_select(@shipping_infos.map do |si|
+                  [si.pretty_address.join(' - ').html_safe, si.id]
+                end, @subscription.shipping_info_id) %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+
+      <div id="totals-confirmation">
+        <div id="confirmation"></div>
+      </div>
+    <% end %>
+
+    <%= form_for @subscription, html: { id: 'edit_subscription' } do |f| %>
+      <p class="actions">
+        <%= f.submit @subscription.active? ? 'Save' : 'Reactivate and save', class: 'btn secondary', id: 'subscription_submit' %>
+        <% if @subscription.active? %>
+          <%= link_to 'Cancel this subscription', ms_path(confirm_destroy_subscription_path(@susbcription)), id: 'cancel-link', class: 'btn danger' %>
+        <% end %>
+      </p>
+    <% end %>
+  </section>
+</section>
+
+<%= render partial: 'checkout_totals' %>
+
+<% content_for :javascript do %>
+  require(['require', 'subscriptions/edit'], function (require) {
+    require(['subscriptions/edit'], function(view) {
+      view.init({
+        routes: <%= {
+          totals: totals_subscriptions_path(format: :json),
+          submitSubscription: ms_path(subscription_path(@subscription, format: :json))
+        }.to_json.html_safe %>
+      });
+    });
+  });
+<% end %>

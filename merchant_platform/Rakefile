@@ -1,0 +1,53 @@
+ROOT = File.dirname(File.expand_path(__FILE__))
+SASS_ROOT = File.join(ROOT, 'sass')
+
+
+desc 'Starts the MP environment'
+task :environment do
+  require File.join(ROOT, 'init.rb')
+end
+
+
+# Assets
+
+namespace :assets do
+  desc 'Compile css files from less source'
+  task :compile do
+    system("cd #{SASS_ROOT}; compass compile")
+  end
+
+  desc 'Watch assets files and automatically recompile on change'
+  task :watch do
+    puts 'Watching changes /sass/**/*.scss files...'
+
+    Rake::Task['assets:compile'].execute
+
+    timeout = ENV['WATCH_ASSETS_TIMEOUT'] || '0.05'
+    lockdir = "#{ROOT}/assets.lock"
+
+    cmd = <<-EOS
+      if mkdir #{lockdir} &>/dev/null; then
+        sleep #{timeout}
+        rake -s assets:compile
+        rmdir #{lockdir}
+      fi
+    EOS
+
+    system(%Q{watchmedo shell-command --patterns="*.scss" --command='bash -c "#{cmd}"' sass})
+  end
+end
+
+
+# Jobs
+
+namespace :jobs do
+  def default_worker
+    QC::Worker.new(QC::QUEUE, QC::TOP_BOUND, QC::FORK_WORKER,
+                   QC::LISTENING_WORKER, QC::MAX_LOCK_ATTEMPTS)
+  end
+
+  desc 'Start a new worker for the (default or QUEUE) queue'
+  task :work  => :environment do
+    default_worker.start
+  end
+end

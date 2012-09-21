@@ -1,0 +1,9 @@
+.welcome_content {
+  float: left;
+  width: 100%;
+  background: #fff;
+  padding: 30px 0;
+}
+.welcome_content .padding {
+  padding: 0 40px;
+}

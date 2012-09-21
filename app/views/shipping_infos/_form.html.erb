@@ -1,0 +1,51 @@
+<% 
+  # Locals
+  #   - form
+%>
+
+<div class="field required name">
+  <div class="title">Name</div>
+  <p class="first">
+  	<%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </p>
+  <p class="last">
+  	<%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </p>
+</div>
+
+<div class="field required address">
+	<%= form.label :address1, 'Address 1', class: "title" %>
+	<p><%= form.text_field :address1 %></p>
+</div>
+
+<div class="field address2">
+	<%= form.label :address2, 'Apt/Suite', class: 'title' %>
+	<p><%= form.text_field :address2 %></p>
+</div>
+
+<div class="field required city">
+  <%= form.label :city, :class => "title" %>
+  <p><%= form.text_field :city %></p>
+</div>
+
+<div class="field required state">
+  <%= form.label :state_id, 'State', class: "title" %>
+  <p><%= form.select :state_id, State.all.select {|s| s.code != 'TestState' }.collect {|s| [s.code, s.id] } %></p>
+</div>
+
+<div class="field required zipcode">
+  <%= form.label :zipcode_str, "Zip Code", :class => "title" %>
+  <p><%= form.text_field :zipcode_str %></p>
+</div>
+
+<div class="field required phone">
+	<%= form.label :phone, :class => "title" %>
+	<p><%= form.text_field :phone %></p>
+</div>
+
+<div class="field delivery">
+  <%= form.label :delivery_instructions, :class => "title" %>
+  <p><%= form.text_field :delivery_instructions %></p>
+</div>

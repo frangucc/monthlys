@@ -1,0 +1,26 @@
+<p><%= @users_with_preferences.count %> users have set their preferences so far.</p>
+
+<table border="0" cellspacing="0" cellpadding="0" id="users" class="index_table">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Zip Code</th>
+      <th>Preferences</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users_with_preferences.each do |user| %> 
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%= link_to(user.email, admin_user_path(user)) %></td>
+        <td><%= user.zipcode %></td>
+        <td>
+          <ul>
+            <% user.user_preferences.each do |p| %>
+              <li><%= p.category.name %></li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

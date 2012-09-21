@@ -1,0 +1,92 @@
+.wizard_radio_options, .wizard-check-options {
+  float: left;
+  width: 100%;
+  margin-bottom: 30px;
+
+  .padding {
+    padding: 0 40px;
+  }
+  .option {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    float: left;
+    background: #f5f7f9;
+    border: 1px solid #e6e7e8;
+    text-align: center;
+    padding: 30px 9% 60px;
+    margin-right: -1px;
+    position: relative;
+    top: 0px;
+    cursor: pointer;
+    margin-bottom: 16px;
+    transition: background-color 0.2s linear, border-color 0.2s linear;
+    -moz-transition: background-color 0.2s linear, border-color 0.2s linear;
+    -webkit-transition: background-color 0.2s linear, border-color 0.2s linear;
+    -o-transition: background-color 0.2s linear, border-color 0.2s linear;
+    -ms-transition: background-color 0.2s linear, border-color 0.2s linear;
+
+    &.first {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    &.last {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      border-right-width: 1px;
+    }
+    &.selected {
+      top: -8px;
+      z-index: 1000;
+      background: #e4e6e8;
+      border-radius: 5px;
+      border: 2px solid #c5c8cb;
+      box-shadow: 0 2px 1px rgba(255, 255, 255, 0.3) inset;
+      padding: 37px 9% 67px;
+      margin-bottom: 0;
+      transition: padding 0.2s linear, top 0.2s linear;
+      -moz-transition: padding 0.2s linear, top 0.2s linear;
+      -webkit-transition: padding 0.2s linear, top 0.2s linear;
+      -o-transition: padding 0.2s linear, top 0.2s linear;
+      -ms-transition: padding 0.2s linear, top 0.2s linear;
+
+      a {
+        background: url(/mp/img/wizard-radio-option-on.png);
+      }
+    }
+
+    img {
+      width: 100px;
+      height: 90px;
+      margin-bottom: 25px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: normal;
+      margin-bottom: 15px;
+      text-shadow: 0 0 1px #fff;
+    }
+    p {
+      font-size: 13px;
+      color: #565656;
+      line-height: 20px;
+      margin-bottom: 25px;
+    }
+    a {
+      background: url(/mp/img/wizard-radio-option-off.png);
+      display: block;
+      width: 26px;
+      height: 26px;
+      overflow: hidden;
+      position: absolute;
+      left: 50%;
+      bottom: 30px;
+      margin-left: -13px;
+
+      input {
+        position: absolute;
+        left: -100px;
+      }
+    }
+  }
+}

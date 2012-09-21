@@ -1,0 +1,4 @@
+sample:
+  cron: '45 5 * * *'
+  class: ScheduledWorker
+  args: 'daily' 

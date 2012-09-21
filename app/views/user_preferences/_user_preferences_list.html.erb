@@ -1,0 +1,88 @@
+<%
+  # Locals
+  #  my_preferences: true/false
+%>
+
+<hgroup>
+  <h1 class="main-heading wrapper">What interests you?</h1>
+  <h2 class="tertiary-heading wrapper">Select the categories of products and services you find interesting.<br>We'll work with local merchants to provide them and notify you when they're available.</h2>
+</hgroup>
+
+<% if user_signed_in? %>
+  <ul class="user-preferences-nav">
+    <li><%= link_to_unless_current 'All', user_preferences_path %></li>
+    <li><%= link_to_unless_current 'My Preferences', my_preferences_user_preferences_path %></li>
+  </ul>
+<% end %>
+
+<div class="messages">
+  <% if @categories.empty? %>
+    <p class="message">You haven't selected any preference just yet.</p>
+  <% end %>
+</div>
+
+<section class="categories_grid">
+  <% @categories.each_with_index do |category, index| %>
+    <% if user_signed_in? && (my_preferences || current_user.has_preference?(category.id)) %>
+      <!-- Active preference -->
+      <div class="user-preference-link active<% if (my_preferences) %> removable<% end %>">
+        <a class="close">Send to back</a>
+        <div class="image">
+          <%= image_tag(category.thumbnail.url, alt: category.name) %>
+        </div>
+        <p><%= link_to('Remove', user_preference_path(current_user.preference_from_category(category.id).id), class: 'checkbox') %><%= category.name %></p>
+      </div>
+    <% else %>
+      <!-- No preference -->
+      <div class="user-preference-link">
+        <a class="close">Send to back</a>
+        <div class="image">
+          <%= image_tag(category.thumbnail.url, alt: category.name) %>
+        </div>
+        <p><%= link_to('Add', user_preferences_path({ user_preference: { category_id: category.id } }), class: 'checkbox') %><%= category.name %></p>
+      </div>
+    <% end %>
+  <% end %>
+
+  <footer>
+    <section class="invite">
+      <h1>Invite friends and earn credit!</h1>
+      <%= link_to 'Find out more', new_friend_path %>
+    </section>
+    <section class="share">
+      <h1>Sharing is caring</h1>
+      <!-- LINKS -->
+      <ul>
+        <li>
+          <!-- FACEBOOK -->
+          <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+          <div id="fb-root"></div>
+          <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));</script>
+        </li>
+        <li>
+          <!-- TWITTER -->
+          <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </li>
+        <li>
+          <!-- GOOGLE PLUS -->
+          <g:plusone></g:plusone>
+          <script type="text/javascript">
+            (function() {
+              var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+              po.src = 'https://apis.google.com/js/plusone.js';
+              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            })();
+          </script>
+        </li>
+      </ul>
+      <!-- ENDLINKS -->
+    </section>
+  </footer>
+</section>

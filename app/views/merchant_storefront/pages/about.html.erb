@@ -1,0 +1,35 @@
+<% content_for(:title) { "About #{@merchant.business_name}" } %>
+
+<div class="wrapper">
+  <hgroup class="content-headings">
+    <h1>About <%= @merchant.business_name %></h1>
+    <h2>We love what we do.</h2>
+  </hgroup>
+
+  <% if @merchant.about_image? %>
+    <%= image_tag @merchant.about_image.url, alt: @merchant.business_name, class: 'about_image' %>
+  <% end %>
+
+  <% unless @merchant.facebook_url.empty? && @merchant.twitter_url.empty? && @merchant.email.empty? %>
+  <aside>
+    <h1>Where can you find us?</h1>
+    <ul>
+      <% unless @merchant.facebook_url.empty? %>
+        <li class="facebook"><%= link_to 'Facebook', @merchant.facebook_url %></li>
+      <% end %>
+      <% unless @merchant.twitter_url.empty? %>
+        <li class="twitter"><%= link_to 'Twitter', @merchant.twitter_url %></li>
+      <% end %>
+      <% unless !'??' %>
+        <li class="pinterest"><%= link_to 'Pinterest', '??' %></li>
+      <% end %>
+      <% unless @merchant.email.empty? %>
+        <li class="email"><%= link_to 'Email', merchant_storefront_contact_path(@merchant.custom_site_url) %></li>
+      <% end %>
+    </ul>
+  </aside>
+  <% end %>
+
+  <h3>A little description about us</h3>
+  <%= markdown(@merchant.about) %>
+</div>

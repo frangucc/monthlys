@@ -1,0 +1,27 @@
+<%= render partial: 'shared/settings_navigation' %>
+
+<section class="content">
+  <hgroup class="main">
+    <h1>Billing Info</h1>
+    <h2 class="breadcrumb"><%= breadcrumbs_for(:my_settings_section, 'Billing Info') %></h2>
+  </hgroup>
+
+  <div class="inner-wrapper">
+    <% if @account.billing_info %>
+      <p>
+        <strong><%= @account.billing_info.first_name %> <%= @account.billing_info.last_name %></strong><br />
+        <%= @account.email %>
+      </p>
+
+      <p>
+        XXXX-XXXX-XXXX-<%= @account.billing_info.last_four %><br />
+        <%= @account.billing_info.month %>/<%= @account.billing_info.year %>
+      </p>
+
+      <%= link_to 'Edit my billing info', ms_path(edit_billing_info_path), class: 'secondary btn' %>
+      <%= link_to 'Delete my billing info', ms_path(delete_billing_info_path), class: 'danger btn' %>
+    <% else %>
+      <p class="empty-notice">You do not have a credit card on file yet. <%= ms_path(link_to("Add one now!", new_billing_info_path)) %></p>
+    <% end %>
+  </div>
+</section>

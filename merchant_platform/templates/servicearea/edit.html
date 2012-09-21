@@ -1,0 +1,33 @@
+{% extends :base %}
+
+{% block(:body_class) do %}servicearea-edit{% end %}
+
+{% block(:content) do %}
+  {% wizard_steps(step: 1) %}
+  <form id="servicearea" action="" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <div class="wizard_form">
+      {% wizard_heading(heading: "Service Area",
+                        paragraph: "Select one of the following fields to define the area where you'll be able to deliver in the US.") %}
+      <div class="fields">
+        <div class="shadow">
+          {% display_non_field_errors(form: form) %}
+
+          {% options_boxes(switcher: form[:delivery_type],
+                           fields: {
+                              zipcodes: [form[:zipcodes], {url: "/mp/zipcodes", dscattr: "number"}],
+                              cities:   [form[:cities],   {url: "/mp/cities"                     }],
+                              states:   [form[:states],   {url: "/mp/states"                     }]
+                           }) %}
+        </div>
+      </div>
+    </div>
+
+    {% wizard_nav(next_text: 'Save', back_text: false) %}
+  </form>
+{% end %}
+
+{% block(:javascript) do %}
+<script type="text/javascript">
+  require(['merchants/servicearea'], function () {});
+</script>
+{% end %}

@@ -1,0 +1,89 @@
+.main-sidebar {
+  float: left;
+  width: 20%;
+  margin-bottom: 40px;
+  border: 1px solid #d6e5e8;
+  @include border-radius(5px);
+
+  section {
+    h1 {
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #666;
+      background-color: #f7f7f7;
+      padding: .5em 8%;
+    }
+    &:first-child > h1 { @include border-radius(5px 5px 0 0) }
+
+    & > ul {
+      padding: .1em 8%;
+
+
+      li {
+        margin: 1em 0;
+
+        a {
+          color: #545454;
+          display: block;
+          padding-left: 10px;
+          font-weight: normal;
+
+          &:hover { color: #0273dc }
+        }
+
+        &.parent {
+          a {
+            background: url(/assets/nested_menu_arrow.gif) left center no-repeat;
+
+            &.current {
+              background: url(/assets/nested_menu_arrow_expanded.gif) left center no-repeat;
+              font-weight: bold;
+              color: #333;
+            }
+          }
+          & > ul {
+            padding-left: 13%;
+
+            &.current a { font-weight: bold }
+            a {
+              background: none;
+              padding-left: 0;
+            }
+          }
+        }
+      }
+    }
+
+    &.filters {
+      form {
+        border-bottom: 1px solid #d6e5e8;
+        padding: 1em 8%;
+        @include border-radius(0 0 5px 5px);
+
+        label {
+          display: block;
+          font-size: 13px;
+        }
+        select {
+          width: 100%;
+        }
+        #filter_min_price,
+        #filter_max_price {
+          display: none;
+        }
+        .slider-display {
+          font-size: 11px;
+          height: 2em;
+
+          .max { float: right }
+          .min { float: left }
+          .val { color: #0273dc }
+        }
+        .btn {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

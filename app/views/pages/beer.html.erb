@@ -1,0 +1,112 @@
+<section class="intro">
+  <hgroup>
+    <h1>Craft <span>Beer Club</span></h1>
+    <h2>
+      Join Americas most exciting
+      craft beer of the month club.
+    </h2>
+    <p>Get 12 hand picked, truly unique, expert
+    curated craft beers each month.</p>
+  </hgroup>
+
+  <div id="main-slider">
+    <ul>
+      <li class="bottles selected"><%= image_tag('/assets/pages/beer/main_slider/blackbutter.png', alt: 'Black Butter', class:'b1') %></li>
+      <li class="bottles"><%= image_tag('/assets/pages/beer/main_slider/gearys.png', alt: 'Gearys', class:'b2') %></li>
+      <li class="bottles"><%= image_tag('/assets/pages/beer/main_slider/gindercone.png', alt: 'GinderCone', class:'b3') %></li>
+    </ul>
+    <ul class="nav">
+      <li class="selected">1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </div>
+
+  <%= link_to 'Join Now, Craft Beer Club is now open', plan_path(233), class:'join-now' %>
+</section>
+
+<%= link_to 'Gift this with an e-card or by postcard', plan_path(233), class:'gift' %>
+
+<div class="paper-bg">
+  <section class="subscribe-and-save">
+    <h1 class="secondary">Subscribe &amp; Save</h1>
+
+    <%= link_to plan_path(233) do %>
+      <article>
+        <h1 class="plan-1">$42/month</h1>
+        <p>month-to-month</h1>
+        <p>$42/month</p>
+        <p><span class="btn tertiary">Buy Now</span></p>
+      </article>
+    <% end %>
+
+    <%= link_to plan_path(233) do %>
+      <article>
+        <h1 class="plan-2">$36/month</h1>
+        <p>quarterly</h1>
+        <p>$108 every 3 months</p>
+        <p><span class="btn tertiary">Buy Now</span></p>
+      </article>
+    <% end %>
+
+    <%= link_to plan_path(233) do %>
+      <article>
+        <h1 class="plan-3">$34/month</h1>
+        <p>semi-annually</h1>
+        <p>$204 every 6 months</p>
+        <p><span class="btn tertiary">Buy Now</span></p>
+      </article>
+    <% end %>
+  </section>
+
+  <section class="recent-picks" id="catalogue">
+    <h1 class="secondary">Recent Picks</h1>
+    <ul>
+      <li>
+        <%= image_tag('/assets/pages/beer/recent_picks/03.png', alt: 'RJ Rockers Brewery') %>
+        <h1>March 2012</h1>
+        <p>RJ Rockers Brewery</p>
+        <p>Brown Ale &amp; Pale Ale</p>
+      </li>
+
+      <li>
+        <%= image_tag('/assets/pages/beer/recent_picks/04.png', alt: 'Boulder Beer Company') %>
+        <h1>April 2012</h1>
+        <p>Boulder Beer Company</p>
+        <p>Sweaty Betty Blonde Wheat Beer &amp; Flashback India Brown Ale</p>
+      </li>
+
+      <li>
+        <%= image_tag('/assets/pages/beer/recent_picks/05.png', alt: 'Geary\'s Brewery') %>
+        <h1>May 2012</h1>
+        <p>Geary's Brewery</p>
+        <p>Hampshire Special Ale &amp; Summer Ale (Kolsh Ale)</p>
+      </li>
+
+      <li>
+        <%= image_tag('/assets/pages/beer/recent_picks/06.png', alt: 'Woodstock Inn Brewery') %>
+        <h1>June 2012</h1>
+        <p>Woodstock Inn Brewery</p>
+        <p>Loon Golden Ale &amp; Pigs Ear Brown Ale</p>
+      </li>
+
+      <li>
+        <%= image_tag('/assets/pages/beer/recent_picks/07.png', alt: 'Abita Brewery') %>
+        <h1>July 2012</h1>
+        <p>Abita Brewery</p>
+        <p>Restoration Pale Ale &amp; Purple Haze Raspberry Wheat</p>
+      </li>
+
+      <li>
+        <%= image_tag('/assets/pages/beer/recent_picks/08.png', alt: 'Sprecher Brewery') %>
+        <h1>August 2012</h1>
+        <p>Sprecher Brewery</p>
+        <p>Hefe Weiss Wheat Ale &amp; Oktoberfest Lager</p>
+      </li>
+    </ul>
+  </section>
+</div>
+
+<% content_for :javascript do %>
+  <%= requirejs('pages/beer'); %>
+<% end %>

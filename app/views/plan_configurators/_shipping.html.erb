@@ -1,0 +1,71 @@
+<%
+  # Locals:
+  #   - shipping_infos
+  #   - plan
+  #   - merchant
+  #   - selected_id
+  #   - new_shipping_info
+%>
+
+<% any_shippable_shipping_info = shipping_infos.any? {|si| merchant.supports_zipcode?(si.zipcode) } %>
+
+<div class="shipping_select">
+  <hgroup>
+    <h1>Shipping Info</h1>
+    <% if plan.type_key == 'services' %>
+      <h2>Where would you like to receive <%= merchant.business_name %>'s services?</h2>
+    <% else %>
+      <h2>Where would you like to receive <%= plan.name %>?</h2>
+    <% end %>
+  </hgroup>
+
+  <ul class='shipping-infos'>
+
+
+    <% if !any_shippable_shipping_info %>
+    <%= 
+      render partial: 'new_shipping_info_form', 
+        locals: { 
+          any_shippable_shipping_info: any_shippable_shipping_info,
+          shipping_infos: shipping_infos,
+          merchant: merchant
+        }
+    %>
+    <% end %>
+
+
+    <% shown_invalid = false %>
+    <% shipping_infos.each do |shipping_info| %>
+    <li class="shipping-info<%= (merchant.supports_zipcode?(shipping_info.zipcode))? '' : ' disabled' %>">
+      <%= radio_button_tag 'subscription[shipping_info_id]', shipping_info.id, selected_id == shipping_info.id, disabled: !merchant.supports_zipcode?(shipping_info.zipcode), class: 'radio' %>
+      <div class="info">
+        <%= label_tag "subscription_shipping_info_id_#{shipping_info.id}" do %>
+          <% if !merchant.supports_zipcode?(shipping_info.zipcode) && !shown_invalid %>
+            <% shown_invalid = true %>
+            <p class="invalid">This address is outside the merchant's area of service. <% unless merchant.zipcode_list? %><%= merchant.business_name %> delivers to <%= merchant_ships_to(merchant) %><% end %></p>
+          <% end %>
+          <p class="name"><%= shipping_info.first_name %> <%= shipping_info.last_name %></p>
+          <p class="address"><%= shipping_info.address1 %> <%= shipping_info.address2 %></p>
+          <p class="city"><%= shipping_info.city %>, <%= shipping_info.state %> - <%= shipping_info.zipcode %></p>
+          <p>United States</p>
+        <% end %>
+      </div>
+    </li>
+    <% end %>
+
+
+    <% if any_shippable_shipping_info %>
+    <%= 
+      render partial: 'new_shipping_info_form', 
+        locals: { 
+          any_shippable_shipping_info: any_shippable_shipping_info,
+          shipping_infos: shipping_infos,
+          merchant: merchant
+        }
+    %>
+    <% end %>
+
+
+  </ul>
+
+</div>

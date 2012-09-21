@@ -1,0 +1,77 @@
+// There is some overlap between this file and plans.css we should
+// work on a mixin based refactor.
+
+#cboxLoadedContent article.plan-preview {
+  hgroup {
+    h1.plan-name {
+      font-size: 32px;
+      line-height: .9em;
+      color: #111;
+      margin-bottom: 0;
+
+      span {
+        white-space: nowrap;
+        font-size: 16px;
+        font-weight: normal;
+        color: #7a7a7a;
+      }
+    }
+
+    h2.breadcrumb {
+      font-size: 12px;
+      color: #888;
+      .separator {
+        color: #aaa;
+      }
+      a {
+        color: #888;
+        font-weight: normal;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .plan-phrase {
+    font-size: 14px;
+    line-height: 1.2em;
+    color: #202426;
+    border: 0;
+    margin: 1.5em 0;
+
+    strong {
+      background: url(/assets/the-value.png) no-repeat;
+      display: inline-block;
+      width: 80px;
+      height: 14px;
+      text-indent: -99999px;
+      overflow: hidden;
+    }
+  }
+
+  .btn.tertiary,
+  .price {
+    margin-top: 1em;
+  }
+
+  .btn.tertiary {
+    width: 30%;
+    float: right;
+    font-size: 20px;
+  }
+
+  .price {
+    float: left;
+    width: 60%;
+    font-size: 20px;
+    line-height: 42px;
+    margin-bottom: 0;
+
+    & > .amount {
+      font-size: 24px;
+      color: #054356;
+      font-weight: bold;
+    }
+  }
+}

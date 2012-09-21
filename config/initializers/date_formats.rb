@@ -1,0 +1,1 @@
+Date::DATE_FORMATS[:short] = ->(d) { d.strftime "%b #{d.day.ordinalize}" }

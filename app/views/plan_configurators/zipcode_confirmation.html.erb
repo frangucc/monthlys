@@ -1,0 +1,16 @@
+<div class="zipcode">
+  <h1>Confirm your Zipcode</h1>
+  <%= display_flash %>
+  <div id="messages-container"></div>
+  <p>Your current zipcode is not in <%= @merchant.business_name %>'s area of service.</p>
+  <% unless @merchant.zipcode_list? %>
+    <p><%= @merchant.business_name %> ships to <strong><%= merchant_ships_to(@merchant) %></strong></p>
+  <% end %>
+  <%= form_for @user, url: zipcode_confirmation_plan_configurator_path(@plan), method: :post do |f| %>
+    <p class="zip">
+      <%= f.label :zipcode_str, 'Please confirm your Zipcode' %>
+      <%= f.text_field :zipcode_str %>
+    </p>
+    <p class="submit"><%= f.submit 'Update', class: 'btn secondary' %></p>
+  <% end %>
+</div>

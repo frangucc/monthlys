@@ -1,0 +1,28 @@
+<% has_label = group[:label] == 'sale' %>
+
+<% group[:superhub_plans].sort_by(&:ordering).each do |sp| %>
+
+  <section class="secondary-highlight">
+    <div class="details">
+      <h1><%= (sp.title.blank?) ? sp.plan.name : sp.title %></h1>
+      <p class="subheading">by <%= sp.plan.merchant.business_name %></p>
+      <% if has_label %><div class="group-mini-label group-mini-label-<%= group[:label] %>"><%= group[:label_display] %></div><% end %>
+      <p><%= (sp.subtitle.blank?) ? sp.plan.short_description : sp.subtitle %></p>
+
+      <% pr = sp.plan.cheapest_plan_recurrence %>
+      <p class="price">Get it for <span class="amount">$<%= pr.pretty_amount %></span> <%= pr.billing_desc %></p>
+
+      <a href="<%= plan_path(sp.plan) %>" class="btn tertiary">View Details</a>
+    </div>
+
+    <% has_video = !sp.video_url.blank? %>
+    <a href="<%= plan_path(sp.plan) %>" class="image<% if has_video %> video-box<% end %>" <% if has_video %> data-video-url="<%= sp.video_url %>"<% end %>>
+      <%= image_tag((sp.image.blank?) ? sp.plan.attachments.first.image.url : sp.image.url) %>
+    </a>
+
+    <% if has_label %>
+      <div class="group-badge group-badge-<%= group[:label] %>"><%= group[:label_display] %></div>
+    <% end %>
+    <div class="clearfix"></div>
+  </section>
+<% end %>

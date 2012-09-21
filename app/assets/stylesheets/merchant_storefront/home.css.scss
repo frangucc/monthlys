@@ -1,0 +1,102 @@
+body.merchant_storefront-plans-home {
+  
+  section.main {
+
+    h1.strike-through {
+      font-size: 1.2em;
+      margin-bottom: 4em;
+    }
+
+    .grid {
+      margin-bottom: 40px;
+      float: left;
+      width: 100%;
+    }
+
+    .highlight-wrapper {
+      margin-top: 0;
+    }
+
+    section.plan-slider {
+      position: relative;
+      height: 485px;
+
+      a.arrow {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        margin-top: -25px;
+        background: url(/assets/merchant-storefront/slider_arrow.png);
+        width: 50px;
+        height: 50px;
+        display: block;
+        z-index: 10;
+        text-indent: -99999px;
+        outline: none;
+      }
+
+      article {
+        margin-bottom: 30px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+
+        img {
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+      }
+
+      div.plan-info {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 300px;
+        padding: 30px;
+        background: #fff;
+        border: 1px solid #b2b2b2;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+				margin:40px 60px;
+
+        p.featured {
+          text-indent: -99999px;
+          position: absolute;
+          left: 10px;
+          top: -10px;
+          height: 20px;
+          width: 100px;
+        }
+
+        h1 {
+          font-size: 2.2em;
+          color: $title-color;
+          line-height: 1.1em;
+          margin-bottom: 0.3em;
+        }
+
+        p.price {
+          font-size: 1.2em;
+          font-weight: bold;
+          margin-bottom: 0.8em;
+          color: #545454;
+        }
+
+        p.description {
+          font-size: 1em;
+          color: $subtitle-color;
+        }
+
+        a.btn-subscribe {
+          display: block;
+          font-size: 1.6em;
+          padding: 15px 0;
+        }
+      }
+    }
+
+  }
+
+}

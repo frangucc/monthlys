@@ -1,0 +1,21 @@
+<h1 class="main">Are you sure you want to <br/>cancel this subscription?</h1>
+<div class="modal-form cancellation-confirmation">
+  <%= form_for @subscription, url: ms_path(subscription_path), method: :delete, class: 'modal-form' do |f| %>
+    <p>
+      Cancelling this subscription will cause it to expire on the next renewal date:
+      <strong><%= @subscription.renewal_date.to_s(:short) %></strong>.
+      On that date, the subscription will not be invoiced again.
+    </p>
+
+    <p>Also, if you stay active you could be a <%= link_to 'Gold Member', rewards_path %> and gain access to rewards like:</p>
+
+    <ul>
+      <li>Cash Credits &amp; Rewards</li>
+      <li>Exclusive Subscriptions</li>
+      <li>Free Samples</li>
+    </ul>
+
+    <%= link_to 'No, don\'t cancel it', '#', class: 'btn secondary close-modal' %>
+    <%= f.submit "Yes, cancel it", class: "btn fifthary" %>
+  <% end %>
+</div>

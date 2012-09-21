@@ -1,0 +1,160 @@
+.first_plan_shipping_content {
+  background: #fff;
+  padding: 30px 0;
+  float: left;
+  width: 100%;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.first_plan_shipping_content .padding {
+  padding: 0 40px;
+}
+.first_plan_shipping_content .billing_options {
+  padding-bottom: 40px;
+}
+.first_plan_shipping_content .billing_options,
+.first_plan_shipping_content .shipping_options {
+  background: url(../images/wizard_form_shadow_bg.png) no-repeat top center;
+  background-size: 100%;
+  padding-top: 40px;
+  float: left;
+  width: 100%;
+}
+.first_plan_shipping_content .shipping_options .option,
+.first_plan_shipping_content .billing_options .option {
+  width: 504px;
+  height: 62px;
+  float: left;
+  margin: 0 30px 10px 0;
+  background: url(../images/wizard_plan_billing_option_bg.png);
+}
+.first_plan_shipping_content .billing_options .option a,
+.first_plan_shipping_content .shipping_options .option a {
+  background: url(../images/wizard_plan_billing_option_checkbox.png);
+  display: block;
+  float: left;
+  width: 18px;
+  height: 18px;
+  overflow: hidden;
+  margin: 22px 22px 0px 13px;
+}
+.first_plan_shipping_content .shipping_options .option a {
+  background: url(../images/wizard_plan_shipping_option_radio.png);
+  width: 16px;
+  height: 17px;
+}
+.first_plan_shipping_content .shipping_options .option.checked a,
+.first_plan_shipping_content .billing_options .option.checked a {
+  background-position: bottom left;
+}
+.first_plan_shipping_content .shipping_options .option a input,
+.first_plan_shipping_content .billing_options .option a input {
+  position: absolute;
+  left: -9999px;
+}
+.first_plan_shipping_content .shipping_options .option label,
+.first_plan_shipping_content .billing_options .option label {
+  float: left;
+  width: 260px;
+  line-height: 62px;
+  font-size: 14px;
+  color: #262626;
+}
+.first_plan_shipping_content .shipping_options .option.flat_rate div,
+.first_plan_shipping_content .shipping_options .option .bottom div,
+.first_plan_shipping_content .billing_options .option div {
+  background: #fff url(../images/wizard_plan_billing_option_price.png);
+  float: left;
+  width: 66px;
+  height: 38px;
+  margin: 12px 10px 0 0;
+  position: relative;
+}
+.first_plan_shipping_content .shipping_options .option.flat_rate div span,
+.first_plan_shipping_content .shipping_options .option .bottom div span,
+.first_plan_shipping_content .billing_options .option div span {
+  font-size: 12px;
+  color: #aeaeae;
+  position: absolute;
+  left: 10px;
+  top: 0;
+  line-height: 38px;
+}
+.first_plan_shipping_content .shipping_options .option.flat_rate div input,
+.first_plan_shipping_content .shipping_options .option .bottom div input,
+.first_plan_shipping_content .billing_options .option div input {
+  border: 0;
+  background: none;
+  width: 36px;
+  height: 28px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 5px 10px 5px 20px;
+  font-family: Arial, sans-serif;
+  font-size; 14px;
+  color: #565656;
+}
+.first_plan_shipping_content .billing_options .option span {
+  float: left;
+  line-height: 62px;
+  color: #aeaeae;
+}
+
+.first_plan_shipping_content .shipping_options h2 {
+  font-size: 18px;
+  font-weight: normal;
+  margin-bottom: 30px;
+}
+.first_plan_shipping_content .shipping_options .option {
+  width: 348px;
+  background: url(../images/wizard_plan_shipping_option_small_bg.png);
+}
+.first_plan_shipping_content .shipping_options .option.flat_rate {
+  margin-right: 0;
+  position: relative;
+}
+.first_plan_shipping_content .shipping_options .option.flat_rate div,
+.first_plan_shipping_content .shipping_options .option .bottom div {
+  position: absolute;
+  right: 10px;
+  top: 0;
+}
+.first_plan_shipping_content .shipping_options .option.fixed_rate {
+  clear: left;
+  width: 727px;
+  height: auto;
+  background: url(../images/wizard_plan_option_bgh.png) repeat-y;
+}
+.first_plan_shipping_content .shipping_options .option.fixed_rate .top {
+  background: url(../images/wizard_plan_option_top.png) no-repeat top left;
+  float: left;
+  width: 100%;
+}
+.first_plan_shipping_content .shipping_options .option.fixed_rate .bottom {
+  background: url(../images/wizard_plan_option_bottom.png) no-repeat bottom left;
+  float: left;
+  width: 100%;
+}
+.first_plan_shipping_content .shipping_options .option.fixed_rate ol {
+  float: left;
+  width: 681px;
+  margin-left: 51px;
+  padding-bottom: 5px;
+  display: none;
+}
+.first_plan_shipping_content .shipping_options .option.fixed_rate.checked ol {
+  display: block;
+}
+.first_plan_shipping_content .shipping_options .option.fixed_rate ol li {
+  width: 217px;
+  height: 58px;
+  background: url(../images/wizard_plan_shipping_option_state_bg.png);
+  float: left;
+  margin: 0 7px 7px 0;
+  position: relative;
+}
+.first_plan_shipping_content .shipping_options .option.fixed_rate ol li label {
+  margin-left: 12px;
+  line-height: 59px;
+}

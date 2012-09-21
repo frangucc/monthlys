@@ -1,0 +1,19 @@
+<% content_for(:title) { "#{@tag.keyword} plans listing" } %>
+
+<%= render partial: 'shared/sidebar' %>
+
+<section class="plan-grid category">
+  <div class="main-banner">
+    <%= image_tag(@tag.header_image.url, alt: @tag.keyword) %>
+    <hgroup>
+      <h1><%= @tag.keyword.capitalize %></h1>
+      <h2><%= breadcrumbs_for(:tag, @tag) %></h2>
+    </hgroup>
+  </div>
+
+  <%= render partial: 'plans/list', locals: { plans: @plans } %>
+</section>
+
+<% content_for(:javascript) do %>
+  <%= requirejs('tags/show') %>
+<% end %>

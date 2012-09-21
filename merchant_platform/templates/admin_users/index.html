@@ -1,0 +1,33 @@
+{% extends :base %}
+
+{% block(:body_class) do %}object-index admin-user-index{% end %}
+
+{% block(:content) do %}
+
+{% ol_heading(title: 'Admin users', add_url: url_for(:admin_user_new)) %}
+
+<table class="object-listing">
+  <thead>
+    <th colspan=2>ID</th>
+    <th>Role</th>
+    <th>Last login</th>
+    <th>Actions</th>
+  </thead>
+
+  <tbody>
+    {% admin_users.each do |user| %}
+      <tr>
+        <td><img src="{{ user_gravatar(user) }}" alt=""></td>
+        <td>{{ user.full_name }}<br>{{ user.email }}</td>
+        <td>{{ user.roles.join('') }}</td>
+        <td>{{ fmt_datetime(user.current_sign_in_at) }}</td>
+        <td>
+          <a class="edit" title="Edit" href="{{ url_for(:admin_user_edit, id: user.id) }}">Edit</a>
+        </td>
+      </tr>
+    {% end %}
+  </tbody>
+</table>
+
+{% pagination(page: page) %}
+{% end %}

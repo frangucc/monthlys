@@ -1,0 +1,69 @@
+<% content_for(:title) { 'Register and get a coupon!' } %>
+
+<section class="signup">
+  <hgroup>
+    <h1>Discover and manage monthly subscriptions in <%= (current_city)? current_city.name : "your area" %>.</h1>
+    <h2>Join Monthlys. Get better quality. Save time and money.</h2>
+  </hgroup>
+  <%= form_for(resource, as: resource_name, url: create_with_coupon_path) do |f| %>
+
+    <%= hidden_field_tag :redirect_to, coupons_path %>
+    <%= hidden_field_tag :coupon_name, @coupon_name %>
+
+    <%= error_messages_for(@user) %>
+
+    <p class="field">
+      <%= f.label :full_name, 'Full Name' %>
+      <%= f.text_field :full_name, autocomplete: 'off' %>
+    </p>
+
+    <p class="field">
+      <%= f.label :email, 'Your Email' %>
+      <%= f.text_field :email, autocomplete: 'off' %>
+    </p>
+
+    <% if @user.password_required? %>
+      <p class="field">
+        <%= f.label :password, 'Create Password' %>
+        <%= f.password_field :password, autocomplete: 'off' %>
+      </p>
+    <% end %>
+
+    <p class="field">
+      <%= f.label :zipcode_str, 'Primary Zip Code' %>
+      <%= f.text_field :zipcode_str, value: session[:zipcode] || (resource.zipcode && resource.zipcode.number) %>
+    </p>
+
+    <p class="sign_up"><%= f.submit 'Create Account', class: 'btn secondary' %></p>
+
+    <div class="or"><span>or</span></div>
+    <p class="facebook"><%= link_to 'Sign Up with Facebook', "/auth/facebook?state=#{@coupon_name}" %></p>
+  <% end %>
+</section>
+
+<div class="giftcard-promo <%= @coupon_name %>">
+  <aside class="giftcard">
+    <% if @coupon_name == :register_5_dollar_coupon %>
+      <h1>Join Monthlys and get a <em>free</em> $5.00 credit for your first subscription.</h1>
+      <p>Curious? You must be. Log in and check out the site.</p>
+      <%= image_tag 'registrations/giftcard_5.png' %>
+    <% else %>
+      <h1>Join Monthlys and get a <em>free</em> $10.00 credit for your first subscription.</h1>
+      <p>Curious? You must be. Log in and check out the site.</p>
+      <%= image_tag 'registrations/giftcard_10.png' %>
+    <% end %>
+  </aside>
+  <aside class="howitworks">
+    <%= link_to '//www.youtube.com/embed/5pCdarnvtMU?autoplay=1&showinfo=0', class: 'modal-video cboxElement' do %>
+      <%= image_tag 'registrations/how_it_works_2.png' %>
+    <% end %>
+    <h1>What is Monthlys you ask?</h1>
+    <p>Monthlys is a marketplace for recurring goods, services and memberships. Turn them on or off with the flip of a switch.</p>
+  </aside>
+</div>
+<div class="clearfix"></div>
+
+
+<% content_for(:javascript) do %>
+  <%= requirejs('registrations/new_with_coupon') %>
+<% end %>

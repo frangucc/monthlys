@@ -1,0 +1,36 @@
+<% content_for(:title) { 'Invite friends and get $5.00' } %>
+
+<section class="text">
+  <h1>Invite some friends and get $5.00 worth of instant Monthlys credit.</h1>
+  <p>No need for your friends to redeem, just spread the word.</p>
+  <%= image_tag 'invite_friends_gift_card.png' %>
+</section>
+
+<section class="form">
+  <h1>Complete the form below with your friends' emails.</h1>
+  <%= display_flash %>
+  <%= form_tag friends_path, id: 'friends_new' do |f| %>
+    <% @friends_list.each_with_index do |friend, index| %>
+      <div class="<%= (friend.errors.any?)? 'field-error' : '' %>">
+        <%= error_messages_for(friend) %>
+        <p>
+          <%= label_tag "friends[#{index}][email]", "Friend's email" %>
+          <%= text_field_tag "friends[#{index}][email]", friend.email, type: 'email' %>
+        </p>
+      </div>
+    <% end %>
+    <p><%= submit_tag 'Send invites!', class: 'btn tertiary' %></p>
+  <% end %>
+</section>
+
+<%= javascript_tag do %>
+  var userSignedIn = <%= user_signed_in?.to_json %>;
+<% end %>
+
+<% content_for :javascript do %>
+  require(['require', 'friends/new'], function (require) {
+    require(['friends/new'], function(view) {
+      view.init();
+    });
+  });
+<% end %>

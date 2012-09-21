@@ -1,0 +1,251 @@
+{% extends :base %}
+
+{% block(:body_class) do %}object-view subscription-view{% end %}
+
+{% block(:content) do %}
+{% plan = record.plan %}
+{% recurrence = record.plan_recurrence %}
+{% user = record.user %}
+{% billing = user.billing_info %}
+{% shipping = user.shipping_infos.find_by_is_default(true) || user.shipping_infos.first %}
+
+<h1><a href="..">Subscriptions</a> &raquo; #{{ record.id }}</h1>
+
+<div class="print-actions">
+  <a class="white-button" href="#todo">Print Invoice</a>
+  <a class="white-button" href="#todo">Print Shipping Label</a>
+</div>
+
+<div class="left">
+  <div>
+    <table class="plan-info">
+      <tbody>
+        <tr>
+          <th>Plan Name</th>
+          <td class="plan-name">{{ plan.name }}</td>
+        </tr>
+
+        <tr>
+          <th>Start Type</th>
+          <td>{{ PlanType.get_subtype_str(plan.plan_type) }}</td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td class="status">{{ record.state.capitalize }}</td>
+        </tr>
+
+        <tr>
+          <th>Start Date</th>
+          <td>{{ record.created_at.strftime("%-d %b %l:%M %P") }}</td>
+        </tr>
+
+        <tr>
+          <th>Shop / Bill</th>
+          <td>{{ recurrence.shipping_desc.capitalize }} / {{ recurrence.billing_recurrence_in_words.capitalize }}</td>
+        </tr>
+
+        <tr>
+          <th>Next Shipping</th>
+          <td>TODO</td>
+        </tr>
+
+        <tr>
+          <th>Current Period</th>
+          <td>TODO</td>
+        </tr>
+
+        <tr>
+          <th>Next Renewal</th>
+          <td>{{ record.renewal_date.strftime("%b %-d, %Y") }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="plan-cost">
+      <tr>
+        <th class="plan-name">{{ plan.name }}</th>
+        <td>$ {{ recurrence.amount.to_f }} {{ recurrence.billing_desc }}</td>
+      </tr>
+      {% record.options.each do |opt| %}
+        <tr>
+          <th>{{ opt.title }}</th>
+          <td>$ {{ opt.amount.to_f }} {{ recurrence.billing_desc }}</td>
+        </tr>
+      {% end %}
+      <tr class="total-row">
+        <th>Total</th>
+        <td>$ {{ record.recurrent_subtotal_without_shipping }} <span class="billing-desc">{{ recurrence.billing_desc }}</span></td>
+      </tr>
+    </table>
+  </div>
+
+  {% unless record.user_note.nil? %}
+    <div class="notes">
+      <span class="badge">User Note</span>
+      <p>{{ record.user_note }}</p>
+    </div>
+  {% end %}
+
+  <div class="invoices-and-transactions">
+    <h2>Invoices</h2>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th class="order-id">Order ID</th>
+          <th>Billed On</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if user.invoices.length > 0 %}
+          {% user.invoices.each do |invoice| %}
+            <tr>
+              <td></td>
+              <td>{{ invoice.invoice_number }}</td>
+              <td>{{ invoice.created_at.strftime("%b %-d, %Y") }}</td>
+              <td>${{ invoice.total_in_usd }} USD</td>
+            </tr>
+          {% end %}
+        {% else %}
+            <tr>
+              <td colspan="4">No invoices</td>
+            </tr>
+        {% end %}
+      </tbody>
+    </table>
+
+    <h2>Transactions</h2>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Description</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if user.transactions.length > 0 %}
+          {% user.transactions.each do |transaction| %}
+            <tr>
+              <td></td>
+              <td>{{ transaction.action_desc }}</td>
+              <td>{{ transaction.created_at.strftime("%b %-d, %Y") }}</td>
+              <td>{{ transaction.updated_at.strftime("%b %-d, %Y") }}</td>
+              <td>${{ transaction.amount_in_dollars }} USD</td>
+            </tr>
+          {% end %}
+        {% else %}
+            <tr>
+              <td colspan="5">No transactions</td>
+            </tr>
+        {% end %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="right">
+  <div class="user">
+    <img src="{{ user_gravatar(user) }}" />
+    <div class="user-details">
+      <p class="full-name">{{ user.full_name }}</p>
+      <p>{{ user.email }}</p>
+      <p>{{ user.phone }}</p>
+      {% if billing %}
+        <p class="billing-address">{{ billing.address1 || billing.address2 }}</p>
+      {% end %}
+    </div>
+  </div>
+
+  <div class="info">
+    <h2>Billing Info</h2>
+    {% if billing %}
+    <table>
+      <tbody>
+        <tr>
+          <th>Full Name</th>
+          <td>{{ billing.first_name }} {{ billing.last_name }}</td>
+        </tr>
+
+        <tr>
+          <th>Credit Card</th>
+          <td>XXX-{{ billing.last_four }} ({{ billing.card_type }})</td>
+        </tr>
+
+        <tr>
+          <th>Expiry Date</th>
+          <td>{{ billing.month }}/{{ billing.year }}</td>
+        </tr>
+
+        <tr>
+          <th>Address</th>
+          <td>{{ billing.address1 || billing.address2 }}</td>
+        </tr>
+
+        <tr>
+          <th>Phone</th>
+          <td>{{ billing.phone }}</td>
+        </tr>
+
+        <tr>
+          <th>IP Address</th>
+          <td>{{ billing.ip_address }} ({{ billing.ip_address_country }})</td>
+        </tr>
+      </tbody>
+    </table>
+    {% else %}
+    <p>No billing info.</p>
+    {% end %}
+  </div>
+
+  <div class="info">
+    <h2>Shipping Info</h2>
+    {% if shipping %}
+      <table>
+        <tbody>
+          <tr>
+            <th>Full Name</th>
+            <td>{{ shipping.first_name }} {{ shipping.last_name }}</td>
+          </tr>
+
+          <tr>
+            <th>Phone</th>
+            <td>{{ shipping.phone }}</td>
+          </tr>
+
+          <tr>
+            <th>Address 1</th>
+            <td>{{ shipping.address1 }}</td>
+          </tr>
+
+          <tr>
+            <th>City</th>
+            <td>{{ shipping.city }}</td>
+          </tr>
+
+          <tr>
+            <th>State</th>
+            <td>{{ shipping.state.name }} ({{ shipping.state.code }})</td>
+          </tr>
+
+          <tr>
+            <th>Zip Code</th>
+            <td>{{ shipping.zipcode.number }}</td>
+          </tr>
+
+          <tr>
+            <th>Country</th>
+            <td>{{ shipping.zipcode.country }}</td>
+          </tr>
+        </tbody>
+      </table>
+    {% else %}
+      <p>Information not available</p>
+    {% end %}
+  </div>
+</div>
+{% end %}

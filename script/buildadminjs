@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+echo 'Copying admin javascripts...'
+PROJECT_DIR="$(dirname "$0")/.."
+mkdir -p public/assets
+cd $PROJECT_DIR && cp -r app/assets/javascripts/{active_admin.js,admin} public/assets

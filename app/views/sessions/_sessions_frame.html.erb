@@ -1,0 +1,32 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <hgroup>
+    <h1>Sign In to your account</h1>
+    <h2>First time here? <%= link_to "Create an account", "/users/sign_up", id: 'sign-up-link' %></h2>
+  </hgroup>
+
+  <%= error_messages_for(resource) %>
+  <div class="messages"></div>
+
+  <p class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </p>
+
+  <p class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </p>
+
+  <p class="remember">
+    <%= f.check_box :remember_me %><%= f.label :remember_me %>
+    <%= link_to "Forgot your password?", new_password_path(resource_name), :class => " forgot-password modal" %>
+  </p>
+  <p class="sign_up">
+    <%= f.submit "Sign in", :class => "btn secondary" %>
+  </p>
+
+  <div class="or"><span>or</span></div>
+
+  <p class="facebook"><%= link_to 'Sign Up with Facebook', "/auth/facebook" %></p>
+<% end %>
+<div class="loading_spinner"></div>

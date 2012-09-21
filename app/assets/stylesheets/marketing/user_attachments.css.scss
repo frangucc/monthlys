@@ -1,0 +1,72 @@
+/* Rewards */
+body.marketing-user_attachments-controller {
+
+  /* Slider */
+  #slider {
+    background: transparent url(marketing/user_attachments/new/slider_bg.png) center top no-repeat;
+    width: 777px;
+    height: 485px;
+    margin: 0 auto;
+    padding: 18px 44px 0 44px;
+    position: relative;
+
+    @include slider-arrows-big(210px);
+
+    ul {
+      li {
+        width: 780px;
+        height: 430px;
+        float: left;
+      }
+    }
+  }
+
+  /* How it works */
+  .hiw {
+    section {
+      width: 20%;
+      padding-left: 10%;
+      margin-right: 5%;
+      float: left;
+      background: transparent url(marketing/user_attachments/new/sticker.png) left center no-repeat;
+      min-height: 72px;
+
+      &.last {
+        margin: 0;
+      }
+      &.camera {
+        background-image: url(marketing/user_attachments/new/camera.png);
+      }
+      &.upload {
+        background-image: url(marketing/user_attachments/new/upload.png);
+      }
+    }
+  }
+
+  /* Form */
+  .form {
+    padding: 30px 0;
+
+    form {
+      margin: 0 auto;
+      width: 352px;
+    }
+    p {
+      position: relative;
+    }
+    label {
+      position: absolute;
+      top: 7px;
+      left: 10px;
+      color: #777;
+    }
+    input,
+    .btn {
+      width: 100%;
+      @include box-sizing(border-box);
+      height: 34px;
+      font-size: 1em;
+      padding: 0 8px;
+    }
+  }
+}

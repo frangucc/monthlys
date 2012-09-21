@@ -1,0 +1,153 @@
+<%= render partial: 'shared/head', locals: { type: :application } %>
+
+  <body class="<%= body_class %> <%= yield :body_class %>">
+    <div class="global-wrapper">
+
+      <div class="bg-wrapper">
+        <%= yield :background_image %>
+      </div>
+
+      <% if show_header_promo? %>
+        <%= render partial: 'shared/header_promo' %>
+      <% end %>
+
+      <header class="main">
+        <div class="wrapper">
+          <h1><%= link_to root_path, class: 'logo', title: 'Monthlys' do image_tag('monthlys.png', alt: 'Monthlys Logo') end %></h1>
+          <div id="city-select">
+            <input type="hidden" id="latitude" value="<%= latitude %>" />
+            <input type="hidden" id="longitude" value="<%= longitude %>" />
+
+            <p class="current-city">
+              <% if current_city %>
+                <%= current_city.name %>
+                <%= "(#{current_zipcode})" if current_zipcode %>
+              <% else %>
+                Cities
+              <% end %>
+            </p>
+
+            <section class="mega-dropdown">
+              <div class="cities">
+                <h1>Choose your city or enter your zip code:</h1>
+                <div class="featured-cities">
+                  <% @available_cities.each do |city| %>
+                    <p><%= link_to city.name, update_location_settings_path(city_id: city.id) %></p>
+                  <% end %>
+                </div>
+                <% if admin_user_signed_in? %>
+                <ul class="admin-filters">
+                  <li><%= admin_user_filter_link(:all, session[:plans_type], "first", "Active, inactive and pending plans from all cities") %></li>
+                  <li><%= admin_user_filter_link(:all_active, session[:plans_type], "",  "Active plans from all cities") %></li>
+                  <li><%= admin_user_filter_link(:all_pending, session[:plans_type], "", "Pending plans from all cities") %></li>
+                  <li><%= admin_user_filter_link(:active, session[:plans_type], "first", "Active plans in current city") %></li>
+                  <li><%= admin_user_filter_link(:pending, session[:plans_type], "", "Pending plans in current city") %></li>
+                </ul>
+                <% end %>
+              </div>
+              <div class="zipcode">
+                <h1>Enter your Zip Code:</h1>
+                <%= form_for(:zipcode_handler, :url => update_location_settings_path, :method => :get) do |f| %>
+                  <%= f.label :zipcode_str, "Zip Code" %>
+                  <%= f.text_field :zipcode_str %>
+                  <%= f.submit "Check Zip Code", class: "btn secondary" %>
+                <% end %>
+              </div>
+            </section>
+          </div>
+          <nav>
+            <h1 class="hidden">Main navigation</h1>
+            <ul>
+              <li class="first"><%= link_to "How it works", how_it_works_path, class: "nav-item" %></li>
+              <% if user_signed_in? %>
+                <li>
+                  <%= link_to "My Account", edit_settings_path, class: "nav-item" %>
+                  <ul>
+                    <li><%= link_to "My Subscriptions", subscriptions_path %></li>
+                    <li><%= link_to "My Coupons", coupons_path %></li>
+                    <li><%= link_to "My Settings", edit_settings_path %></li>
+                    <li><%= link_to "Sign Out", destroy_user_session_url %></li>
+                  </ul>
+                </li>
+              <% else %>
+                <li><%= link_to "Sign In", new_session_path(:user), class: "nav-item", id: "sign-in-link" %></li>
+                <li><%= link_to "Sign Up", new_user_registration_path, class: "nav-item", id: "sign-up-link" %></li>
+              <% end %>
+              <% if !user_signed_in? || can?(:create, Merchant) %>
+                <li class="last"><%= link_to "Own a Business?", business_path, class: "btn", onClick: analytics_track_event('clicks', 'buttonClick', 'Own a business button') %></li>
+              <% end %>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <nav class="hnav">
+        <div class="wrapper">
+          <section id="search">
+            <%= render partial: 'shared/search_form' %>
+          </section>
+
+          <section class="tag-nav">
+            <ul>
+              <% @tags.each do |t| %>
+                <li class="<%= 'active' if t == @tag %>">
+                  <%= link_to(t.keyword, tag_path(t), :'data-slug' => t.slug) %>
+                </li>
+              <% end %>
+            </ul>
+          </section>
+        </div>
+        <section class="pulldown"><div class="wrapper"></div></section>
+      </nav>
+
+      <section class="main">
+        <div class="wrapper">
+          <%= display_flash unless hide_flash? %>
+          <%= yield %>
+          <div class="clearfix"></div>
+        </div>
+      </section>
+
+      <footer class="main">
+        <div class="wrapper">
+          <%= yield :additional_footer_content %>
+          <h1 class="hidden">Tertiary Navigation</h1>
+          <ul>
+            <li><%= link_to("Learn More", why_monthlys_path) %></li>
+            <li><%= link_to("Contact", contact_path) %></li>
+            <li><%= link_to("Terms & Conditions", terms_of_service_path) %></li>
+            <li><%= link_to("Affiliate Program", affiliate_program_path) %></li>
+            <li><%= link_to("Privacy", privacy_policy_path) %></li>
+            <li><%= link_to("Jobs", jobs_path) %></li>
+
+            <li><%= link_to("Follow us on Twitter", "http://twitter.com/MonthlysInc", target: "_blank") %></li>
+            <li class="last"><%= link_to("Follow us on Facebook", "http://www.facebook.com/pages/Monthlys/166280233483003", target: "_blank") %></li>
+          </ul>
+          <p class="copyright">&copy; Monthlys 2012. All Rights Reserved.<!-- 1-312-906-7474 --></p>
+        </div>
+      </footer>
+    </div>
+
+    <%# JS templates: this must be included before the require layouts/application %>
+    <%= render(partial: 'js/pulldown') %>
+    <%= render(partial: 'js/plan_preview') %>
+
+    <%= yield :javascript_inclusions %>
+    <%= javascript_tag do %>
+      require(['require', 'layouts/application'], function (require) {
+        require(['layouts/application'], function (view) {
+          <% is_home = controller.controller_name == 'pages' && controller.action_name == 'featured' %>
+          view.init({
+            autoOpen: <%= is_home %>,
+            userSignedIn: <%= !!user_signed_in? %>
+          });
+        });
+      });
+      <%= yield :javascript %>
+    <% end %>
+
+    <% unless Rails.env.development? %>
+      <%= render partial: 'shared/tracking_codes' %>
+    <% end %>
+  </body>
+</html>

@@ -1,0 +1,112 @@
+<% content_for(:title) { 'Subscription Details' } %>
+
+<%= render partial: 'shared/settings_navigation' %>
+
+<section class="content">
+  <hgroup class="main">
+    <h1><%= @subscription.plan.name %></h1>
+    <h2 class="breadcrumb"><%= breadcrumbs_for(:subscription, @subscription) %></h2>
+  </hgroup>
+
+  <section class="subscription-detail">
+    <%= render partial: 'subscriptions/detail', locals: { subscription: @subscription, view: 'show' } %>
+
+    <div class="inner-wrapper">
+      <section class="billing-info<%= ' large' if @subscription.shipping_info.nil? %>">
+        <h1>Billing Info</h1>
+        <% unless @subscription.user.billing_info.nil? %>
+          <p class="name"><%= @subscription.user.billing_info.first_name %> <%= @subscription.user.billing_info.last_name %></p>
+          <p class="creditcard">XXXX-XXXX-XXXX-<%= @subscription.user.billing_info.last_four %></p>
+          <%= link_to 'Edit', edit_billing_info_path, class: 'edit' %>
+        <% else %>
+          <p class="QA-notes">Billing info is not available on staging for already existing subscription. You may create a new subscription to test this functionality</p>
+        <% end %>
+      </section>
+
+      <% if @subscription.shipping_info %>
+        <section class="shipping-info">
+          <h1>Shipping Info</h1>
+          <p class="name"><%= @subscription.shipping_info.first_name %> <%= @subscription.shipping_info.last_name %></p>
+          <p class="address"><%= @subscription.shipping_info.address1 %> <%= @subscription.shipping_info.address2 %></p>
+          <p class="location"><%= @subscription.shipping_info.city %>, <%= @subscription.shipping_info.state %> - <%= @subscription.shipping_info.zipcode %> - United States</p>
+          <%= link_to 'Edit', edit_shipping_info_path(@subscription.shipping_info), class: 'edit' %>
+        </section>
+      <% end %>
+
+      <% if @subscription.invoices.any? %>
+        <% if @new_subscription && @new_subscription.first_time_discount %>
+          <p class="message flash-notice">Your discount was applied to your first invoice below.</p>
+        <% end %>
+
+        <section class="invoices">
+          <h1>Invoices</h1>
+          <ul>
+            <% @subscription.invoices.each do |invoice| %>
+              <li class="invoice">
+                <p class="quicktotal">$<%= pretty_price(invoice.total_in_usd) %></p>
+                <a href="#" class="print">Print</a>
+                <h2 class="date"><%= invoice.created_at.to_s(:long) %><span class="id"> - ID <%= invoice.id %></span></h2>
+                <ul class="lines">
+                  <% invoice.invoice_lines.each do |line| %>
+                    <li class="line<%= cycle('', ' even') %>">
+                      <p class="amount">$<%= pretty_price(line.unit_amount_in_usd * line.quantity) %></p>
+                      <p class="detail"><%= line.description %></p>
+                    </li>
+                  <% end %>
+                  <% if invoice.total_in_usd < invoice.subtotal_in_usd %>
+                    <li class="line discount">
+                      <p class="amount">$<%= pretty_price(invoice.subtotal_in_usd - invoice.total_in_usd) %></p>
+                      <p class="detail">Discount</p>
+                    </li>
+                  <% end %>
+                </ul>
+
+                <p class="total">Total $<%= pretty_price(invoice.total_in_usd) %></p>
+
+                <% if invoice.collected? %>
+                  <p class="message flash-success">
+                    <strong>Payment received successfully.</strong>
+                    This invoice was charged successfully.
+                  </p>
+                <% elsif invoice.past_due? %>
+                  <p class="message flash-error">
+                    <strong>This invoice is past due.</strong>
+                    We will try to collect the payment again in a few days.
+                    Please <%= link_to 'edit your billing', ms_path(edit_billing_info_path) %> info if necessary.
+                  </p>
+                <% elsif invoice.failed? %>
+                  <p class="message flash-error">
+                    <strong>Payment failure.</strong>
+                    This invoice failed, even after trying 2 more times, due to payment errors.
+                  </p>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </section>
+      <% end %>
+
+      <% if @subscription.shipments.any? %>
+        <section class="shipments">
+          <h1>Shipments</h1>
+          <ul>
+            <% @subscription.shipments.each do |shipment| %>
+              <li class="shipment">
+                <h2 class="date"><%= shipment.created_at.to_s(:long) %><span class="id"> - ID <%= shipment.id %></span></h2>
+                <ul class="lines">
+                  <li><strong>Date shipped:</strong> <%= shipment.created_at %></li>
+                  <li class="even"><strong>Tracking Number:</strong> <%= shipment.tracking_number %></li>
+                  <li><strong>Carrier:</strong> <%= shipment.carrier %></li>
+                </ul>
+              </li>
+            <% end %>
+          </ul>
+        </section>
+      <% end %>
+    </div>
+  </section>
+</section>
+
+<% content_for(:javascript) do %>
+  <%= requirejs('subscriptions/show') %>
+<% end %>

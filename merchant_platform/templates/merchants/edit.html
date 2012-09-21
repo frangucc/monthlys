@@ -1,0 +1,22 @@
+{% extends :base %}
+
+{% block(:body_class) do %}merchant-edit{% end %}
+
+{% block(:content) do %}
+  {% wizard_steps(step: 1) %}
+  <form action="" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <div class="wizard_form">
+      {% wizard_heading(heading: "Business Information",
+                        paragraph: "Here's the information that you apply when you submit to Monthlys.
+                                    You can edit it or explain a little further what you do.") %}
+      <div class="fields">
+        <div class="shadow">
+          {% display_non_field_errors(form: form) %}
+          {% display_fields(form: form) %}
+        </div>
+      </div>
+    </div>
+
+    {% wizard_nav(next_text: 'Save', back_text: false) %}
+  </form>
+{% end %}

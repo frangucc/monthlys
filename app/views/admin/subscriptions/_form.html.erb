@@ -1,0 +1,94 @@
+<%= semantic_form_for [:admin, @subscription] do |f| %>
+
+  <%= f.inputs name: 'Related Info', id: 'related-info' do %>
+    <dl>
+      <dt>User</dt>
+      <dd><%= link_to "#{@user.full_name} (#{@user.email})", admin_user_path(@user) %></dd>
+
+      <dt>Plan</dt>
+      <dd><%= link_to @subscription.plan.name, admin_plan_path(@subscription.plan) %></dd>
+
+      <dt>Created</dt>
+      <dd><%= @subscription.created_at.to_date %></dd>
+
+      <dt>Current state</dt>
+      <dd><%= @subscription.state %></dd>
+
+      <dt>Current billing period</dt>
+      <dd><%= @subscription.current_period_started_at.to_date %> ~ <%= @subscription.current_period_ends_at.to_date %></dd>
+
+      <dt>Credit card</dt>
+      <dd>XXXX-XXXX-XXXX-<%= @subscription.cc_last_four %> (<%= @subscription.cc_type %>). Expires: <%= @subscription.cc_exp_date %></dd>
+
+      <% if @subscription.coupon %>
+        <dt>Coupon used</dt>
+        <dd><%= @subscription.coupon.name %></dd>
+      <% end %>
+
+      <dt>Is gift?</dt>
+      <dd><%= @subscription.is_gift? %></dd>
+    </dl>
+  <% end %>
+
+  <%= f.inputs name: 'Configuration' do %>
+    <li class="select input">
+      <%= f.input :plan_recurrence, collection: @plan_recurrences.map {|pr| ["#{pr.shipping_desc} for $#{pr.pretty_amount}#{pr.billing_desc}", pr.id] }, include_blank: false %>
+    </li>
+
+    <% @option_groups.each_with_index do |option_group, index| %>
+      <li class="select input option-group">
+        <%= label_tag "options_id_#{index}", option_group.description %>
+        <%= select_tag "subscription[options_id][#{index}]", options_for_select(option_group.options.active.map {|o| [o.title, o.id] }, @subscription.options.map(&:id)), multiple: option_group.allow_multiple? %>
+      </li>
+    <% end %>
+
+    <% if @plan.shippable? %>
+      <%= f.input :shipping_info, collection: @shipping_infos.map {|si| [ si.pretty_address.join(' - ').html_safe, si.id ] }, include_blank: false %>
+    <% end %>
+  <% end %>
+
+  <%= f.inputs name: 'Pricing' do %>
+    <div class="pricing before">
+      <h2>Before</h2>
+      <dl>
+        <dt>Base amount</dt>
+        <dd>$ <%= pretty_price(@subscription.base_amount) %> <%= @subscription.plan_recurrence.billing_desc %></dd>
+
+        <dt>Options</dt>
+        <dd>$ <%= pretty_price(@options_total) %></dd>
+
+        <dt>Shipping</dt>
+        <dd>$ <%= pretty_price(@subscription.shipping_amount) %></dd>
+
+        <dt>Taxes</dt>
+        <dd>$ <%= pretty_price(@subscription.recurrent_tax_amount) %></dd>
+
+        <dt>Recurrent total</dt>
+        <dd>$ <%= @subscription.recurrent_total %> <%= @subscription.plan_recurrence.billing_desc %></dd>
+      </dl>
+    </div>
+    <div class="pricing after">
+      <h2>After</h2>
+      <dl>
+        <dt>Base amount</dt>
+        <dd id="base-amount"></dd>
+
+        <dt>Options</dt>
+        <dd id="options-total"></dd>
+
+        <dt>Shipping</dt>
+        <dd id="recurrent-shipping"></dd>
+
+        <dt>Taxes</dt>
+        <dd id="recurrent-taxes"></dd>
+
+        <dt>Recurrent total</dt>
+        <dd id="recurrent-total"></dd>
+      </dl>
+    </div>
+  <% end %>
+
+  <%= f.buttons :commit %>
+<% end %>
+
+<script type="text/javascript" src="/assets/admin/subscriptions/edit.js"></script>

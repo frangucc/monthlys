@@ -1,0 +1,11 @@
+<% content_for(:title) { 'Set your preferences!' } %>
+
+<%= render partial: 'user_preferences_list', locals: { my_preferences: false } %>
+
+<%= javascript_tag do %>
+  var userSignedIn = <%= user_signed_in?.to_json %>;
+<% end %>
+
+<% content_for :javascript do %>
+  <%= requirejs('user_preferences/index'); %>
+<% end %>

@@ -1,0 +1,41 @@
+<%
+  # Locals:
+  #   - group
+%>
+<section class="primary-highlight">
+  <ul>
+    <% group[:superhub_plans].each do |sp| %>
+      <li>
+        <a href="#tab-<%= sp.id %>">
+          <p class="title"><%= sp.plan.name %></p>
+          <p class="subtitle"><%= sp.plan.short_description.truncate(40) %></p>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+
+  <% group[:superhub_plans].each do |sp| %>
+    <section id="tab-<%= sp.id %>">
+      <h1><%= sp.title %></h1>
+      <p class="subheading"><strong class="label">The value: </strong><%= sp.plan.short_description %></p>
+
+      <a href="<%= plan_path(sp.plan) %>"<% unless sp.video_url.blank? %> class="video-box" data-video-url="<%= sp.video_url %>"<% end %>>
+        <%= image_tag((sp.image.blank?) ? sp.plan.attachments.first.image.url : sp.image.url) %>
+      </a>
+
+      <a href="<%= plan_path(sp.plan) %>" class="btn tertiary">
+        <span class="price">
+          <% pr = sp.plan.cheapest_plan_recurrence %>
+          $<span class="amount"><%= pr.pretty_amount %></span> <%= billing_desc_abbr(pr.billing_desc) %>
+        </span>
+        <span class="buy">View Details</span>
+      </a>
+
+    </section>
+  <% end %>
+
+  <% unless group[:label] %>
+    <div class="group-label group-label-<%= group[:label] %>"><%= group[:label_display] %></div>
+  <% end %>
+  <div class="clearfix"></div>
+</section>

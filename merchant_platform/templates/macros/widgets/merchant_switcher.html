@@ -1,0 +1,29 @@
+{% macro :merchant_combo do %}
+  <select name="merchant">
+    {% Merchant.all.each do |m| %}
+      <option{% if m == current_merchant %} selected="selected"{% end %} value="{{ m.id }}">{{ m.business_name }}</option>
+    {% end %}
+  </select>
+{% end %}
+
+{% macro :merchant_switcher, show_button: true do |show_button| %}
+  <form class="merchant-switcher" action="{{ url_for(:merchant_switch) }}" method="post">
+    {% if show_button %}
+      <h1>Switch merchant</h1>
+      {% merchant_combo() %}
+      {% button(value: "Select", css_class: 'next') %}
+      <script>
+        require(['common'], function () {});
+      </script>
+    {% else %}
+      {% merchant_combo() %}
+      <script>
+        require(['common'], function () {
+          $('[name="merchant"]').change(function () {
+            $(this).closest('form').submit();
+          });
+        });
+      </script>
+    {% end %}
+  </form>
+{% end %}

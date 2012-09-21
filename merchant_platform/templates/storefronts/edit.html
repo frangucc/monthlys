@@ -1,0 +1,27 @@
+{% extends :base %}
+
+{% block(:body_class) do %}storefront-edit{% end %}
+
+{% block(:content) do %}
+  {% wizard_steps(step: 3) %}
+  <form action="" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <div class="wizard_form">
+      {% wizard_heading(heading: "Storefront",
+                        paragraph: "Here you will upload all your media assets, including images and videos.") %}
+      <div class="fields">
+        <div class="shadow">
+          {% display_non_field_errors(form: form) %}
+          {% display_fields(form: form) %}
+        </div>
+      </div>
+    </div>
+
+    {% wizard_nav(next_text: 'Save', back_text: false) %}
+  </form>
+{% end %}
+
+{% block(:javascript) do %}
+<script type="text/javascript">
+  require(['common'], function () {});
+</script>
+{% end %}

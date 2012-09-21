@@ -1,0 +1,19 @@
+{% extends :base %}
+
+{% block(:body_class) do %}city-edit{% end %}
+
+{% block(:content) do %}
+  <form id="city" action="" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <div class="wizard_form">
+      {% wizard_heading(heading: "City", paragraph: "") %}
+      <div class="fields">
+        <div class="shadow">
+          {% display_non_field_errors(form: form) %}
+          {% display_fields(form: form) %}
+        </div>
+      </div>
+    </div>
+
+    {% wizard_nav(next_text: 'Save', back_text: false) %}
+  </form>
+{% end %}

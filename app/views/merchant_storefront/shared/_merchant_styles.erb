@@ -1,0 +1,65 @@
+<%
+   link_over_base = sass_eval("if(lightness(#{base_color}) > 50, darken(#{base_color}, 90), lighten(#{base_color}, 90))")
+   link_over_base_shadow = sass_eval("invert(#{link_over_base})")
+   transparent_over_base = sass_eval("lighten(#{base_color}, 5)")
+   connect_gradient_top_color = sass_eval("lighten(#{base_color}, 15)")
+   connect_gradient_bottom_color = sass_eval("lighten(#{base_color}, 1)")
+   connect_gradient_top_color_hover = sass_eval("lighten(#{base_color}, 20)")
+   connect_gradient_bottom_color_hover = sass_eval("lighten(#{base_color}, 5)")
+%>
+
+header.main,
+body.merchant_storefront-pages-how_it_works section.main section.faqs.tabbed ul li.selected,
+.big-icon {
+  background-color: <%= base_color %>;
+}
+
+body.merchant_storefront-pages-how_it_works section.main section.faqs.tabbed ul li.selected span {
+  border-left: 13px solid <%= base_color %>;
+}
+
+header.main nav ul li {
+  border-color: <%= transparent_over_base %>;
+}
+
+header.main nav ul li.connect a,
+.btn-dark,
+header.main nav ul a.nav-item:hover {
+  <%= include_linear_gradient(connect_gradient_top_color, connect_gradient_bottom_color) %>
+}
+
+header.main nav ul li.connect a:hover,
+.btn-dark:hover {
+  <%= include_linear_gradient(connect_gradient_top_color_hover, connect_gradient_bottom_color_hover) %>
+}
+
+header.main h1 .text,
+header.main nav ul a.nav-item {
+  color: <%= link_over_base %>;
+}
+
+#mouseoffviewport-modal header {
+  background: <%= base_color %>;
+}
+#mouseoffviewport-modal header h1,
+#mouseoffviewport-modal header h2 {
+  color: <%= link_over_base %>;
+  text-shadow: 1px 1px 0 <%= link_over_base_shadow %>
+}
+
+/* Navigation statuses */
+body.merchant_storefront-pages-about header.main nav a.about, /* About */
+body.merchant_storefront-plans-index header.main nav a.plans, /* Our plans */
+body.plans-show header.main nav a.plan-detail, /* Plan detail activates plan detais */
+body.plans-show header.main nav a.plans, /* Plan detail activates our plans */
+body.merchant_storefront-pages-how_it_works header.main nav a.how-it-works, /* How it works */
+body.subscriptions-controller header.main nav a.subscriptions, /* Subscriptions */
+body.settings-controller header.main nav a.settings, /* Settings */
+body.billing_infos-controller header.main nav a.settings, /* Billing info activates settings */
+body.shipping_infos-controller header.main nav a.settings { /* Shipping info activates settings */
+  <%= include_linear_gradient(connect_gradient_top_color, connect_gradient_bottom_color) %>
+}
+body.plans-show footer.main a.plans,
+body.plans-show footer.main a.plan-detail {
+  color: #545454;
+}

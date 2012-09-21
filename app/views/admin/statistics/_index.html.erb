@@ -1,0 +1,126 @@
+<%
+  # Locals
+  #   - chart_statistics
+  #   - statistics_hash
+  #   - search
+  #     - from_date
+  #     - to_date
+%>
+
+<script type="text/javascript" src="/assets/admin/highcharts.js"></script>
+
+<div class="panel">
+  <h3>General Statistics</h3>
+  <div class="panel_contents">
+    <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto;"></div>
+  </div>
+</div>
+
+<%= javascript_tag do %>
+  var chart;
+  $(document).ready(function() {
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'container'
+      },
+      title: {
+        text: 'Monthlys'
+      },
+      xAxis: [{
+        categories: <%= chart_statistics.map {|s| s[:display] }.to_json.html_safe %>
+      }],
+      yAxis: [{ // Subscriptions number
+        labels: {
+          formatter: function() {
+            return this.value + ' subscribers';
+          },
+          style: {
+            color: '#4572A7'
+          }
+        },
+        title: {
+          text: 'Subscriptions',
+          style: {
+            color: '#4572A7'
+          }
+        },
+        plotLines: [{
+          color: '#4572A7',
+          width: 2,
+          value: <%= subscriptions_avg %>
+        }]
+      }, { // Monthlys Income
+        gridLineWidth: 0,
+        title: {
+          text: 'Income',
+          style: {
+            color: '#AA4643'
+          }
+        },
+        opposite: true,
+        labels: {
+          formatter: function() {
+            return this.value + ' dollars';
+          },
+          style: {
+            color: '#AA4643'
+          }
+        },
+        plotLines: [{
+          color: '#AA4643',
+          width: 2,
+          value: <%= income_avg %>
+        }]
+      }],
+      tooltip: {
+        formatter: function() {
+          var unit = {
+            'New subscriptions': 'subscriptions',
+            'Income': 'dollars',
+          }[this.series.name];
+          return '' + this.x + ': ' + this.y + ' ' + unit;
+        }
+      },
+      series: [{
+        name: 'New subscriptions',
+        color: '#4572A7',
+        type: 'column',
+        yAxis: 0,
+        data: <%= chart_statistics.map {|s| s[:subscriptions_number] }.to_json.html_safe %>
+      }, {
+        name: 'Income',
+        type: 'column',
+        color: '#AA4643',
+        yAxis: 1,
+        data: <%= chart_statistics.map {|s| s[:income] }.to_json.html_safe %>
+      }]
+    });
+  });
+<% end %>
+
+<div class="panel">
+  <h3>Statistics</h3>
+  <div class="panel_contents">
+    <%= form_for :search, url: admin_statistics_path, method: :get, html: { id: 'statistics-form' } do |f| %>
+      <p>
+        <%= f.label :from_date, 'From' %>
+        <%= f.text_field :from_date, class: 'datepicker', value: search[:from_date] %>,
+        <%= f.label :to_date, 'to' %>
+        <%= f.text_field :to_date, class: 'datepicker', value: search[:to_date] %>
+        <%= f.submit 'Retrieve Statistics' %>
+      </p>
+    <% end %>
+    <div class="attributes_table statistics" id="attributes_table_user_1">
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+          <% statistics_hash.each do |field, value| %>
+            <tr>
+              <th><%= field %></th>
+              <td><%= value %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

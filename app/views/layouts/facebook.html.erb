@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head lang="en-US">
+    <title>Monthlys - All your subscriptions in one great place</title>
+    <meta charset="utf-8" />
+    <%= stylesheet_link_tag 'facebook/application' %>
+  </head>
+  <body>
+
+    <header class="main">
+      <h1>Monthlys</h1>
+    </header>
+
+    <%= yield %>
+
+    <footer class="main">
+      <%= link_to(root_path, target: '_blank') do %>
+        Visit <strong>Monthlys.com</strong>
+      <% end %>
+    </footer>
+  </body>
+</html>

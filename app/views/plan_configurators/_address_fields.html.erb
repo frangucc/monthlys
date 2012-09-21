@@ -1,0 +1,43 @@
+<%
+  # Locals
+  #   - namespace
+%>
+
+<div class="field required name">
+  <div class="title">Name</div>
+  <p class="first">
+    <%= label_tag "#{namespace}[first_name]", 'First name' %>
+    <%= text_field_tag "#{namespace}[first_name]" %>
+  </p>
+  <p class="last">
+    <%= label_tag "#{namespace}[last_name]", 'Last name' %>
+    <%= text_field_tag "#{namespace}[last_name]" %>
+  </p>
+</div>
+
+<div class="field required address">
+  <%= label_tag "#{namespace}[address1]", 'Address 1', class: 'title' %>
+  <p><%= text_field_tag "#{namespace}[address1]" %></p>
+</div>
+
+<div class="field required zipcode">
+  <%= label_tag "#{namespace}[zipcode_str]", 'Zip Code', class: 'title' %>
+  <p><%= text_field_tag "#{namespace}[zipcode_str]" %></p>
+</div>
+
+<div class="field required city">
+  <%= label_tag "#{namespace}[city]", 'City', class: 'title' %>
+  <p><%= text_field_tag "#{namespace}[city]" %></p>
+</div>
+
+<div class="field required state">
+  <%= label_tag "#{namespace}[state_id]", 'State', class: 'title' %>
+  <p><%= select_tag "#{namespace}[state_id]", options_for_select(State.all.select {|s| s.code != 'TestState' }.collect {|s| [s.code, s.id] }) %></p>
+</div>
+
+<div class="field required phone">
+  <%= label_tag "#{namespace}[phone]", 'Phone', class: 'title' %>
+  <p><%= text_field_tag "#{namespace}[phone]" %></p>
+</div>
+
+<%= hidden_field_tag "#{namespace}[id]" %>

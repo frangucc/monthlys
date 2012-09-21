@@ -1,0 +1,31 @@
+{% extends :base %}
+
+{% block(:body_class) do %}object-index categories-index{% end %}
+
+{% block(:content) do %}
+
+{% ol_heading(title: 'Categories', add_url: url_for(:category_new)) %}
+
+<table class="object-listing">
+  <thead>
+    <th>Name</th>
+    <th>Parent</th>
+    <th>Is Featured</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    {% categories.each do |cat| %}
+    <tr>
+      <td>{{ cat.name }}</td>
+      <td>{% if cat.parent %}<a href="{{ url_for(:category_edit, id: cat.parent.id) }}">{{ cat.parent.name }}</a>{% end %}</td>
+      <td>{% if cat.is_featured %}Yes{% else %}No{% end %}</td>
+      <td>
+        <a class="edit" title="Edit" href="{{ url_for(:category_edit, id: cat.id) }}">Edit</a>
+      </td>
+    </tr>
+    {% end %}
+  </tbody>
+</table>
+
+{% pagination(page: page) %}
+{% end %}

@@ -1,0 +1,9 @@
+{% extends :base %}
+
+{% block(:content) do %}
+<h1>Setup Assistance!</h1>
+<p>Thanks! We'll let you know when your setup is ready.</p>
+<p>Please download the PDF with a list of all your assets you should prepare for us.</p>
+<p><a href="#">Download PDF with assets</a></p>
+<p><a href="{{ url_for(:wizard) }}">Go back</a></p>
+{% end %}

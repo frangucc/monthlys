@@ -1,0 +1,17 @@
+<%= render partial: 'shared/settings_navigation' %>
+
+<section class="content">
+  <hgroup class="main">
+    <h1>Billing Info</h1>
+    <h2 class="breadcrumb"><%= breadcrumbs_for(:my_settings_section, 'Delete Billing Info') %></h2>
+  </hgroup>
+
+  <div class="inner-wrapper">
+    <%= form_for(:billing_info, url: billing_info_path, method: :delete) do %>
+      <p>Are you sure you want to <strong>permanently delete your billing info</strong>?</p>
+      <p>All your subscriptions will expire 10 days after their next renewal date. <%= link_to 'Want to check them out first?', ms_path(subscriptions_path) %></p>
+      <%= link_to("No, cancel", billing_info_path, class: 'btn fortuary') %>
+      <%= submit_tag("Yes, I'm sure", class: 'btn danger') %>
+    <% end %>
+  </div>
+</section>

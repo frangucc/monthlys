@@ -1,0 +1,29 @@
+<% content_for(:title) { 'Feedback' } %>
+
+<div class="content">
+  <hgroup>
+    <h1>Feedback</h1>
+  </hgroup>
+
+  <section class="record">
+    <iframe src="http://Monthlys.getbravo.com/?embed=true&client=Monthlys"
+    width="700" height="550" frameborder="0" scrolling="no"
+    name="bravovideo"></iframe>
+  </section>
+</div>
+
+<section class="right-sidebar">
+  <hgroup>
+    <h1>Featured Video Submissions</h1>
+    <h2>Make your personal review, easy &amp; fun!</h2>
+  </hgroup>
+  <%= render partial: 'video_reviews/list', locals: { video_reviews: @video_reviews } %>
+</section>
+
+<% content_for :javascript do %>
+  require(['require', 'pages/record'], function (require) {
+    require(['pages/record'], function(view) {
+      view.init();
+    });
+  });
+<% end %>

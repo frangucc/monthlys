@@ -1,0 +1,14 @@
+<%
+  # Locals
+  #   - errors
+%>
+<% if errors.any? %>
+  <div class="message message-block flash-error">
+    <strong>Error, please check <%= (errors.count > 1)? 'these fields' : 'this field' %>...</strong>
+    <ul class="bullets">
+      <% errors.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

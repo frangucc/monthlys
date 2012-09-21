@@ -1,0 +1,87 @@
+.wizard_bar {
+  background: #fff;
+  padding: 30px 40px;
+  border-bottom: 1px solid #ccc;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.wizard_bar .padding {
+  position: relative;
+  height: 82px;
+  background: url(../images/wizard_bar_bg.png) repeat-x 0 25px;
+}
+.wizard_bar .step {
+  height: 56px;
+}
+.wizard_bar .step span {
+  line-height: 20px;
+  font-size: 13px;
+  color: #b0b0b0;
+  padding-top: 60px;
+  display: block;
+}
+.wizard_bar .setup {
+  position: absolute;
+  width: 89px;
+  left: 0;
+  top: 0;
+  background: #fff url(../images/wizard_bar_step1.png) no-repeat right center;
+}
+.wizard_bar .setup span {
+  color: #565656;
+  padding-top: 66px;
+}
+.wizard_bar.step2 .setup,
+.wizard_bar.step3 .setup {
+  width: 78px;
+  background: #fff url(../images/wizard_bar_step1_complete.png) no-repeat right center; 
+}
+.wizard_bar.step2 .setup span,
+.wizard_bar.step3 .setup span {
+  width: 89px;
+  padding-top: 55px;
+  color: #b0b0b0;
+}
+
+.wizard_bar .plan {
+  position: absolute;
+  width: 130px;
+  left: 50%;
+  margin-left: -65px;
+  top: 0;
+  background: url(../images/wizard_bar_step2_pending.png) no-repeat center center; 
+}
+.wizard_bar .plan span {
+  text-align: center;
+  padding-top: 55px;
+}
+.wizard_bar.step2 .plan {
+  background: url(../images/wizard_bar_step2.png) no-repeat center center;  
+}
+.wizard_bar.step2 .plan span {
+  padding-top: 66px;
+  color: #565656;
+}
+.wizard_bar.step3 .plan {
+  background: url(../images/wizard_bar_step2_complete.png) no-repeat center center;   
+}
+
+.wizard_bar .storefront {
+  position: absolute;
+  width: 80px;
+  right: 0;
+  top: 0;
+  background: #fff url(../images/wizard_bar_step3_pending.png) no-repeat left center; 
+}
+.wizard_bar .storefront span {
+  margin-left: -17px;
+  padding-top: 55px;
+}
+.wizard_bar.step3 .storefront {
+  width: 95px;
+  background: #fff url(../images/wizard_bar_step3.png) no-repeat left center; 
+}
+.wizard_bar.step3 .storefront span {
+  margin-left: -2px;
+  padding-top: 66px;
+}

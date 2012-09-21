@@ -1,0 +1,49 @@
+<% content_for(:title) { "How #{@merchant.business_name} works" } %>
+
+<hgroup class="content-headings">
+  <h1>Subscribe and Save</h1>
+  <h2>We make it easy to subscribe and save time and money.</h2>
+</hgroup>
+
+<div class="wrapper">
+  <ul class="grid icon-grid">
+    <li class="flip-on col3">
+      <%= big_icon(:flip) %>
+      <h1>Like it? Flip it on</h1>
+      <p>If you find what you like, flip it on. No hassles. When you're finished, turn it off. It's as simple as that.</p>
+    </li>
+
+    <li class="pick col3">
+      <%= big_icon(:pick) %>
+      <h1>Pick your plan</h1>
+      <p>Choose your options. In less than 30 seconds, configure your plan to suite your needs. Capisce?</p>
+    </li>
+
+    <li class="confirm col3">
+      <%= big_icon(:confirm) %>
+      <h1>Confirm and Enjoy</h1>
+      <p>Say "OK" and and confirm, and that's the end of it. Your service will be activated. Viola, it's automagic!</p>
+    </li>
+  </ul>
+</div>
+
+<%= render partial: 'merchant_storefront/shared/call_to_action_bar', locals: { or_link: :about } %>
+
+<% if @faqs.any? %>
+  <section class="faqs">
+    <div class="wrapper">
+      <h1 class="strike-through"><span>Frequently Asked Questions</span></h1>
+
+      <% @faqs.each do |faq| %>
+        <article id="answer<%= faq.id %>">
+          <h1><%= faq.question %></h1>
+          <%= markdown(faq.answer) %>
+        </article>
+      <% end %>
+    </div>
+  </section>
+<% end %>
+
+<% content_for(:javascript) do %>
+  <%= requirejs('merchant_storefront/pages/how_it_works') %>
+<% end %>

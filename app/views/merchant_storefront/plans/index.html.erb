@@ -1,0 +1,63 @@
+<% content_for(:title) { "#{@merchant.business_name} available plans" } %>
+
+<section>
+  <hgroup class="content-headings">
+    <h1>Available Packages</h1>
+    <h2>We offer a variety of convenient plans.</h2>
+  </hgroup>
+
+  <div class="wrapper">
+    <ul class="plans">
+      <% @plans.each do |plan| %>
+        <li>
+          <article>
+            <div class="image">
+              <% plan_url = ms_path(plan_path(plan)) %>
+
+              <%= link_to plan_url do image_tag(plan.thumbnail.url) end %>
+            </div>
+            <h1><%= link_to plan.name, ms_path(plan_path(plan)) %></h1>
+            <p><%= starting_at_price(plan) %><%= " | #{pluralize(plan.subscriptions_count, 'member')}" unless plan.subscriptions_count.zero? %></p>
+          </article>
+          <div class="actions">
+            <%= link_to 'Select Plan', ms_path(plan_path(plan)), class: 'btn-dark' %>
+            <%= link_to 'Plan Details', ms_path(plan_path(plan)), class: 'btn-light' %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="highlight-wrapper">
+    <div class="wrapper grid">
+      <section class="col3 how_it_works">
+        <h1>How it Works</h1>
+        <p>Monthlys helps you narrow things down to the things you
+        need or absolutely love and makes it easy to turn them on as a
+        service. Enter your billing info once and turn on or off as
+        many subscriptions as you'd like - even try things just once
+        for an occasional, curated kick. What a life it would be if
+        everything were brought to you. You could read a book, relax
+        or work out, take a class, even spend time working on a
+        personal project.</p>
+        <%= link_to "Learn more", merchant_storefront_how_it_works_path %>
+      </section>
+
+      <section class="col3 what_to_expect">
+        <h1>What to Expect</h1>
+        <p>We work closely with our merchants to ensure that quality
+        products arrive at your door in quality packaging, and that
+        services are rendered to the best of their ability. If you
+        experience an issue with quality, we’ll rectify the situation
+        immediately, no questions asked.</p>
+        <%= link_to "Learn more", ms_path(plan_path(@plans.first, anchor: 'tab1')) %>
+      </section>
+
+      <section class="col3 shipment_schedule">
+        <h1>Fulfillment</h1>
+        <p>Whether a service, membership or package delivery, we clarify during the checkout process all of the next steps. We make it super easy to obtain your goods and services and we'll remain in constant communication without throughout the process. Never worry, we got you covered.</p>
+        <%= link_to "Learn more", ms_path(plan_path(@plans.first, anchor: 'tab3')) %>
+      </section>
+    </div>
+  </div>
+</section>

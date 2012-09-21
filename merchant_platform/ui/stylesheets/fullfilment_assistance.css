@@ -1,0 +1,13 @@
+.fullfilment_assistance_content {
+  padding: 30px 0;
+  background: #fff;
+  float: left;
+  width: 100%;
+}
+.fullfilment_assistance_content .padding {
+  padding: 0 40px;
+}
+.fullfilment_assistance_content .fullfilment_assistance_assistance_modal,
+.fullfilment_assistance_content .fullfilment_assistance_no_assistance_modal {
+  display: none;
+}

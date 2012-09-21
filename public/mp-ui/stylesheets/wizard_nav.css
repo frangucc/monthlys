@@ -1,0 +1,86 @@
+.wizard_nav {
+  background: #fbfbfb url(../images/wizard_nav_bg.png) repeat-x left top;
+  border-top: 1px solid #e5e5e5;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  float: left;
+  width: 100%;
+}
+.wizard_nav .padding {
+  padding: 30px 40px;
+  height: 45px;
+}
+
+.wizard_nav .back {
+  float: left;
+  background: url(../images/wizard_nav_back_bg.png);
+}
+.wizard_nav .back .arrow {
+  height: 44px;
+  background: url(../images/wizard_nav_back_arrow.png) no-repeat left top;
+  line-height: 42px;
+  padding: 0 15px 0 30px;
+  margin-left: 15px;
+  font-size: 14px;
+  color: #565656;
+}
+.wizard_nav .back .right {
+  background: url(../images/wizard_nav_back_right.png) no-repeat right top;
+}
+.wizard_nav .back .left {
+  background: url(../images/wizard_nav_back_left.png) no-repeat left top;
+}
+.wizard_nav a:hover .back,
+.wizard_nav a:hover .back .arrow,
+.wizard_nav a:hover .back .left {
+  background-position: left -46px;
+}
+.wizard_nav a:hover .back .right {
+  background-position: right -46px;
+}
+.wizard_nav a:active .back,
+.wizard_nav a:active .back .arrow,
+.wizard_nav a:active .back .left {
+  background-position: left -92px;
+}
+.wizard_nav a:active .back .right {
+  background-position: right -92px;
+}
+
+.wizard_nav .next {
+  float: right;
+  background: url(../images/wizard_nav_next_bg.png);
+}
+.wizard_nav .next .arrow {
+  height: 44px;
+  line-height: 43px;
+  background: url(../images/wizard_nav_next_arrow.png) no-repeat right top;
+  padding: 0 30px 0 15px;
+  margin-right: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 1px 1px 0 #fff;
+}
+.wizard_nav .next .right {
+  background: url(../images/wizard_nav_next_right.png) no-repeat right top;
+}
+.wizard_nav .next .left {
+  background: url(../images/wizard_nav_next_left.png) no-repeat left top;
+}
+.wizard_nav a:hover .next,
+.wizard_nav a:hover .next .left {
+  background-position: left -46px;
+}
+.wizard_nav a:hover .next .arrow,
+.wizard_nav a:hover .next .right {
+  background-position: right -46px;
+}
+.wizard_nav a:active .next,
+.wizard_nav a:active .next .left {
+  background-position: left -92px;
+}
+.wizard_nav a:active .next .arrow,
+.wizard_nav a:active .next .right {
+  background-position: right -92px;
+}

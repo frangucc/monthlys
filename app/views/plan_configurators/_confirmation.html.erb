@@ -1,0 +1,45 @@
+<%
+  # Locals:
+  #   - totals_pricing
+  #   - plan_recurrence
+  #   - coupon
+%>
+
+<!-- Totals -->
+<dl>
+  <dt>Subtotal</dt>
+  <dd id="subtotal">$<%= pretty_price(totals_pricing[:recurrent_without_extras]) %></dd>
+
+  <% if totals_pricing[:recurrent_shipping] %>
+    <dt>Shipping cost</dt>
+    <dd id="recurrent-shipping">$<%= pretty_price(totals_pricing[:recurrent_shipping]) %></dd>
+  <% end %>
+
+  <dt>Taxes</dt>
+  <dd id="recurrent-tax">$<%= totals_pricing[:recurrent_tax] ? pretty_price(totals_pricing[:recurrent_tax]) : 0 %></dd>
+
+  <% if totals_pricing[:recurrent_discount] %>
+    <dt class="discount">Discount</dt>
+    <dd id="recurrent-discount" class="discount">$<%= pretty_price(totals_pricing[:recurrent_discount]) %></dd>
+  <% end %>
+
+  <dt id="billing-desc" class="important"><%= plan_recurrence.billing_recurrence_in_words.capitalize %> fee</dt>
+  <dd id="recurrent-total" class="important">$<%= pretty_price(totals_pricing[:recurrent_total]) %></dd>
+
+  <% if totals_pricing[:first_time_discount] %>
+    <dt class="discount">
+      Today's discount "<%= coupon.invoice_description %>"
+    </dt>
+    <dd id="first-time-discount" class="discount">$<%= pretty_price(totals_pricing[:first_time_discount]) %></dd>
+  <% end %>
+
+  <% unless totals_pricing[:onetime_total].zero? %>
+    <dt>One-time fee(s)</dt>
+    <dd id="one-time-total">$<%= pretty_price(totals_pricing[:onetime_total]) %></dd>
+  <% end %>
+
+  <% if totals_pricing[:recurrent_total] != totals_pricing[:first_time_total] %>
+    <dt>Today's fee</dt>
+    <dd id="first-time-total">$<%= pretty_price(totals_pricing[:first_time_total]) %></dd>
+  <% end %>
+</dl>

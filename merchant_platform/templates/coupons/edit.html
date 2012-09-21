@@ -1,0 +1,14 @@
+{% extends :form_base %}
+
+{% block(:body_class) do %}coupon-edit{% end %}
+
+{% block(:content_title) do %}Coupon{% end %}
+
+{% block(:content_form) do %}
+  {% display_non_field_errors(form: form) %}
+  {% display_fields(form: form) %}
+{% end %}
+
+{% block(:javascript) do %}
+<script type="text/javascript">require(['coupons/edit'], function () {});</script>
+{% end %}

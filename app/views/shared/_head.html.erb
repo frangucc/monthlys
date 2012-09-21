@@ -1,0 +1,86 @@
+<%
+  # Locals
+  #   - type
+%>
+<!doctype html>
+<!--[if lt IE 7]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js' lang='en'>
+<!--<![endif]-->
+  <head>
+    <title><%= (yield(:title).blank?)? 'Monthlys - All your subscriptions in one great place' : "#{yield(:title)} - Monthlys".html_safe %></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="description" content="All your subscriptions in one great place" />
+    <meta name="author" content="Francesco Pinto, Veronica Rebagliatte, Sebastian Borrazas, Gonzalo Saavedra, Santiago Alonso" />
+    <%= csrf_meta_tag %>
+
+    <% if type == :business %>
+      <%= stylesheet_link_tag 'business' %>
+    <% elsif type == :application %>
+      <%= stylesheet_link_tag 'application' %>
+    <% elsif type == :merchant_storefront %>
+      <%= stylesheet_link_tag 'merchant_storefront/application' %>
+      <% if customize? %>
+        <style>
+          <%= render partial: 'merchant_storefront/shared/merchant_styles', locals: { merchant: @merchant } %>
+        </style>
+      <% end %>
+    <% end %>
+
+    <script type="text/javascript" src="<%= Monthly::Config::JS_DEBUG_REQUIREJS ? '/assets/require.js' : asset('all.js') %>"></script>
+    <script type="text/javascript">
+      require.config({
+        baseUrl: '/assets',
+        shim: {
+          'lib/jquery.carouFredSel': ['jquery'],
+          'lib/jquery.ui': ['jquery'],
+          'lib/jquery.infieldlabel': ['jquery'],
+          'lib/jquery.flexslider': ['jquery'],
+          'lib/jquery.colorbox': ['jquery'],
+          'lib/jquery.easing': ['jquery'],
+          'lib/jquery.tmpl': ['jquery'],
+          'lib/recurly': ['jquery']
+        }
+      });
+
+      if (typeof window.console === 'undefined') {
+        // hax
+        window.console = {
+          log: function() {}
+        };
+      }
+      var _debug = <%= Monthly::Config::JS_DEBUG.inspect %>;
+    </script>
+
+    <% unless Rails.env.development? %>
+
+      <% if admin_user_signed_in? %>
+        <!-- Bugherd -->
+        <script type='text/javascript'>
+          (function (d, t) {
+            var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            bh.type = 'text/javascript';
+            bh.src = '//www.bugherd.com/sidebarv2.js?apikey=e1d62d13-f320-4223-b665-fa422901b93b';
+            s.parentNode.insertBefore(bh, s);
+          })(document, 'script');
+        </script>
+      <% end %>
+
+      <!-- Google Analytics -->
+      <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28666118-1']);
+        _gaq.push(['_setDomainName', 'monthlys.com']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      </script>
+    <% end %>
+  </head>

@@ -1,0 +1,34 @@
+<% content_for(:title) { 'Delete Shipping Info' } %>
+
+<%= render partial: 'shared/settings_navigation' %>
+
+<section class="content">
+  <hgroup class="main">
+    <h1>Delete Shipping Information</h1>
+    <h2 class="breadcrumb"><%= breadcrumbs_for(:my_settings_section, 'Delete Shipping Info') %></h2>
+  </hgroup>
+
+  <div class="inner-wrapper">
+    <% if @related_subscriptions.any? %>
+
+      <p>The following subscriptions are pointing to this shipping info.</p>
+      <%= render partial: 'shipping_infos/related_subscriptions', locals: { related_subscriptions: @related_subscriptions } %>
+
+      <p>Select an alternative shipping address before deleting this one.</p>
+      <% @other_shipping_infos.each do |shipping_info| %>
+        <%= link_to(shipping_info_path(@shipping_info, new_shipping_info_id: shipping_info.id), method: :delete) do %>
+          <section class="shipping-info-item <%= cycle("", "", "last") %>">
+            <h1><%= shipping_info.first_name %> <%= shipping_info.last_name %></h1>
+            <p><%= shipping_info.pretty_address.join('<br />').html_safe %></p>
+          </section>
+        <% end %>
+      <% end %>
+
+    <% else %>
+      <%= form_for(@shipping_info, url: ms_path(shipping_info_path(@shipping_info)), :method => :delete) do %>
+        <p>Are you sure you want to permanently delete this shipping address?</p>
+        <p class="actions"><%= submit_tag("Destroy", :class => 'btn secondary') %> <%= link_to "Cancel", ms_path(shipping_infos_path) %></p>
+      <% end %>
+    <% end %>
+  </div>
+</section>

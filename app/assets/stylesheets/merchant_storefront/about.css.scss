@@ -1,0 +1,90 @@
+body.merchant_storefront-pages-about {
+
+  /* Filter styles only to content, exclude layout */
+  section.main {
+
+    img.about_image {
+      width: 98%;
+      padding: 1%;
+      border: 1px solid $border-color;
+      border-radius: 3px;
+      margin-bottom: 1.5em;
+    }
+
+    h3, p {
+      margin-right: 340px;
+      margin-left: 20px;
+    }
+
+    h3 {
+      font-size: 1.3em;
+      margin-bottom: 0.8em;
+    }
+
+    p {
+      font-size: 1em;
+      color: $text-color;
+      line-height: 1.5em;
+    }
+
+    aside {
+      float: right;
+      width: 240px;
+      border: 1px solid $border-color;
+      border-radius: 5px;
+      padding: 15px 0;
+      margin: 0 20px 20px;
+
+      h1 {
+        font-size: 0.9em;
+        text-transform: uppercase;
+        padding: 0 10% 15px;
+        line-height: 2em;
+        color: $text-color;
+        margin-bottom: 1em;
+        text-align: center;
+        border-bottom: 1px solid $border-color;
+      }
+      a {
+        display: block;
+        padding: 0 0 0 55px;
+        line-height: 32px;
+        color: $text-color;
+        font-size: 0.9em;
+        margin-bottom: 10px;
+        outline: none;
+        background: url(/assets/merchant-storefront/about_icons.png) no-repeat;
+      }
+      li.facebook a {
+        background-position: 15px -32px;
+
+        &:hover {
+          background-position: 15px 0;
+        }
+      }
+      li.twitter a {
+        background-position: 15px -96px;
+
+        &:hover {
+          background-position: 15px -64px;
+        }
+      }
+      li.pinterest a {
+        background-position: 15px -160px;
+
+        &:hover {
+          background-position: 15px -128px;
+        }
+      }
+      li.email a {
+        background-position: 15px -224px;
+
+        &:hover {
+          background-position: 15px -192px;
+        }
+      }
+    }
+
+  }
+
+}

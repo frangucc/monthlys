@@ -1,0 +1,140 @@
+<table style="width: 600px; margin: auto;">
+  <tr>
+    <td colspan="2" style="padding-bottom: 20px;"><%= image_tag('email_logo.png') %></td>
+  </tr>
+  <tr valign="top">
+    <td colspan="2">
+      <h1 style="font-size: 20px; color: #565656; margin-bottom: 4px; margin-top: 0;"><%= @title %></h1>
+      <p style="font-size: 13px; color: #565656; line-height: 16px;">Find both the user and the subscription information below.</p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <h2 style="font-size: 18px; margin-bottom: 20px; color: #565656;">Subscription details</h2>
+    </td>
+  </tr>
+  <% if @action == :change %>
+    <tr>
+      <td width="30%" style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Changes will apply on</td>
+      <td width="40%" style="font-size: 13px;"><strong><%= @subscription.renewal_date %></strong> (next subscription's renewal date)</td>
+    </tr>
+  <% end %>
+  <tr>
+    <td width="30%" style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Created at</td>
+    <td width="40%" style="font-size: 13px;"><%= @subscription.created_at.to_date %></td>
+  </tr>
+  <tr>
+    <td width="30%" style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Merchant</td>
+    <td width="40%" style="font-size: 13px;"><%= @subscription.plan.merchant.business_name %></td>
+  </tr>
+  <tr>
+    <td width="30%" style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Plan</td>
+    <td width="40%" style="font-size: 13px;"><%= link_to @subscription.plan.name, plan_url(@subscription.plan) %></td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Shipping frequency</td>
+    <td><%= @subscription.plan_recurrence.shipping_desc %></td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Amount to be charged <%= @subscription.plan_recurrence.billing_recurrence_in_words %></td>
+    <td>$ <%= pretty_price(@subscription.recurrent_total) %> <%= @subscription.plan_recurrence.billing_desc %></td>
+  </tr>
+
+  <% if @subscription.redemption %>
+    <tr>
+      <td style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Discount <%= @subscription.redemption.coupon.invoice_description %></td>
+      <td>$ <%= pretty_price(@subscription.first_time_discount) %></td>
+    </tr>
+  <% end %>
+
+  <% if @subscription.first_time_total != @subscription.recurrent_total %>
+    <tr>
+      <td style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">First time total</td>
+      <td>$ <%= pretty_price(@subscription.first_time_total) %></td>
+    </tr>
+  <% end %>
+
+  <tr>
+    <td width="30%" style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Renewal date</td>
+    <td width="40%" style="font-size: 13px;"><%= @subscription.renewal_date %></td>
+  </tr>
+  <% if @subscription.first_time_total != @subscription.recurrent_total %>
+    <tr>
+      <td style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">First-time total</td>
+      <td>$ <%= pretty_price(@subscription.first_time_total) %></td>
+    </tr>
+  <% end %>
+  <% if @subscription.subscription_options.any? %>
+    <tr>
+      <td colspan="2">
+        <h2 style="font-size: 18px; margin-bottom: 20px; color: #565656; padding-top: 10px;">Selected options</h2>
+      </td>
+    </tr>
+    <% @subscription.subscription_options.each do |subscription_option| %>
+      <tr>
+        <td colspan="2" style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">
+          <%= subscription_option.option_group.description %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"><%= subscription_option.option.title %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  <tr>
+    <td colspan="2">
+      <h2 style="font-size: 18px; margin-bottom: 20px; color: #565656; padding-top: 10px;">User information</h2>
+    </td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Email</td>
+    <td><%= @subscription.user.email %></td>
+  </tr>
+  <% if @shipping_info %>
+    <tr>
+      <td style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Name</td>
+      <td><%= @shipping_info.full_name %></td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Address 1</td>
+      <td><%= @shipping_info.address1 %></td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Address 2</td>
+      <td><%= @shipping_info.address2 %></td>
+    </tr>
+
+    <% unless @shipping_info.phone.blank? %>
+      <tr>
+        <td style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Phone</td>
+        <td><%= @shipping_info.phone %></td>
+      </tr>
+    <% end %>
+
+    <tr>
+      <td style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Zipcode</td>
+      <td><%= @shipping_info.zipcode.number %></td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">City</td>
+      <td><%= @shipping_info.zipcode.city %></td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">State</td>
+      <td><%= @shipping_info.zipcode.state %></td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Country</td>
+      <td><%= @shipping_info.zipcode.country %></td>
+    </tr>
+  <% end %>
+</table>
+
+<div style="width: 600px; margin: 30px auto 0; padding: 30px 0 10px; border-top: 1px solid #d9d9d9; font-size: 11px; color: #565656;">
+  <table width="100%">
+    <tr>
+      <td>&copy; Monthlys 2012. All Rights Reserved. 1-866-797-7954</td>
+      <td style="text-align: right">Follow Us: <a href="http://twitter.com/">Twitter</a> | <a href="http://facebook.com/">Facebook</a></td>
+    </tr>
+  </table>
+</div>

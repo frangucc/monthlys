@@ -1,0 +1,1279 @@
+@import url("//fonts.googleapis.com/css?family=Lobster");
+/*
+ Business Styles (Merchant Marketing Site)
+ *= require_self
+*/
+@import "html5-reset";
+@import "bourbon";
+@import "shared";
+@import "colorbox";
+
+a {
+  outline: 0;
+}
+#cboxLoadedContent {
+  margin: 0;
+}
+
+
+/* Layout */
+.wrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+/*.global-wrapper {
+  min-height:100%;
+  position:relative;
+}
+section.main {
+  padding-bottom: 80px;
+}
+footer.main {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: 60px;
+  padding-top: 20px;
+}*/
+
+.ie6 .global-wrapper,
+.ie7 .global-wrapper {
+  height: 100%;
+}
+body {
+  background: url('business/sky_1b.png') no-repeat top center, url('business/sky_1.png') repeat-x;
+  background-color: #fff;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.main-content {
+  clear: both;
+}
+
+header.main {
+  padding-top: 40px;
+  margin-bottom: 10px;
+
+  a.logo {
+    float: left;
+    width: 268px;
+    height: 58px;
+    background: url('business/logo.png');
+    text-indent: -9999px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+  nav {
+    float: right;
+    margin-bottom: 30px;
+
+    ul {
+      float: right;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      border-radius: 6px;
+      border: 1px solid #c4dae9;
+      /* Gradient background + fallback */
+      background: rgb(248,248,248); /* Old browsers */
+      background: -moz-linear-gradient(top,  rgba(248,248,248,1) 0%, rgba(252,252,252,1) 100%); /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(248,248,248,1)), color-stop(100%,rgba(252,252,252,1))); /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(252,252,252,1) 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(252,252,252,1) 100%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(252,252,252,1) 100%); /* IE10+ */
+      background: linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(252,252,252,1) 100%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f8f8', endColorstr='#fcfcfc',GradientType=0 ); /* IE6-9 */
+
+      li {
+        float: left;
+        border-left: 1px solid #e4ecf2;
+
+        &.sign_in {
+          border-left: 0;
+
+          a {
+            border-left-color: #c4dae9;
+            border-radius: 5px;
+            color: #fff;
+            text-transform: none;
+            font-weight: normal;
+            border: 0;
+            box-shadow: none;
+            padding: 6px 20px;
+            margin: 9px;
+            /* Gradient background + fallback */
+            background: rgb(58,154,243); /* Old browsers */
+            background: -moz-linear-gradient(top,  rgba(58,154,243,1) 0%, rgba(6,118,222,1) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(58,154,243,1)), color-stop(100%,rgba(6,118,222,1))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  rgba(58,154,243,1) 0%,rgba(6,118,222,1) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  rgba(58,154,243,1) 0%,rgba(6,118,222,1) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  rgba(58,154,243,1) 0%,rgba(6,118,222,1) 100%); /* IE10+ */
+            background: linear-gradient(top,  rgba(58,154,243,1) 0%,rgba(6,118,222,1) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3a9af3', endColorstr='#0676de',GradientType=0 ); /* IE6-9 */
+          }
+        }
+
+        &.first {
+          border: 0;
+        }
+
+        a {
+          display: block;
+          text-transform: uppercase;
+          color: #0273dc;
+          font-size: 0.9em;
+          font-weight: bold;
+          text-align: center;
+          padding: 15px;
+          box-shadow: 0 0 1px rgba(255, 255, 255, 1) inset;
+        }
+      }
+    }
+  }
+}
+footer.main {
+  clear: both;
+  background: url('business/footer-bg.png') no-repeat top center;
+  min-height: 79px;
+  margin-top: 60px;
+
+  ul {
+    padding-top: 15px;
+    border-top: 1px solid #d1dee9;
+    text-align: center;
+  }
+  li {
+    display: inline-block;
+    margin: 0 1.5%;
+    padding: 10px 0;
+  }
+  a {
+    color: #2a2a2a;
+    font-size: 0.9em;
+
+    &:hover {
+      color: #0273DC;
+    }
+  }
+}
+#content {
+  padding: 0 0 40px;
+}
+
+body.business-home {
+  .begin {
+    width: 237px;
+    background: url('business/home-begin-bg.png') no-repeat;
+    float: left;
+    padding: 25px 30px;
+
+    h1 {
+      font-size: 1.3em;
+      line-height: 1.4em;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    a {
+      font-size: 2em;
+      padding: 20px 0;
+    }
+  }
+  .offer {
+    margin-left: 340px;
+
+    hgroup {
+      margin-bottom: 20px;
+
+      h1, h2 {
+        font-size: 2.5em;
+        line-height: 1.3em;
+      }
+    }
+    p {
+      font-size: 1.2em;
+      line-height: 1.4em;
+      margin-bottom: 50px;
+
+      a {
+        color: #0273dc;
+        font-style: italic;
+      }
+    }
+    section {
+      figure {
+        float: left;
+        width: 362px;
+
+        figcaption {
+          font-size: 1.2em;
+          font-weight: bold;
+          color: #2a2a2a;
+          text-align: center;
+        }
+      }
+      div.list {
+        margin-left: 410px;
+
+        h1 {
+          font-size: 1em;
+          color: #0273dc;
+          line-height: 1.3em;
+          padding-bottom: 10px;
+          margin-bottom: 20px;
+          border-bottom: 1px solid #d1dee9;
+        }
+        li {
+          float: left;
+          width: 14em;
+          font-size: 1em;
+          color: #7a7a7a;
+          line-height: 2em;
+        }
+        a {
+          float: left;
+          width: 100%;
+          margin-top: 20px;
+          padding-top: 10px;
+          border-top: 1px solid #d1dee9;
+          text-align: center;
+          text-transform: lowercase;
+          font-style: italic;
+          font-size: 1em;
+        }
+      }
+    }
+  }
+}
+
+body.business-merchants {
+  section.services {
+    .showcase, .categories {
+      margin-bottom: 40px;
+    }
+    .showcase {
+      float: right;
+      width: 734px;
+      overflow: hidden;
+
+      li {
+        position: relative;
+        padding-bottom: 0px;
+      }
+
+      figure {
+        position: relative;
+
+        a {
+          position: absolute;
+          left: 35px;
+          top: 290px;
+          display: block;
+          background: url('business/merchants-videos-play.png');
+          width: 103px;
+          height: 103px;
+          text-indent: -9999px;
+          text-transform: uppercase;
+        }
+        img, iframe {
+          width: 704px;
+          height: 400px;
+          padding: 7px;
+          background: #f5f5f5;
+          box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+          margin: auto;
+          margin-bottom: 10px;
+        }
+        img {
+          display: block;
+        }
+        iframe {
+          display: none;
+        }
+        figcaption {
+          text-align: center;
+          line-height: 2em;
+          font-size: 1em;
+        }
+      }
+    }
+    .categories {
+      margin-right: 765px;
+
+      ul {
+        margin-bottom: 15px;
+      }
+      li {
+        padding: 15px 20px;
+        border-bottom: 1px solid #efefef;
+				font-size:1em;
+
+        a {
+          color: #2a2a2a;
+        }
+
+        &.active a, a:hover {
+          color: #0273dc;
+          padding-right: 15px;
+          background: url('business/merchants-category-bg.png') no-repeat right center;
+        }
+      }
+      a {
+        font-weight: normal;
+      }
+      .btn {
+	      font-size: 1.2em;
+	    }
+    }
+		
+    h1 {
+      clear: both;
+			text-align:center;
+      font-size: 150%;
+      line-height: 1.2em;
+      margin-bottom: 40px;
+    }
+    section {
+      float: left;
+      width: 22%;
+      padding: 0 4%;
+      text-align: center;
+      background: url('business/merchants-services-bg.png') repeat-x;
+      border-top: 1px solid #c0ddf8;
+      border-right: 1px solid #c0ddf8;
+      padding-top: 30px;
+
+      img {
+        margin-bottom: 20px;
+      }
+      h1 {
+        text-align: left;
+        font-size: 1.4em;
+        margin-bottom: 10px;
+      }
+      p {
+        text-align: left;
+        font-size: 1em;
+        line-height: 1.5em;
+      }
+      li {
+        text-align: left;
+        background: url('business/checkbox.png') no-repeat left center;
+        line-height: 2em;
+        padding-left: 25px;
+      }
+
+      &.last {
+        border-right: 0;
+        width: 31%;
+      }
+    }
+  }
+}
+
+body.business-platform {
+  section.tour {
+    h1 {
+      font-size: 1.6em;
+      line-height: 1.4em;
+      color: #2a2a2a;
+      margin-bottom: 30px;
+      margin-top: 30px;
+      text-align: center;
+    }
+    ul {
+      height: 53px;
+      padding: 0 30px 0 70px;
+      margin-bottom: 20px;
+      background: url('business/platform-tour-title.png') no-repeat left top;
+    }
+    li {
+      float: left;
+      text-align: center;
+      width: 16%;
+      text-transform: uppercase;
+
+      a {
+        color: #265076;
+        font-size: 1em;
+        font-weight:bold;
+        padding-top: 7px;
+        padding-bottom: 25px;
+        display: block;
+				cursor:pointer;
+      }
+
+      &.selected a {
+        color: #b7a613;
+        background: url('business/platform-tour-arrow.png') no-repeat center bottom;
+      }
+    }
+    div.flexslider-wrapper {
+      margin: 0 60px;
+      border-radius: 5px;
+      border: 1px solid #d9d9d9;
+      margin-bottom: 30px;
+      padding: 10px;
+      position: relative;
+
+      a {
+        position: absolute;
+        top: 50%;
+        margin-top: -20px;
+        height: 52px;
+        width: 52px;
+        padding: 0;
+        text-indent: -9999px;
+        text-transform: uppercase;
+
+        &.prev {
+          left: -17px;
+          background: url('business/platform-tour-handle-left.png');
+        }
+        &.next {
+          right: -17px;
+          background: url('business/platform-tour-handle-right.png');
+        }
+      }
+    }
+    div.flexslider {
+
+      ul.slides {
+        padding: 0;
+        margin: 0;
+        background: none;
+        height: auto;
+      }
+
+      ol {
+        display: none;
+      }
+
+      img {
+        width: 100%;
+        display: block;
+      }
+    }
+    p {
+      text-align: center;
+      font-size: 1em;
+      line-height: 1.3em;
+      margin-bottom: 30px;
+    }
+  }
+  div.below {
+    div.column, section {
+      float: left;
+      width: 30%;
+      background: url('business/merchants-services-bg.png') repeat-x;
+      border-right: 1px solid #d1dae2;
+      border-top: 1px solid #d1dae2;
+      text-align: center;
+      padding: 20px 0;
+
+      h1, p {
+        text-align: left;
+        padding: 0 30px;
+      }
+      h1 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 1.3em;
+      }
+      p {
+        padding-bottom: 30px;
+        font-size: 1em;
+        line-height: 1.5em;
+      }
+      img {
+        width: 65%;
+      }
+    }
+    section.last {
+      width: 38%;
+      border-right: 0;
+
+      img {
+        width: 75%;
+      }
+      p {
+        margin-bottom: 0;
+      }
+      a {
+        margin: 0 30px;
+        font-size: 1.3em;
+        font-weight: normal;
+      }
+    }
+    div.column {
+
+      section {
+        width: 100%;
+        float: none;
+        border: 0;
+        background: 0;
+        padding: 0;
+
+        &.small {
+          border-top: 1px solid #d1dae2;
+        }
+      }
+    }
+  }
+}
+body.business-marketplace {
+  section.banner {
+    margin-bottom: 40px;
+
+    img {
+      float: right;
+      border: 1px solid #d2d7d8;
+      border-radius: 5px;
+      padding: 10px;
+      background: #fff;
+      width: 60%;
+    }
+    h1, p, a {
+      margin-right: 65%;
+    }
+    h1 {
+      font-size: 2em;
+      line-height: 1.4em;
+      margin-bottom: 25px;
+    }
+    p {
+      font-size: 1.2em;
+      line-height: 1.6em;
+    }
+    a {
+      font-weight: normal;
+      font-size: 1.3em;
+      margin-right: 70%;
+    }
+  }
+  section.benefits {
+    clear: both;
+    border-top: 1px solid #d1dae2;
+    background: url('business/merchants-services-bg.png') repeat-x;
+    padding: 25px 0 0 25px;
+
+    h1 {
+      font-size: 1.4em;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 1em;
+      line-height: 1.5em;
+
+      &.bottomline {
+        max-width: 443px;
+        height: 34px;
+        background: url('business/marketplace-box1-legend.png') no-repeat;
+        background-size: 100% auto;
+        text-indent: -9999px;
+        text-transform: uppercase;
+      }
+    }
+    ul {
+      margin-bottom: 30px;
+    }
+    li {
+      line-height: 2em;
+      font-size: 1em;
+      background: url('business/checkbox.png') no-repeat left center;
+      padding-left: 25px;
+    }
+
+    div.right {
+      float: right;
+      width: 43%;
+      border-left: 1px solid #d1dae2;
+      margin-top: -25px;
+      padding-top: 25px;
+
+      section {
+        border-top: 1px solid #d1dae2;
+        padding: 20px 30px;
+
+        img {
+          float: left;
+        }
+        h1, p {
+          margin-left: 150px;
+        }
+
+        &.enduser {
+          padding-top: 0;
+          border-top: 0;
+
+          figure {
+            float: right;
+
+            img {
+              display: block;
+            }
+            a {
+              display: block;
+              text-align: center;
+              font-weight: bold;
+              color: #000;
+              line-height: 2em;
+              font-size: 1em;
+              text-transform: lowercase;
+            }
+          }
+          h1, p {
+            margin-left: 0;
+            margin-right: 190px;
+          }
+        }
+      }
+    }
+  }
+}
+
+body.business-categories {
+  section.banner {
+    margin-bottom: 40px;
+    img {
+      float: left;
+      padding: 10px;
+			margin-right:20px;
+    }
+    h1, p, a {
+      margin-left: 45%;
+    }
+    h1 {
+      font-size: 2em;
+      line-height: 1.4em;
+      margin-bottom: 25px;
+			padding-top:20px;
+    }
+    p {
+      font-size: 1.2em;
+      line-height: 1.6em;
+    }
+    a {
+      font-weight: normal;
+      font-size: 1.3em;
+      margin-right: 70%;
+    }
+		section.tags {
+			img {
+	      padding: 0px;
+				margin-right:0px;
+	    }
+		}
+  }
+}
+body.business-reviews {
+  section.reviews {
+		 h1 {
+	      font-size: 1.6em;
+	      line-height: 1.4em;
+	      margin-bottom: 30px;
+				text-align:center;
+	    }
+	    h2 {
+	      font-size: 1.2em;
+	      font-weight: normal;
+	      margin-bottom: 30px;
+				text-align:center;
+	    }
+    li {
+      width: 46%;
+      float: left;
+      border: 1px solid #d9d9d9;
+      padding: 1%;
+      margin-bottom: 30px;
+      position: relative;
+      background: #fff;
+
+      &:nth-child(even) {
+        float: right;
+      }
+
+      img {
+        width: 100%;
+        display: block;
+      }
+
+      a {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        text-indent: -9999px;
+        text-transform: uppercase;
+        background: url('business/reviews-play.png');
+        display: block;
+        width: 64px;
+        height: 64px;
+        margin: -32px 0 0 -32px;
+      }
+    }
+  }
+}
+body.business-custom {
+  section.step {
+    text-align: center;
+    margin-bottom: 50px;
+
+    h1 {
+      font-size: 1.6em;
+      line-height: 1.4em;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 1.2em;
+      font-weight: normal;
+      margin-bottom: 30px;
+    }
+    .banner {
+      img {
+        width: 76%;
+        padding: 1%;
+        border: 1px solid #d9d9d9;
+      }
+    }
+
+    &.one {
+      .banner {
+        background: url('business/custom-one-title.png') no-repeat left center;
+      }
+    }
+    &.two {
+      .banner {
+        background: url('business/custom-two-title.png') no-repeat left center;
+      }
+    }
+  }
+  section.benefits {
+    background: url('business/merchants-services-bg.png') repeat-x;
+    border-top: 1px solid #d1dae2;
+    padding: 25px 0 0 25px;
+
+    h1 {
+      font-size: 1.4em;
+      margin-bottom: 10px;
+    }
+    ul {
+      margin-right: 50%;
+    }
+    li {
+      font-size: 1em;
+      line-height: 2em;
+      background: url('business/checkbox.png') no-repeat left center;
+      padding-left: 25px;
+    }
+    p {
+      font-size: 1em;
+      line-height: 1.5em;
+    }
+    div.right {
+      width: 43%;
+      float: right;
+      margin-top: -25px;
+      padding-top: 25px;
+      border-left: 1px solid #d1dae2;
+
+      .promotion, .commercials {
+        padding-left: 25px;
+      }
+      .promotion {
+        padding-bottom: 25px;
+
+        img {
+          float: right;
+        }
+        h1, p {
+          margin-right: 195px;
+        }
+      }
+      .commercials {
+        border-top: 1px solid #d1dae2;
+        padding-top: 25px;
+
+        img {
+          float: left;
+        }
+        h1, p {
+          margin-left: 150px;
+        }
+      }
+    }
+  }
+}
+body.business-why {
+  section.why {
+    padding-top: 30px;
+    h1 {
+      font-size: 1.6em;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    ul {
+      padding: 0 85px;
+    }
+    li {
+      font-size: 1.1em;
+      line-height: 1.4em;
+      border-bottom: 1px solid #d9d9d9;
+      background: url('business/checkbox.png') no-repeat 10px 13px;
+      text-indent: 40px;
+      padding: 12px 0;
+      float: left;
+      width: 48%;
+      white-space: nowrap;
+
+      &:nth-child(even) {
+        float: right;
+      }
+    }
+  }
+}
+body.business-features {
+  section.features {
+    h1 {
+      font-size: 1.6em;
+      padding: 10px 0 30px;
+      text-align: center;
+    }
+    li {
+      float: left;
+      width: 33%;
+      text-align: center;
+
+      img {
+        width: 90%;
+        padding: 2%;
+        border: 1px solid #d9d9d9;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        display: block;
+				background-color:#fff;
+      }
+			figure {
+				padding-bottom:30px;
+			}
+      figcaption {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #2a2a2a;
+				position:relative;
+				left:-10px;
+				padding-bottom:20px;
+      }
+    }
+  }
+}
+
+body.merchants-thank_you {
+  .main-content {
+    h1 {
+      font-size: 1.6em;
+      line-height: 1.6em;
+      color: #2a2a2a;
+    }
+    strong {
+      display: block;
+      font-weight: normal;
+      font-size: 1em;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+body.merchants-new, body.merchants-create {
+  aside.sidebar {
+    float: right;
+    width: 330px;
+    padding-top: 4em;
+    margin-top: 30px;
+
+    section {
+      margin-bottom: 25px;
+      padding-bottom: 26px;
+      background: url('business/form-aside-separator.png') no-repeat center bottom;
+      text-align: center;
+
+      h1 {
+        text-indent: -9999px;
+        text-transform: uppercase;
+        margin: 0 auto 10px;
+      }
+
+      &.devices h1 {
+        background: url('business/form-box1-title.png') no-repeat;
+        width: 166px;
+      }
+
+      &.howitworks h1 {
+        background: url('business/form-box2-title.png') no-repeat;
+        width: 112px;
+      }
+
+      &.share h1 {
+        background: url('business/form-box3-title.png') no-repeat;
+        width: 119px;
+      }
+
+      &.share ul {
+        padding-left: 50px;
+
+        li {
+          float: left;
+          width: 30%;
+          overflow: hidden;
+        }
+      }
+
+      p {
+        font-size: 1.2em;
+        line-height: 1.5em;
+        text-align: center;
+      }
+
+      &:last-child {
+        background: 0;
+      }
+    }
+  }
+
+  section.form {
+    legend {
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 20px 0 10px 0;
+      border-bottom: 1px solid #cecece;
+      float: left;
+      width: 100%;
+      margin-bottom: 25px;
+      color: #666;
+    }
+    margin-right: 355px;
+
+    hgroup {
+      margin-bottom: 30px;
+
+      h1 {
+        font-size: 1.6em;
+        line-height: 1.6em;
+      }
+      h2 {
+        font-size: 1.2em;
+        line-height: 1.4em;
+        font-weight: normal;
+      }
+    }
+
+    .fieldset {
+      float: left;
+      width: 100%;
+    }
+
+    .field {
+      float: left;
+      width: 100%;
+      margin-bottom: 25px;
+
+      label, div.label {
+        float: left;
+        width:  21%;
+        text-align: right;
+        margin-right: 25px;
+        font-size: 0.9em;
+        color: #333;
+        line-height: 1.4em;
+        padding-top: 13px;
+      }
+
+      textarea, input, div.input {
+        float: left;
+        padding: 0;
+      }
+
+      textarea, input {
+        width: 70%;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        font-size: 0.9em;
+        color: #565656;
+        padding: 0 13px;
+        height: 42px;
+        border-color: #d2d2d2;
+      }
+
+      textarea {
+        height: 180px;
+        padding: 15px;
+      }
+
+      div.input {
+        position: relative;
+
+        label {
+          width: auto;
+          position: absolute;
+          left: 15px;
+          top: 0;
+          color: #999;
+        }
+        input {
+          width: 100%;
+          margin-left: 0;
+        }
+
+        &.firstname {
+          width: 34%;
+        }
+
+        &.lastname {
+          width: 34%;
+          margin-left: 2%;
+        }
+
+        &.state {
+          width: 45%;
+        }
+
+        &.zip {
+          width: 23%;
+          margin-left: 2%;
+        }
+
+      }
+    }
+
+    .terms {
+      clear: both;
+      padding-left: 20%;
+      margin-left: 25px;
+      font-size: 0.9em;
+      margin-bottom: 25px;
+
+      input {
+        padding: 0;
+        margin: 2px 10px 0 0;
+      }
+      a {
+        text-decoration: underline;
+      }
+    }
+
+    .btn {
+      position: relative;
+      left: 20%;
+      margin-left: 25px;
+      padding: 8px 40px;
+    }
+  }
+}
+body.business-developers {
+  section.developers {
+    padding-top: 30px;
+
+    ul.tabs {
+      float: left;
+      width: 100%;
+      border-bottom: 1px solid #bedcf8;
+
+      li {
+        float: left;
+        font-size: 1.1em;
+        color: #0273dc;
+        margin-right: 15px;
+        position: relative;
+        top: 1px;
+
+        a {
+          display: block;
+          padding: 10px 15px;
+
+          &.selected {
+            border: 1px solid #bedcf8;
+            border-bottom-color: #fff;
+            color: #565656;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+
+            &.developer {
+              background-color: #f3f8fe;
+              border-bottom-color: #f3f8fe;
+            }
+          }
+        }
+      }
+    }
+    div.left {
+      float: left;
+      width: 22%;
+      border-right: 1px solid #bedcf8;
+      padding-left: 3%;
+      padding-top: 25px;
+      background: url('business/developers-left.png') no-repeat top right;
+
+      nav {
+        h1 {
+          font-size: 1.2em;
+          margin-bottom: 10px;
+          line-height: 1.2em;
+        }
+        ul {
+          padding-left: 10px;
+          margin-bottom: 25px;
+        }
+        li {
+          font-size: 1em;
+          line-height: 1.5em;
+        }
+      }
+    }
+    div.right {
+      float: right;
+      width: 70%;
+      padding-left: 3%;
+      padding-top: 25px;
+
+      section {
+        h1, h2, p, ul {
+          margin-bottom: 15px;
+        }
+        h1 {
+          font-size: 2em;
+          line-height: 1.2em;
+        }
+        h2 {
+          font-size: 1.4em;
+        }
+        p {
+          font-size: 1em;
+          line-height: 1.5em;
+        }
+        ul {
+          padding-left: 30px;
+        }
+        li {
+          list-style: disc inside;
+          color: #2a2a2a;
+          font-size: 1em;
+          line-height: 1.5em; 
+        }
+      }
+    }
+  }
+}
+
+/* . Queries */
+@media screen and (min-width: 1250px) {
+  .wrapper {
+    width: 1153px;
+  }
+}
+@media screen and (max-width: 1250px) {
+  .wrapper {
+    width: 90%;
+  }
+
+}
+@media screen and (max-width: 1024px) {
+  .wrapper {
+    width: 810px;
+  }
+  header.main nav {
+    padding-top: 10px;
+    ul li {
+      a {
+        padding: 10px 7px;
+      }
+
+      &.sign_in a {
+        margin: 7px;
+        padding: 3px 8px;
+      }
+    }
+  }
+	
+  body.business-home {
+    .offer {
+      figure {
+        float: none !important;
+        margin-bottom: 30px;
+        width: 100% !important;
+        text-align: center;
+      }
+      .list {
+        margin-left: 0 !important;
+      }
+    }
+  }
+  body.business-marketplace {
+    section.enduser {
+      figure {
+        float: none !important;
+        margin-bottom: 20px;
+
+        img {
+          float: none !important;
+          margin: auto;
+        }
+      }
+      h1, p {
+        margin-right: 0 !important;
+      }
+    }
+  }
+
+	body.business-categories {
+    section.enduser {
+      figure {
+        float: none !important;
+        margin-bottom: 20px;
+
+        img {
+          float: none !important;
+          margin: auto;
+        }
+      }
+      h1, p {
+        margin-right: 0 !important;
+      }
+    }
+  }
+
+  body.business-merchants {
+    .showcase {
+      width: 570px !important;
+
+      figure {
+        img, iframe {
+          width: 553px !important;
+          height: 317px !important;
+        }
+        a {
+          top: 200px !important;
+        }
+      }
+    }
+    .categories {
+      margin-right: 585px !important;
+
+      li {
+        padding: 10px 15px !important;
+        font-size: 0.9em;
+      }
+      .btn {
+        font-size: 1em !important;
+        padding: 10px 0 !important;
+      }
+    }
+  }
+}
+
+/* Active Menu items */
+body.business-merchants .main-nav li.merchants a,
+body.business-platform .main-nav li.tour a,
+body.business-marketplace .main-nav li.marketplace a,
+body.business-custom .main-nav li.customize a,
+body.business-reviews .main-nav li.reviews a {
+  color: #0056a6;
+  background-color: #f6fbff;
+}

@@ -1,0 +1,25 @@
+<% content_for(:title) { 'Change your password' } %>
+<% content_for(:body_class) { 'single-box-layout' } %>
+
+<hgroup>
+  <h1>Reset your password</h1>
+  <h2>Just enter and confirm your brand new password to finish up</h2>
+</hgroup>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= error_messages_for(resource) %>
+
+  <%= f.hidden_field :reset_password_token %>
+
+  <div class="field">
+    <%= f.label :password, "New password" %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirm new password" %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <%= f.submit "Change my password", class: 'btn tertiary' %>
+<% end %>

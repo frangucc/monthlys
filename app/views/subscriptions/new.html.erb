@@ -1,0 +1,99 @@
+<% content_for(:title) { "Resubscribe to #{@plan.name} subscription" } %>
+
+<%= render partial: 'shared/settings_navigation' %>
+
+<section class="content">
+  <hgroup class="main">
+    <h1>Resubscribe to <strong><%= @plan.name %></strong></h1>
+    <h2 class="breadcrumb"><%= breadcrumbs_for(:subscription, @subscription) %></h2>
+  </hgroup>
+
+  <section class="subscription-detail">
+    <%#= render partial: 'subscriptions/detail', locals: { subscription: @subscription, view: 'edit' } %>
+  </section>
+
+  <section class="subscription-form">
+    <div id="update_messages"></div>
+
+    <%= form_tag '', id: 'subscription_dummy_form' do |f| %>
+      <% plan_recurrence_input = plan_recurrences_drop_down(@plan, @plan_recurrences, @plan_recurrence) %>
+      <%= plan_recurrence_input[:input] unless plan_recurrence_input[:has_multiple_options] %>
+
+      <table>
+        <%# Plan recurrence %>
+        <tr>
+          <td class="label">
+            <% if plan_recurrence_input[:has_multiple_options] %>
+              <%= plan_recurrence_input[:label] %>
+            <% else %>
+              Frequency
+            <% end %>
+          </td>
+          <td class="info-cell">
+            <% if plan_recurrence_input[:has_multiple_options] %>
+              <div class="plan-recurrence configurator-dropdown">
+                <%= plan_recurrence_input[:input] %>
+              </div>
+            <% else %>
+              <%= "#{@plan_recurrence.shipping_desc} for $#{@plan_recurrence.pretty_amount}#{@plan_recurrence.billing_desc}" %> (Only choice).
+            <% end %>
+          </td>
+        </tr>
+
+        <%# Option groups %>
+        <% @option_groups.each_with_index do |option_group, index| %>
+          <tr>
+            <td class="label">
+              <label for="options_id_<%= index%>"><%= option_group.description %></label>
+            </td>
+            <td class="info-cell">
+              <div class="option-group configurator-dropdown">
+                <%= select_tag "subscription[options_id][#{index}]", options_for_select(drop_down_options(option_group, @subscription.plan_recurrence), @subscription.options.map(&:id)), multiple: option_group.allow_multiple? %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+
+        <%# Shipping Info %>
+        <% if @plan.shippable? %>
+          <tr>
+            <td class="label">
+              <label for="shipping_info_id">Shipping info</label>
+            </td>
+            <td class="info-cell">
+              <div class="configurator-dropdown">
+                <%= select_tag :shipping_info_id, options_for_select(@shipping_infos.map do |si|
+                  [si.pretty_address.join(' - ').html_safe, si.id]
+                end, @subscription.shipping_info_id) %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+
+      <div id="totals-confirmation">
+        <div id="confirmation"></div>
+      </div>
+    <% end %>
+
+    <%= form_for @subscription, html: { id: 'new_subscription' } do |f| %>
+      <%= hidden_field_tag 'previous_subscription_id', @previous_subscription.id %>
+      <p class="actions"><%= f.submit 'Resubscribe', class: 'btn secondary', id: 'subscription_submit' %></p>
+    <% end %>
+  </section>
+</section>
+
+<%= render partial: 'checkout_totals' %>
+
+<% content_for :javascript do %>
+  require(['require', 'subscriptions/new'], function (require) {
+    require(['subscriptions/new'], function(view) {
+      view.init({
+        routes: <%= {
+          totals: ms_path(totals_subscriptions_path(format: :json)),
+          submitSubscription: ms_path(subscriptions_path(format: :json))
+        }.to_json.html_safe %>
+      });
+    });
+  });
+<% end %>

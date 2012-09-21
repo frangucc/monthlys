@@ -1,0 +1,60 @@
+<% content_for(:title) { 'My Coupons' } %>
+
+<%= render partial: 'shared/settings_navigation' %>
+
+<section class="content">
+  <hgroup class="main">
+    <h1>Coupons</h1>
+    <h2 class="breadcrumb"><%= breadcrumbs_for(:my_account_section, 'My Coupons') %></h2>
+  </hgroup>
+
+  </ul>
+    <% if @active_coupons.any? %>
+      <% @active_coupons.each do |coupon| %>
+        <!-- Active -->
+        <li class="active <%= (coupon == @active_coupons.first) ? 'first' : '' %>">
+          <p class="code">Coupon code: <strong><%= coupon.coupon_code %></strong></p>
+          <h1><%= coupon.name %></h1>
+          <% if coupon.redeem_by_date %>
+            <p>Expires on <%= l(coupon.redeem_by_date.to_date, format: :long) %></p>
+          <% end %>
+          <p><%= pretty_explanation(coupon) %></p>
+        </li>
+      <% end %>
+    <% else %>
+      <p class="message flash-info">You don't have any active coupons right now.</p>
+    <% end %>
+
+    <% @redeemed_coupons.each do |coupon| %>
+      <!-- Redeemed -->
+      <li class="redeemed">
+        <p class="code">Coupon code: <strong><%= coupon.coupon_code %></strong></p>
+        <h1><%= coupon.name %></h1>
+        <p class="seal"><span>Redeemed</span></p>
+        <p><%= pretty_explanation(coupon) %></p>
+      </li>
+    <% end %>
+
+    <% @expired_coupons.each do |coupon| %>
+      <!-- Expired -->
+      <li class="expired">
+        <p class="code">Coupon code: <strong><%= coupon.coupon_code %></strong></p>
+        <h1><%= coupon.name %></h1>
+        <% if coupon.redeem_by_date %>
+          <p>Expired on <%= l(coupon.redeem_by_date.to_date, format: :long) %></p>
+        <% end %>
+        <p><%= pretty_explanation(coupon) %></p>
+        <p class="seal"><span>Expired</span></p>
+    </li>
+    <% end %>
+  </ul>
+
+  <% if @show_invite_friends_coupon %>
+    <%= link_to new_friend_path do %>
+      <section class="invite-your-friends">
+        <h1>Invite some friends and get $5.00 off any plan at Monthlys</h1>
+        <p>No need for your friends to redeem, just invite them and we'll instantly credit your account with $5.00 in Monthlys credit.</p>
+      </section>
+    <% end %>
+  <% end %>
+</section>

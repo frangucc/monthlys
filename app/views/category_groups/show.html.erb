@@ -1,0 +1,19 @@
+<% content_for(:title) { "#{@category_group.name} plans listing" } %>
+
+<%= render partial: 'shared/sidebar' %>
+
+<section class="plan-grid category">
+  <div class="main-banner">
+    <%= image_tag(@category_group.image.url, alt: @category_group.name) %>
+    <hgroup>
+      <h1><%= @category_group.name %></h1>
+      <h2><%= breadcrumbs_for(:category_group, @category_group) %></h2>
+    </hgroup>
+  </div>
+
+  <%= render partial: 'plans/list', locals: { plans: @plans } %>
+</section>
+
+<% content_for :javascript do %>
+  <%= requirejs('category_groups/show'); %>
+<% end %>

@@ -1,0 +1,57 @@
+<section class="get_10_off main">
+  <%= link_to('/users/register_10_dollar_coupon', target: '_blank') do %>
+    <h1 class="banner">Enjoy $10 gift from us and try out a subscription of your choice on Monthlys</h1>
+  <% end %>
+
+  <section class="subscriptions">
+    <hgroup class="plan-list-heading">
+      <h1>Monthlys makes your life easier</h1>
+      <h2>With Monthlys, turn on what you need, turn off what you don't</h2>
+    </hgroup>
+
+    <%
+      plans = []
+      plans << Plan.find_by_id(165)
+      plans << Plan.find_by_id(38)
+    %>
+    <ul class="plan-list">
+      <% plans.each do |plan| %>
+      <li>
+        <article>
+          <div class="image">
+            <%= image_tag(plan.thumbnail.url) %>
+            <%= link_to('', plan_path(plan), class: 'shadow') %>
+          </div>
+          <h1><%= link_to(plan.name, plan_path(plan)) %></h1>
+          <p><span>from <strong><%= plan.merchant.business_name %></strong></span> - <span class="price">$<%= pretty_price(plan.cheapest_plan_recurrence.amount) %> <%= plan.cheapest_plan_recurrence.billing_desc %></span></p>
+        </article>
+      </li>
+      <% end %>
+    </ul>
+    <div class="clearfix"></div>
+  </section>
+
+  <div class="how-it-works">
+    <ul>
+      <li>
+        <figure>
+          <%= image_tag('/assets/facebook/allyouneed_step1.png') %>
+          <figcaption>Like it? Flip it on</figcaption>
+        </figure>
+      </li>
+      <li>
+        <figure>
+          <%= image_tag('/assets/facebook/allyouneed_step2.png') %>
+          <figcaption>Pick your options</figcaption>
+        </figure>
+      </li>
+      <li>
+        <figure>
+          <%= image_tag('/assets/facebook/allyouneed_step3.png') %>
+          <figcaption>Confirm and enjoy!</figcaption>
+        </figure>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+</section>

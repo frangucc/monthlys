@@ -1,0 +1,17 @@
+<div id="zip-modal" class="hidden">
+  <section class="modal-zipcode-form">
+    <hgroup>
+      <h1>Please enter your zipcode</h1>
+      <h2>Find local subscriptions for goods and services</h2>
+    </hgroup>
+
+    <div id="messages"></div>
+
+    <%= form_tag '/settings/enter_zip.js', method: 'post', id: 'enter_zip_form' do %>
+      <label for="zipcode">Your Zipcode</label>
+      <%= text_field_tag :zipcode_str, '', id: 'zipcode' %>
+      <%= submit_tag 'Submit', class: 'btn secondary' %>
+      <a href="#" class="signin">I'm already a member</a>
+    <% end %>
+  </section>
+</div>

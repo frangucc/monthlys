@@ -1,0 +1,15 @@
+{% extends :base %}
+
+{% block(:content) do %}
+<h1>{% yield_block(:content_title) do %}{% end %}</h1>
+
+<form action="" method="post" class="form-horizontal" enctype="multipart/form-data">
+  <div class="wizard_form">
+    <div class="fields">
+      {% yield_block(:content_form) do %}{% end %}
+    </div>
+  </div>
+
+  {% wizard_nav(next_text: 'Save', back_text: false) %}
+</form>
+{% end %}

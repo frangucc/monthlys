@@ -1,0 +1,69 @@
+/* Small list of plans (newest, related) */
+section.plan-thumbnail-list {
+  div.left {
+    width: 30%;
+    float: left;
+
+    a {
+      display: block;
+    }
+  }
+  div.info {
+    float: left;
+    width: 47%;
+  }
+  div.right {
+    width: 10%;
+    float: right;
+  }
+  h1 {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 30px;
+    border-bottom: 1px solid #e1e2e3;
+    margin-bottom: 15px;
+    padding: 0 10px;
+    color: #323232;
+  }
+  li {
+    position: relative;
+    float: left;
+    width: 94%;
+    padding: 3%;
+    border-radius: 5px;
+    border: 1px solid #e1e2e3;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 0 rgba(100, 100, 100, 0.1);
+  }
+  img {
+    width: 80%;
+    padding: 3%;
+    border: 1px solid #e1e2e3;
+    border-radius: 2px;
+  }
+  h2 {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    padding-top: 7px;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow: ellipsis;
+
+    a {
+      color: #0273dc;
+    }
+  }
+  p {
+    font-size: 12px;
+    color: #78797a;
+    margin-bottom: 5px;
+  }
+  a.btn {
+    width: 160px;
+  }
+  div.buttontrack {
+    float: right;
+    margin: 0;
+  }
+}

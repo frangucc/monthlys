@@ -1,0 +1,61 @@
+<!-- TODO: Get rid of this view -->
+
+<%= render partial: 'shared/get_started' %>
+<%= render partial: 'shared/sidebar' %>
+
+<section class="main-content">
+  <div class="main-img-wrapper flexslider">
+    <h1>Join a Club</h1>
+    <ul class="slides">
+      <% @featured_categories.each do |category| %>
+        <li>
+          <%= link_to (category), {:class => "shadow"} do %>
+            <%= image_tag(category.image.url, :alt => category.name) %>
+            <div class="btn-wrapper">
+              <%= link_to 'View Subscriptions', category, class: 'btn' %>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="box-list-wrapper">
+    <ul class="box-list">
+      <% @categories.each do |category| %>
+        <li class="box-list-item">
+          <article class="box">
+            <div class="box-image">
+              <%= image_tag(category.thumbnail.url, alt: category.name) %>
+              <div class="corner"><%= link_to('View Subscriptions', category, title: category.name, class: 'btn secondary') %></div>
+              <%= link_to('', category, alt: category.name, class: 'overlay-shadow') %>
+            </div>
+            <h1 class="box-title"><%= link_to(category.name, category, title: category.name) %></h1>
+            <p class="box-subtitle">
+              <%= pluralize(category.plans_count, "plan") %>
+              <% unless category.subscriptions_count.to_i.zero?  %>
+                | <%= pluralize(category.subscriptions_count, "member") %>
+              <% end %>
+            </p>
+          </article>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</section>
+
+<div id="zip-modal" class="hidden">
+  <%= render partial: 'shared/enter_zip' %>
+</div>
+
+<% content_for :javascript do %>
+  require(['require', 'categories/index'], function (require) {
+    require(['categories/index'], function(view) {
+      view.init({
+        zipModalOptions: {
+          askForZipcode: <%= ask_for_zipcode?(current_user).to_json %>
+        }
+      });
+    });
+  });
+<% end %>

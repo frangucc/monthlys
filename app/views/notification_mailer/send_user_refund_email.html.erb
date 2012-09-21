@@ -1,0 +1,39 @@
+<table style="width: 600px; margin: auto;">
+  <tr>
+    <td colspan="2" style="padding-bottom: 20px;"><%= image_tag('email_logo.png') %></td>
+  </tr>
+  <tr valign="top">
+    <td colspan="2">
+      <h1 style="font-size: 20px; color: #565656; margin-bottom: 4px; margin-top: 0;">
+        Hello <%= @user.full_name || @user.email %>, you've been refunded
+      </h1>
+      <p style="font-size: 13px; color: #565656; line-height: 16px;">Find the refund information below.</p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <h2 style="font-size: 18px; margin-bottom: 20px; color: #565656;">Refund details</h2>
+    </td>
+  </tr>
+  <tr>
+    <td width="30%" style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Amount</td>
+    <td width="40%" style="font-size: 13px;">$ <%= pretty_price(@refund.amount) %></td>
+  </tr>
+  <tr>
+    <td width="30%" style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Invoice</td>
+    <td width="40%" style="font-size: 13px;"><%= @invoice.to_s %></td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold; color: #565656; font-size: 13px; padding: 4px 0;">Plan</td>
+    <td><%= @plan.name %></td>
+  </tr>
+</table>
+
+<div style="width: 600px; margin: 30px auto 0; padding: 30px 0 10px; border-top: 1px solid #d9d9d9; font-size: 11px; color: #565656;">
+  <table width="100%">
+    <tr>
+      <td>&copy; Monthlys 2012. All Rights Reserved. 1-866-797-7954</td>
+      <td style="text-align: right">Follow Us: <a href="http://twitter.com/MonthlysInc">Twitter</a></td>
+    </tr>
+  </table>
+</div>

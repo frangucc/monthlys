@@ -1,0 +1,18 @@
+<%
+  # Local variables
+  #   related_subscriptions
+%>
+<ul class="related-subscriptions">
+  <% related_subscriptions.each do |subscription| %>
+  <li>
+    <article>
+      <%= image_tag(subscription.plan_recurrence.plan.thumbnail.url, alt: subscription.plan_recurrence.plan.name) %>
+      <hgroup>
+        <h1><%= subscription.plan_recurrence.plan.name %></h1>
+        <h2><%= subscription.plan_recurrence.plan.marketing_phrase %></h2>
+      </hgroup>
+      <p>$<%= subscription.recurrent_total %> <%= subscription.plan_recurrence.billing_desc %></p>
+    </article>
+  </li>
+  <% end %>
+</ul>

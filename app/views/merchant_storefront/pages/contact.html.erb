@@ -1,0 +1,55 @@
+<% content_for(:title) { "Get in touch with #{@merchant.business_name}" } %>
+
+<hgroup class="content-headings">
+  <h1>Get in touch with us!</h1>
+  <h2>Feel free to send us a message and we will get back to you as soon as possible.</h2>
+</hgroup>
+
+<div class="wrapper">
+  <section class="contact-form<%= ' with-map' if @merchant.show_location? && @merchant.lat && @merchant.lng %>">
+    <h1>Hi there, let's get in touch!</h1>
+    <%= form_for :contact, url: merchant_storefront_contact_path do |f| %>
+      <p class="field">
+        <%= f.label :name, 'Your Full Name' %>
+        <%= f.text_field :name, value: @contact.name %>
+      </p>
+      <p class="field">
+        <%= f.label :email, 'Your Email', class: 'required' %>
+        <%= f.text_field :email, value: @contact.email %>
+      </p>
+      <p class="field">
+        <%= f.label :content, 'Your Message', class: 'required' %>
+        <%= f.text_area :content, value: @contact.content %>
+      </p>
+      <p><%= f.submit 'Send Message', class: 'btn-dark' %></p>
+    <% end %>
+  </section>
+
+  <% if @merchant.show_location? && @merchant.lat && @merchant.lng %>
+    <section class="contact-info">
+      <h1>Our Location</h1>
+      <p class="description">We are located here:</p>
+
+      <div class="google-map">
+        <div id="map-canvas"></div>
+      </div>
+
+      <p class="name"><%= @merchant.business_name %></p>
+      <p class="address"><%= @merchant.address1 %></p>
+      <p class="phone"><%= @merchant.phone %></p>
+      <p class="email"><%= mail_to @merchant.email %></p>
+      <% unless @merchant.twitter_url %>
+        <p class="twitter"><%= link_to @merchant.business_name, @merchant.twitter_url, target: '_blank' %></p>
+      <% end %>
+    </section>
+  <% end %>
+</div>
+
+<%= javascript_tag do %>
+  <% if @merchant.show_location? %>
+    var merchant = <%= @merchant.to_json(only: [:show_location, :business_name, :lat, :lng]).html_safe %>;
+  <% else %>
+    var merchant = <%= @merchant.to_json(only: [:show_location]).html_safe %>;
+  <% end %>
+  <%= requirejs('merchant_storefront/pages/contact') %>
+<% end %>

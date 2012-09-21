@@ -1,0 +1,101 @@
+.hnav {
+  #search {
+    padding: 16px 0;
+    float: right;
+    position: relative;
+
+    label { display: none }
+
+    input {
+      border: 1px solid #badaef;
+      height: 22px;
+      width: 86px;
+      padding: 5px 15px 5px 30px;
+      font-size: 12px;
+      @include border-radius(16px);
+      background: white url(/assets/search.png) 9px center no-repeat;
+
+      &:focus,
+      &:active {
+        outline: none;
+      }
+    }
+
+    // Added and shown via JS
+    .clear-text-button,
+    .loader {
+      height: 16px;
+      width: 16px;
+      position: absolute;
+      top: 22px;
+      right: 10px;
+    }
+    .clear-text-button {
+      background: url(/assets/icons.png) -16px 0 no-repeat;
+      cursor: pointer;
+    }
+    .loader {
+      background-image: url(/assets/small_loader.gif);
+    }
+  }
+
+  #search-results {
+    position: absolute;
+    top: 52px;
+    right: 0;
+    border: 1px solid #D9D9D9;
+    @include border-radius(4px);
+    @include box-shadow(1px 1px 7px 1px rgba(0, 0, 0, .2));
+
+    background: white;
+    z-index: 3000;
+    width: 320px;
+    padding: .5em 0;
+    color: #666;
+    font-size: 14px;
+
+    .title {
+      padding: .3em 1em;
+      margin-bottom: 0;
+    }
+
+    .result-item {
+      clear: both;
+
+      a {
+        padding: .8em 1em;
+        background: url(/assets/small_hbar.png) center top no-repeat;
+        display: block;
+
+        &:hover {
+          background-color: #E8F8FB;
+        }
+
+        p {
+          margin-bottom: 0;
+          margin-left: 60px;
+          padding: 0;
+          line-height: 1.3em;
+        }
+
+        img {
+          height: 50px;
+          width: 50px;
+          float: left;
+          margin-botom: .5em;
+        }
+        .title {
+          font-weight: bold;
+        }
+        .merchant,
+        .description {
+          font-size: 12px;
+          color: #666;
+        }
+        .merchant {
+          margin-bottom: .3em;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{% extends :base %}
+
+{% block(:body_class) do %}object-index coupons-index{% end %}
+
+{% block(:content) do %}
+
+{% ol_heading(title: 'Coupons', add_url: url_for(:coupon_new)) %}
+
+<table class="object-listing">
+  <thead>
+    <th>Coupon Code</th>
+    <th>Name</th>
+    <th>Marketing Description</th>
+    <th>Discount</th>
+    <th>Applies to all Plans</th>
+    <th>Is Active</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    {% coupons.each do |c| %}
+    <tr>
+      <td>{{ c.coupon_code }}</td>
+      <td>{{ c.name }}</td>
+      <td>{{ c.marketing_description }}</td>
+      <td>{{ c.pretty_discount }}</td>
+      <td>{% if c.applies_to_all_plans %}Yes{% else %}No{% end %}</td>
+      <td>{% if c.is_active %}Yes{% else %}No{% end %}</td>
+      <td>
+        <a class="edit" title="Edit" href="{{ url_for(:coupon_edit, id: c.id) }}">Edit</a>
+      </td>
+    </tr>
+    {% end %}
+  </tbody>
+</table>
+
+{% pagination(page: page) %}
+{% end %}

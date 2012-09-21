@@ -1,0 +1,12 @@
+{% extends :base %}
+
+{% block(:body_class) do %}login{% end %}
+
+{% block(:layout) do %}
+<div class="login merchant-switch">
+  <div class="m">
+    <img src="/mp/img/login-monthlys.png" />
+  </div>
+  {% merchant_switcher() %}
+</div>
+{% end %}

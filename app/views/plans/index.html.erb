@@ -1,0 +1,61 @@
+<%= render partial: 'shared/get_started' %>
+
+<hgroup>
+  <%= link_to '//www.youtube.com/embed/5pCdarnvtMU?autoplay=1&showinfo=0', :class => "modal-video", :title => 'Monthlys' do %>
+    <%= image_tag("content/plans/all/notebook.png") %>
+  <% end %>
+  <h1>We are simplifying memberships &amp; subscriptions</h1>
+  <h2>Discover, turn on and manage your favorite monthly serivces</h2>
+</hgroup>
+
+<section class="plans">
+  <h1>See our first <strong>exclusive</strong> subscriptions</h1>
+  <% @plans.each do |plan| %>
+    <article>
+      <% if plan.plan_recurrences.any? %>
+        <div class="price">
+          <%= link_to("Details", plan_path(plan), :class => 'btn secondary') %>
+        </div>
+      <% end %>
+
+      <div class="info">
+        <div class="image">
+          <%= link_to plan_path(plan), :class => "shadow"  do %>
+            <%= image_tag plan.thumbnail.url %>
+            <%= image_tag("inactive-small.png", class: "status") if plan.inactive? %>
+            <%= image_tag("preview-small.png", class: "status") if plan.pending? %>
+          <% end %>
+        </div>
+        <div class="content">
+          <h2><%= link_to plan.name, plan_path(plan) %></h2>
+          <p>from</span> <%= plan.merchant.business_name %></p>
+          <p><%= plan.marketing_phrase %></p>
+        </div>
+      </div>
+    </article>
+  <% end %>
+</section>
+
+<footer>
+  <div class="share">
+    <%= googleplus_share_button %>
+    <%= facebook_share_button %>
+    <%= twitter_share_button %>
+  </div>
+</footer>
+
+<div id="zip-modal" class="hidden">
+  <%= render partial: 'shared/enter_zip' %>
+</div>
+
+<% content_for :javascript do %>
+  require(['require', 'plans/index'], function (require) {
+    require(['plans/index'], function(view) {
+      view.init({
+        zipModalOptions: {
+          askForZipcode: <%= ask_for_zipcode?(current_user).to_json %>
+        }
+      });
+    });
+  });
+<% end %>

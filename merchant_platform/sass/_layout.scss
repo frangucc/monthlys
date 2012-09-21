@@ -1,0 +1,28 @@
+body {
+  background:#202020 url(/mp/img/login-bg.png);
+
+ .layout {
+    background: url(/mp/img/login-bg-2.png) repeat-x;
+    float: left;
+    width: 100%;
+    padding: 30px 0;
+
+    #sidebar {
+      float: left;
+      width: 250px;
+    }
+
+    .content-wrapper {
+      margin-left: 250px;
+      margin-right: 30px;
+
+      .content {
+        background: #fff;
+        border-radius: .2em;
+        float: left;
+        width: 100%;
+        min-width: 700px;
+      }
+    }
+  }
+}

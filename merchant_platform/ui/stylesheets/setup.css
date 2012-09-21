@@ -1,0 +1,60 @@
+.setup {
+  position: relative;
+  float: left;
+  width: 100%;
+}
+.setup .badge {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 190px;
+  height: 150px;
+  overflow: hidden;
+}
+.setup .badge img {
+  position: absolute;
+  right: -10px;
+  bottom: -30px;
+}
+
+.setup_content {
+  padding: 30px 40px;
+  background: #fff;
+}
+
+.setup_content .download {
+  width: 257px;
+  background: url(../images/download_button_bg.png);
+}
+.setup_content .download .left {
+  background: url(../images/download_button_left.png) no-repeat left top;
+}
+.setup_content .download .right {
+  background: url(../images/download_button_right.png) no-repeat right top;
+  padding-left: 15px;
+}
+.setup_content .download .icon {
+  height: 47px;
+  line-height: 45px;
+  padding-left: 30px;
+  background: url(../images/download_button_icon.png) no-repeat left top;
+  font-size: 16px;
+  color: #fff;
+  text-shadow: 1px 1px 0 #1f74c5;
+}
+.setup_content a:hover .download,
+.setup_content a:hover .download .left,
+.setup_content a:hover .download .icon {
+  background-position: left -50px;
+}
+.setup_content a:hover .download .right {
+  background-position: right -50px; 
+}
+.setup_content a:active .download,
+.setup_content a:active .download .left,
+.setup_content a:active .download .icon {
+  background-position: left -100px;
+}
+.setup_content a:active .download .right {
+  background-position: right -100px; 
+}

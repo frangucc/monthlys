@@ -1,0 +1,200 @@
+.nav_widget {
+  ul {
+    margin-bottom: 30px;
+    margin-top: 15px;
+  }
+  li {
+    padding-left: 30px;
+
+    a {
+      display: block;
+      color: #d4d6d8;
+      opacity: 0.6;
+      text-decoration: none;
+      line-height: 37px;
+      font-size: 12px;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+      background: url(/mp/img/icons.png) no-repeat -23px 10px;
+      padding-left: 25px;
+    }
+
+    &.new-merchant a {
+      background-position: -23px -128px;
+    }
+    &.dashboard a {
+      background-position: -23px 10px;
+    }
+    &.subcriptions a {
+      background-position: -23px -25px;
+    }
+    &.invoices a {
+      background-position: -23px -59px;
+    }
+    &.transactions a {
+      background-position: -23px -93px;
+    }
+    &.members a {
+      background-position: -23px -128px;
+    }
+    &.reports a {
+      background-position: -23px -164px;
+    }
+    &.plans a {
+      background-position: -23px -199px;
+    }
+    &.cities a {
+      background-position: -23px -661px;
+    }
+    &.categories a {
+      background-position: -23px -591px;
+    }
+    &.coupons a {
+      background-position: -23px -626px;
+    }
+
+    &.activity-stream a {
+      background-position: -23px -269px;
+    }
+    &.marketing-tools a {
+      background-position: -23px -303px;
+    }
+    &.customer-support a {
+      background-position: -23px -339px;
+    }
+
+    &.storefront a {
+      background-position: -23px -408px;
+    }
+    &.admin-users a {
+      background-position: -23px -445px;
+    }
+    &.user-profile a {
+      background-position: -23px -479px;
+    }
+    &.monthlys-support a {
+      background-position: -23px -512px;
+    }
+    &.logout a {
+      background-position: -23px -479px;
+    }
+
+    &:hover {
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16), 0 2px 2px rgba(255, 255, 255, 0.26) inset;
+
+      background: -moz-linear-gradient(top, rgba(255,255,255,0.16) 0%, rgba(0,0,0,0.15) 100%); /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.16)), color-stop(100%,rgba(0,0,0,0.15))); /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top, rgba(255,255,255,0.16) 0%,rgba(0,0,0,0.15) 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top, rgba(255,255,255,0.16) 0%,rgba(0,0,0,0.15) 100%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(top, rgba(255,255,255,0.16) 0%,rgba(0,0,0,0.15) 100%); /* IE10+ */
+      background: linear-gradient(top, rgba(255,255,255,0.16) 0%,rgba(0,0,0,0.15) 100%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#29ffffff', endColorstr='#26000000',GradientType=0 ); /* IE6-9 */
+
+      background-color: #6a6b79;
+
+      a {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.user_widget {
+  background: #424248;
+  border-radius: 5px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(255, 255, 255, 0.2) inset;
+  min-height: 64px;
+  margin: 0 15px 5px 30px;
+
+  .image {
+    float: left;
+    width: 64px;
+    height: 64px;
+    overflow: hidden;
+    margin-right: 7px;
+
+    img {
+      width: 64px;
+      height: 64px;
+      border-radius: 5px;
+      float: left;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+      margin-right: 10px;
+    }
+  }
+  hgroup {
+    padding-top: 13px;
+    float: left;
+  }
+  h1, h2 {
+    text-shadow: 1px 0 1px rgba(0, 0, 0, 0.7);
+    padding: 0;
+    white-space: nowrap;
+    width: 125px;
+  }
+  h1 {
+    font-size: 14px;
+    font-weight: normal;
+    color: #909090;
+    text-shadow: 0 1px 0 #000;
+    margin-bottom: 9px;
+    font-weight: normal;
+  }
+  h2 {
+    font-size: 16px;
+    color: #fff;
+  }
+
+  .merchant-switcher {
+    margin-top: 0;
+    padding-top: .3em;
+    width: 100%;
+    height: auto;
+    clear: both;
+  }
+}
+
+.change_merchant {
+  margin: 0 15px 5px 30px;
+
+  ul.sexyform-select-list {
+    overflow-x: hidden;
+  }
+  p.sexyform-select-display {
+    background: none;
+    overflow: hidden;
+  }
+
+  .merchant-switcher {
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.sidebar {
+  .merchant-switcher {
+    padding: 5px;
+
+    select {
+      width: 100%;
+      padding: 3px;
+      height: auto;
+
+      li {
+        overflow: hidden;
+      }
+
+    }
+  }
+}
+
+.merchant-switcher {
+  margin-top: 63px;
+  width: 300px;
+
+  .sexyform-select {
+    margin-bottom: 20px;
+
+  }
+
+}

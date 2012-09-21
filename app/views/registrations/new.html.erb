@@ -1,0 +1,22 @@
+<% content_for(:title) { 'Register now!' } %>
+<% content_for(:body_class) { 'full-page-background-image consumer' } %>
+<% content_for(:background_image) { current_image } %>
+
+<div class="sign_up-wrapper">
+  <div class="video-wrapper">
+    <%= link_to '//www.youtube.com/embed/5pCdarnvtMU?autoplay=1&showinfo=0', class: 'modal-video', title: '' do %>
+      <%= image_tag 'content/video-small.png', alt: 'How it works!' %>
+    <% end %>
+
+    <h1>What is Monthlys you ask?</h1>
+    <p>Monthlys is a marketplace for recurring goods, services and memberships. Turn them on or off with the flip-of-a-switch.<br /> <a href="/what-is-monthlys">Learn More</a></p>
+  </div>
+
+  <div class="authentication-frame">
+    <%= render partial: 'registrations_frame' %>
+  </div>
+</div>
+
+<% content_for(:javascript) do %>
+  <%= requirejs('registrations/new') %>
+<% end %>

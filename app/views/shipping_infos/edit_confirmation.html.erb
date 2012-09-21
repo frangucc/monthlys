@@ -1,0 +1,22 @@
+<% content_for(:title) { 'Edit Confirmation' } %>
+
+<%= render partial: 'shared/settings_navigation' %>
+
+<section class="content">
+  <hgroup class="main">
+    <h1>Shipping Information</h1>
+    <h2 class="breadcrumb"><%= breadcrumbs_for(:my_settings_section, 'Shipping Info') %></h2>
+  </hgroup>
+
+  <div class="inner-wrapper">
+    <p>The following subscriptions will be affected by this change.</p>
+
+    <%= render partial: 'shipping_infos/related_subscriptions', locals: { related_subscriptions: @related_subscriptions } %>
+
+    <p>Are you sure you want to edit this shipping info?</p>
+    <p>
+      <%= link_to 'Yes', edit_shipping_info_path(@shipping_info), class: 'btn secondary' %>
+      <%= link_to 'No', shipping_infos_path, class: 'btn fifthary' %>
+    </p>
+  </div>
+</section>

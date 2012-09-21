@@ -1,0 +1,28 @@
+<script id="planPreviewTemplate" type="text/x-jquery-tmpl">
+  <article class="plan-preview">
+    <hgroup>
+      <h1 class="plan-name">${name} <span>by ${merchant_name}</span></h1>
+
+      <h2 class="breadcrumb">
+        <a href="/">Home</a>
+        <span class="separator">/</span>
+        <a href="${category_group_url}">${category_group_name}</a>
+        <span class="separator">/</span>
+        <a href="${category_url}">${category_name}</a>
+        <span class="separator">/</span>
+        <strong>${name}</strong>
+      </h2>
+
+    </hgroup>
+
+    <p class="plan-phrase"><strong class="label">The value: </strong>${short_description}</p>
+
+    {{if video_url}}
+      <iframe class="" width="560" height="315" scrollbars="no" border="no" src="${video_url}"></iframe>
+    {{/if}}
+
+    <p class="price">Get it for <span class="amount">${price}</span></p>
+
+    <a class="btn tertiary" href="${details_url}">View Details</a>
+  </article>
+</script>

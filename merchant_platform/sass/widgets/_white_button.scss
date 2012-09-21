@@ -1,0 +1,10 @@
+.white-button {
+    @include border-radius(.5em);
+    @include inline-block;
+
+    border: 1px solid #d8d8d8;
+    color: #a5a5a7;
+    padding: 1em;
+    margin-left: 1em;
+    text-decoration: none;
+}

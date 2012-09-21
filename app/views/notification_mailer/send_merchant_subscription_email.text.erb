@@ -1,0 +1,70 @@
+<%= @title %>
+
+== Subscription details ==
+
+= Subscription =
+
+- Created at -
+<%= @subscription.created_at.to_date %>
+
+- Merchant -
+<%= @subscription.plan.merchant.business_name %>
+
+- Plan -
+<%= @subscription.plan.name %>
+
+- Shipping frequency -
+<%= @subscription.plan_recurrence.shipping_desc %>
+
+- Amount to be charged <%= @subscription.plan_recurrence.billing_recurrence_in_words %> -
+<%= @subscription.recurrent_total %> <%= @subscription.plan_recurrence.billing_desc %> %>
+
+<% if @subscription.redemption %>
+- Discount <%= @subscription.redemption.coupon.invoice_description %> -
+$ <%= pretty_price(@subscription.first_time_discount) %>
+<% end %>
+
+<% if @subscription.first_time_total != @subscription.recurrent_total %>
+- First-time total -
+$ <%= @subscription.first_time_total %>
+<% end %>
+
+- Renewal date -
+<%= @subscription.renewal_date %>
+
+<% if @subscription.subscription_options.any? %>
+= Plan options =
+<% @subscription.subscription_options.each do |subscription_option| %>
+  * <%= subscription_option.option_group.description %> => <%= subscription_option.option.title %>
+<% end %>
+<% end %>
+
+= User information =
+<% if @shipping_info %>
+  - Name -
+  <%= @shipping_info.full_name %>
+  - Address 1 -
+  <%= @shipping_info.address1 %>
+  - Apt/Suite -
+  <%= @shipping_info.address2 %>
+  - Country -
+  <%= @shipping_info.zipcode.country %>
+  - State -
+  <%= @shipping_info.zipcode.state %>
+  - City -
+  <%= @shipping_info.zipcode.city %>
+  - Zipcode -
+  <%= @shipping_info.zipcode.number %>
+  <% unless @shipping_info.phone.blank? %>
+  - Phone -
+  <%= @shipping_info.phone %>
+  <% end %>
+<% else %>
+  <% user = @subscription.user %>
+  <% unless user.first_name.blank? && user.last_name.blank? %>
+    - Name -
+    <%= user.full_name %>
+  <% end %>
+  - Email -
+  <%= user.email %>
+<% end %>

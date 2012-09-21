@@ -1,0 +1,101 @@
+/* Marketing Pages ************************************************/
+@import "marketing/shared";
+
+/* Rewards */
+body.marketing-pages-rewards {
+  h1 {
+    color: #054356;
+  }
+  .intro {
+    padding-top: 0;
+    .medals {
+      background: transparent url(marketing/pages/rewards/medals.png) right center no-repeat;
+      min-height: 307px;
+      padding-right: 550px;
+    }
+    .description {
+      font-size: 20px;
+      margin-bottom: 1.5em;
+      padding-top: 45px;
+    }
+    .step {
+      clear: left;
+      background: transparent url(marketing/pages/rewards/1.png) left 4px no-repeat;
+      padding-left: 60px;
+      margin-bottom: 2em;
+      h1 {
+        font-size: 17px;
+        margin-bottom: 0.2em;
+      }
+      p {
+        font-size: 14px;
+        color: #858585;
+      }
+
+      &.second {
+        background-image: url(marketing/pages/rewards/2.png);
+      }
+      &.third {
+        background-image: url(marketing/pages/rewards/3.png);
+      }
+    }
+  }
+  .point-uses {
+    .secondary-heading {
+      margin-bottom: 1em;
+    }
+    .points {
+      background: transparent url(marketing/pages/rewards/50.png) center top no-repeat;
+      float: left;
+      width: 25%;
+      text-align: center;
+      padding-top: 160px;
+
+      &.points-90 {
+        background-image: url(marketing/pages/rewards/90.png);
+      }
+      &.points-200 {
+        background-image: url(marketing/pages/rewards/200.png);
+      }
+      &.points-350 {
+        background-image: url(marketing/pages/rewards/350.png);
+      }
+    }
+  }
+  .gold-members {
+    section {
+      width: 20%;
+      padding-left: 10%;
+      margin-right: 5%;
+      float: left;
+      background: transparent url(marketing/pages/rewards/cash.png) left center no-repeat;
+      min-height: 72px;
+
+      &.last {
+        margin: 0;
+      }
+      &.exclusivity {
+        background-image: url(marketing/pages/rewards/diamond.png);
+      }
+      &.samples {
+        background-image: url(marketing/pages/rewards/gift.png);
+      }
+    }
+  }
+
+  .testimonials {
+    background-color: #FCFCFC;
+    blockquote {
+      background: transparent url(marketing/pages/rewards/quotes.png) left 5px no-repeat;
+      padding-left: 100px;
+      p {
+        font-size: 22px;
+        line-height: 30px;
+      }
+      span {
+        color: #777;
+        font-style: italic;
+      }
+    }
+  }
+}

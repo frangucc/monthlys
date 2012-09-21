@@ -1,0 +1,9 @@
+<h1><%= @merchant.business_name %>'s Terms and Conditions</h1>
+
+<div class="terms">
+  <%= markdown(@merchant.terms_of_service) %>
+</div>
+
+<p class="actions">
+  <a href="#" id="accept-terms-and-conditions" class="btn secondary">Accept</a>
+</p>

@@ -1,0 +1,11 @@
+<% content_for(:title) { 'Sign In' } %>
+<% content_for(:background_image) { current_image } %>
+<% content_for(:body_class) { 'full-page-background-image' } %>
+
+<div class="authentication-frame">
+  <%= render partial: 'sessions_frame' %>
+</div>
+
+<% content_for(:javascript) do %>
+ <%= requirejs('sessions/new'); %>
+<% end %>

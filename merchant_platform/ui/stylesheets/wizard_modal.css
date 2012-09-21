@@ -1,0 +1,53 @@
+#cboxOverlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: #000;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+}
+#cboxClose {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  display: block;
+  background: url(../images/wizard_modal_close.png);
+  text-indent: -9999px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+#colorbox {
+  position: fixed !important;
+  z-index: 9999;
+  background: #fff;
+  border-radius: 3px;
+}
+#cboxLoadedContent {
+  padding: 25px;
+  width: auto !important;
+}
+#cboxLoadedContent h1 {
+  font-size: 18px;
+  font-weight: normal;
+  color: #262626;
+  border-bottom: 1px solid #cfcfcf;
+  padding-bottom: 22px;
+  margin-bottom: 22px;
+}
+#cboxLoadedContent .content {
+  height: 525px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+#cboxLoadedContent p {
+  font-size: 14px;
+  color: #565656;
+  margin-bottom: 22px;
+  line-height: 22px;
+}
+#cboxLoadedContent p:last-child {
+  margin-bottom: 0;
+}

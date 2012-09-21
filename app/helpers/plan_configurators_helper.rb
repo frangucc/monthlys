@@ -1,0 +1,2 @@
+module PlanConfiguratorsHelper
+end

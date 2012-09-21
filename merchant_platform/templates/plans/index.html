@@ -1,0 +1,29 @@
+{% extends :base %}
+
+{% block(:body_class) do %}object-index plan-index{% end %}
+
+{% block(:content) do %}
+
+{% ol_heading(title: 'Plans', add_url: url_for(:plan_new)) %}
+
+<table class="object-listing">
+  <thead>
+    <th>Plan Name</th>
+    <th>Description of the plan</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    {% plans.each do |plan| %}
+    <tr>
+      <td>{{ plan.name }}</td>
+      <td>{{ plan.description }}</td>
+      <td>
+        <a class="edit" title="Edit" href="{{ url_for(:plan_edit, id: plan.id) }}">Edit</a>
+      </td>
+    </tr>
+    {% end %}
+  </tbody>
+</table>
+
+{% pagination(page: page) %}
+{% end %}

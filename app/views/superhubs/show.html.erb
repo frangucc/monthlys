@@ -1,0 +1,18 @@
+<%= render partial: 'shared/sidebar' %>
+
+<article class="superhub">
+  <hgroup class="main">
+    <h1><%= @superhub.verbose_name.capitalize %></h1>
+    <h2 class="breadcrumb"><%= breadcrumbs_for(:superhub, @superhub) %></h2>
+  </hgroup>
+
+  <% @groups.each do |group| %>
+    <% if %w(primary secondary tertiary).include?(group[:group_type]) %>
+       <%= render partial: "superhubs/#{group[:group_type]}", locals: { group: group } %>
+    <% end %>
+  <% end %>
+</article>
+
+<% content_for(:javascript) do %>
+  <%= requirejs('superhubs/show') %>
+<% end %>

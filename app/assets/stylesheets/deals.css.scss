@@ -1,0 +1,335 @@
+$title-color: #054356;
+$text-color: #888;
+$title-highlight: #f4074b;
+
+body.pages-deals {
+  .pink {
+    color:white;
+    display:block;
+    background-color:#ea3d85;
+    padding:4px 15px 4px 15px;
+    max-width:200px;
+    font-size:13px;
+    text-transform:uppercase;
+    font-weight:bold;
+    text-align:center;
+    margin-top:-4px;
+
+  }
+  section.sub-header {
+    width:120%;
+    height:100px;
+    ul {
+
+      li {
+	float:left;
+	margin-right:20px;
+      }
+      .value-prop {
+	width:220px;
+	h5 {
+	  font-size:16px;
+	  padding-top:10px;
+	  color: $title-color;
+	}
+	p {
+	  font-size:12px;
+	  line-height:18px;
+	}
+
+      }
+      .tabs {
+	height:40px;
+	padding-top:35px;
+	display:block;
+      }
+      #tab1 {
+	margin-left:10px;
+	width:60px;
+      }
+      #tab2 {
+	margin-left:10px;
+	width:60px;
+      }
+    }
+    h1 {
+      font-size: 48px;
+      color: $title-color;
+      padding:30px 0 0 90px;
+      width:200px;
+      position:absolute;
+    }
+  }
+  section.deals {
+    width: 100%;
+    margin: 0 5% 0 3%;
+    color: $text-color;
+    p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.4em;
+    }
+
+    hr {
+      clear: both;
+      margin: 2em 0;
+    }
+
+    h1 {
+      font-size: 48px;
+      color: $title-color;
+      margin-bottom: .3em;
+      margin-top: .3em;
+      line-height: 1em;
+
+      .hl {
+        color: $title-highlight;
+      }
+    }
+    h3 {
+      font-size: 38px;
+      color: $title-color;
+      margin-bottom: .3em;
+      margin-top: .3em;
+      line-height: 1em;
+
+      .hl {
+        color: $title-highlight;
+      }
+    }
+    h4 {
+      font-size: 24px;
+      color: $title-color;
+      margin-bottom: 1.4em;
+      margin-top: 1.0em;
+    }
+
+    .btn.tertiary {
+      width: 200px;
+      margin-top: 1em;
+      font-size: 26px;
+      padding:20px 0 20px 0;
+    }
+
+    .title {
+      color: $title-color;
+      font-weight: bold;
+      font-size: 12px;
+      margin-bottom: .5em;
+      font-size: 16px;
+    }
+    .subheading {
+      font-weight: normal;
+      font-size: 23px;
+      margin-bottom: 1em;
+      margin-top:1em;
+    }
+
+    .subtitle {
+      font-size: 14px;
+    }
+
+    .small-highlights {
+      @include slider-arrows-medium(37px);
+
+      .items {
+        border-left: 1px solid transparent;
+        padding-left: 20px;
+        float: left;
+        margin-bottom: 2em;
+
+        li {
+          float: left;
+          width: 180px;
+          height: 165px;
+          overflow: hidden;
+          padding-right: 18px;
+          margin-right: 18px;
+          border-right: 1px solid #ddd;
+
+          text-align: center;
+
+          a {
+            color: $text-color;
+
+
+            .title,
+            .description {
+              font-size: 12px;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+
+    .big-highlights {
+      width: 100%;
+      position: relative;
+      height: 471px;
+      clear: both;
+
+      hr {
+        display: none;
+      }
+
+      ul {
+        position: absolute;
+        top: 0;
+        left: 0;
+        list-style: none;
+        padding:0;
+        margin:0;
+        width: 16%;
+        padding-right: 2%;
+        border-right: 1px solid #ddd;
+        height: 500px;
+
+        li {
+          padding: 1px 0;
+          padding-left: 5%;
+
+          &.ui-state-active {
+            .title { color: black }
+          }
+
+          a {
+	    display:block;
+            line-height: 1.1em;
+            margin-botom: 3em;
+            color: $text-color;
+
+            .title {
+              margin-top: .8em;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+
+      section {
+        position: absolute;
+        top: 0;
+        left: 22%;
+        width: 70%;
+        padding-top:30px;
+
+        .btn {
+          position: absolute;
+          right: 2%;
+          bottom: 65px;
+        }
+
+        &.ui-tabs-hide {
+          display:none;
+        }
+      }
+    }
+
+    .big-highlights section,
+    .single-highlight {
+      & > h1,
+      & > p,
+      & > .btn,
+      & > .subheading {
+        float: left;
+        clear: left;
+        margin-right: 2.5%;
+				margin-top:.1em;
+      }
+      & > p {
+        width: 33%;
+				margin-top:-13px;
+      }
+      & > h1 {
+        width: 35%;
+      }
+      & > .btn {
+        width: 200px;
+        margin-top:.8em;
+        color: white;
+      }
+
+      & > img {
+        width: 62%;
+      }
+      & > .pitch {
+        margin-bottom: 40px;
+      }
+
+      &.with-nav {
+        & > img {
+          width: 40%;
+          float: none;
+					margin-top:-60px;
+        }
+        nav {
+          float: right;
+          margin-right: 13%;
+					line-height:23px;
+          font-size: 13px;
+          border-left: 1px solid #ddd;
+          padding-left: 1.1%;
+          margin-top: 2em;
+
+          p {
+            font-size: 14px;
+          }
+        }
+      }
+
+      footer {
+        clear: both;
+        margin-top: 0em;
+	margin-right:40px;
+        padding-right: 240px;
+        img {
+          float: left;
+	  margin-top:-1.5em;
+          margin-right: 1.5em;
+        }
+
+        .title {
+          padding-top: 1.1em;
+	  font-size:23px;
+        }
+	p {
+	  font-size:16px;
+	  margin-top:-.8em;
+          margin-left: 175px;
+	}
+      }
+    }
+    .big-highlights section {
+      & > .subheading1,
+      & > p,
+      & img,
+      & > h1 {
+        width: 45%;
+      }
+      & .video-box{
+        width: 45%;
+        float: right;
+        & > img {
+          width: 100%;
+        }
+      }
+
+
+    }
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  body.pages-deals {
+    .wrapper {
+      width: 1153px;
+    }
+    header.main nav ul li.last {
+      display: block;
+    }
+    header.main #city-select .current-city {
+      font-size: 18px;
+    }
+  }
+}

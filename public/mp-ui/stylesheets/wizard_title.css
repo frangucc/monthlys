@@ -1,0 +1,12 @@
+.wizard_title h1 {
+  font-size: 28px;
+  font-weight: normal;
+  color: #222;
+  margin-bottom: 15px;
+}
+.wizard_title p {
+  font-size: 13px;
+  color: #b0b0b0;
+  margin-bottom: 35px;
+  line-height: 16px;
+}

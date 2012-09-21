@@ -1,0 +1,243 @@
+.wizard_form .field {
+  margin-bottom: 15px;
+  float: left;
+  width: 100%;
+}
+.wizard_form .field label {
+  float: left;
+  width: 150px;
+  text-align: right;
+  line-height: 46px;
+  font-size: 14px;
+  color: #565656;
+}
+.wizard_form .field .side {
+  margin-left: 165px;
+}
+.wizard_form .field .side span {
+  font-size: 12px;
+  display: block;
+  line-height: 22px;
+  color: #a3a3a3;
+  float: left;
+  width: 100%;
+}
+.wizard_form .field .input {
+  background: url(../images/wizard_form_field_bg.png) repeat-x;
+  width: 504px;
+  position: relative;
+  z-index: 1;
+  float: left;
+}
+.wizard_form .field .input .left {
+  background: url(../images/wizard_form_field_left.png) no-repeat left top; 
+}
+.wizard_form .field .input .right {
+  background: url(../images/wizard_form_field_right.png) no-repeat right top; 
+  height: 46px;
+}
+.wizard_form .field .input .top {
+  background: url(../images/wizard_form_field_top.png) no-repeat top left;
+}
+.wizard_form .field .input .bottom {
+  background: url(../images/wizard_form_field_bottom.png) no-repeat bottom left;
+}
+.wizard_form .field .input input {
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 480px;
+  height: 38px;
+  border: 0;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  padding: 0 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #565656;
+  background: none;
+}
+.wizard_form .field .input.focused {
+  background: url(../images/wizard_form_field_focused_bg.png) repeat-x;
+}
+.wizard_form .field .input.focused .left {
+  background: url(../images/wizard_form_field_focused_left.png) no-repeat left top; 
+}
+.wizard_form .field .input.focused .right {
+  background: url(../images/wizard_form_field_focused_right.png) no-repeat right top; 
+}
+.wizard_form .field .input.wizard_tokenizer.focused,
+.wizard_form .field .input.textarea.focused {
+  background: url(../images/wizard_form_field_focused_bgh.png);
+}
+.wizard_form .field .input.focused .top {
+  background: url(../images/wizard_form_field_focused_top.png) no-repeat top left;
+}
+.wizard_form .field .input.focused .bottom {
+  background: url(../images/wizard_form_field_focused_bottom.png) no-repeat bottom left;
+}
+.wizard_form .field .input.focused input {
+  height: 42px;
+}
+.wizard_form .field .input.error {
+  background: url(../images/wizard_form_field_error_bg.png) repeat-x;
+  width: 536px;
+}
+.wizard_form .field .input.error .left {
+  background: url(../images/wizard_form_field_error_left.png) no-repeat left top; 
+}
+.wizard_form .field .input.error .right {
+  background: url(../images/wizard_form_field_error_cross.png) no-repeat right top; 
+  padding-right: 30px;
+}
+.wizard_form .field .input.error .top {
+  background: url(../images/wizard_form_field_error_top.png) no-repeat top left;
+}
+.wizard_form .field .input.error .bottom {
+  background: url(../images/wizard_form_field_error_bottom.png) no-repeat bottom left;
+}
+.wizard_form .field .input.error.textarea,
+.wizard_form .field .input.error.wizard_tokenizer {
+  background: url(../images/wizard_form_field_error_bgh.png);
+}
+.wizard_form .field .input.error input {
+  height: 42px;
+}
+
+.wizard_form .field .input.select {
+  background: url(../images/wizard_form_select_bg.png) repeat-x;
+}
+.wizard_form .field .input.select p.selected {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 42px;
+  width: 442px;
+  display: block;
+  color: #565656;
+  font-size: 14px;
+  padding: 0 10px;
+  line-height: 42px;
+}
+.wizard_form .field .input.select a.handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+.wizard_form .field .input.select .left {
+  background: url(../images/wizard_form_select_left.png) no-repeat left top; 
+}
+.wizard_form .field .input.select .right {
+  background: url(../images/wizard_form_select_handle.png) no-repeat right top; 
+}
+.wizard_form .field .input.focused.select {
+  background: url(../images/wizard_form_select_focused_bg.png) repeat-x;
+}
+.wizard_form .field .input.focused.select .left {
+  background: url(../images/wizard_form_select_focused_left.png) no-repeat left top; 
+}
+.wizard_form .field .input.focused.select .right {
+  background: url(../images/wizard_form_select_focused_handle.png) no-repeat right top; 
+}
+.wizard_form .field .input.select select {
+  position: relative;
+  left: -9999px;
+}
+.wizard_form .field .input.textarea,
+.wizard_form .field .input.wizard_tokenizer {
+  background: url(../images/wizard_form_field_bgh.png) repeat-y; 
+}
+.wizard_form .field .input.textarea textarea {
+  resize: none;
+  border: none;
+  background: none;
+  width: 484px;
+  padding: 6px 10px;
+  line-height: 25px;
+  height: 80px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #565656;
+}
+
+ul.wizard_forms_tokenizer_suggestion_list,
+ul.wizard_forms_select_options {
+  position: absolute;
+  z-index: 10000;
+  background: #fff;
+  display: none;
+}
+ul.wizard_forms_tokenizer_suggestion_list li,
+ul.wizard_forms_select_options li {
+  border: 1px solid #d6d6d6;
+  margin-bottom: -1px;
+}
+ul.wizard_forms_tokenizer_suggestion_list li a,
+ul.wizard_forms_tokenizer_suggestion_list:hover li.selected a,
+ul.wizard_forms_select_options li a,
+ul.wizard_forms_select_options:hover li.selected a {
+  display: block;
+  font-size: 14px;
+  padding: 0 15px;
+  line-height: 38px;
+  color: #565656;
+  background: url(../images/wizard_form_select_option_hover.png) repeat-x 0 -42px;
+  text-shadow: none;
+}
+ul.wizard_forms_tokenizer_suggestion_list li.selected a,
+ul.wizard_forms_tokenizer_suggestion_list li.selected a:hover,
+ul.wizard_forms_tokenizer_suggestion_list li a:hover,
+ul.wizard_forms_select_options li.selected a,
+ul.wizard_forms_select_options li.selected a:hover,
+ul.wizard_forms_select_options li a:hover {
+  background-position: 0 0;
+  color: #fff;
+  text-shadow: 0 0 1px #333;
+}
+
+.wizard_form .field .input.wizard_tokenizer,
+.wizard_form .field .input.wizard_tokenizer .top,
+.wizard_form .field .input.wizard_tokenizer .bottom {
+  float: left;
+  width: 100%;
+}
+.wizard_form .field .input.wizard_tokenizer {
+  width: 504px;
+  cursor: text;
+}
+.wizard_form .field .input.wizard_tokenizer input {
+  position: static;
+  height: 44px;
+  width: auto;
+  outline: 0;
+}
+.wizard_form .field .input.wizard_tokenizer li {
+  float: left;
+  background: url(../images/wizard_form_tokenizer_item_bg.png);
+  font-size: 14px;
+  color: #565656;
+  margin: 5px 0 0 5px;
+  position: relative;
+}
+.wizard_form .field .input.wizard_tokenizer li .left {
+  background: url(../images/wizard_form_tokenizer_item_left.png) no-repeat left top;
+  padding-left: 15px;
+}
+.wizard_form .field .input.wizard_tokenizer li .right {
+  background: url(../images/wizard_form_tokenizer_item_right.png) no-repeat right top;
+  line-height: 34px;
+  height: 36px;
+  padding-right: 30px;
+}
+.wizard_form .field .input.wizard_tokenizer li a {
+  position: absolute;
+  right: 11px;
+  top: 12px;
+  display: block;
+  width: 11px;
+  height: 11px;
+}

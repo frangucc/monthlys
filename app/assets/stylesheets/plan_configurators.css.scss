@@ -1,0 +1,679 @@
+/* Plan Configurators - Configure Step */
+
+body.plan_configurators-controller {
+
+  /* Error messages for adresses and billing info (overrides recurly's) */
+  div.field {
+    div.error, div.error-message {
+
+      display: none; /* TODO: Remove this when design issue is resolved. */
+
+      background: none repeat scroll 0 0 #ea6b6b;
+      color: #fff;
+      font-size: 13px;
+      z-index: 100;
+      margin: 0;
+      width: 90%;
+      padding: 0 5%;
+      position: absolute;
+      top: 95%;
+      left: 0 !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-shadow: none;
+      border: 0;
+      border-radius: 0;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      line-height: 22px;
+      box-shadow: none;
+    }
+
+    p.error {
+      input {
+        background: #fee;
+        border-color: #a55;
+        color: #311;
+      }
+    }
+  }
+
+  /* Ship to this address checkbox */
+  p.ship-to-address {
+    float: left;
+    width: 65%;
+    margin-left: 32%;
+    font-size: 14px;
+    color: #545454;
+    margin-bottom: 40px;
+
+    input {
+      position: relative;
+      top: -2px;
+    }
+  }
+
+  /* Address forms */
+  section.address-fields,
+  li.new-shipping-info {
+    clear: both;
+
+    div.field {
+      float: left;
+      width: 100%;
+      margin-bottom: 23px;
+      position: relative;
+
+      .title {
+        display: none;
+      }
+
+      label {
+        font-size: 12px;
+        font-weight: normal;
+        color: #bcbcbc;
+        position: absolute;
+        left: 7px;
+        top: 7px;
+        font-size: 12px;
+        z-index: 10;
+      }
+
+      p {
+        float: left;
+        width: 70%;
+        position: relative;
+        margin: 0;
+
+        input {
+          width: 100%;
+          height: 35px;
+          font-size: 12px;
+          color: #545454;
+          box-sizing: border-box;
+          -moz-box-sizing: border-box;
+        }
+      }
+
+      &.name, &.email, &.address, &.phone {
+        .title {
+          display: block;
+          float: left;
+          position: static;
+          width: 27%;
+          padding-right: 3%;
+          text-align: right;
+          font-size: 12px;
+          color: #545454;
+          line-height: 35px;
+          font-weight: normal;
+        }
+      }
+      &.name {
+        p {
+          margin-left: 0;
+          width: 34%;
+        }
+        p.last {
+          float: right;
+        }
+      }
+      &.city, &.state, &.zipcode {
+        .title {
+          display: block;
+        }
+        .title:after {
+          content: ''
+        }
+        p {
+          width: 100%;
+        }
+      }
+      &.zipcode {
+        margin-left: 30%;
+        margin-right: 2%;
+        float: left;
+        width: 18%;
+      }
+      &.city {
+        float: left;
+        width: 28%;
+        margin-right: 2%;
+      }
+      &.state {
+        float: left;
+        width: 20%;
+
+        .title {
+          display: none;
+        }
+        select {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  /* Form headings */
+
+  div.shipping_select,
+  section.address-fields,
+  #billing {
+    hgroup {
+      margin-bottom: 15px;
+      min-height: 54px;
+
+      h1 {
+        font-size: 20px;
+        color: #054356;
+        line-height: 22px;
+        margin-bottom: 4px;
+      }
+      h2 {
+        font-size: 14px;
+        font-weight: normal;
+        color: #808182;
+        margin: 0;
+        line-height: 18px;
+      }
+    }
+  }
+
+  /* Styles */
+  section.main {
+
+    hgroup.checkout-heading {
+      border: 1px solid #d9e5e8;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+      background: #fff;
+      padding: 30px;
+
+      h1 {
+        font-size: 28px;
+        line-height: 32px;
+        color: #054356;
+        margin: 0 0 7px;
+      }
+      h2 {
+        font-size: 14px;
+        font-weight: normal;
+        color: #808182;
+        margin: 0;
+      }
+      &.deal-available {
+        border-bottom: 0;
+        padding-bottom: 19px;
+      }
+    }
+
+    .deal-site-users-message {
+      border-left: 1px solid #D9E5E8;
+      border-right: 1px solid #D9E5E8;
+      padding-left: 32px;
+    }
+
+    section.checkout-subscription {
+      border: solid #d9e5e8;
+      border-width: 1px 1px 0;
+      border-top-color: #fff;
+      background: #f6fcfe url(/assets/plan_detail/buy_now_bg.png) repeat-x bottom center;
+      padding: 30px 30px 35px;
+
+      &.casec {
+        background-image: url(/assets/checkoutarrowcasec.png);
+        background-position: bottom left;
+      }
+
+      div.image {
+        float: left;
+        width: 241px;
+        height: 176px;
+        overflow: hidden;
+        position: relative;
+
+        div.overlay {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;
+        }
+      }
+
+      h1, p {
+        margin-left: 262px;
+      }
+
+      h1 {
+        font-size: 30px;
+        line-height: 32px;
+        margin-bottom: 10px;
+        color: #585858;
+      }
+
+      p {
+        font-size: 14px;
+        color: #585858;
+        line-height: 24px;
+      }
+    }
+
+    /* Forms */
+    #forms {
+      float: left;
+      width: 100%;
+      border: solid #d9e5e8;
+      border-width: 0 1px;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+
+      &.casec {
+        border-bottom: 0;
+      }
+    }
+
+    /* Addresses */
+    #addresses {
+      float: left;
+      width: 44%;
+      padding: 30px 3%;
+      margin-right: -3px;
+      border-right: 1px solid #d8e5e8;
+      position: relative;
+
+      .loader {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff url(/assets/form-loader.gif) no-repeat center center;
+        opacity: 0.5;
+      }
+
+      &.full {
+        width: 94%;
+        float: none;
+        border: 0;
+      }
+
+      #ship-to-personal-address {
+        background-color: #F1FFEF;
+        border: 1px solid #93D053;
+        border-radius: 4px 4px 4px 4px;
+        margin-bottom: 18px;
+        padding: 8px 35px 8px 14px;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+      }
+
+      div.shipping_select {
+        h3 {
+          color: #054356;
+          font-size: 20px;
+          line-height: 22px;
+          margin-bottom: 20px;
+        }
+        li.shipping-info,
+        li.new-shipping-info {
+          width: 90%;
+          padding: 20px;
+          border: 1px solid #dedede;
+          border-radius: 5px;
+          margin-bottom: 20px;
+          clear: left;
+          float: left;
+
+          input.radio {
+            float: left;
+            width: 20px;
+            height: 20px;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            top: 3px;
+          }
+          div.info {
+            margin-left: 25px;
+          }
+        }
+        li.shipping-info {
+          &.disabled {
+            opacity: 1;
+            border-color: #eee;
+
+            p, .radio {
+              opacity: 0.3;
+            }
+          }
+
+          p {
+            font-size: 14px;
+            color: #7a7a7a;
+            line-height: 16px;
+            margin-bottom: 5px;
+          }
+          p.name {
+            font-size: 18px;
+            color: #000;
+            line-height: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+          }
+          p.invalid {
+            opacity: 1;
+            font-size: 12px;
+            line-height: 16px;
+            width: 220px;
+            padding: 12px;
+            color: #7d785a;
+            border: 1px solid #fdd8af;
+            background: #fffbf7;
+            border-radius: 4px;
+            float: right;
+            margin-right: -50px;
+          }
+        }
+        li.new-shipping-info {
+          label.show-form {
+            display: block;
+          }
+          #shipping-info-address {
+            margin-top: 15px;
+          }
+        }
+        li.selected {
+          border-color: #5fa1e9;
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+
+    /* Billing */
+    #billing {
+      float: right;
+      width: 44%;
+      padding: 30px 3%;
+
+      hgroup {
+        background: url(/assets/entrust.png) no-repeat top right;
+        padding-right: 60px;
+
+        h2 {
+          padding-left: 20px;
+          background: url(/assets/lock.png) no-repeat;
+        }
+      }
+
+      /* Recurly styles override */
+      div.billing_info {
+        padding: 0;
+        position: relative;
+        width: 100%;
+        height: 250px;
+        overflow: visible;
+
+        div.accepted_cards {
+          left: 72% !important;
+          top: 58px !important;
+          width: 28%;
+
+          div {
+            width: 22%;
+            height: 36px;
+            margin-left: 3%;
+            background-size: 100% auto;
+            background-position: left center;
+          }
+        }
+
+        div.title {
+          line-height: 35px;
+        }
+        div.field{
+          input {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            width: 100%;
+          }
+        }
+
+        /* Name, Card number, CVV and Expires fields */
+        div.credit_card {
+          position: static !important;
+
+          /* Name */
+          div.title.name {
+            position: absolute;
+            left: 0 !important;
+            top: 0;
+            width: 28%;
+            text-align: right;
+            padding-right: 2%;
+          }
+          div.field.first_name {
+            position: absolute;
+            left: 30%;
+            width: 34%;
+            margin: 0;
+
+            input {
+              width: 100%;
+              height: 35px;
+            }
+          }
+          div.field.last_name {
+            position: absolute;
+            left: 66%;
+            width: 34%;
+            margin: 0;
+
+            input {
+              width: 100%;
+              height: 35px;
+            }
+          }
+
+          /* Card number */
+          div.card_cvv {
+            width: 100%;
+          }
+          div.title.number {
+            position: absolute;
+            left: 0 !important;
+            top: 58px;
+            width: 28%;
+            text-align: right;
+            padding-right: 2%;
+          }
+          div.field.card_number {
+            position: absolute;
+            left: 30%;
+            top: 58px;
+            width: 40%;
+
+            input {
+              height: 35px;
+            }
+            .placeholder {
+              display: none !important;
+            }
+          }
+          span.helper.number {
+            position: absolute;
+            left: 30%;
+            top: 83px;
+            font-size: 11px;
+            color: #969696;
+          }
+
+          /* CVV */
+          div.title.cvv {
+            position: absolute;
+            left: 0 !important;
+            top: 115px;
+            width: 28%;
+            text-align: right;
+            padding-right: 2%;
+          }
+          div.field.cvv {
+            position: absolute;
+            left: 30% !important;
+            top: 115px;
+            width: 30%;
+            margin: 0;
+
+            input {
+              height: 35px;
+            }
+            .placeholder {
+              display: none !important;
+            }
+          }
+          span.helper.cvv {
+            position: absolute;
+            left: 30%;
+            top: 155px;
+            font-size: 11px;
+            color: #969696;
+            line-height: 14px;
+          }
+
+          /* Expires */
+          div.title.expires {
+            position: absolute;
+            left: 0 !important;
+            top: 190px;
+            width: 28%;
+            text-align: right;
+            padding-right: 2%;
+          }
+          div.field.expires {
+            position: absolute;
+            top: 192px;
+            left: 30%;
+          }
+          span.helper.expires {
+            position: absolute;
+            left: 30%;
+            top: 225px;
+            font-size: 11px;
+            color: #969696;
+            line-height: 14px;
+          }
+        }
+      }
+    }
+
+    /* Confirmation */
+    #totals-wrapper {
+      @include totals-display;
+    }
+
+    #gifting {
+      border: solid #d9e5e8;
+      border-width: 0 1px;
+      padding: 30px 3%;
+      clear: both;
+
+      h1 {
+        font-size: 20px;
+        color: #054356;
+        line-height: 22px;
+        margin-bottom: 10px;
+      }
+      p {
+        margin-bottom: 15px;
+      }
+      .gift-desc {
+        overflow: auto;
+        .send-notification {
+          clear: both;
+          overflow: auto;
+          input {
+            height: 23px;
+          }
+        }
+        a.preview {
+          width: 115px;
+          clear: both;
+        }
+        label {
+          display: block;
+          float: left;
+          position: static;
+          width: 27%;
+          padding-right: 3%;
+          text-align: right;
+          font-size: 12px;
+          color: #545454;
+          line-height: 35px;
+          font-weight: normal;
+        }
+        .note {
+          margin-left: 30%;
+          font-size: 10px;
+          color: #B8B8B8;
+        }
+        input[type="email"],
+        textarea {
+          width: 65%;
+          font-size: 12px;
+        }
+        textarea {
+          color: #545454;
+          padding: 5px;
+          margin: 0;
+        }
+      }
+    }
+
+    /* Terms and conditions */
+
+    #terms-confirmation-box {
+      clear: both;
+
+      #accept_terms {
+        margin: 3px 10px 0 15px;
+      }
+
+      p.check-terms {
+        float: right;
+      }
+      p.actions {
+        float: right;
+        width: 100%;
+        padding-bottom: 30px;
+
+        a {
+          line-height: 38px;
+          margin-right: 20px;
+        }
+        input {
+          box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+          -o-box-sizing: border-box;
+          height: 35px;
+        }
+        a, input {
+          float: right;
+        }
+      }
+    }
+  }
+
+  /* Colorbox - Terms and Conditions */
+
+  #cboxLoadedContent .terms {
+    max-height: 190px;
+    overflow: auto;
+    border: 1px solid #EFEFEF;
+    padding: 5px 10px;
+  }
+  #accept-terms-and-conditions {
+    float: left;
+    padding: 7px 20px;
+  }
+}

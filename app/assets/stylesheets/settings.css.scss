@@ -1,0 +1,143 @@
+body.coupons-controller,
+body.subscriptions-controller,
+body.settings-controller,
+body.registrations-edit,
+body.registrations-update,
+body.billing_infos-controller,
+body.shipping_infos-controller {
+
+  section.content {
+    border: 1px solid #D6E5E8;
+    @include border-radius(5px);
+    min-height: 415px;
+    float: right;
+    width: 78%;
+    background: white;
+    margin-bottom: 40px;
+
+    .inner-wrapper {
+      padding: 25px;
+    }
+    .message {
+      margin: 25px;
+    }
+
+    form.settings-form {
+      width: 100%;
+      padding-top: 30px;
+      float: left;
+      padding-bottom: 30px;
+
+      .message {
+        margin-top: 0;
+      }
+      .field {
+        padding-left: 150px;
+        position: relative;
+        margin-bottom: 25px;
+        &.name {
+          height: 37px;
+          p {
+            position: relative;
+            width: 130px;
+            margin-right: 22px;
+            float: left;
+            label {
+              position: absolute;
+              left: 10px;
+              top: 8px;
+              font-size: 12px;
+              line-height: 20px;
+              color: #999;
+            }
+          }
+        }
+        &.confirm_password {
+          .title {
+            padding-top: 2px;
+            line-height: 15px;
+          }
+        }
+        &.submit {
+          input {
+            width: auto;
+          }
+          p {
+            width: 292px;
+          }
+          span {
+            float: right;
+            line-height: 30px;
+          }
+          .btn {
+            float: left;
+            margin-right: 1em;
+            line-height: 18px;
+          }
+        }
+        .title {
+          display: block;
+          position: absolute;
+          left: 0px;
+          width: 120px;
+          text-align: right;
+          font-size: 12px;
+          line-height: 35px;
+        }
+        p {
+          width: 282px;
+          margin: 0;
+          input {
+            font-size: 13px;
+            width: 100%;
+          }
+        }
+        span {
+          font-size: 11px;
+          line-height: 25px;
+          display: block;
+          color: #999;
+          a {
+            color: #999;
+            &:hover {
+              color: #555;
+            }
+          }
+        }
+      }
+    }
+  }
+  p.actions {
+    float: left;
+    width: 100%;
+    line-height: 30px;
+  }
+  .actions {
+    .btn {
+      float: left;
+      margin-right: 10px;
+      margin-bottom: 30px;
+    }
+  }
+  div.billing_info {
+    padding: 0;
+    margin-top: 30px;
+  }
+}
+
+/* Active Menu items */
+
+body.subscriptions-controller .subscriptions a,
+body.coupons-index .coupons a,
+body.settings-edit .parent,
+body.settings-edit .personal a,
+body.settings-update .parent,
+body.settings-update .personal a,
+body.billing_infos-controller .parent,
+body.billing_infos-controller .billing a,
+body.shipping_infos-controller .parent,
+body.shipping_infos-controller .shipping a,
+body.settings-edit_password .parent,
+body.settings-edit_password .password a {
+  font-weight: bold;
+}

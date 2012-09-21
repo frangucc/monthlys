@@ -1,0 +1,42 @@
+<%= render partial: 'shared/sidebar' %>
+
+<section class="plan-grid">
+  <h1 class="main">
+    <% case @filter_params[:discover] %>
+      <% when 'handpicked' %>
+        Handpicked
+      <% when 'latest' %>
+        Latest Additions
+      <% when 'popular' %>
+        Most Popular
+      <% else %>
+        Everything
+    <% end %>
+
+    <% if @filter_params.size > 1 %>
+      &raquo; Search results
+    <% end %>
+  </h1>
+
+  <% if @plans.empty? %>
+    <div class="message flash-info">
+      <p>No plans found.</p>
+    </div>
+  <% else %>
+    <%= render partial: 'plans/list', locals: { plans_list: @plans } %>
+  <% end %>
+</section>
+
+<%= render partial: 'shared/enter_zip' %>
+
+<% content_for :javascript do %>
+  require(['require', 'plans/filtered'], function (require) {
+    require(['plans/filtered'], function(view) {
+      view.init({
+        zipModalOptions: {
+          askForZipcode: <%= ask_for_zipcode?(current_user).to_json %>
+        }
+      });
+    });
+  });
+<% end %>

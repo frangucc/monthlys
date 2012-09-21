@@ -1,0 +1,89 @@
+{% extends :base %}
+
+{% block(:body_class) do %}plans-edit{% end %}
+
+{% block(:content) do %}
+  {% categories_suggest(field: form[:categories]) %}
+
+  {# wizard_steps(step: 2) #}
+
+  <h1><a href="..">Plans</a> &raquo; {% if edit %}{{ record.name }}{% else %}New{% end %}</h1>
+
+  <form action="" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <div class="wizard_form">
+      <div id="basic">
+        {% wizard_heading(heading: "Basic Information",
+                          paragraph: "A plan is a good, service or membership that members can subscribe to.
+                                      You can have one plan with multiple options, or many plans.") %}
+
+        <div class="fields">
+          <div class="shadow">
+            {% display_non_field_errors(form: form) %}
+            {% display_fields(form: form, field_names: form.field_groups[:basic]) %}
+            {% display_formset(formset: form.formset(:documents), css_class: 'field documents', label: 'Docs', add_text: 'I have docs to add') %}
+            {% display_formset(formset: form.formset(:gallery), css_class: 'field gallery', label: 'Gallery', add_text: 'I have an image to add') %}
+          </div>
+        </div>
+      </div>
+
+      <div id="billing">
+        {% wizard_heading(heading: "Shipping &amp; Billing Info",
+                          paragraph: 'Here you can add different shipping and billing options for you
+                                      customers, choose the ones that fits best.') %}
+        <div class="fields options">
+          <div class="shadow">
+            {% form.field_groups[:billing].each do |fnames| %}
+              {% bool_field = form[fnames[0]] %}
+              {% amount_field = form[fnames[1]] %}
+              {% errors = amount_field.errors %}
+              <div class="option{% if errors %} errors{% end %}">
+                <div class="checkbox">{{ bool_field }}</div>
+                <div class="label">{{ amount_field.label }}</div>
+                <div class="amount"><span>$</span> {{ amount_field }}</div>
+                {% if errors %}<div class="errors">{{ amount_field.errors.join(', ') }}</div>{% end %}
+              </div>
+            {% end %}
+          </div>
+        </div>
+      </div>
+
+      <div id="options">
+        {% wizard_heading(heading: "Plan Options",
+                          paragraph: "If you have addons to your plans, you need to provide to your customers
+                                      with questions and answers, so they can choose what they want.") %}
+
+        <div class="fields">
+          <div class="shadow">
+          {%
+            display_formset(
+              formset: form.formset(:questions),
+              add_text: 'Add question',
+              css_class: 'questions',
+              nested: {
+                answers: {
+                  add_text: 'Add answer'
+                }
+              })
+          %}
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    {# wizard_nav(back_text: 'Previous Steps', next_text: 'Next Step') #}
+    {% wizard_nav(next_text: 'Save', back_text: false) %}
+  </form>
+{% end %}
+
+{% block(:javascript) do %}
+<script>
+  window.plan_types = {{ types.to_json }};
+  require(['plans/edit'], function () {
+    $('.formset').each(function () {
+      // Remove formsets templates after they are processed
+      $('#' + $(this).data('tplid')).remove();
+    });
+  });
+</script>
+{% end %}

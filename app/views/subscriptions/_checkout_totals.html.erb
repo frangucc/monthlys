@@ -1,0 +1,48 @@
+<script id="checkoutTotals" type="text/x-jquery-tmpl">
+  <!--
+    Locals:
+      - totals
+      - billing_desc
+      - coupon_desc (optional)
+  -->
+
+  <dl>
+    <dt>Subtotal</dt>
+    <dd>$ ${totals.recurrent_without_extras}</dd>
+
+    {{if totals.recurrent_shipping}}
+      <dt>Shipping cost</dt>
+      <dd>$ ${totals.recurrent_shipping}</dd>
+    {{/if}}
+
+    {{if totals.recurrent_tax}}
+      <dt>Taxes</dt>
+      <dd>$ ${totals.recurrent_tax}</dd>
+    {{/if}}
+
+    {{if totals.recurrent_discount}}
+      <dt class="discount">Discount</dt>
+      <dd class="discount">$ ${totals.recurrent_discount}</dd>
+    {{/if}}
+
+    <dt class="important">${billing_desc} fee</dt>
+    <dd class="important">$ ${totals.recurrent_total}</dd>
+
+    {{if totals.first_time_discount}}
+      <dt class="discount">
+        Today's discount "${coupon_desc}"
+      </dt>
+      <dd class="discount">$ ${totals.first_time_discount}</dd>
+    {{/if}}
+
+    {{if (totals.onetime_total && totals.onetime_total > 0)}}
+      <dt>One-time fee(s)</dt>
+      <dd>$ ${totals.onetime_total}</dd>
+    {{/if}}
+
+    {{if (totals.recurrent_total != totals.first_time_total && totals.first_time_total)}}
+      <dt>Today's fee</dt>
+      <dd>$ ${totals.first_time_total}</dd>
+    {{/if}}
+  </dl>
+</script>

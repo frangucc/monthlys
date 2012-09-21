@@ -1,0 +1,78 @@
+<div style="width: 100%; padding: 0 0 100px; background: #e5f3f6;">
+  <table style="width: 622px; margin: auto;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>
+        <p style="font-size: 12px; font-family: Helvetica, Arial, sans-serif; color: #dbc1c7; margin: 30px 0 20px; text-align: center; text-shadow: 0 1px 0 #fff;">Having trouble reading this? <a style="font-weight: bold; color: #dbc1c7; text-decoration: none;" href="http://monthlys.com/mail/mail/giftee_email/<%= @subscription.id %>" target="_blank">View it in your browser</a></p>
+      </td>
+    </tr>
+    <!-- header -->
+    <tr>
+      <td>
+        <div style="width: 632px; height: 80px; background: url(https://monthlys.com/newsletters/affiliate_program/header.png); position: relative;">
+        </div>
+      </td>
+    </tr>
+    <!-- Main Content -->
+    <tr>
+      <td>
+        <div style="width: 560px; padding: 35px 30px 0 30px; margin: 0; background: url(http://monthlys.com/assets/newsletters/giftee/blue_bg.png) top left no-repeat #025ad4; border-left: 1px solid #dbeef2; border-right: 1px solid #dbeef2; border-bottom: 1px solid #ededed;">
+          <!-- Good news {giftee}, {user} has a gift for you -->
+          <h1 style="padding: 0 30px 0 0; font-family: Helvetica, Arial, sans-serif; font-size: 26px; color: #ffffff; font-weight: normal; margin: 0 0 10px; text-align: center;">
+            Good news <strong><%= @subscription.giftee_name %>!</strong>
+          </h1>
+          <h1 style="padding: 0 30px 0 0; font-family: Helvetica, Arial, sans-serif; font-size: 23px; color: #ffffff; font-weight: normal; margin: 0 0 40px; text-align: center;">
+            <strong><%= @subscription.user.full_name %></strong> has bought you a gift from <%= @subscription.plan.merchant.business_name %> through Monthlys
+          </h1>
+          <!-- Plan image and description -->
+          <div style="background: url(http://monthlys.com/assets/newsletters/giftee/image_bg.png) top left no-repeat transparent; margin-bottom: 30px; width: 460px; height: 307px; margin: 0 auto; padding-top: 32px;">
+            <!-- Plan Image -->
+            <div style="background: url(<%= @subscription.plan.attachments.first.image.url %>) top left no-repeat transparent; width: 408px; height: 272px; margin-left: 33px; border: 1px solid #e0e0e0;">
+              <!-- Plan Description -->
+              <div style="width: 242px; margin: 72px 0 0 167px;">
+                <div style="background: url(http://monthlys.com/assets/newsletters/giftee/description_bg_top.png) top left no-repeat transparent; width: 242px; padding: 15px 20px 0 30px; font-family: Helvetica, Arial, sans-serif; text-align: center;">
+                  <h2 style="margin-top: 10px;">
+                    <a href="<%= plans_url(@subscription.plan) %>" style="font-size: 18px; font-weight: bold; color: #0273DC; text-decoration: none;">
+                      <%= @subscription.plan.name %>
+                    </a>
+                  </h2>
+                  <p style="font-size: 14px; font-weight: regular; color: #808284; margin-bottom: 0; padding-bottom: 20px;"><%= @subscription.plan.short_description[0,100] + '...' %></p>
+                </div>
+                <div style="background: url(http://monthlys.com/assets/newsletters/giftee/description_bg_bottom.png) top left no-repeat transparent; width: 242px; height: 33px; padding: 15px 20px 0 30px; font-family: Helvetica, Arial, sans-serif; color: #000000; text-align: center; font-size: 14px; font-weight: bold; color: #ffffff;">
+                  <% if @subscription.shippable? %>
+                    Shipped <%= @subscription.plan_recurrence.shipping_desc %>!
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Custom gift message -->
+          <% unless @subscription.gift_description.blank? %>
+            <p style="padding-top: 30px; font-family: Helvetica, Arial, sans-serif; color: #000000; text-align: center; font-size: 18px; color: #daebff;"><%= @subscription.gift_description %></p>
+            <p style="padding-bottom: 30px; font-family: Helvetica, Arial, sans-serif; color: #000000; text-align: center; font-size: 14px; color: #daebff;">from: <strong style="font-weight: bold"><%= @subscription.user.full_name %></strong></p>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+    <!-- footer -->
+    <tr>
+      <td>
+        <div style="width: 560px; padding: 35px 30px 28px; background: #f8fafb; border-left: 1px solid #dbeef2; border-right: 1px solid #dbeef2;">
+          <table cellpadding="0" cellspacing="0">
+            <tr valign="middle">
+              <td width="100%">
+                <h3 style="padding: 0; margin: 0; font-family: Helvetica, Arial, sans-serif; color: #343638; font-size: 18px; font-weight: normal;">Stay in touch with us! Get latest news and discounts</h3>
+              </td>
+              <td>
+                <a href="http://twitter.com/monthlysinc" target="_blank" style="display: block; padding-left: 10px;"><img src="https://monthlys.com/newsletters/footer_twitter.png" /></a>
+              </td>
+              <td>
+                <a href="http://www.facebook.com/pages/Monthlys/166280233483003" target="_blank" style="display: block; padding-left: 10px;"><img src="https://monthlys.com/newsletters/footer_facebook.png" /></a>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <img style="display: block;" src="https://monthlys.com/newsletters/footer.png" />
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,65 @@
+<% content_for(:title) { 'Coming soon!' } %>
+<% content_for :body_class, "no-offer-homepage" %>
+
+<p class="coming-soon-badge">Coming Soon</p>
+
+<hgroup>
+  <h1>We are simplifying subscriptions &amp; memberships</h1>
+  <h2>Discover, turn on and manage your favorite monthly services</h2>
+</hgroup>
+
+<%= image_tag('coming-soon/screenshots.png', :alt => "Monthlys preview", :class => "main") %>
+
+<section class="steps">
+  <ul>
+    <li class="first">
+      <%= image_tag('content/how-it-works/subscribe.png', :alt => "Subscribe to a service") %>
+      <h1>Subscribe to a Service</h1>
+      <p>Enter your billing info once. Turn on or off as many subscriptions as you’d like.</p>
+    </li>
+    <li>
+      <%= image_tag('content/how-it-works/we-deliver.png', :alt => "We deliver") %>
+      <h1>We’ll Deliver!</h1>
+      <p>Whether goods, services or memberships, we'll deliver promptly and keep you updated throughout the process.</p>
+    </li>
+    <li class="last">
+      <%= image_tag('content/how-it-works/enjoy.png', :alt => "Enjoy") %>
+      <h1>Enjoy Your Goods</h1>
+      <p>Spend less time running errands and more time on what's most important.</p>
+    </li>
+  </ul>
+</section>
+
+<div id="sharethis-modal" class="hidden">
+  <% if current_city %>
+    <header>
+      <h1>Monthlys is coming to <%= current_city.to_s %></h1>
+    </header>
+  <% end %>
+  <p>Help spread the word about Monthlys.</p>
+  <p class="sharethis-links">
+    <span class='st_facebook_large'></span>
+    <span class='st_twitter_large'></span>
+    <span class='st_email_large'></span>
+    <span class='st_sharethis_large'></span>
+  </p>
+  <% if current_city %>
+    <div class="map">
+      <%= image_tag '//maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=11&center=#{current_city.to_s}' %>
+    </div>
+  <% end %>
+</div>
+
+<div id="zip-modal" class="hidden">
+  <%= render partial: 'shared/enter_zip' %>
+</div>
+
+<% content_for :javascript do %>
+  <% if Rails.env.production? %>
+    <%= javascript_include_tag "//ws.sharethis.com/button/buttons.js" %>
+  <% else %>
+    <%= javascript_include_tag "//w.sharethis.com/button/buttons.js" %>
+  <% end %>
+
+  <%= requirejs('pages/coming_soon'); %>
+<% end %>

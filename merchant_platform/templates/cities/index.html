@@ -1,0 +1,31 @@
+{% extends :base %}
+
+{% block(:body_class) do %}object-index cities-index{% end %}
+
+{% block(:content) do %}
+
+{% ol_heading(title: 'Cities', add_url: url_for(:city_new)) %}
+
+<table class="object-listing">
+  <thead>
+    <th>Name</th>
+    <th>State</th>
+    <th>Is Featured</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    {% cities.each do |c| %}
+    <tr>
+      <td>{{ c.name }}</td>
+      <td>{% if c.state %}{{ c.state.name }}{% end %}</a></td>
+      <td>{% if c.is_featured %}Yes{% else %}No{% end %}</td>
+      <td>
+        <a class="edit" title="Edit" href="{{ url_for(:city_edit, id: c.id) }}">Edit</a>
+      </td>
+    </tr>
+    {% end %}
+  </tbody>
+</table>
+
+{% pagination(page: page) %}
+{% end %}

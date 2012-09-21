@@ -1,0 +1,145 @@
+/* Plans show */
+@import "../plans";
+body.plans-show {
+  div.plan-wrapper {
+    width: 100%;
+  }
+}
+
+/* Plan list */
+body.merchant_storefront-plans-index {
+
+  footer.main {
+    padding-top: 0;
+    margin-top: 0;
+    border-top: 0;
+  }
+
+  section.main {
+
+    /* List of plans */
+    ul.plans {
+      text-align: center;
+      margin-bottom: 30px;
+
+      li {
+        display: inline-block;
+        margin: 0 4% 20px 0;
+        background: #fff;
+        width: 30%;
+        position: relative;
+        border-radius: 5px;
+        border: 1px solid $border-color;
+
+        &:nth-child(3n) {
+          margin: 0;
+        }
+
+        article, div.actions {
+          padding: 5%;
+        }
+
+        div.image {
+          position: relative;
+
+          img {
+            border: 1px solid $border-color;
+            border-radius: 5px;
+            margin: 0 0 5px 0;
+            width: 100%;
+          }
+
+          a.switch {
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin: -2px -2px 0 0;
+            padding: 0 0 7px 7px;
+            border-bottom-left-radius: 5px;
+            background: #fff;
+            box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.1);
+          }
+        }
+
+        h1 {
+          font-size: 14px;
+          text-align: left;
+          white-space: nowrap;
+          overflow: hidden;
+
+          a {
+            color: $title-color;
+          }
+        }
+
+        p {
+          color: $text-color;
+          font-size: 12px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-align: left;
+        }
+
+        div.actions {
+          border-top: 1px solid $border-color;
+
+          .btn-dark {
+            margin-right: 5px;
+          }
+          .btn-dark, .btn-light {
+            padding: 10px 0;
+            width: 45%;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    /* Grid with helpers */
+    .highlight-wrapper {
+      padding-bottom: 0;
+
+      .col2 {
+        padding-top: 1em;
+        padding-bottom: 2em;
+      }
+      .how_it_works {
+        background: url(../merchant-storefront/plans_gears.png) no-repeat bottom right;
+      }
+      .what_to_expect {
+        background: url(../merchant-storefront/plans_box.png) no-repeat bottom right;
+      }
+      .shipment_schedule {
+        background: url(../merchant-storefront/plans_truck.png) no-repeat bottom right;
+      }
+
+      h1 {
+        font-size: 16px;
+        margin: 0 0 10px 0;
+        color: $title-color;
+        text-align: left;
+      }
+      p {
+        color: $text-color;
+        text-align: left;
+        font-size: 12px;
+        margin: 0 0 15px;
+      }
+      a {
+        border: 1px solid #bcbcbc;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: bold;
+        color: #333;
+        text-shadow: 1px 1px 0 #fff;
+        @include linear-gradient(#fff, #ececec);
+        padding: 7px 10px;
+
+        &:hover {
+          color: #000;
+        }
+      }
+    }
+  }
+}

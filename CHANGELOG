@@ -1,0 +1,234 @@
+CURRENT
+
+  * AA -> Plans -> 'Hidden' status
+  * Admin -> Statistics -> Fix group by SQL issue
+  * #1152 Settings -> Ability for consumer to delete billing info
+  * #1379 My subscriptions page -> Re-subscribe to expired subscriptions
+  * #1393 Performance -> Search and destroy N+1 issues
+  * #1419 Migrate our repo and services (AWS, github, etc)
+  * #1339 SSL -> Force SSL only in required pages
+
+-- Veronica Rebagliatte <vero@monthlys.com>
+-- Sebastián Borrazás <sebastian@monthlys.com>
+-- Gonzalo Saavedra <gonz@monthlys.com>
+
+
+2012-08-29
+
+  * #1224 Consumer Site -> Feedback (Video reviews) page - Improve design
+  * #1385 Merchant Plans (some active some not, all are showing up as "More plans from..)
+  * #1363 Plan Detail -> More visibility for video reviews
+  * #1351 Check on business link and media queries
+  * #1358 Plan Detail -> Fix video review tab copy
+  * #1403 Make pulldown home auto open a random tag
+  * #1076 Consumer Site -> Subscription Detail -> 'What went out' history/archive
+  * #1331 AA -> Shipments -> Batch tracking number emails
+  * #1394 Checkout -> Update totals when a new shipping info's zipcode is entered
+  * #1332 AA -> Subscription -> Configure functionality for admins
+  * #1400 Don't show local deals out of state
+  * #1408 New Frequency (Ship weekly, bill annually)
+  * #1322 Sitewide -> Load bugherd only for admin users
+  * #1362 Plan detail -> Don't show video review tab unless there are some
+  * #1378 Plan Detail -> Add order to user attachments
+  * #1384 New plan status - Saved Trash Can
+  * #1387 Record a Review Email
+  * #1390 DB cleanup -> Grab all strings without defaults and migrate them
+  * #1396 Consumer site -> My subscriptions - Add tracking info UI
+  * #1397 Create coupon codes for totsy (Gummy Vitamins for Kids/GummyVitamins for Adults)
+  * #1398 Categories Page - Sale link broken
+  * #1402 This week deals newsletters
+  * #1404 AA -> Shipments -> Make the listing more user friendly, show these on related subscriptions
+  * #1407 Plans listing -> Latest -> Sort plans by a new attribute (activated_at)
+  * #1112 Consumer Site -> Rewards Program -> 'Please don't cancel' strategy -> Improve cancellation modal
+  * #1411 Admin -> Statistics -> Fix group by SQL issue
+
+-- Veronica Rebagliatte <vero@monthlys.com>
+-- Sebastián Borrazás <sebastian@monthlys.com>
+-- Gonzalo Saavedra <gonz@monthlys.com>
+
+
+2012-08-29
+
+  * #1308 Updates to giftee email
+  * #1229 Fix video/sales tag highlights styling
+  * #1316 Handle test users and test subscriptions
+  * #1315 Email interceptor for developer environment
+  * #1314 Sync only monthlys' users' accounts on staging
+  * #1334 Recurly -> Capture card issuing bank payment failure errors
+  * #1349 AA -> Video Reviews -> Add featured videos, custom thumbnails, etc.
+  * #1326 AA -> Users -> Cancel all the subscriptions from a user after his/her account is deactivated
+  * #1338 AA -> Create Admin statistics charts
+  * #1292 AA -> Subscriptions#show -> List invoices and adjustments
+  * #1346 AA -> Subscriptions#index -> Add last invoice info
+  * #1286 AA -> Plans#show -> List available options and option groups
+  * #1369 Postponements rake task
+  * #1365 Navigation -> More widget
+  * #1330 Plan preview widget
+  * #1343 Subscription Termination
+  * #1386 Best Sellers Newsletter
+  * #1370 Service delays and refund emails
+  * #1357 Check on register and get a coupon functionality
+  * #1343 AA -> Subscriptions -> Terminate subscription functionality
+  * #1342 AA -> Subscriptions -> New shipping status implementation
+  * #1344 AA -> Merchants -> New merchant cutoff date (MCD) implementation
+  * #1345 Automatic postponements
+  * #1354 Better friend invite email
+  * #1348 AA -> Coupons -> Validate only alphanumeric characters
+
+-- Veronica Rebagliatte <vero@monthlys.com>
+-- Sebastián Borrazás <sebastian@monthlys.com>
+-- Gonzalo Saavedra <gonz@monthlys.com>
+
+
+2012-08-11
+
+  * #1308 Gifting -> Improvements
+  * #1148 Plan Detail -> Video Reviews
+  * #1112 Rewards Program -> 'Please don't cancel' strategy
+  * #1119 Management Report
+  * #132 AA -> TagHighlights -> Validate presence of plan or cateogory
+  * #1229 Pull down categories support (more link)
+  * #1229 Pulldown fixes:
+    * Changed rice format display, never show .00
+    * When sliding left to right, need to work on the easing a little. It’s a little choppy when the transition almost finishes.
+    * Put in the “sale price” feature, and if there is a price here, the “Red” circle disk appears with the sale price in it.
+    * Added video icon on highlight if plan has video.
+    * Play disc should not override sale badge on tag highlights, we always need to show price and onsale mini badge if needed.
+    * Added the view all links for each nav tab, in the bottom right area.
+  * ssl fix under plan detail
+  * plan detail url receiving a play=true parameter for the video to autoplay
+    * fix navigation styles and tab onstate.. Instead of a box tab style, just an on-color will do for now.
+  * Video reviews section on the homepage
+  * Added order to tag navigation
+  * Fix for forcing SSL on zipcode confirmation pages
+
+-- Veronica Rebagliatte <vero@monthlys.com>
+-- Sebastián Borrazás <sebastian@monthlys.com>
+-- Gonzalo Saavedra <gonz@monthlys.com>
+
+
+2012-08-10
+
+  * #1237 AA -> Subscriptions -> 'Past Due' status
+  * #1301 AA -> Subscriptions -> Populate canceled_at and expired_at fields on subscriptions
+  * #1302 AA -> Subscriptions CSV -> Add gifting fields to CSV
+  * #1297 AA -> Statistics -> Fix gift subscriptions count
+  * #1288 Plan detail -> Options -> Fix dropdown styles
+  * #1293 Subscriptions Report Task -> Update the task and check the data
+  * #1214 Checkout -> Display coupon invoice_description on the total confirmation
+  * #1241 Sitewide -> Maintenance Page
+  * #768  Sirewide -> Handle payment failure errors
+  * #1172 'Turn it back on' strategy -> Reactivation emails
+  * #1230 Checkout -> Keep the parameter_coupon message on the checkout
+  * #1213 JS Cache invalidation
+  * #1298 AA -> Plan Recurrences -> Add monthly_cost and service_cost on the listing
+  * #1194 Marketing -> Email -> Top 10 best sellers (Needs actual content)
+  * #1245 AA - > Users -> Display all the info available for a particular user
+  * #1261 Shipping tracking Number + Email Trigger
+  * #1276 Customer Service Coupon Tab
+  * #1246 AA -> Adjustments -> Sidebar explaining the difference between a 'credit' adjustment and a refund
+  * #1270 Subscription Configuration (frontend pending)
+  * #1279 Marketing -> Beer Landing Page
+  * #1194 Marketing -> Email -> Top 10 best sellers
+  * #1303 Plan no longer exists message
+  * #1305 AA -> Plan Recurrences -> don't allow disabling the last plan recurrence of an active plan
+
+-- Veronica Rebagliatte <vero@monthlys.com>
+-- Sebastián Borrazás <sebastian@monthlys.com>
+-- Gonzalo Saavedra <gonz@monthlys.com>
+
+
+2012-07-31 (4.1)
+
+  * #1247 Subscriptions -> Automatic Renewal Date Postponements (upgrade of Recurly gem involved)
+  * #1228 AA -> Refunds -> Send automated notifications after we do a refund
+  * #1213 Javascript Refactor
+  * #1271 AA -> Subscriptions -> Improve CSV file
+  * #1181 Fix asset precompile issue
+  * #1250 Checkout -> Improve 'Thank you' page
+  * #1260 AA -> Subscriptions -> Add text search for coupons
+  * #658  SiteWide -> Billing Info -> Save billing info in our DB (only allowed bits of course)
+  * #1119 Management Report (first approach)
+  * Checkout -> Unbind escape keypress event to close the modal window
+  * Merchant Storefront -> Sign In/Sign Up Modals -> Float issue with the ‘forgot password’ link
+  * Contact form -> Fix style issues after submitting
+  * Subscriptions#index -> Style the ‘You don't have any active coupons right now.’ message as a consistent info message
+  * Merchant Storefront -> Contact -> Style the  ‘Content is invalid.’ message as a consistent error message.
+  * Submit friends form with an already used email "email email" error or "base email" when duplicated emails
+  * Merchant Storefront -> Thank you page -> Continue browsing link redirects to consumer site homepage.
+
+-- Veronica Rebagliatte <vero@monthlys.com>
+-- Sebastián Borrazás <sebastian@monthlys.com>
+-- Gonzalo Saavedra <gonz@monthlys.com>
+
+
+2012-07-26
+
+  * #1249 Plan Detail -> Param Coupons -> Tool for adding custom deal sources
+  * #1257 IE7 -> Fix float issue
+  * #1223 Stickit contest static page and form to input user data
+  * #1111 Rewards program static page
+  * Plan Detail -> Fix for pinterest button
+  * Admin activities styling fixes
+
+-- Veronica Rebagliatte <vero@monthlys.com>
+-- Sebastián Borrazás <sebastian@monthlys.com>
+-- Gonzalo Saavedra <gonz@monthlys.com>
+
+
+2012-07-24
+
+  * #1244: AA -> Redemptions resource
+  * #1222: Emails -> New merchant application -> Forward those emails to Frank and Lou
+  * #1220: New frequency request
+  * #1217: Plan Detail page -> Right sidebar -> Show merchant logo instead of merchant image
+  * #1218: AA -> Refunds -> Use invoice_number in the dropdown instead of the invoice_id
+  * #1234: AA -> Coupons -> Better tool to check on the currently available deals
+  * #1102: Email Builder -> Featured plan
+  * #1212: Email Builder -> Allowing Custom markup
+  * #715: Sitewide search
+  * #1108: Sitewide search -> Type ahead suggest widget
+  * #1251: Improve Capistrano tasks for minimal deployment downtime
+
+-- Veronica Rebagliatte <vero@monthlys.com>
+-- Sebastián Borrazás <sebastian@monthlys.com>
+-- Gonzalo Saavedra <gonz@monthlys.com>
+
+
+2012-07-20
+
+  * Deals homepage embeded modal videos support
+  * #1209: Added new record feedback static page
+  * #1149: Superhubs styling fixes
+      * Embeded modal videos support
+      * Plan group labels support
+      * Many minor fixes
+  * #1022: Parameter coupons
+  * #1191: How it works modal for gifting
+  * #1117: 'On sale' plans
+  * Sample watermark on the gifting email preview on the checkout
+  * Bugfixes:
+      * #1147: Fixed redeem_by_date coupons bug
+
+-- Veronica Rebagliatte <vero@monthlys.com>
+-- Sebastián Borrazás <sebastian@monthlys.com>
+-- Gonzalo Saavedra <gonz@monthlys.com>
+
+
+2012-07-15 (4.0)
+
+  * #1107: Guest checkout
+  * #1024: Superhubs
+  * #1010: Refunds manager
+  * #1104: Subscriptions refactor
+  * #1022: Parameter Coupons
+  * #1036: Gifting
+  * #1058: Breadcrumbs
+  * #1050: AdRoll Script
+  * #1184: New frequency request "ship quarterly, bill annually"
+  * #1185: Add recurly code to subscriptions CSV
+  * Several bux fixes
+
+-- Veronica Rebagliatte <vero@monthlys.com>
+-- Sebastián Borrazás <sebastian@monthlys.com>
+-- Gonzalo Saavedra <gonz@monthlys.com>

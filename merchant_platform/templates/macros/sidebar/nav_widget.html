@@ -1,0 +1,81 @@
+{% macro :nav_widget do %}
+<div class="nav_widget">
+  <nav>
+    <ul>
+    </ul>
+
+    <ul>
+      <li class="dashboard">
+        <a href="#">Dashboard</a>
+      </li>
+      <li class="subcriptions">
+        <a href="{{ url_for(:subscription_list) }}"><strong>Subscriptions</strong></a>
+      </li>
+      <li class="invoices">
+        <a href="#">Invoices</a>
+      </li>
+      <li class="members">
+        <a href="#">Members</a>
+      </li>
+      <li class="reports">
+        <a href="#">Reports</a>
+      </li>
+      <li class="plans">
+        <a href="{{ url_for(:plan_list) }}"><strong>Plans</strong></a>
+      </li>
+      <li class="cities">
+        <a href="{{ url_for(:city_list) }}"><strong>Cities</strong></a>
+      </li>
+      <li class="categories">
+        <a href="{{ url_for(:category_list) }}"><strong>Categories</strong></a>
+      </li>
+      <li class="coupons">
+        <a href="{{ url_for(:coupon_list) }}"><strong>Coupons</strong></a>
+      </li>
+    </ul>
+
+    <ul>
+      <li class="activity-stream">
+        <a href="#">Activity Stream</a>
+      </li>
+      <li class="marketing-tools">
+        <a href="#">Marketing Tools</a>
+      </li>
+      <li class="customer-support">
+        <a href="#">Customer Support</a>
+      </li>
+    </ul>
+
+    <ul>
+      <li class="business-information">
+        <a href="{{ url_for(:merchant_edit, id: current_merchant.id) }}"><strong>Storefront</strong></a>
+      </li>
+      <li class="storefront-configuration">
+        <a href="{{ url_for(:storefront_edit, id: current_merchant.id) }}"><strong>Storefront media</strong></a>
+      </li>
+      <li class="marketing-configuration">
+        <a href="{{ url_for(:marketing_edit, id: current_merchant.id) }}"><strong>Marketing Configuration</strong></a>
+      </li>
+      <li class="servicearea-configuration">
+        <a href="{{ url_for(:servicearea_edit, id: current_merchant.id) }}"><strong>Service Area</strong></a>
+      </li>
+      <li class="admin-users">
+        <a href="{{ url_for(:admin_user_list) }}"><strong>Admin Users</strong></a>
+      </li>
+      <li class="user-profile">
+        <a href="#">User Profile</a>
+      </li>
+      <li class="monthlys-support">
+        <a href="#">Monthlys Support</a>
+      </li>
+    </ul>
+
+    <ul>
+      <li class="logout">
+        <a href="{{ url_for(:logout) }}">Logout</a>
+      </li>
+    </ul>
+
+  </nav>
+</div>
+{% end %}

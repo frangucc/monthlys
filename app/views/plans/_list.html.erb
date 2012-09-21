@@ -1,0 +1,23 @@
+<%#
+  Locals:
+    plans
+%>
+<div class="box-list-wrapper">
+  <ul class="box-list">
+    <% @plans.each do |plan| %>
+      <li class="box-list-item">
+        <article class="box">
+          <% if plan.pending? %><span class="badge pending"></span><% end %>
+          <div class="box-image">
+            <%= image_tag(plan.thumbnail.url, alt: plan.name) %>
+            <div class="corner"><%= link_to('View Details', plan_path(plan), title: plan.name, class: 'btn secondary') %></div>
+            <%= link_to('', plan, alt: plan.name, class: 'overlay-shadow') %>
+          </div>
+          <%= image_tag(plan.merchant.logo.url, alt: plan.merchant.business_name, class: 'box-thumbnail') %>
+          <h1 class="box-title"><%= link_to(plan.name, plan_path(plan), title: plan.name) %></h1>
+          <p class="box-subtitle"><%= plan.cheapest_plan_recurrence_explanation %></p>
+        </article>
+      </li>
+    <% end %>
+  </ul>
+</div>

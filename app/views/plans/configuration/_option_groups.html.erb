@@ -1,0 +1,13 @@
+<%
+  # Locals
+  #   - option_groups
+  #   - selected_options_id: Array of the selected options
+  #   - selected_plan_recurrence: Selected plan_recurrence
+%>
+
+<% @option_groups.each_with_index do |option_group, index| %>
+  <div class="option-group configurator-dropdown">
+    <label for="options_id_<%= index%>"><%= option_group.description %></label>
+    <%= select_tag "options_id[#{index}]", options_for_select(drop_down_options(option_group, selected_plan_recurrence), selected_options_id), multiple: option_group.allow_multiple? %>
+  </div>
+<% end %>

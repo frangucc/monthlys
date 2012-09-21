@@ -1,0 +1,24 @@
+$base-color: #0273dc;
+
+$color-purple: #5b396b; // Bake me a wish
+$base-color: $color-purple;
+
+// IMPORTANT!!! If you change any value also of the following variables also update _merchant_styles.erb
+$link-over-base: if(lightness($base-color) > 50, darken($base-color, 90), lighten($base-color, 90));
+$link-over-base-shadow: invert($link-over-base);
+$transparent-over-base: lighten($base-color, 5);
+$connect-border-color: darken($base-color, 20);
+$connect-gradient-top-color: lighten($base-color, 15);
+$connect-gradient-bottom-color: lighten($base-color, 1);
+$connect-gradient-top-color-hover: lighten($base-color, 20);
+$connect-gradient-bottom-color-hover: lighten($base-color, 5);
+
+$border-color: #e5e5e5;
+
+$title-color: #040608;
+$subtitle-color: #9a9a9a;
+$text-color: #666666;
+$text-color-background: #d6d6d6;
+
+$highlight-bar-bg: #f8f8f8;
+$highlight-bar-borders: darken($highlight-bar-bg, 10)

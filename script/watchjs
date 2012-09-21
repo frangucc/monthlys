@@ -1,0 +1,11 @@
+#!/bin/bash
+ROOT_DIR="$(dirname "$0")/.."
+LOCK_DIR="$ROOT_DIR/assets.lock"
+ASSETS_DIR="$ROOT_DIR/app/assets/javascripts"
+
+TIMEOUT='0.05'
+
+CHANGE_CMD="if mkdir $LOCK_DIR &>/dev/null; then sleep $TIMEOUT; $ROOT_DIR/script/buildjs; rmdir $LOCK_DIR; fi"
+
+echo 'Watching javascripts changes...'
+watchmedo shell-command --patterns="*.js" --recursive --command="bash -c '$CHANGE_CMD'" $ASSETS_DIR

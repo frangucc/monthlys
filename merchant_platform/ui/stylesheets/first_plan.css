@@ -1,0 +1,6 @@
+.first_plan_content .first_plan_shipping,
+.first_plan_content .first_plan_addons {
+  float: left;
+  width: 100%;
+  margin-top: 15px;
+}

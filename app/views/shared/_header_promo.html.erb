@@ -1,0 +1,13 @@
+<section class="header_promo">
+  <style>
+    header.main { margin-top: -32px; background-color: transparent!important;}
+    body {background-position: left 28px;}
+  </style>
+  <div class="wrapper">
+    <%= link_to 'Dismiss', '#', class: 'dismiss' %>
+    <div class="hanging-coupons"></div>
+    <%= link_to new_friend_path, class: 'invite-text' do %>
+      <span>Invite your friends and get a $5 coupon</span>
+    <% end %>
+  </div>
+</section>

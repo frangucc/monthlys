@@ -1,0 +1,706 @@
+/* Plan ************************************************/
+
+.image-nav,
+.plan-video {
+  margin: 25px 25px 15px;
+
+  iframe {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 124;
+  }
+}
+
+.plan-video {
+  position: relative;
+
+  iframe.youtube {
+    display: block;
+    position: static !important;
+  }
+  a.play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -41px;
+    margin-left: -41px;
+    display: block;
+    width: 82px;
+    height: 82px;
+    background: url(/assets/plan_image_play.png);
+  }
+}
+
+.image-nav {
+  position: relative;
+  overflow: hidden;
+
+  .images-wrapper {
+    height: 372px;
+    position: relative;
+    overflow: hidden;
+
+    .image-wrapper {
+      position: relative;
+      position: absolute;
+      width: 100%;
+
+      & > .caption {
+        position: absolute;
+        font-size: 14px;
+        background-color: rgba(0, 0, 0, .6);
+        color: white;
+        width: 100%;
+        bottom: 7px;
+        padding: .3em .5em;
+      }
+    }
+  }
+
+  .plan-image-carousel {
+    position: relative;
+    height: 81px;
+    background: #d9d9d9;
+    overflow: hidden;
+    margin: 4px;
+
+    a.next, a.prev {
+      display: block;
+      width: 24px;
+      height: 81px;
+      position: absolute;
+      top: 0;
+      outline: 0;
+    }
+    a.next {
+      right: 0;
+      background: url(/assets/content/plans/show/multiimage-right.png);
+    }
+    a.prev {
+      left: 0;
+      background: url(/assets/content/plans/show/multiimage-left.png);
+    }
+    .slide {
+      padding-top: 3px;
+      position: absolute;
+      left: 28px;
+    }
+    .frame {
+      float: left;
+    }
+    .thumbnail {
+      float: left;
+      width: 81px;
+      height: 63px;
+      padding: 5px;
+      border: 1px solid #b6b8b5;
+      background: #fff;
+      text-align: center;
+      margin-right: 5px;
+      cursor: pointer;
+      position: relative;
+
+      &.selected {
+        background: #fff8ad;
+      }
+
+      .caption {
+        position: absolute;
+        font-size: 11px;
+        bottom: 5px;
+        left: 5px;
+        background-color: rgba(0, 0, 0, .6);
+        color: white;
+        width: 81px;
+      }
+
+      img {
+        display: block;
+        height: 100%;
+        margin: auto;
+      }
+    }
+  }
+
+}
+
+
+/* Modal windows */
+.plans-show #cboxLoadedContent,
+.plans-preview #cboxLoadedContent {
+
+  /* Subscription cancellation */
+  .cancel {
+    width: auto;
+    float: left;
+  }
+
+  /* Out of area messages */
+  .zipcode {
+    #messages-container {
+      margin: 20px 0;
+    }
+    p {
+      line-height: 25px;
+      margin: 0;
+      font-size: 14px;
+      color: #545454;
+    }
+    form {
+      padding-top: 30px;
+
+      .zip {
+        float: left;
+        width: 330px;
+
+        label {
+          float: left;
+          font-size: 14px;
+          color: #545454;
+          padding: 0 5% 0 0;
+          text-align: right;
+          line-height: 35px;
+        }
+        input {
+          float: left;
+          width: 100px;
+        }
+      }
+      .submit {
+        float: left;
+        width: 120px;
+      }
+    }
+  }
+
+  /* Gifting - How it works */
+  #gifting-hiw {
+    h1.main {
+      margin-bottom: 20px;
+    }
+    .step {
+      background: url(/assets/plan_detail/gift_step1.png) left top no-repeat;
+      padding-left: 90px;
+      list-style: none;
+      color: #585858;
+      min-height: 70px;
+      h1 {
+        font-size: 16px;
+      }
+      &.second {
+        background-image: url(/assets/plan_detail/gift_step2.png);
+        margin-top: 20px;
+      }
+    }
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+    .btn {
+      width: 80%;
+      margin: 0 auto;
+    }
+  }
+}
+
+/* Plan detail page */
+body.plans-show,
+body.plans-preview {
+
+  div.plan-wrapper {
+    float: right;
+    width: 78%;
+    background: #fff;
+    margin-bottom: 40px;
+  }
+
+  article.plan {
+    border: 1px solid #d6e5e8;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-left: -1px;
+    float: left;
+
+    hgroup.main {
+      position: relative;
+
+      .on-sale {
+        position: absolute;
+        right: -10px;
+        top: 25px;
+        background: url(/assets/plan_detail/on_sale.png) left top no-repeat;
+        width: 109px;
+        height: 39px;
+        text-indent: -40000px;
+      }
+      &.deal-available {
+        border: 0;
+        padding-bottom: 17px;
+      }
+    }
+
+    .plan-phrase {
+      padding: 25px 25px 0;
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 20px;
+      color: #202426;
+
+      strong {
+        background: url(/assets/the-value.png) no-repeat;
+        display: inline-block;
+        width: 80px;
+        height: 14px;
+        text-indent: -99999px;
+        overflow: hidden;
+      }
+    }
+
+    section.coupon {
+      margin: 0 25px 25px 25px;
+      color: #585858;
+      h1 {
+        font-size: 20px;
+        .available {
+          font-weight: normal;
+        }
+        .coupon-code {
+          color: #72ba00;
+        }
+      }
+      p {
+        font-size: 12px;
+        color: #898989;
+      }
+    }
+
+    div.plan-info {
+      ul.tabs-headers {
+        background: #f9f9f9;
+        height: 60px;
+        border: solid #d5e6e8;
+        border-width: 1px 0;
+
+        li {
+          float: left;
+          width: 25%;
+          font-size: 13px;
+          font-weight: bold;
+          white-space: nowrap;
+
+          a {
+            color: #202426;
+            display: block;
+            line-height: 60px;
+            padding: 0 25px;
+            outline: 0;
+
+            &.active {
+              background: #fff;
+              border: 1px solid #d9e5e8;
+              border-bottom-color: #fff;
+              border-top-left-radius: 5px;
+              border-top-right-radius: 5px;
+              position: relative;
+              top: -1px;
+              left: -1px;
+              z-index: 10;
+            }
+          }
+        }
+      }
+      section.markdown {
+        padding: 30px 25px;
+        border-right: 1px solid #d9e5e8;
+
+        p {
+          font-size: 13px;
+        }
+        ol {
+          font-size: 13px;
+          list-style-position: inside;
+        }
+        img {
+          float: left;
+          margin: 29px 20px 15px 0;
+        }
+      }
+      #reviews {
+        padding: 30px 25px;
+        .record {
+          color: #333;
+          background: url(/assets/plan_detail/record.png) no-repeat left center;
+          padding-left: 60px;
+          display: block;
+          margin-bottom: 20px;
+          h1 {font-size: 21px;}
+          h2 {font-size: 16px; font-weight: normal;}
+        }
+        li a {
+          @include video-review;
+        }
+      }
+    }
+    div.plan-price {
+      font-size: 24px;
+      color: #111;
+      text-align: center;
+      background: url(/assets/plan_detail/price_bg.png) repeat-x bottom center;
+      padding: 18px 0 24px 0;
+      margin: 0;
+      line-height: 32px;
+
+      strong {
+        font-size: 30px;
+        color: #0b3841;
+
+        &.main-price {
+          display: block;
+        }
+      }
+      .current-price {
+        margin-bottom: 0;
+      }
+
+      /* Plans with param coupons */
+      &.param-coupon {
+        background: none;
+        padding-bottom: 0;
+        #first-time-fee {
+          margin-top: 20px;
+          line-height: 2.5em;
+          color: #717a64;
+          font-size: 16px;
+          background-color: #f7ffea;
+          border-top: 1px dashed #e3eed3;
+          border-bottom: 1px dashed #e3eed3;
+          position: relative;
+
+          .figure {
+            font-weight: bold;
+            color: #72ba00;
+            font-size: 18px;
+          }
+          .scissors {
+            position: absolute;
+            top: 33px;
+            left: 5px;
+            background: url(/assets/plan_detail/scissors.png) no-repeat left top;
+            width: 20px;
+            height: 18px;
+          }
+        }
+      }
+
+      /* Plans on sale */
+      &.on-sale {
+        padding-top: 0;
+        strong {
+          color: #bb0710;
+        }
+        .old-price {
+          line-height: 2.5em;
+          color: #5a5a5a;
+          font-size: 16px;
+          background-color: #f7f6f5;
+          border-bottom: 1px solid #d6e5e8;
+          strong {
+            color: #333;
+            font-size: 14px;
+            text-decoration: line-through;
+          }
+        }
+      }
+    }
+    div.configuration {
+      padding: 5px 0;
+      background: #f9fdfe url(/assets/plan_detail/buy_now_bg.png) repeat-x bottom center;
+
+      p.plan-nextcutoff {
+        margin: 0 25px 20px;
+        padding-left: 30px;
+        background: url(/assets/plan_detail/subscribe_new_truck.png) no-repeat 0 3px;
+        line-height: 20px;
+        font-size: 14px;
+        color: #a7abad;
+      }
+
+      div.configurator-dropdown {
+        padding: 0 25px;
+        margin-bottom: 20px;
+
+        label {
+          display: block;
+          color: #545454;
+          font-size: 13px;
+          font-weight: bold;
+          line-height: 20px;
+          margin: 0 0 5px;
+        }
+        select {
+          width: 100%;
+        }
+      }
+      div.plan-recurrence {
+        label {
+          padding-top: 15px;
+        }
+      }
+
+      .btn {
+        margin: 0 25px;
+        line-height: 30px;
+        font-size: 24px;
+        border-radius: 5px;
+      }
+
+      /* Selects */
+      @include stylable-select;
+    }
+
+    section.limited-availability {
+      background-color: #fffee6;
+      border: 1px solid #eeeaba;
+      margin: 0 20px;
+      padding: 20px;
+      text-align: center;
+      @include border-radius(3px);
+    }
+
+    section.free-shipping,
+    #plan-subscription-archive,
+    section.plan-as-gift {
+      min-height: 62px;
+
+      margin-bottom: 0;
+
+      h1 {
+        font-size: 16px;
+        margin: 0 0 3px;
+      }
+      p {
+        font-size: 12px;
+        color: #545454;
+        line-height: 18px;
+      }
+    }
+    section.plan-as-gift,
+    #plan-subscription-archive {
+      margin: 30px 25px 25px;
+      img {
+        float: left;
+        margin-right: 20px;
+      }
+    }
+    section.free-shipping {
+      padding: 19px 0 0 111px;
+      margin: 15px 0;
+      background: url(/assets/plan_detail/free_shipping.png) no-repeat 19px 10px;
+      float: left;
+    }
+
+    div.plan-share {
+      width: 285px;
+      height: 25px;
+      margin: 20px auto;
+      overflow: hidden;
+
+      ul {
+        padding: 0 25px;
+      }
+      li {
+        height: 24px;
+        width: 50px;
+        float: left;
+        overflow: hidden;
+        margin-right: 10px;
+
+        &.facebook {
+          width: 52px;
+        }
+        &.twitter {
+          height: 32px;
+          width: 56px;
+        }
+        &.googleplus {
+          width: 38px;
+        }
+        &.pinterest {
+          height: 21px;
+          width: 43px;
+        }
+      }
+    }
+    section.about-merchant {
+      clear: both;
+      padding: 30px 25px 35px;
+      border-top: 1px solid #d6e5e8;
+
+      h1 {
+        font-size: 16px;
+        margin: 0 0 20px;
+      }
+      img {
+        float: left;
+        width: 76px;
+      }
+      h2, p {
+        margin-left: 91px;
+      }
+      h2 {
+        font-size: 16px;
+        color: #202020;
+        line-height: 20px;
+        margin-bottom: 2px;
+      }
+      p {
+        font-size: 12px;
+        color: #545454;
+        margin-bottom: 10px;
+        line-height: 16px;
+      }
+    }
+    section.related-plans {
+      padding: 30px 25px 35px;
+      border-top: 1px solid #d6e5e8;
+
+      h1 {
+        font-size: 16px;
+        margin: 0 0 20px;
+      }
+      li {
+        clear: both;
+        margin-bottom: 25px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      article {
+        a.image {
+          float: left;
+          width: 35%;
+        }
+        h1, p, a.btn {
+          margin-left: 40%;
+          width: 60%;
+        }
+        h1 {
+          font-size: 14px;
+          line-height: 16px;
+          text-overflow: ellipsis;
+          margin-bottom: 0;
+
+          a {
+            color: #333;
+          }
+        }
+        p {
+          font-size: 12px;
+          color: #545454;
+          margin-bottom: 10px;
+        }
+        a.btn {
+          width: 70px;
+          padding: 6px 0;
+        }
+      }
+    }
+    section.featured-video-review {
+      clear: both;
+      padding: 30px 25px 35px;
+      border-top: 1px solid #d6e5e8;
+
+      h1.block-title {
+        font-size: 16px;
+      }
+      li a {
+        @include video-review;
+      }
+    }
+    section.newsletter {
+      clear: both;
+      padding: 30px 25px 75px;
+      background: #f8fdfe;
+      border-top: 1px solid #D6E5E8;
+      margin-top: -1px;
+
+      .error-message {
+        background: #F2DEDE;
+        border: 1px solid #EED3D7;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+        padding: 8px 35px 8px 14px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        border-radius: 5px;
+      }
+      .field {
+        p {
+          position: relative;
+
+          label {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            color: #7a7a7a;
+          }
+        }
+      }
+      input {
+        float: left;
+        width: 60%;
+        height: 40px;
+        font-size: 14px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        padding: 0 10px;
+
+        &.btn {
+          width: 33%;
+          margin-left: 5%;
+        }
+      }
+    }
+  }
+
+  div.left {
+    float: left;
+    width: 60%;
+    margin-right: -1px;
+  }
+  div.right {
+    float: left;
+    border-left: 1px solid #d6e5e8;
+    width: 40%;
+  }
+
+}
+
+/* Plan listings */
+.tags_controller,
+.category_groups-controller,
+.categories-controller,
+.plans-controller {
+  .tag-nav.wrapper {
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
+}
+
+/* Deal message on plan detail and checkout */
+.deal-site-users-message {
+  border-bottom: 1px solid #9fccf2;
+  padding: 33px 20px 25px 26px;
+  margin-bottom: 0;
+  color: #0f3d65;
+  background: url(/assets/plan_detail/info_message_bg.png) left top no-repeat;
+  background-color: #f7fdfe;
+  img {
+    margin-right: 20px;
+    float: left;
+  }
+  p {
+    line-height: 30px;
+  }
+}

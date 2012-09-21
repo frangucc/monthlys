@@ -1,0 +1,47 @@
+<% content_for(:title) { 'My Settings' } %>
+
+<%= render partial: 'shared/settings_navigation' %>
+
+<section class="content">
+  <hgroup class="main">
+    <h1>Personal Info</h1>
+    <h2 class="breadcrumb"><%= breadcrumbs_for(:my_settings_section, 'Personal Info') %></h2>
+  </hgroup>
+
+  <%= form_for @user, url: ms_path(settings_path), html: { class: 'settings-form' } do |f| %>
+    <%= error_messages_for(@user) %>
+
+    <div class="field">
+      <p><%= f.label :full_name, :class => 'title' %>
+      <%= f.text_field :full_name %></p>
+    </div>
+
+    <div class="field">
+      <%= f.label :email, :class => 'title' %>
+      <p><%= f.text_field :email %></p>
+    </div>
+
+    <div class="field">
+      <%= f.label :phone, :class => 'title' %>
+      <p><%= f.text_field :phone %></p>
+    </div>
+
+    <div class="field">
+      <%= f.label :company_name, "Company Name", :class => 'title' %>
+      <p><%= f.text_field :company_name %></p>
+    </div>
+
+    <div class="field">
+      <%= f.label :zipcode_str, "Zip Code", :class => 'title' %>
+      <p><%= f.text_field :zipcode_str %></p>
+    </div>
+
+    <div class="field submit">
+      <p><%= f.submit "Submit", :class => "btn secondary" %></p>
+    </div>
+  <% end %>
+</section>
+
+<% content_for :javascript do %>
+  <%= requirejs('settings/edit'); %>
+<% end %>

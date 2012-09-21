@@ -1,0 +1,86 @@
+<hgroup>
+  <h1 class="main-heading wrapper">Sticky</h1>
+  <h2 class="tertiary-heading wrapper">A contest for the best placed Monthlys sticker</h2>
+</hgroup>
+
+<div id="slider">
+  <ul>
+    <li><img src="/assets/marketing/user_attachments/new/slider/1.png" alt=""></li>
+    <li><img src="/assets/marketing/user_attachments/new/slider/2.jpg" alt=""></li>
+    <li><img src="/assets/marketing/user_attachments/new/slider/3.jpg" alt=""></li>
+    <li><img src="/assets/marketing/user_attachments/new/slider/4.jpg" alt=""></li>
+  </ul>
+</div>
+
+<section class="hiw block">
+  <div class="wrapper">
+    <hgroup>
+      <h1 class="secondary-heading">How it works</h1>
+      <h2 class="tertiary-heading">Pretty simple, just 3 steps</h2>
+    </hgroup>
+    <section class="sticker">
+      <h1>Find a great place to put the sticker</h1>
+      <p>Stick them on laptops, folders or put them on your bumper - places where people will see them.</p>
+    </section>
+    <section class="camera">
+      <h1>Take a picture of it</h1>
+      <p>Take the best picture you can, showing how great it is</p>
+    </section>
+    <section class="upload last">
+      <h1>Submit it</h1>
+      <p>Submit your image in this page and you'll automatically be entered into our contest! We'll announce the winners each month.</p>
+    </section>
+  </div>
+</section>
+
+<section class="rewards block">
+  <div class="wrapper">
+    <hgroup>
+      <h1 class="secondary-heading">What you can get</h1>
+      <h2 class="tertiary-heading">We're offering more than $1,000 dollars in credits, swag and prizes to the most creative photo taken of the Monthlys sticker stuck somewhere.</h2>
+    </hgroup>
+    <section class="cash">
+      <h1>Cash Credits &amp; Rewards</h1>
+      <p>Cash credits can be used towards your existing subscriptions or future subscriptions.</p>
+    </section>
+    <section class="exclusivity">
+      <h1>Exclusive Subscriptions</h1>
+      <p>Gold members get first dibs on exclusive, limited and free subscriptions.</p>
+    </section>
+    <section class="samples last">
+      <h1>Free Samples</h1>
+      <p>Get free swag, t-shirts, samples and gifts from Monthlys and our merchants.</p>
+    </section>
+  </div>
+</section>
+
+<section id="stickit-form" class="form">
+  <h1 class="secondary-heading">Submit your photo now</h1>
+
+  <%= error_messages_for(@user_attachment) %>
+
+  <%= form_for @user_attachment, as: 'user_attachment', html: { enctype: 'multipart/form-data' } do |f| %>
+    <% unless user_signed_in? %>
+      <p>
+        <%= f.label :email, 'Your email' %>
+        <%= f.email_field :email %>
+      </p>
+      <p>
+        <%= f.label :name, 'Your Name' %>
+        <%= f.text_field :name %>
+      </p>
+    <% end %>
+    <p class="image-field">
+      <%= f.file_field :image %>
+    </p>
+    <%= f.submit 'Send', class: 'btn tertiary' %>
+  <% end %>
+</section>
+
+<% content_for(:javascript) do %>
+  require(['require', 'marketing/user_attachments/new'], function (require) {
+    require(['marketing/user_attachments/new'], function(view) {
+      view.init();
+    });
+  });
+<% end %>

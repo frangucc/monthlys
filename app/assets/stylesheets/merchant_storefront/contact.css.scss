@@ -1,0 +1,95 @@
+body.merchant_storefront-pages-contact,
+body.merchant_storefront-pages-contact_submit {
+
+  section.main {
+
+    section.contact-form {
+      border: 1px solid $border-color;
+      padding: 34px;
+      margin: 0 auto 50px;
+      width: 300px;
+
+      h1 {
+        font-size: 1.4em;
+        margin-bottom: 1em;
+      }
+
+      label {
+        font-size: 0.9em;
+        line-height: 1.8em;
+        color: $subtitle-color;
+      }
+
+      p.field input,
+      p.field textarea {
+        width: 100%;
+
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -o-box-sizing: border-box;
+
+        padding: 10px;
+        height: 40px;
+        font-size: 1em;
+        color: $title-color;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+      }
+
+      p.field textarea {
+        height: 150px;
+      }
+
+      .btn-dark {
+        border: 0;
+        font-size: 1em;
+        padding: 15px 20px;
+      }
+
+      &.with-map {
+        float: left;
+      }
+    }
+
+    section.contact-info {
+      border: solid $border-color;
+      border-width: 1px 1px 1px 0;
+      position: relative;
+      top: 10px;
+      margin-left: 370px;
+      padding-top: 25px;
+      padding-bottom: 25px;
+
+      .google-map #map-canvas {
+        width: 100%;
+        height: 290px;
+        margin: 10px 0 20px;
+      }
+
+      h1, p {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+      h1 {
+        font-size: 1.4em;
+        font-weight: normal;
+        margin-bottom: 0.08em;
+      }
+      p {
+        color: $subtitle-color;
+        font-size: 0.9em;
+        margin-bottom: 0.1em;
+      }
+      p.description {
+        margin-bottom: 1em;
+      }
+      p.name {
+        font-size: 1em;
+        font-weight:bold;
+        color: $title-color;
+      }
+    }
+
+  }
+
+}

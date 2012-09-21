@@ -1,0 +1,213 @@
+.first_plan_addons_question_list .add_question,
+.first_plan_addons_answer_list .add_answer {
+  display: block;
+  width: 726px;
+  height: 62px;
+  color: #565656;
+  text-align: center;
+  line-height: 62px;
+  font-size: 14px;
+  background: url(../images/first_plan_addons_question_list_add.png);
+}
+.first_plan_addons_question_list .add_question span,
+.first_plan_addons_answer_list .add_answer span {
+  padding-left: 20px;
+  margin-left: -20px;
+  background: url(../images/first_plan_addons_question_list_add_icon.png) no-repeat left center;
+}
+.first_plan_addons_question_list .questions {
+  margin-bottom: 10px;
+}
+.first_plan_addons_question_list .questions li {
+  width: 726px;
+  overflow: hidden;
+  background: url(../images/first_plan_addons_question_list_item_bgh.png);
+  margin-bottom: 10px;
+  position: relative;
+}
+.first_plan_addons_question_list .questions li .top {
+  background: url(../images/first_plan_addons_question_list_item_top.png) no-repeat left top;
+  float: left;
+}
+.first_plan_addons_question_list .questions li .bottom {
+  background: url(../images/first_plan_addons_question_list_item_bottom.png) no-repeat left bottom;
+  float: left;
+  padding-bottom: 45px;
+}
+.first_plan_addons_question_list .questions li.collapsed .bottom {
+  height: 62px;
+  padding-bottom: 0;
+}
+.first_plan_addons_question_list .questions .arrow,
+.first_plan_addons_question_list .questions .handle {
+  position: absolute;
+  top: 0;
+  display: block;
+  height: 62px;
+  width: 42px;
+  text-indent: -9999px;
+}
+.first_plan_addons_question_list .questions .handle {
+  top: 0;
+}
+.first_plan_addons_question_list .questions .arrow {
+  right: 0;
+}
+.first_plan_addons_question_list .questions .remove {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: url(../images/first_plan_addons_question_list_item_remove.png);
+  display: block;
+  font-size: 11px;
+  text-align: center;
+  color: #969696;
+  line-height: 32px;
+  width: 62px;
+  padding-left: 17px;
+}
+.first_plan_addons_question_list .questions .remove:hover {
+  background-position: left bottom;
+  color: #f75757;
+}
+.first_plan_addons_question_list .questions .field {
+  padding-top: 10px;
+  float: left;
+  margin-left: 42px;
+}
+.first_plan_addons_question_list .questions .field label {
+  float: left;
+  font-size: 14px;
+  color: #565656;
+  line-height: 42px;
+  width: 115px;
+  text-align: right;
+  margin-right: 10px;
+}
+.first_plan_addons_question_list .questions .field .input {
+  background: url(../images/first_plan_addons_question_list_field_bg.png);
+  position: relative;
+  width: 520px;
+  float: left;
+}
+.first_plan_addons_question_list .questions .field .input .left {
+  background: url(../images/first_plan_addons_question_list_field_left.png) no-repeat left top;
+}
+.first_plan_addons_question_list .questions .field .input .right {
+  background: url(../images/first_plan_addons_question_list_field_right.png) no-repeat right top;
+  height: 42px;
+}
+.first_plan_addons_question_list .questions .field .input input {
+  border: 0;
+  background: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 500px;
+  height: 42px;
+  font-family: Arial, sans-serf;
+  font-size: 14px;
+  color: #565656;
+  padding: 0 10px;
+}
+.first_plan_addons_question_list .questions .field .input.select {
+  background: url(../images/wizard_form_select_bg.png) repeat-x;
+  width: 240px;
+}
+.first_plan_addons_question_list .questions .field .input.select p.selected {
+  width: 178px;
+}
+.first_plan_addons_question_list .questions .field .input.select .left {
+  background: url(../images/wizard_form_select_left.png) no-repeat left top; 
+}
+.first_plan_addons_question_list .questions .field .input.select .right {
+  background: url(../images/wizard_form_select_handle.png) no-repeat right top; 
+}
+/* Answers */
+.first_plan_addons_question_list .first_plan_addons_answer_list {
+  float: left;
+  width: 520px;
+}
+.first_plan_addons_question_list .first_plan_addons_answer_list .add_answer {
+  width: 520px;
+  background: url(../images/first_plan_addons_answer_list_add.png);
+}
+.first_plan_addons_question_list .first_plan_addons_answer_list li {
+  width: 520px;
+  background: url(../images/first_plan_addons_answer_list_item_bgh.png);
+}
+.first_plan_addons_question_list .first_plan_addons_answer_list li .top {
+  background: url(../images/first_plan_addons_answer_list_item_top.png) no-repeat left top !important;
+}
+.first_plan_addons_question_list .first_plan_addons_answer_list li .bottom {
+  background: url(../images/first_plan_addons_answer_list_item_bottom.png) no-repeat left bottom;
+  width: 520px;
+}
+.first_plan_addons_question_list .first_plan_addons_answer_list li .image_upload {
+  display: block;
+  width: 96px;
+  height: 116px;
+  float: left;
+  background: url(../images/first_plan_addons_answer_list_item_photo.png);
+  margin-left: 52px;
+  margin-top: 10px;
+}
+.first_plan_addons_question_list .first_plan_addons_answer_list li .title {
+  width: 262px;
+  margin-left: 10px;
+}
+.first_plan_addons_question_list .first_plan_addons_answer_list li .title .input {
+  width: 262px;
+}
+.first_plan_addons_question_list .first_plan_addons_answer_list li .title .input input {
+  width: 242px;
+}
+.first_plan_addons_question_list .first_plan_addons_answer_list li .amount {
+  margin-left: 10px;
+  width: 80px;
+}
+.first_plan_addons_question_list .first_plan_addons_answer_list li .amount .input {
+  width: 80px;
+}
+.first_plan_addons_question_list .first_plan_addons_answer_list li .amount .input span {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  line-height: 42px;
+  font-size: 12px;
+  color: #969696;
+}
+.first_plan_addons_question_list .first_plan_addons_answer_list li .amount .input input {
+  width: 33px;
+  padding: 0 10px 0 27px;
+}
+
+
+.first_plan_addons_question_list .questions li.collapsed .top {
+  background: url(../images/first_plan_addons_question_list_item_bg.png) no-repeat left top;
+}
+.first_plan_addons_question_list .questions li.collapsed .field .input {
+  background-image: url(../images/first_plan_addons_question_list_field_bg_collapsed.png);
+}
+.first_plan_addons_question_list .questions li.collapsed .field .input .left {
+  background-image: url(../images/first_plan_addons_question_list_field_left_collapsed.png);
+}
+.first_plan_addons_question_list .questions li.collapsed .field .input .right {
+  background-image: url(../images/first_plan_addons_question_list_field_right_collapsed.png);
+}
+.first_plan_addons_question_list .questions li.collapsed .remove {
+  display: none;
+}
+.first_plan_addons_question_list .first_plan_addons_answer_list li.collapsed .image_upload {
+  display: none;
+}
+.first_plan_addons_question_list .first_plan_addons_answer_list li.collapsed .title {
+  margin-left: 52px;
+  width: 368px;
+}
+.first_plan_addons_question_list .first_plan_addons_answer_list li.collapsed .title .input {
+  width: 368px;
+}
+.first_plan_addons_question_list .first_plan_addons_answer_list li.collapsed .title .input input {
+  width: 348px;
+}

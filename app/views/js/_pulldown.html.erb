@@ -1,0 +1,30 @@
+<script id="tagHighlightsItemTemplate" type="text/x-jquery-tmpl">
+  <li class="type-${type}{{if on_sale}} onsale{{/if}}{{if is_video_featured}} video-featured{{/if}}">
+    <a class="wrap" href="${url}"{{if plan_id && is_video_featured}} data-plan-preview="${plan_id}"{{/if}}>
+      <img src="${image}" alt="">
+      <p class="description">
+        <span class="title">${title}</span>
+        <span class="merchant">from <strong>${merchant}</strong></span>
+      </p>
+      {{if on_sale}}<p class="onsale">On sale</p>{{/if}}
+      {{if is_video_featured}}<p class="play">Play video</p>{{/if}}
+      <p class="price"><span class="amount">$ ${price_amount}</span> ${price_recurrence}</p>
+    </a>
+  </li>
+</script>
+
+<script id="tagHighlightsBlockedItemTemplate" type="text/x-jquery-tmpl">
+  <li class="blocked">
+    <p>You must be signed in to see this</p>
+    <a class="btn tertiary" href="">Sign In/Sign Up</a>
+  </li>
+</script>
+
+<script id="moreItemTemplate" type="text/x-jquery-tmpl">
+  <li>
+    <a href="${url}">
+      <img src="${image}">
+      ${name}
+    </a>
+  </li>
+</script>

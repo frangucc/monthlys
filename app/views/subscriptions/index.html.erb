@@ -1,0 +1,49 @@
+<% content_for(:title) { 'My Subscriptions' } %>
+
+<%= render partial: 'shared/settings_navigation' %>
+
+<section class="content">
+  <hgroup class="main">
+    <h1>My Subscriptions</h1>
+    <h2 class="breadcrumb"><%= breadcrumbs_for(:my_account_section, 'My Subscriptions') %></h2>
+  </hgroup>
+  <% if current_user.subscriptions.empty? %>
+    <div class="subscriptions-list-empty">
+      <p class="empty-notice">
+        You do not have any active subscriptions at this time.
+        <%= link_to 'View subscriptions in your area', root_path, class: 'btn secondary' %>
+      </p>
+    </div>
+  <% else %>
+
+    <section>
+      <h1 class="secondary-heading">Active</h1>
+      <% if @active_subscriptions.any? %>
+        <%= render partial: 'subscriptions/list', locals: { subscriptions: @active_subscriptions } %>
+      <% else %>
+        <p class="message flash-info">You don't have any active subscriptions at this time. <%= link_to 'View subscriptions in your area', root_path %></p>
+      <% end %>
+    </section>
+
+    <% if @canceled_subscriptions.any? %>
+      <section>
+        <h1 class="secondary-heading">Canceled</h1>
+        <%= render partial: 'subscriptions/list', locals: { subscriptions: @canceled_subscriptions } %>
+      </section>
+    <% end %>
+    <% if @expired_subscriptions.any? %>
+      <section>
+        <h1 class="secondary-heading">Expired</h1>
+        <%= render partial: 'subscriptions/list', locals: { subscriptions: @expired_subscriptions } %>
+      </section>
+    <% end %>
+  <% end %>
+</section>
+
+<% content_for :javascript do %>
+  require(['require', 'subscriptions/index'], function (require) {
+    require(['subscriptions/index'], function (view) {
+      view.init();
+    });
+  });
+<% end %>

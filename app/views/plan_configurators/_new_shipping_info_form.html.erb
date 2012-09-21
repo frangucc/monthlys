@@ -1,0 +1,22 @@
+<%
+  # Locals
+  #   shipping_infos
+  #   merchant
+%>
+<li class="new-shipping-info">
+  <input class="radio"
+         id="add-new-shipping-option" type="radio"
+         name="subscription[shipping_info_id]"
+         value=""<% if !any_shippable_shipping_info %>
+         checked="checked"<% end %> />
+
+  <div class="info">
+    <label class="show-form" for="add-new-shipping-option">Ship to new address</label>
+    <div class="form">
+      <div id="shipping-info-address" class="address-fields">
+        <%= render partial: 'address_fields', locals: { namespace: :shipping_info } %>
+      </div>
+    </div>
+  </div>
+
+</li>

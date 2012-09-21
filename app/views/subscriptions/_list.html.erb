@@ -1,0 +1,7 @@
+<ul class="subscriptions-list">
+  <% subscriptions.each do |subscription| %>
+    <li class="subscriptions-list-item">
+      <%= render partial: 'subscriptions/detail', locals: { subscription: subscription, view: 'index' } %>
+    </li>
+  <% end %>
+</ul>

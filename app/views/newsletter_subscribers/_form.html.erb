@@ -1,0 +1,13 @@
+<%= form_for :newsletter_subscriber, {
+    url: newsletter_subscribers_path(format: :json),
+    html: { id: 'newsletter_form' }
+  } do |f| %>
+    <div class="messages"></div>
+    <div class="field">
+      <p>
+        <%= f.label :email, 'Your email address' %>
+        <%= f.email_field :email %>
+      </p>
+    </div>
+    <%= f.submit 'Sign Up', class: 'btn secondary' %>
+<% end %>

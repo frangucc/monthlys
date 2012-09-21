@@ -1,0 +1,162 @@
+/* Authentications Modal - SignIn/SignUp Form */
+
+form.user_new {
+  float: left;
+  width: 360px;
+  position: relative;
+
+  .loading_spinner {
+    display: none;
+    background: #fff url('form-loader.gif') no-repeat center center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+  h1 {
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 5px;
+    color: #000;
+  }
+  h2 {
+    font-size: 14px;
+    color: #505050;
+    font-weight: normal;
+    margin-bottom: 15px;
+  }
+  form {
+    border-bottom: 1px solid #dedede;
+    padding: 30px;
+  }
+  .remember {
+    float: left;
+    width: 180px;
+    padding-top: 3px;
+
+    input {
+      position: relative;
+      top: -2px;
+    }
+  }
+  .sign_up {
+    float: right;
+    margin-bottom: 0;
+    .btn {
+      width: 155px;
+      height: 50px;
+      font-size: 16px;
+      text-shadow: 1px 1px 0 #fff;
+      margin-bottom: 0;
+    }
+  }
+  .or {
+    clear: both;
+    height: 20px;
+    position: relative;
+    border-bottom: 1px solid #d9d9d9;
+    margin-bottom: 20px;
+    span {
+      background: #fff;
+      display: block;
+      font-size: 14px;
+      text-align: center;
+      color: #b1b1b1;
+      position: absolute;
+      line-height: 30px;
+      top: 5px;
+      left: 50%;
+      width: 40px;
+      margin-left: -20px;
+    }
+  }
+  .forgot-password {
+    font-size: 14px;
+  }
+  .facebook {
+    background: url(/assets/fb-btn.png) no-repeat;
+    display: block;
+    @include border-radius(5px);
+    position: relative;
+    top: -1px;
+    @include box-shadow(0 2px 2px #999);
+    &:hover {
+      top: 0;
+      @include box-shadow(none);
+    }
+    a {
+      color: #fff;
+      font-weight: bold;
+      display: block;
+      width: 310px;
+      height: 46px;
+      text-shadow: 1px 1px 0 #666;
+      background: url(/assets/fb-icon.png) no-repeat 65px 11px;
+      text-align: center;
+      font-size: 16px;
+      line-height: 45px;
+      padding-left: 40px;
+      outline: none;
+    }
+  }
+  input[type=text],
+  input[type=password],
+  input[type=email] {
+    padding: 0 10px;
+    width: 100%;
+    height: 44px;
+    @include box-sizing(border-box);
+    border: 1px solid #cdcdcd;
+  }
+  p label {
+    font-weight: normal;
+  }
+  .field {
+    margin-bottom: 18px;
+    position: relative;
+    label {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      color: #888;
+      font-size: 14px;
+      font-weight: normal;
+    }
+  }
+}
+
+.sign_up-wrapper {
+  position:relative;
+  float: left;
+  width: 100%;
+  .authentication-frame, .video-wrapper {
+    margin-bottom: 68px;
+  }
+  .video-wrapper {
+    @include box-shadow(0 0 10px rgba(0,0,0,0.3));
+    position:absolute;
+    right: 0;
+    bottom: 0;
+    width: 420px;
+    padding: 15px;
+    background: #fff;
+    img {
+      width: 222px;
+      @include border-radius(3px);
+      float: left;
+      padding:0px 10px 0 0;
+    }
+    h1, p {
+      margin-left: 210px;
+      padding:8px 0 0 0;
+    }
+    h1 {
+      font-size: 14px;
+    }
+    p {
+      font-size: 13px;
+      margin-top:-3px;
+    }
+  }
+}

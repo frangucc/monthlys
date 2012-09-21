@@ -1,0 +1,140 @@
+    <tr>
+      <td>
+        <div style="width: 560px; padding: 15px 30px 35px 30px; background: #fff; border-left: 1px solid #dbeef2; border-right: 1px solid #dbeef2; margin: 0; border-bottom: 1px solid #dbeef2; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+
+          <!-- Basics -->
+          <h1 style="font-family: Arial, sans-serif; margin: 0; font-size: 32px; font-weight: normal; text-align: center; font-weight: bold;"><%= @newsletter.heading %></h1>
+          <p style="font-family: Arial, sans-serif; margin: 0 0 20px; font-size: 24px; font-weight: normal; color: #a4a8a9; text-align: center;"><%= @newsletter.subheading %></p>
+
+          <div style="margin: 0 0 20px; font-family: Arial, sans-serif; font-size: 14px; color: #545454; padding: 0; line-height: 22px; text-align: center;">
+            <%= markdown(@newsletter.main_content) %>
+          </div>
+
+          <!-- Best Sellers -->
+          <% if @best_sellers.any? %>
+            <table style="width: 100%; margin: 0; text-align: left; margin: 0; font-family: Arial, sans-serif; font-size: 14px; color: #545454; padding: 0; line-height: 22px;">
+
+              <% @best_sellers.each do |bs| %>
+                <tr>
+                  <% cell_style = "padding: #{ (bs == @best_sellers.first) ? '10px 0 26px 0' : '33px 0 26px 0' }; #{ (bs == @best_sellers.last) ? 'padding-bottom: 0;' : 'border-bottom: 1px solid #ededed;' }" %>
+
+                  <td valign="top" style="<%= cell_style %>">
+                    <a href="<%= best_seller_link_for(bs) %>" target="_blank">
+                      <img style="border: 1px solid #bfbbaf;" src="<%= bs.plan.thumbnail.url %>" alt="<%= bs.plan.name %>"/>
+                    </a>
+                  </td>
+                  <td valign="top" style="<%= cell_style %> padding-left: 20px;">
+                    <h1 style="color: #333333; margin: 0 0 7px 0; font-weight: bold; font-size: 22px;"><%= bs.plan.name %></h1>
+                    <h2 style="<% if bs.coupon %>background: url(http://monthlys-newsletters.s3.amazonaws.com/sale.jpg) no-repeat right top; padding-right: 63px;<% end %> color: #333333; margin: 0; font-weight: normal; font-size: 18px; line-height: 30px;">Try it for <span style="<% if bs.coupon %>color: #f1232c;<% end %> font-weight: bold;">$<%= bs.featured_price %></span> /month</h2>
+                    <p style="color: #545454; margin-bottom: 20px;">
+                      <span style="background: url(http://monthlys.com/assets/marketing/newsletters/default/the_value.png) no-repeat 0 0; width: 74px; height: 14px; color: transparent; display: inline-block; margin-right: 10px;">The Value</span>
+                      <%= bs.plan.short_description %>
+                    </p>
+                    <a href="<%= best_seller_link_for(bs) %>" style="margin-right: 5px;" target="_blank"><img src="http://monthlys-newsletters.s3.amazonaws.com/details.jpg"></a>
+                    <a href="<%= best_seller_link_for(bs) %>" target="_blank"><img src="http://monthlys-newsletters.s3.amazonaws.com/gift.jpg"></a>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+          <% end %>
+
+          <!-- Featured Plan Value -->
+          <% unless @plan.nil? %>
+            <p style="margin: 0; font-family: Arial, sans-serif; font-size: 14px; color: #545454; padding: 0 60px 20px 60px; line-height: 22px; text-align: center;"><span style="background: url(http://monthlys.com/assets/marketing/newsletters/default/the_value.png) no-repeat 0 0; width: 74px; height: 14px; color: transparent; display: inline-block; margin-right: 10px;">The Value</span><%= @newsletter.the_value.blank? ? @plan.short_description : @newsletter.the_value %></p>
+          <% end %>
+
+          <!-- Main Image -->
+          <% unless @newsletter.main_image.blank? %>
+            <a style="margin: 0 0 10px; display: block; text-align: center; width: 100%;" href="<%= @newsletter.main_image_link %>" target="_blank">
+              <%= image_tag(@newsletter.main_image.url, alt: @newsletter.heading) %>
+            </a>
+          <% end %>
+
+          <!-- Featured Plan Coupon and price -->
+          <% unless @plan.nil? %>
+            <% unless @coupon.nil? %>
+              <p style="margin: 0 0 20px; font-family: Arial, sans-serif; font-size: 14px; color: #545454; padding: 0 60px; line-height: 42px; text-align: center;">
+                Use
+                <strong>Coupon code</strong>
+                <span style="background: url(http://monthlys.com/assets/marketing/newsletters/default/coupon_bg.png) no-repeat 0 0; width: 180px; height: 42px; color: transparent; display: inline-block; color: #72ba00; font-weight:bold; text-align: center;">
+                  <%= @coupon.coupon_code %>
+                </span>
+              </p>
+            <% end %>
+
+            <h3 style="margin: 0 0 20px; font-family: Arial, sans-serif; text-align: center; font-size: 22px; font-weight: normal;">
+              Try it for
+              <strong style="font-size: 36px; position: relative; top: 5px; color: #0273dc;">$<%= @featured_price %></strong> your first <%= @featured_billing_cycle %>
+            </h3>
+
+            <div style="text-align: center; margin-bottom: 25px;">
+              <a href="http://monthlys.com/plans/<%= @plan.slug %>"><img src="http://monthlys.com/assets/marketing/newsletters/default/buynow.png"></a>
+              <a href="http://monthlys.com/plans/<%= @plan.slug %>"><img src="http://monthlys.com/assets/marketing/newsletters/default/gift.png"></a>
+            </div>
+
+            <p style="margin: 0 0 10px; text-align: center; font-family: Arial, sans-serif; font-size: 14px; color: #a4a6a8;">
+              <span style="background: url(http://monthlys.com/assets/marketing/newsletters/default/truck.png) no-repeat 0 1px; padding-left: 27px;">
+                Subscribe by <%= SubscriptionsScheduleService.next_cutoff_date_after(Date.current, @plan.merchant).strftime('%B %d') %> to receive the next shipment.
+              </span>
+            </p>
+            <p style="margin: 0 0 20px; text-align: center; font-family: Arial, sans-serif; font-size: 12px; color: #a4a6a8;">
+              <% if !@newsletter.footnote.blank? %>
+                <%= @newsletter.footnote %>
+              <% else %>
+                * Price applies to a <%= @plan.cheapest_plan_recurrence.billing_cycle_in_words %> subscription. See other plans for pricing details.
+              <% end %>
+            </p>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+
+    <% if @show_three_block_area || @newsletter.show_getting_started_steps %>
+      <tr>
+        <td>
+          <div style="text-align: center; width: 580px; background: #fff; border-left: 1px solid #dbeef2; border-top: 1px solid #dbeef2; border-right: 1px solid #dbeef2; border-top-left-radius: 5px; border-top-right-radius: 5px; padding: 20px 20px 0 20px; margin: 10px 0 0 0;">
+
+            <!-- Three-block Area -->
+            <% if @show_three_block_area %>
+              <table style="border-bottom: 1px solid #e5e5e5; padding-bottom: 20px; margin-bottom: 20px;">
+                <tr valign="top">
+
+                  <% unless @newsletter.first_block_heading.blank? %>
+                    <td style="width: 189px;">
+                      <p style="font-family: Arial, sans-serif; font-size: 14px; margin: 0 0 15px; font-weight: bold;"><%= @newsletter.first_block_heading %></p>
+                      <a href="<%= @newsletter.first_block_link %>" target="_blank"><%= image_tag(@newsletter.first_block_image.url, alt: @newsletter.first_block_heading) %></a>
+                      <div style="margin: 0; font-family: Arial, sans-serif; font-size: 12px; color: #545454; padding: 0 30px"><%= @newsletter.first_block_description %></div>
+                    </td>
+                  <% end %>
+
+                  <% unless @newsletter.second_block_heading.blank? %>
+                    <td style="width: 189px;">
+                      <p style="font-family: Arial, sans-serif; font-size: 14px; margin: 0 0 15px; font-weight: bold;"><%= @newsletter.second_block_heading %></p>
+                      <a href="<%= @newsletter.second_block_link %>" target="_blank"><%= image_tag(@newsletter.second_block_image.url, alt: @newsletter.second_block_heading) %></a>
+                      <div style="margin: 0; font-family: Arial, sans-serif; font-size: 12px; color: #545454; padding: 0 30px"><%= @newsletter.second_block_description %></div>
+                    </td>
+                  <% end %>
+
+                  <% unless @newsletter.third_block_heading.blank? %>
+                    <td style="width: 189px;">
+                      <p style="font-family: Arial, sans-serif; font-size: 14px; margin: 0 0 15px; font-weight: bold;"><%= @newsletter.third_block_heading %></p>
+                      <a href="<%= @newsletter.third_block_link %>" target="_blank"><%= image_tag(@newsletter.third_block_image.url, alt: @newsletter.third_block_heading) %></a>
+                      <div style="margin: 0; font-family: Arial, sans-serif; font-size: 12px; color: #545454; padding: 0 30px"><%= @newsletter.third_block_description %></div>
+                    </td>
+                  <% end %>
+
+                </tr>
+              </table>
+            <% end %>
+
+            <!-- Getting Started Steps -->
+            <% if @newsletter.show_getting_started_steps %>
+              <h1 style="margin: 0 0 20px; font-size: 28px; font-family: Helvetica, Arial, sans-serif; text-align: center; font-weight: normal; color: #343638;">Here's all you need to get started:</h1>
+              <a style="display: block; padding: 0 20px" href="http://monthlys.com/how-it-works" target="_blank">
+                <img style="display: block;" src="http://monthlys.com/assets/marketing/newsletters/default/steps.png" alt="Choose a plan, pick your options, confirm and enjoy!" />
+              </a>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>

@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Merchant Platform Wizard</title>
+    <link rel="stylesheet" href="stylesheets/reset.css" />
+    <link rel="stylesheet" href="stylesheets/layout.css" />
+    <link rel="stylesheet" href="stylesheets/wizard_bar.css" />
+    <link rel="stylesheet" href="stylesheets/wizard_nav.css" />
+    <link rel="stylesheet" href="stylesheets/wizard_title.css" />
+    <link rel="stylesheet" href="stylesheets/wizard_options.css" />
+    <link rel="stylesheet" href="stylesheets/wizard_forms.css" />
+    <link rel="stylesheet" href="stylesheets/wizard_modal.css" />
+
+    <link rel="stylesheet" href="stylesheets/document_list.css" />
+
+    <link rel="stylesheet" href="stylesheets/list_business.css" />
+    <link rel="stylesheet" href="stylesheets/welcome.css" />
+    <link rel="stylesheet" href="stylesheets/setup.css" />
+    <link rel="stylesheet" href="stylesheets/marketing_configuration.css" />
+    <link rel="stylesheet" href="stylesheets/service_area.css" />
+    <link rel="stylesheet" href="stylesheets/fullfilment_assistance.css" />
+    <link rel="stylesheet" href="stylesheets/first_plan.css" />
+    <link rel="stylesheet" href="stylesheets/first_plan_basic.css" />
+    <link rel="stylesheet" href="stylesheets/first_plan_shipping.css" />
+    <link rel="stylesheet" href="stylesheets/first_plan_addons.css" />
+    <link rel="stylesheet" href="stylesheets/first_plan_addons_question_list.css" />
+  </head>
+  <body>
+
+    <div id="application">
+    </div>
+
+    <div id="templates">
+
+      <script class="layout" type="text/html">
+        <div class="sidebar">
+          <div class="user">
+            <div class="logo">
+              <img src="http://www.gravatar.com/avatar/3c05a90b71f86139293062699c130b89?_t=1336578845&s=80&d=http%3A%2F%2Flocalhost%3A9292%2Fmp%2Fimg%2Fdefault_merchant.png" />
+            </div>
+            <div class="name">
+              <h2>Test company</h2>
+              <h1>Hi Francesco!</h1>
+            </div>
+          </div> <!-- ends .user -->
+          <div class="nav">
+            <ul>
+              <li class="admin">
+                <a href="">New merchant</a>
+              </li>
+              <li class="dashboard">
+                <a href="/mp/subscriptions/">Dashboard</a>
+              </li>
+              <li class="order_management">
+                <a href="/mp/subscriptions/">Order Management</a>
+              </li>
+              <li class="members">
+                <a href="/mp/subscriptions/">Members</a>
+              </li>
+              <li class="reports">
+                <a href="/mp/subscriptions/">Reports</a>
+              </li>
+              <li class="subscriptions">
+                <a href="/mp/subscriptions/">Subscriptions</a>
+              </li>
+              <li class="plans">
+                <a href="/mp/plans/">Plans</a>
+              </li>
+              <li class="marketing_tools">
+                <a href="/mp/subscriptions/">Marketing Tools</a>
+              </li>
+            </ul>
+            <ul>
+              <li class="admin">
+                <a href="/mp/subscriptions/">Admin</a>
+              </li>
+              <li class="storefront">
+                <a href="/mp/subscriptions/">Storefront</a>
+              </li>
+              <li class="users">
+                <a href="/mp/subscriptions/">Users</a>
+              </li>
+              <li class="account_settings">
+                <a href="/mp/subscriptions/">Account Settings</a>
+              </li>
+              <li class="contact_information">
+                <a href="/mp/subscriptions/">Contact Information</a>
+              </li>
+            </ul>
+            <ul>
+              <li class="account_settings">
+                <a href="/mp/logout/">Logout</a>
+              </li>
+            </ul>
+          </div> <!-- ends .nav -->
+        </div> <!-- ends .sidebar -->
+        <div class="content-wrapper">
+          <div class="content">
+          </div> <!-- ends .content -->
+        </div>
+      </script>
+
+      <script class="wizard_bar" type="text/html">
+        <div class="padding">
+          <div class="setup step">
+            <span>Setup Account</span>
+          </div>
+          <div class="plan step">
+            <span>Create your first plan</span>
+          </div>
+          <div class="storefront step">
+            <span>Setup Storefront</span>
+          </div>
+        </div>
+      </script>
+
+      <script class="wizard_nav" type="text/html">
+        <div class="padding">
+          <a href="#">
+            <div class="back">
+              <div class="left">
+                <div class="right">
+                  <div class="arrow">
+                    Go Back
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          <a href="#">
+            <div class="next">
+              <div class="left">
+                <div class="right">
+                  <div class="arrow">
+                    Next Step
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </script>
+
+      <script class="wizard_title" type="text/html">
+        <h1><%= heading %></h1>
+        <p><%= paragraph %></p>
+      </script>
+
+      <script class="wizard_options" type="text/html">
+        <div class="options">
+        </div>
+      </script>
+
+      <script class="wizard_options_item" type="text/html">
+        <div class="frame">
+          <div class="image"><img src="<%= image %>" /></div>
+          <h2><%= heading %></h2>
+          <p><%= paragraph %></p>
+          <a href="#" class="readmore">
+            <div class="left">
+              <div class="right">
+                Read about it
+              </div>
+            </div>
+          </a>
+          <a href="#" class="tooltip"></a>
+          <a class="checkbox" href="#"><input type="radio" name="wizard_options" value="<%= value %>" /></a>
+        </div>
+      </script>
+
+      <script class="wizard_form_tokenizer_item" type="text/html">
+        <div class="left">
+          <div class="right">
+            <a href="#"></a>
+            <%= title %>
+          </div>
+        </div>
+      </script>
+
+      <script class="document_list" type="text/html">
+        <ul class="documents">
+        </ul>
+        <a href="#" class="add_document">I have docs to add</a>
+      </script>
+
+      <script class="document_list_item" type="text/html">
+        <div class="top">
+          <div class="bottom">
+            <a href="#" class="remove_document">Remove</a>
+            <h1 class="heading">important_document.docx</h1>
+            <div class="form">
+              <div class="field name">
+                <label>Name</label>
+                <div class="side">
+                  <div class="input">
+                    <div class="left">
+                      <div class="right">
+                        <input type="text" tabindex="2" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="field description">
+                <label>Description</label>
+                <div class="side">
+                  <div class="input textarea">
+                    <div class="top">
+                      <div class="bottom">
+                        <textarea tabindex="2"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </script>
+
+      <!-- STARTS VIEWS TEMPLATES -->
+
+      <script class="list_business" type="text/html">
+        <div class="list_business_content">
+
+          <div class="list_business_terms_modal">
+            <h1>Terms & Conditions</h1>
+            <div class="content">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+          </div>
+
+          <div class="heading wizard_title">
+            <h1>List your business on Monthlys</h1>
+          </div>
+          <form class="wizard_form">
+            <div class="first">
+
+              <div class="field business_name">
+                <label>Business name</label>
+                <div class="side">
+                  <div class="input">
+                    <div class="left">
+                      <div class="right">
+                        <input type="text" name="business_name" tabindex="1" />
+                      </div>
+                    </div>
+                  </div>
+                  <span>Your busines name, e.g. The Cookies Factory</span>
+                </div>
+              </div>
+
+              <div class="field location">
+                <label>Location</label>
+                <div class="side city">
+                  <div class="input">
+                    <div class="left">
+                      <div class="right">
+                        <input type="text" name="city" tabindex="1" />
+                      </div>
+                    </div>
+                  </div>
+                  <span>City</span>
+                </div>
+                <div class="side state">
+                  <div class="input">
+                    <div class="left">
+                      <div class="right">
+                        <input type="text" name="state" tabindex="1" />
+                      </div>
+                    </div>
+                  </div>
+                  <span>State / Province</span>
+                </div>
+                <div class="side zip">
+                  <div class="input">
+                    <div class="left">
+                      <div class="right">
+                        <input type="text" name="zip" tabindex="1" />
+                      </div>
+                    </div>
+                  </div>
+                  <span>Zip / Postal Code</span>
+                </div>
+              </div>
+
+              <div class="field email">
+                <label>Email Address</label>
+                <div class="side">
+                  <div class="input">
+                    <div class="left">
+                      <div class="right">
+                        <input type="text" name="email" tabindex="1" />
+                      </div>
+                    </div>
+                  </div>
+                  <span>You'll be using it for login</span>
+                </div>
+              </div>
+
+              <div class="field phone">
+                <label>Phone Number</label>
+                <div class="side">
+                  <div class="input">
+                    <div class="left">
+                      <div class="right">
+                        <input type="text" name="phone" tabindex="1" />
+                      </div>
+                    </div>
+                  </div>
+                  <span>You'll be using it for login</span>
+                </div>
+              </div>
+
+              <div class="field website">
+                <label>Website</label>
+                <div class="side">
+                  <div class="input">
+                    <div class="left">
+                      <div class="right">
+                        <input type="text" name="website" tabindex="1" />
+                      </div>
+                    </div>
+                  </div>
+                  <span>Your home page, blog or company site, e.g. http://www.companyname.com/</span>
+                </div>
+              </div>
+
+              <div class="field address">
+                <label>Address</label>
+                <div class="side">
+                  <div class="input">
+                    <div class="left">
+                      <div class="right">
+                        <input type="text" name="address" tabindex="1" />
+                      </div>
+                    </div>
+                  </div>
+                  <span>Your Monthlys URL: http://monthlys.com/username</span>
+                </div>
+              </div>
+
+            </div>
+            <div class="last">
+
+              <div class="field business_type">
+                <label>Business Type</label>
+                <div class="side">
+                  <div class="input select">
+                    <div class="left">
+                      <div class="right">
+                        <select tabindex="1">
+                          <option>Other</option>
+                          <option>Other 2</option>
+                          <option>Other 3</option>
+                          <option>Other 4</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <span>Type your city and choose the closes match, e.g. Irvine, CA, USA</span>
+                </div>
+              </div>
+
+              <div class="field business_description">
+                <label>Business Description</label>
+                <div class="side">
+                  <div class="input textarea">
+                    <div class="top">
+                      <div class="bottom">
+                        <textarea maxlength="180" name="business_description" tabindex="1"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <span>Tell us some more about your business (fewer than 180 chars)</span>
+                </div>
+              </div>
+
+            </div>
+          </form>
+          <div class="footer wizard_nav">
+            <div class="padding">
+              <a href="#">
+                <div class="next">
+                  <div class="left">
+                    <div class="right">
+                      <div class="arrow">
+                        Submit Application
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <div class="terms">
+                <a href="#" class="checkbox"><input type="checkbox" tabindex="1" /></a>
+                <label>I accept the <a href="#">Terms & Conditions</a></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </script>
+
+      <script class="welcome" type="text/html">
+        <div class="wizard_bar">
+        </div>
+        <div class="welcome_content">
+          <div class="padding">
+            <hgroup class="wizard_title">
+            </hgroup>
+            <div class="wizard_options">
+            </div>
+          </div>
+        </div>
+        <div class="wizard_nav">
+        </div>
+      </script>
+
+      <script class="setup" type="text/html">
+        <div class="badge">
+          <img src="images/monthlys_badge_big.png" />
+        </div>
+        <div class="wizard_bar">
+        </div>
+        <div class="setup_content">
+          <div class="padding">
+            <hgroup class="wizard_title"></hgroup>
+            <a href="#">
+              <div class="download">
+                <div class="left">
+                  <div class="right">
+                    <div class="icon">
+                      Download PDF With Assets
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="wizard_nav">
+        </div>
+      </script>
+
+      <script class="marketing_configuration" type="text/html">
+        <div class="wizard_bar">
+        </div>
+        <div class="marketing_configuration_content">
+          <div class="padding">
+            <hgroup class="wizard_title">
+            </hgroup>
+            <div class="wizard_options">
+            </div>
+          </div>
+        </div>
+        <div class="wizard_nav">
+        </div>
+      </script>
+
+      <script class="service_area" type="text/html">
+        <div class="wizard_bar">
+        </div>
+        <div class="service_area_content">
+          <div class="padding">
+            <hgroup class="wizard_title">
+            </hgroup>
+            <div class="wizard_options">
+            </div>
+          </div>
+        </div>
+        <div class="wizard_nav">
+        </div>
+      </script>
+
+      <script class="fullfilment_assistance" type="text/html">
+        <div class="wizard_bar">
+        </div>
+        <div class="fullfilment_assistance_content">
+          <div class="padding">
+            <hgroup class="wizard_title">
+            </hgroup>
+            <div class="wizard_options">
+            </div>
+
+            <!-- FRANK -->
+            <div class="fullfilment_assistance_assistance_modal">
+              <h1>Assistance</h1>
+              <div class="content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+            </div>
+            <div class="fullfilment_assistance_no_assistance_modal">
+              <h1>No Assistance</h1>
+              <div class="content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="wizard_nav">
+        </div>
+      </script>
+
+      <script class="first_plan" type="text/html">
+        <div class="wizard_bar">
+        </div>
+        <div class="first_plan_content">
+          <div class="first_plan_basic">
+          </div>
+          <div class="first_plan_shipping">
+          </div>
+          <div class="first_plan_addons">
+          </div>
+        </div>
+      </script>
+
+      <script class="first_plan_basic" type="text/html">
+        <div class="first_plan_basic_content">
+          <div class="padding">
+            <hgroup class="wizard_title">
+            </hgroup>
+            <form class="wizard_form">
+              <div class="section">
+                <div class="field plan_name">
+                  <label>Plan Name</label>
+                  <div class="side">
+                    <div class="input">
+                      <div class="left">
+                        <div class="right">
+                          <input type="text" name="plan_name" tabindex="2" />
+                        </div>
+                      </div>
+                    </div>
+                    <span>ie. Homemade Cupcakes, Artisnal Cheese, Italian Chianti, Lawn Care, Spray Tanning</span>
+                  </div>
+                </div>
+
+                <div class="field tagline">
+                  <label>Tagline</label>
+                  <div class="side">
+                    <div class="input">
+                      <div class="left">
+                        <div class="right">
+                          <input type="text" name="tagline" tabindex="2" />
+                        </div>
+                      </div>
+                    </div>
+                    <span>ie. Homemade Cupcakes from SusieCakes</span>
+                  </div>
+                </div>
+
+                <div class="field description">
+                  <label>Description</label>
+                  <div class="side">
+                    <div class="input textarea">
+                      <div class="top">
+                        <div class="bottom">
+                          <textarea name="description" maxlength="160" tabindex="2"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <span>Tell us some more about the plan (fewer than 160 chars)</span>
+                  </div>
+                </div>
+
+                <div class="field offer_type">
+                  <label>Offer type</label>
+                  <div class="side">
+                    <div class="input select step1">
+                      <div class="left">
+                        <div class="right">
+                          <select tabindex="2">
+                            <option>Anything here</option>
+                            <option>Anything here 2</option>
+                            <option>Anything here 3</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="input select step2">
+                      <div class="left">
+                        <div class="right">
+                          <select tabindex="2">
+                            <option>Anything here</option>
+                            <option>Anything here 2</option>
+                            <option>Anything here 3</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <span>ie. Homemade Cupcakes from SusieCakes</span>
+                  </div>
+                </div>
+
+                <div class="field categories">
+                  <label>Categories</label>
+                  <div class="side">
+                    <div class="input">
+                      <div class="top">
+                        <div class="bottom">
+                          <input type="text" name="categories" tabindex="2" />
+                        </div>
+                      </div>
+                    </div>
+                    <span>You can select a maximum of 3 categories</span>
+                  </div>
+                </div>
+
+                <div class="field image">
+                  <label>Main Image</label>
+                  <div class="side">
+                    <div class="input">
+                      <div class="left">
+                        <div class="right">
+                          <input type="text" name="image" tabindex="2" />
+                        </div>
+                      </div>
+                    </div>
+                    <span>Maximum size 700kb. JPG, GIF, PNG. <a href="#">See examples</a>.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="section">
+
+                <div class="field terms">
+                  <label>Terms & Conditions</label>
+                  <div class="side">
+                    <div class="input textarea">
+                      <div class="top">
+                        <div class="bottom">
+                          <textarea name="terms" maxlength="160" tabindex="2"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <span>This info will be used for all new plans. You may edit.</span>
+                  </div>
+                </div>
+
+                <div class="field fineprint">
+                  <label>Fine Print</label>
+                  <div class="side">
+                    <div class="input textarea">
+                      <div class="top">
+                        <div class="bottom">
+                          <textarea name="fineprint" maxlength="160" tabindex="2"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <span>This info will be used for all new plans. You may edit.</span>
+                  </div>
+                </div>
+
+                <div class="field documents">
+                  <label>Documents</label>
+                  <div class="side">
+                    <div class="document_list">
+                    </div>
+                    <span>Allow your users to download your legal documents for signature.</span>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="wizard_nav">
+        </div>
+      </script>
+
+      <script class="first_plan_shipping" type="text/html">
+        <div class="first_plan_shipping_content">
+          <div class="padding">
+            <hgroup class="wizard_title">
+            </hgroup>
+            <div class="billing_options">
+              <!-- Dont know if this should be a separate view -->
+              <div class="option">
+                <a href="#"><input type="checkbox" value="1" tabindex="2" /></a>
+                <label>Offer service <b>1 time per day</b> for</label>
+                <div>
+                  <span>$</span>
+                  <input type="text" />
+                </div>
+                <span>/ monthly</span>
+              </div>
+              <div class="option">
+                <a href="#"><input type="checkbox" value="1" tabindex="2" /></a>
+                <label>Offer service <b>Every other day</b> for</label>
+                <div>
+                  <span>$</span>
+                  <input type="text" />
+                </div>
+                <span>/ monthly</span>
+              </div>
+              <div class="option">
+                <a href="#"><input type="checkbox" value="1" tabindex="2" /></a>
+                <label>Offer service <b>1 time per week</b> for</label>
+                <div>
+                  <span>$</span>
+                  <input type="text" />
+                </div>
+                <span>/ monthly</span>
+              </div>
+              <div class="option">
+                <a href="#"><input type="checkbox" value="1" tabindex="2" /></a>
+                <label>Offer service <b>1 time per month</b> for</label>
+                <div>
+                  <span>$</span>
+                  <input type="text" />
+                </div>
+                <span>/ monthly</span>
+              </div>
+              <div class="option">
+                <a href="#"><input type="checkbox" value="1" tabindex="2" /></a>
+                <label>Offer service <b>Quarterly</b> for</label>
+                <div>
+                  <span>$</span>
+                  <input type="text" />
+                </div>
+                <span>/ monthly</span>
+              </div>
+              <div class="option">
+                <a href="#"><input type="checkbox" value="1" tabindex="2" /></a>
+                <label>Offer service <b>Annually</b> for</label>
+                <div>
+                  <span>$</span>
+                  <input type="text" tabindex="2" />
+                </div>
+                <span>/ monthly</span>
+              </div>
+            </div>
+            <div class="shipping_options">
+              <h2>Define your shipping rate and options</h2>
+              <div class="option free">
+                <a href=""><input type="radio" name="shipping" tabindex="2" /></a>
+                <label>Free shipping</label>
+              </div>
+              <div class="option flat_rate">
+                <a href=""><input type="radio" name="shipping" tabindex="2" /></a>
+                <label>Flat Rate</label>
+                <div>
+                  <span>$</span>
+                  <input type="text" tabindex="2" />
+                </div>
+              </div>
+              <div class="option fixed_rate">
+                <div class="top">
+                  <div class="bottom">
+                    <a href=""><input type="radio" name="shipping" tabindex="2" /></a>
+                    <label>Set fixed rate by Zip/City/State</label>
+                    <ol>
+                      <li>
+                        <label>Alabama</label>
+                        <div>
+                          <span>$</span>
+                          <input type="text" tabindex="2" />
+                        </div>
+                      </li>
+                      <li>
+                        <label>California</label>
+                        <div>
+                          <span>$</span>
+                          <input type="text" tabindex="2" />
+                        </div>
+                      </li>
+                      <li>
+                        <label>Colorado</label>
+                        <div>
+                          <span>$</span>
+                          <input type="text" tabindex="2" />
+                        </div>
+                      </li>
+                      <li>
+                        <label>Washington DC</label>
+                        <div>
+                          <span>$</span>
+                          <input type="text" tabindex="2" />
+                        </div>
+                      </li>
+                      <li>
+                        <label>Delaware</label>
+                        <div>
+                          <span>$</span>
+                          <input type="text" tabindex="2" />
+                        </div>
+                      </li>
+                      <li>
+                        <label>Florida</label>
+                        <div>
+                          <span>$</span>
+                          <input type="text" tabindex="2" />
+                        </div>
+                      </li>
+                      <li>
+                        <label>Illinois</label>
+                        <div>
+                          <span>$</span>
+                          <input type="text" tabindex="2" />
+                        </div>
+                      </li>
+                      <li>
+                        <label>Iowa</label>
+                        <div>
+                          <span>$</span>
+                          <input type="text" tabindex="2" />
+                        </div>
+                      </li>
+                      <li>
+                        <label>Kansas</label>
+                        <div>
+                          <span>$</span>
+                          <input type="text" tabindex="2" />
+                        </div>
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wizard_nav">
+        </div>
+      </script>
+
+      <script class="first_plan_addons" type="text/html">
+        <div class="first_plan_addons_content">
+          <div class="padding">
+            <hgroup class="wizard_title">
+            </hgroup>
+            <div class="first_plan_addons_question_list">
+            </div>
+          </div>
+        </div>
+        <div class="wizard_nav">
+        </div>
+      </script>
+
+      <script class="first_plan_addons_question_list" type="text/html">
+        <ul class="questions">
+        </ul>
+        <a href="#" class="add_question"><span>Add question</span></a>
+      </script>
+
+      <script class="first_plan_addons_question_list_item" type="text/html">
+        <div class="top">
+          <div class="bottom wizard_form">
+            <a href="#" class="handle"></a>
+            <a href="#" class="arrow"></a>
+            <a href="#" class="remove_question remove">Remove</a>
+
+            <div class="field title">
+              <label>Question</label>
+              <div class="input">
+                <div class="left">
+                  <div class="right">
+                    <input type="text" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="field impact">
+              <label>Impact the price</label>
+              <div class="input select">
+                <div class="left">
+                  <div class="right">
+                    <select>
+                      <option>No extra charge</option>
+                      <option>One time fee</option>
+                      <option>Recurring charge</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label>Answers</label>
+              <div class="first_plan_addons_answer_list">
+              </div>
+            </div>
+          </div>
+        </div>
+      </script>
+
+      <script class="first_plan_addons_answer_list" type="text/html">
+        <ul class="answers">
+        </ul>
+        <a href="#" class="add_answer"><span>Add answer</span></a>
+      </script>
+
+      <script class="first_plan_addons_answer_list_item" type="text/html">
+        <div class="top">
+          <div class="bottom">
+            <a href="#" class="handle">#</a>
+            <a href="#" class="remove_answer remove">Remove</a>
+
+            <a href="#" class="image_upload">
+              <img src="" />
+            </a>
+            
+            <div class="field title">
+              <div class="input">
+                <div class="left">
+                  <div class="right">
+                    <input type="text" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="field amount">
+              <div class="input">
+                <div class="left">
+                  <div class="right">
+                    <span>+$</span>
+                    <input type="text" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </script>
+
+    </div>
+
+    <script src="libraries/require.js"></script>
+    <script src="config.js"></script>
+    <script src="router.js"></script>
+  </body>
+</html>

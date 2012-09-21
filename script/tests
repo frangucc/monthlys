@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+[ -d "./test" ] && root="test";
+[ -d "./spec" ] && root="spec";
+
+if [[ "$#" = "0" ]]; then
+  tests=$root/**/*.rb;
+else
+  tests=$@;
+fi
+
+time RUBYLIB="$root" ruby $tests

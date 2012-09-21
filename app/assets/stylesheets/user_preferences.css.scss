@@ -1,0 +1,239 @@
+body.user_preferences-controller {
+
+  header.main .tagline {
+    display: none;
+  }
+
+  .messages .message {
+    margin-bottom: 20px;
+  }
+
+  section.main {
+    & > .wrapper {
+      width: 1153px;
+    }
+
+    ul {
+      padding-top: 25px;
+      margin: 0 auto 25px;
+      width: 150px;
+
+      li {
+        display: inline-block;
+        color: #757677;
+        font-weight: bold;
+        font-size: 14px;
+        text-shadow: 1px 1px 0 #fff;
+
+        &:first-child {
+          padding-right: 10px;
+          margin-right: 10px;
+          border-right: 1px solid #929798;
+        }
+
+        a {
+          color: #757677;
+          font-weight: normal;
+        }
+      }
+    }
+    section.categories_grid {
+      width: 102%;
+      margin: 3em 0;
+
+      .user-preference-link,
+      .column {
+        float: left;
+        width: 23%;
+        margin: 0 2% 20px 0;
+      }
+      .row {
+        position: relative;
+        margin-bottom: 30px;
+
+        .user-preference-link {
+          width: 90%;
+          padding: 5%;
+        }
+      }
+      .user-preference-link {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: block;
+        background: #f7f7f7;
+        border: 1px solid #d2d2d2;
+        /* Transitions */
+        transition: transform 0.5s ease;
+        -moz-transition: -moz-transform 0.5s ease;
+        -webkit-transition: -webkit-transform 0.5s ease;
+        -o-transition: -o-transform 0.5s ease;
+
+
+        /*
+         The first child will always be the one in the back-most.
+         Also will be the only item when the stack has only one.
+         This block will make all the aniations go off for those
+         two cases.
+         */
+        &:first-child {
+          .close {
+            display: none !important;
+          }
+        }
+
+
+        .image {
+          padding: 5px;
+          background: #fff;
+          border: 1px solid #d2d2d2;
+          margin-bottom: 7px;
+        }
+        img {
+          display: block;
+        }
+        .close {
+          position: absolute;
+          right: 5px;
+          top: 5px;
+          background: url('user_preference_close.png');
+          width: 29px;
+          height: 29px;
+          display: block;
+          text-indent: -9999px;
+          text-transform: uppercase;
+          /*display: none;*/
+        }
+        p {
+          font-size: 14px;
+          line-height: 18px;
+          font-weight: bold;
+          color: #565656;
+          text-align: left;
+          position: relative;
+          padding: 3px 0 5px 35px;
+        }
+        .checkbox {
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 28px;
+          width: 26px;
+          background: url('user_preference_checkbox.png');
+          text-indent: -9999px;
+          text-transform: uppercase;
+          outline: 0;
+        }
+
+        &.active {
+          .image {
+            background: #6aa6e3;
+          }
+
+          .checkbox {
+            background-position: 0 -28px;
+          }
+
+          .close {
+            display: block;
+          }
+        }
+        /*&.moving {
+          transform: rotate(360deg) !important;
+          -moz-transform: rotate(360deg) !important;
+          -webkit-transform: rotate(360deg) !important;
+          -o-transform: rotate(360deg) !important;
+        }*/
+
+        &:nth-child(2) {
+          top: -3px;
+          transform: rotate(-1deg);
+          -moz-transform: rotate(-1deg);
+          -webkit-transform: rotate(-1deg);
+          -o-transform: rotate(-1deg);
+        }
+        &:nth-child(3) {
+          top: 5px;
+          transform: rotate(1deg);
+          -moz-transform: rotate(1deg);
+          -webkit-transform: rotate(1deg);
+          -o-transform: rotate(1deg);
+        }
+        &:nth-child(1) {
+          top: -5px;
+          transform: rotate(1deg);
+          -moz-transform: rotate(1deg);
+          -webkit-transform: rotate(1deg);
+          -o-transform: rotate(1deg);
+        }
+        &:last-child {
+          transform: none;
+          -moz-transform: none;
+          -webkit-transform: none;
+          -o-transform: none;
+        }
+      }
+    }
+
+    footer {
+      clear: both;
+      margin: 3em 0 2em;
+      overflow: hidden;
+
+      section.invite {
+        float: left;
+
+        h1 {
+          float: left;
+          font-size: 18px;
+          font-weight: bold;
+          color: #6f7071;
+          text-shadow: 1px 1px 0 #fff;
+          line-height: 41px;
+          margin-right: 20px;
+        }
+        a {
+          float: left;
+          width: 104px;
+          padding-left: 45px;
+          height: 41px;
+          line-height: 38px;
+          background: url('user_preference_findout.png');
+          font-size: 13px;
+          font-weight: bold;
+          color: #fff;
+          text-shadow: 1px 0 1px rgba(0, 0, 0, 0.2);
+        }
+      }
+      section.share {
+        float: right;
+
+        h1 {
+          text-indent: -9999px;
+          text-transform: uppercase;
+          width: 191px;
+          height: 32px;
+          background: url('user_preference_share.png');
+          float: left;
+          margin-right: 10px;
+        }
+        ul {
+          float: left;
+          width: 240px;
+          padding-top: 3px;
+          margin-bottom: 0;
+        }
+        li {
+          float: left;
+          width: 80px;
+          border: 0;
+          padding: 0;
+          margin: 0;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+}

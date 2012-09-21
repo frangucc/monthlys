@@ -1,0 +1,64 @@
+<div class="main-sidebar">
+  <section class="discover first">
+    <h1>Discover</h1>
+    <ul>
+      <li class="handpicked">
+        <%= link_to_unless filter_params[:discover] == 'handpicked', 'Handpicked', filtered_plans_path(filter: { discover: 'handpicked' }) %>
+      </li>
+      <li class="popular">
+        <%= link_to_unless filter_params[:discover] == 'popular', 'Most Popular', filtered_plans_path(filter: { discover: 'popular' }) %></li>
+      <li class="latest">
+        <%= link_to_unless filter_params[:discover] == 'latest', 'Latest Additions', filtered_plans_path(filter: { discover: 'latest' }) %>
+      </li>
+    </ul>
+  </section>
+
+  <section class="categories">
+    <h1>Categories</h1>
+    <ul class="category-group-list">
+      <li><%= link_to_unless_current 'Everything', filtered_plans_path(filter: { discover: 'everything' }) %></li>
+      <% @grouped_categories.each do |category_group, categories| %>
+        <% is_current = [@category_group, @category.try(:category_group), (@plan && @plan.categories.first.try(:category_group))].include?(category_group) %>
+        <li class="parent">
+          <%= link_to(category_group.name, category_group, class: "#{is_current ? 'current' : ''}") %>
+          <ul class="<%= is_current ? '' : 'hidden' %>">
+            <% categories.each do |category| %>
+              <% if @plan && @plan.categories.first == category %>
+                <li class="current"><%= link_to(category.name, category) %></li>
+              <% else %>
+                <li><%= link_to_unless_current(category.name, category) %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+      <li><%= link_to_unless_current 'More', filtered_plans_path(filter: { discover: 'more' }) %></li>
+    </ul>
+  </section>
+
+  <section class="superhubs">
+    <h1>Trending</h1>
+    <ul>
+      <li><%= link_to_unless_current('Beverages', superhub_path('beverages')) %></li>
+      <li><%= link_to_unless_current('Farmers Market', superhub_path('farmers_market')) %></li>
+       <li><%= link_to_unless_current('Gifts', superhub_path('gifts')) %></li>
+      <li><%= link_to_unless_current('Home Accents', superhub_path('home_accents')) %></li>
+      <li><%= link_to_unless_current('Local Services', superhub_path('local_services')) %></li>
+      <li><%= link_to_unless_current('Pets', superhub_path('pets')) %></li>
+      <li><%= link_to_unless_current('Snacks', superhub_path('snacks')) %></li>
+    </ul>
+  </section>
+
+  <section class="filters">
+    <h1>Filters</h1>
+    <%= form_for :filter, url: filtered_plans_path, method: :get do |f| %>
+      <%= f.hidden_field :discover, value: filter_params[:discover] %>
+      <p><%= f.label :plan_type %> <%= f.select :plan_type, grouped_options_for_select(plan_type_filter, filter_params[:plan_type]) %></p>
+      <%= f.text_field :min_price, value: filter_params[:min_price] %>
+      <%= f.text_field :max_price, value: filter_params[:max_price] %>
+      <div id="sidebar_price_slider"></div>
+      <p><%= f.submit 'Filter', class: 'btn fifthary' %></p>
+    <% end %>
+  </section>
+  <div id="map-canvas"></div>
+</div>

@@ -1,0 +1,60 @@
+{% macro :button do |value, css_class| %}
+  <input type="submit" class="button {{ css_class }}" value="{{ value }}" />
+{% end %}
+
+{% macro :categories_suggest do |field| %}
+  <script type="text/javascript">
+      require(['jquery', 'widgets/categories_suggest'], function ($) {
+          $('#{{ field.auto_id }}').categoriesSuggest({
+              initial: {{ field.value.join(',').inspect }}
+          });
+      });
+  </script>
+{% end %}
+
+{% macro :options_box, url: nil, dscattr: nil do |field, values_field, url, dscattr| %}
+  <div class="optionsbox"{% if url %} data-url="{{ url }}"{% end %}{% if dscattr %} data-dscattr="{{ dscattr }}"{% end %}>
+    {% display_field(field: field) %}
+    {{ values_field.as_hidden }}
+
+    <div class="optionsbox-box" style="display: none;">
+      <input class="optionsbox-input" type="text" value="" />
+      <div class="optionsbox-items"></div>
+    </div>
+  </div>
+{% end %}
+
+{% macro :options_boxes do |switcher, fields| %}
+  {% switcher.field.choices.each do |name, description| %}
+    {% value = switcher.value %}
+
+    {% if fields[name] %}
+      {% value_field = fields[name][0] %}
+      {% options = fields[name][1] %}
+      <div class="optionsbox" data-url="{{ options[:url] }}"{% if options[:dscattr] %} data-dscattr="{{ options[:dscattr] }}"{% end %}>
+        <div class="optionsbox-switcher">
+          <input{% if value == name %} checked="checked"{% end %} type="radio" id="id_{{ name }}" name="{{ switcher.html_name }}" value="{{ name }}" />
+        </div>
+        <div class="optionsbox-options">
+          <label for="id_{{ name }}">{{ description }}</label>
+          {{ value_field.as_hidden }}
+          <input class="optionsbox-input" placeholder="Add {{ description }}" type="text" value=""{% if value != name %} style="display: none;"{% end %} />
+          {% display_field_errors field: value_field %}
+
+          <div class="optionsbox-box"{% if value != name %} style="display: none;"{% end %}>
+            <div class="optionsbox-items"></div>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <div class="optionsbox">
+        <div class="optionsbox-switcher">
+          <input{% if value == name %} checked="checked"{% end %} type="radio" id="id_{{ name }}" name="{{ switcher.html_name }}" />
+        </div>
+        <div class="optionsbox-options">
+          <label for="id_{{ name }}">{{ description }}</label>
+        </div>
+      </div>
+    {% end %}
+  {% end %}
+{% end %}

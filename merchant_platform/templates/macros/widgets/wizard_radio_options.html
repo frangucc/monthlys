@@ -1,0 +1,31 @@
+{% macro :wizard_radio_options do |name, options| %}
+{% option_width = "#{100 / options.count}%" %}
+<div class="wizard_radio_options">
+  <div class="padding">
+    {% options.each_with_index do |option, index| %}
+    <article class="option{% if index == 0 %} selected first{% end %}{% if index == options.count - 1 %} last{% end %}" style="width: {{ option_width }}">
+      <img src="{{ option[:image] }}" width="100" height="90" />
+      <h1>{{ option[:heading] }}</h1>
+      <p>{{ option[:paragraph] }}</p>
+      <a href="#"><input type="radio" name="{{ name }}" value="{{ option[:value] }}" /></a>
+    </article>
+    {% end %}
+  </div>
+</div>
+{% end %}
+
+{% macro :wizard_check_options do |options| %}
+{% option_width = "#{100 / options.count}%" %}
+<div class="wizard-check-options">
+  <div class="padding">
+    {% options.each_with_index do |option, index| %}
+    <article class="option{% if index == 0 %} first{% end %}{% if index == options.count - 1 %} last{% end %}" style="width: {{ option_width }}">
+      <img src="{{ option[:image] }}" width="100" height="90" />
+      <h1>{{ option[:heading] }}</h1>
+      <p>{{ option[:paragraph] }}</p>
+      <a href="#"><input type="checkbox" name="{{ option[:name] }}" value="{{ option[:value] }}"{% if option[:selected] %} checked="checked"{% end %} /></a>
+    </article>
+    {% end %}
+  </div>
+</div>
+{% end %}

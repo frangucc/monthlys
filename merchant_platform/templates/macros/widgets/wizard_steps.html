@@ -1,0 +1,20 @@
+{% macro :wizard_steps do |step| %}
+<div class="wizard_steps step{{ step }}">
+  <div class="padding">
+    <div class="setup step">
+      <span>Setup Account</span>
+    </div>
+    <div class="plan step">
+      <span>Create your first plan</span>
+    </div>
+    <div class="storefront step">
+      <span>Setup Storefront</span>
+    </div>
+  </div>
+</div>
+<script>
+  require(['widgets/wizard_radio_options'], function (wizard_radio_options) {
+    wizard_radio_options();
+  });
+</script>
+{% end %}

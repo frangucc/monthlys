@@ -1,0 +1,316 @@
+@import "mixins";
+
+body.plans-edit {
+
+  #basic {
+    .field {
+      margin-bottom: 40px;
+    }
+    .all-non-field-errors {
+      margin-bottom: 20px;
+      padding: 10px 20px 0;
+      background: #f2dede;
+      border: 1px solid #eed3d7;
+      border-radius: 5px;
+      list-style: none;
+
+      li {
+        font-size: 14px;
+        color:#000;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  div.plan_type {
+    .sexyform-select {
+      float: left;
+      width: 240px;
+
+      &:first-child {
+        margin-right: 15px;
+      }
+    }
+  }
+
+  div.categories.field.error {
+    input {
+      padding: 11px !important;
+      border-radius: 3px;
+      border: none !important;
+
+      &:focus {
+        padding: 11px !important;
+      }
+    }
+
+    ul.as-selections {
+      border: 2px solid #F75757 !important;
+      margin-bottom: 5px;
+    }
+  }
+
+  .wmd-preview {
+      min-height: 15px;
+      max-height: 92px;
+      overflow: auto;
+      margin-bottom: 15px;
+  }
+
+  #billing {
+    .options {
+      padding: 0 40px;
+
+      .option {
+        float: left;
+        width: 45%;
+        margin-bottom: 10px;
+        margin-right: 30px;
+        border: 1px solid #cfcfcf;
+        border-radius: 5px;
+        background: #fbfbfb;
+
+        &.error {
+          .amount input {
+            border: 2px solid #f75757;
+            padding: 9px 9px 9px 19px;
+          }
+        }
+
+        .checkbox {
+          float: left;
+          width: 42px;
+          border-right: 1px solid #cfcfcf;
+          padding-top: 20px;
+          height: 40px;
+          text-align: center;
+        }
+        .label {
+          float: left;
+          line-height: 60px;
+          font-size: 14px;
+          color: #565656;
+          width: 60%;
+          padding-left: 15px;
+        }
+        .amount {
+          float: right;
+          margin-right: 1em;
+          width: 85px;
+          padding: 10px 0;
+          position: relative;
+
+          input {
+            float: right;
+            width: 50px;
+            padding: 10px 10px 10px 20px;
+            border: 1px solid #c5c5c5;
+            border-radius: 3px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+
+            &:focus {
+              border: 2px solid #0270d6;
+              padding: 9px 9px 9px 19px;
+              box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+            }
+          }
+          span {
+            position: absolute;
+            top: 23px;
+            left: 15px;
+            z-index: 1111;
+            font-size: 13px;
+            color: #cfcfcf;
+          }
+        }
+        .errors {
+          float: left;
+          width: 96%;
+          border-top: 1px solid #cfcfcf;
+          font-size: 12px;
+          color: #f00;
+          line-height: 25px;
+          padding: 0 2%;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  .documents, .gallery {
+    @include embed-formset-add;
+  }
+
+  .initial {
+      color: #666;
+      font-size: 80%;
+  }
+
+  .gallery {
+     .add {
+       width: 220px !important;
+     }
+   }
+
+  .formset.questions {
+    float: left;
+    margin-bottom: 50px;
+
+    .add {
+      background: #fbfbfb;
+      border: 1px dashed #dadada;
+      display: block;
+      clear: both;
+      width: 725px;
+      line-height: 60px;
+      text-align: center;
+      font-size: 14px;
+      color: #565656;
+      text-decoration: none;
+      border-radius: 5px;
+      position: relative;
+
+      .icon {
+        display: block;
+        width: 12px;
+        height: 11px;
+        background: url(/mp/img/wizard-form-add-plus.png);
+        position: absolute;
+        top: 24px;
+        left: 300px;
+      }
+    }
+
+    .field {
+      label {
+        width: 125px;
+      }
+      .control {
+        width: 510px;
+      }
+
+      &.error {
+        .control {
+          width: 478px;
+        }
+      }
+    }
+
+    .field.option_type {
+      width: 387px;
+
+      .sexyform-select-display {
+        background-position: 214px 18px;
+      }
+
+      .control {
+        width: 240px;
+      }
+
+      &.error {
+        .control {
+          background: 0;
+          padding-right: 0;
+
+          .sexyform-select {
+            border-color: #ff5c5c;
+          }
+        }
+      }
+    }
+
+    .field.allow_multiple {
+      width: 265px;
+
+      .control {
+        width: 20px;
+        padding-top: 17px;
+        display: inline;
+      }
+      label {
+        width: 220px;
+      }
+    }
+
+    .formset-wrapper {
+      border: 1px solid #cfcfcf;
+      float: left;
+      width: 694px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      clear: both;
+      padding: 15px 15px 45px;
+      list-style: none;
+      background: #f9f9f9;/* url(/mp/img/wizard-form-question-draggable.png) no-repeat 12px 15px;*/
+      position: relative;
+
+      .remove {
+        position: absolute;
+        right: -1px;
+        bottom: -1px;
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border: 1px solid #d9d9d9;
+        font-size: 11px;
+        color: #f75757;
+        text-decoration: none;
+        padding: 10px 10px 9px 25px;
+        background: url(/mp/img/wizard-form-question-remove.png) no-repeat 6px 8px;
+
+        &:hover {
+          background-color: #fff;
+        }
+      }
+
+      .formset-field {
+        float: left;
+        padding-left: 42px;
+      }
+
+      .formset {
+        margin-left: 182px;
+
+        .formset-wrapper {
+          padding-left: 0;
+          padding-bottom: 30px;
+          width: 491px;
+        }
+
+        .formset-field {
+          padding-left: 15px;
+        }
+
+        .field {
+          label {
+            width: 90px;
+          }
+          .control {
+            width: 371px;
+          }
+        }
+        .field.error {
+          .control {
+            width: 340px;
+          }
+        }
+
+        .add {
+          width: 508px;
+
+          .icon {
+            left: 196px;
+          }
+        }
+      }
+    }
+  }
+
+  .formset-fields-gallery {
+      .imagepreview {
+          img {
+              max-width: 200px;
+          }
+      }
+  }
+}

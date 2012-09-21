@@ -1,0 +1,35 @@
+<% content_for(:title) { 'My Shipping Infos' } %>
+
+<%= render partial: 'shared/settings_navigation' %>
+
+<section class="content">
+	<hgroup class="main">
+    <h1>Shipping Info</h1>
+    <h2 class="breadcrumb"><%= breadcrumbs_for(:my_settings_section, 'Shipping Info') %></h2>
+  </hgroup>
+
+  <div class="inner-wrapper">
+  	<% if @shipping_infos.empty? %>
+  	  <p class="empty-notice">
+  	  	You have not provided any shipping addresses at this time.
+    	  <%= link_to "Add a shipping address", ms_path(new_shipping_info_path) %>
+    	</p>
+    <% else %>
+      <% @shipping_infos.each do |shipping_info| %>
+        <section class="shipping-info-item <%= cycle("", "", "last") %> <%= (shipping_info.is_default?)? 'default' : '' %>">
+          <h1><%= shipping_info.first_name %> <%= shipping_info.last_name %></h1>
+          <p><%= shipping_info.pretty_address.join('<br />').html_safe %></p>
+          <div class="actions">
+            <%= link_to ms_path(edit_confirmation_shipping_info_path(shipping_info)), class: 'edit' do %>
+              <span>Edit</span>
+            <% end %>
+            <%= link_to ms_path(delete_shipping_info_path(shipping_info)), class: 'delete' do %>
+              <span>Delete</span>
+            <% end %>
+          </div>
+        </section>
+      <% end %>
+      <p class="actions"><%= link_to 'Add another one', ms_path(new_shipping_info_path), class: 'btn secondary' %></p>
+    <% end %>
+  </div>
+</section>

@@ -1,0 +1,115 @@
+{% macro :display_form do |form| %}
+  {% display_non_field_errors(form: form) %}
+
+  <div class="fields">
+    {% display_fields(form: form) %}
+  </div>
+{% end %}
+
+
+{% macro :display_non_field_errors do |form| %}
+  {% if form.non_field_errors.any? %}
+  <ul class="all-non-field-errors">
+    {% form.non_field_errors.each do |error| %}
+    <li>{{ error }}</li>
+    {% end %}
+  </ul>
+  {% end %}
+{% end %}
+
+{% macro :display_field_errors do |field| %}
+  {% if field.errors.any? %}
+    <p class="error">{{ field.errors.join('<br />') }}</p>
+  {% elsif field.help_text != "" %}
+    <p class="hint">{{ field.help_text }}</p>
+  {% end %}
+{% end %}
+
+{% macro :display_field, label_on_right: false, hidden: false do |field, label_on_right, hidden| %}
+  <div class="field {{ field.name }}{% if field.errors.any? %} error{% end %}"{% if hidden %} style="display: none;"{% end %}>
+    {% if !label_on_right %}
+    <label for="{{ field.field.widget.attrs[:id] || field.auto_id }}">{{ field.label }}</label>
+    {% end %}
+
+    <div class="control">
+      {{ field }}
+      {% display_field_errors field: field %}
+    </div>
+
+    {% if label_on_right %}
+    <label for="{{ field.field.widget.attrs[:id] || field.auto_id }}">{{ field.label }}</label>
+    {% end %}
+  </div>
+{% end %}
+
+
+{% macro :display_fields, field_names: nil do |form, field_names| %}
+  {% if !field_names %}
+    {% form.each { |field| display_field(field: field) } %}
+  {% else %}
+    {% field_names.each do |fn| %}
+      {% display_field(field: form[fn]) %}
+    {% end %}
+  {% end %}
+{% end %}
+
+
+{% macro :display_management_form do |formset| %}
+  {% formset.management_form.each do |field| %}
+    {{ field }}
+  {% end %}
+{% end %}
+
+
+{% macro :display_inner_formset do |form, nested| %}
+  <div class="formset-wrapper">
+    <div class="formset-field">
+      {% form.each { |field| display_field(field: field) } %}
+    </div>
+
+    {% unless nested.empty? %}
+      {% nested.each do |fsn, opts| %}
+        {% display_formset(formset: form.formset(fsn),
+                           css_class: opts[:css_class],
+                           add_text: opts[:add_text],
+                           label: opts[:label]) %}
+      {% end %}
+    {% end %}
+  </div>
+{% end %}
+
+
+{% macro :display_formset, { nested: [],
+                             css_class: '',
+                             label: nil,
+                             add_text: 'Add' } do |formset,
+                                                   nested,
+                                                   css_class,
+                                                   label,
+                                                   add_text| %}
+  {% formset_id = "id_formset_#{formset.prefix}" %}
+  {% formset_forms_id ="#{formset_id}_forms" %}
+  {% add_id = "#{formset_id}_add" %}
+  {% template_id = "#{formset_id}_template" %}
+
+  <div id="{{ formset_id}}" class="formset {{ css_class }}" data-tplid="{{ template_id }}"
+                                                            data-formsetformsid="{{ formset_forms_id }}"
+                                                            data-formsetprefix="{{ formset.prefix }}"
+                                                            data-addid="{{ add_id }}"
+                                                            data-formsetcandelete="{{ formset.can_delete }}">
+    {% display_management_form(formset: formset) %}
+
+    {% if label %}<label>{{ label }}</label>{% end %}
+    <div class="control">
+      <div id="{{ formset_forms_id }}" class="formset-fields formset-fields-{{ formset.prefix }}">
+        {% formset.forms.each { |form| display_inner_formset(form: form, nested: nested) } %}
+      </div>
+
+      <div id="{{ template_id }}" class="formset-template" style="display:none">
+        {% display_inner_formset(form: formset.empty_form, nested: nested) %}
+      </div>
+
+      <a id="{{ add_id }}" href="#" class="add"><span class="icon"></span>{{ add_text }}</a>
+    </div>
+</div>
+{% end %}

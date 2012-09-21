@@ -1,0 +1,243 @@
+<% content_for(:title) { "#{@plan.name} Checkout" } %>
+
+<hgroup class="checkout-heading <%= (@coupon && @deal_source) ? 'deal-available' : '' %>">
+  <h1>Complete Your Order</h1>
+  <h2>With one-step checkout</h2>
+</hgroup>
+
+<% if @coupon && @deal_source %>
+  <p class="deal-site-users-message">
+    <%= image_tag @deal_source.image.url, alt: @deal_source.name %>
+    Welcome<% if @deal_source %> <strong><%= @deal_source.name %></strong> users<% end %>!
+    Take advantage of this promo and get <strong><%= @coupon.pretty_discount %></strong> off on your first payment.
+  </p>
+<% end %>
+
+<% casec = @has_subscriptions && !@is_shippable && @has_billing_info %>
+
+<section class="checkout-subscription<%= ' casec' if casec %>">
+  <div class="image">
+    <%= image_tag(@plan.thumbnail.url, alt: @plan.name) %>
+    <div class="overlay"></div>
+  </div>
+  <h1><%= @plan.name %></h1>
+  <p><%= @plan.short_description %></p>
+  <div class="clearfix"></div>
+</section>
+
+<div id="forms" class="<%= 'casec' if casec %>">
+  <% unless @has_subscriptions && !@is_shippable %>
+    <div id="addresses" class="<%= 'full' if @has_subscriptions && @has_billing_info %>">
+      <%= form_tag ms_path(submit_shipping_info_plan_configurator_path) do %>
+
+        <% unless @has_subscriptions %>
+          <section id="user-address" class="address-fields">
+            <hgroup>
+              <h1>Personal Info</h1>
+              <h2>Tell us about yourself</h2>
+            </hgroup>
+            <%= render partial: 'address_fields', locals: { namespace: :personal_info } %>
+          </section>
+
+          <% if @is_shippable %>
+            <p class="ship-to-address">
+              <%= check_box_tag 'copy_shipping_info', 'on', true %>
+              <%= label_tag 'copy_shipping_info', 'Ship to my personal address' %>
+            </p>
+
+            <section class="address-fields">
+              <hgroup>
+                <h1>Shipping Info</h1>
+                <h2>Where would you like to receive this product?</h2>
+              </hgroup>
+
+              <div id="shipping-info-address" class="address-fields">
+                <%= render partial: 'address_fields', locals: { namespace: :shipping_info } %>
+              </div>
+              <div id="ship-to-personal-address">Items will be shipped to your personal address.</div>
+            </section>
+
+          <% end %>
+        <% else %>
+          <% if @is_shippable %>
+            <%= render partial: 'shipping', locals: {
+              shipping_infos: @shipping_infos,
+              selected_id: @shipping_info.id,
+              plan: @plan,
+              merchant: @merchant,
+              new_shipping_info: @shipping_info
+            } %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <div class="loader"></div>
+    </div>
+  <% end %>
+
+  <% unless @has_billing_info %>
+    <div id="billing">
+      <hgroup>
+        <h1>Billing Info</h1>
+        <h2>This is a secure 128-bit SSL encrypted payment.</h2>
+      </hgroup>
+      <div id="recurly-subscribe"></div>
+    </div>
+  <% end %>
+</div>
+
+<section id="gifting">
+  <h1>Gifting options</h1>
+  <%= form_for :gifting, url: '', html: { id: 'gifting-form' }, authenticity_token: false do |f| %>
+    <p class="is-gift">
+      <%= f.check_box :is_gift, checked: @is_gift ? 'checked' : '' %>
+      <%= f.label :is_gift, 'Is this a gift?' %>
+    </p>
+    <div class="gift-desc">
+      <p>
+        <%= f.label :giftee_name, 'Giftee Name' %>
+        <%= f.email_field :giftee_name %>
+      </p>
+      <p>
+        <%= f.label :giftee_email, 'Giftee Email' %>
+        <%= f.email_field :giftee_email %>
+      </p>
+      <% if @merchant.custom_message_type != :none %>
+        <p>
+          <%= f.label :gift_description, 'Gift message' %>
+          <%= f.text_area :gift_description, maxlength: 144 %>
+          <span class="note">Max 144 characters.</span>
+        </p>
+        <p class="send-notification">
+          <%= f.label :notify_giftee_on_email, 'Send message through email to giftee' %>
+          <%= f.check_box :notify_giftee_on_email %>
+        </p>
+        <% if @merchant.custom_message_type == :shipment_message %>
+          <p class="send-notification">
+            <%= f.label :notify_giftee_on_shipment, 'Print gift message in a giftcard and attach to each shipment' %>
+            <%= f.check_box :notify_giftee_on_shipment %>
+          </p>
+        <% end %>
+        <a class="preview btn fifthary" href="#gifting-email-content">Preview Email</a>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="hidden">
+    <div id="gifting-email-content">
+      <%= image_tag 'content/checkout/email_preview.png', alt: 'Gifting email preview' %>
+    </div>
+  </div>
+</section>
+
+<div id="totals-wrapper">
+  <div class="coupon-field">
+    <%= form_for :coupon, url: coupon_valid_plan_configurator_path(@plan), html: { id: 'coupon_form' } do |f| %>
+      <%= label_tag 'coupon[coupon_code]' do %>Have a coupon code?<% end %>
+      <div class="messages">
+        <% if @coupon %>
+          <div class="message flash-success">Coupon redeemed successfully!</div>
+        <% end %>
+      </div>
+
+      <p><%= text_field_tag 'coupon[coupon_code]', @coupon.try(:coupon_code) || (params[:coupon] && params[:coupon][:coupon_code]) %></p>
+      <% if @coupon %>
+        <%= f.submit 'Valid', id: 'redeem-btn', class: 'btn fifthary valid' %>
+      <% else %>
+        <%= f.submit 'Redeem', id: 'redeem-btn', class: 'btn fifthary' %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div id="confirmation">
+    <%= render partial: 'confirmation', locals: {
+      totals_pricing: @totals_pricing,
+      plan_recurrence: @plan_recurrence,
+      coupon: @coupon
+    } %>
+  </div>
+</div>
+
+<%= form_for :subscription, url: ms_path(submit_plan_configurator_path), html: { id: 'new_subscription' } do |f| %>
+  <div id="terms-confirmation-box">
+    <% unless @plan.notes_to_customer.blank? %>
+      <div class="message flash-info"><%= markdown(@plan.notes_to_customer) %></div>
+    <% end %>
+
+    <%= hidden_field_tag 'subscription[shipping_info_id]' %>
+    <% @options.each do |option| %>
+      <%= hidden_field_tag 'subscription[options_id][]', option.id %>
+    <% end %>
+    <%= hidden_field_tag 'subscription[plan_recurrence_id]', @plan_recurrence.id %>
+    <%= hidden_field_tag 'subscription[coupon_id]', @coupon.try(:id) %>
+
+    <%# Temp disable terms and conditions. %>
+    <% if false %>
+      <% unless @merchant.terms_of_service.blank? %>
+        <p class="check-terms">
+          <%= check_box_tag :accept_terms, 'yes', false %>
+          <%= label_tag :accept_terms, "I accept #{@merchant.business_name}'s" %>
+          <a href="#" class="terms-and-conditions">Terms and Conditions</a>
+        </p>
+      <% end %>
+    <% end %>
+
+    <p class="actions">
+      <%= f.submit 'Place your order', class: 'btn secondary next', id: 'submit-checkout' %>
+      <%= link_to 'Go Back', :back, class: 'prev' %>
+    </p>
+  </div>
+<% end %>
+
+<% content_for :javascript do %>
+  // Plan (w/merchant)
+  var plan = <%= {
+    id: @plan.id, # TODO: use friendly_id
+    shippable: @is_shippable,
+    type: @plan.type_key,
+    merchant: {
+      id: @merchant.id,
+    business_name: @merchant.business_name,
+      has_terms: !@merchant.terms_of_service.blank?,
+    }
+  }.to_json.html_safe %>;
+
+  // Merchant
+  var merchant = plan.merchant;
+
+  // User
+  var user = <%= {
+    has_billing_info: @has_billing_info,
+    has_subscriptions: @has_subscriptions,
+    signed_in: user_signed_in?
+  }.to_json.html_safe %>;
+
+  // Recurly setup
+  var _recurly_config = <%= {
+    subdomain: Monthly::Config::RECURLY_SUBDOMAIN,
+    currency: "USD",
+    country: "US"
+  }.to_json.html_safe %>;
+
+  <% if user_signed_in? %>
+    var _recurly_build_subscription_form = <%= {
+      target: '#recurly-subscribe',
+      accountCode: current_user.recurly_code,
+      signature: Recurly.js.sign(account: { account_code: current_user.recurly_code }),
+      distinguishContactFromBillingInfo: false,
+      addressRequirement: 'none'
+    }.to_json.html_safe %>;
+  <% end %>
+
+  var routes = <%= {
+    confirmation: confirmation_plan_configurator_path(@plan),
+    couponValid: coupon_valid_plan_configurator_path(@plan)
+  }.to_json.html_safe %>;
+
+  var show_form = <%= {
+    personal: !@has_subscriptions,
+    shipping: @is_shippable,
+    shipping_select: @is_shippable && @has_subscriptions,
+    billing: !@has_billing_info
+  }.to_json.html_safe %>;
+
+  <%= requirejs('plan_configurators/checkout') %>
+<% end %>

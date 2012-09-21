@@ -1,0 +1,16 @@
+<%#
+  Locals:
+    - video_reviews
+%>
+
+<ul>
+  <% video_reviews.each do |video_review| %>
+    <li>
+      <%= link_to('#', class: 'video-review-link', data: { video_url: video_review.raw_url}) do %>
+        <%= image_tag video_review.thumbnail.url, alt: "#{video_review.title} by #{video_review.author}" %>
+        <h1><%= video_review.title %></h1>
+        <p>by <%= video_review.author %></p>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

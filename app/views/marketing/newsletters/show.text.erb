@@ -1,0 +1,17 @@
+<%= email_for(marketing_newsletter_url(@newsletter)) do %>
+  <%= render partial: 'email_preview.html.erb' %>
+<% end %>
+
+<!-- Exact Target tracking code -->
+<div style="width: 100%; padding: 0 0 100px; background: #e5f3f6;">
+  <table style="width: 622px; margin: auto;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>
+        <p style="font-size: 12px; font-family: Helvetica, Arial, sans-serif; color: #808182; margin: 20px 0; text-align: center; text-shadow: 0 1px 0 #fff;">Sent from <b>%%Member_Busname%%</b> in %%Member_Addr%% %%Member_City%%, %%Member_State%%, %%Member_PostalCode%%, %%Member_Country%%. All rights reserved.</p>
+        <p style="font-size: 12px; font-family: Helvetica, Arial, sans-serif; color: #808182; margin: 0; text-align: center; text-shadow: 0 1px 0 #fff;">Don't want to receive these emails anymore? Manage your <a href="%%profile_center_url%%" style="color: #0273dc; text-decoration: none;">email preferences</a> here, or <a href="%%profile_center_url%%" style="color: #0273dc; text-decoration: none;">unsubscribe</a>.</p>
+      </td>
+    </tr>
+  </table>
+</div>
+<custom name="opencounter" type="tracking">
+<!-- Exact Target tracking code END -->

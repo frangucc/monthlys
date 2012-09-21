@@ -1,0 +1,35 @@
+<%= render partial: 'shared/settings_navigation' %>
+
+<h1>Sign In</h1>
+
+<% if @authentications %>
+  <% unless @authentications.empty? %>
+    <p>You can sign in to this account using:</p>
+    <ul>
+      <% @authentications.each do |authentication| %>
+        <li>
+          <h1><%= authentication.provider.titleize %></h1>
+          <p><%= authentication.uid %></p>
+          <%= link_to 'Remove', authentication, confirm: 'Are you sure you want to remove this authentication option?', method: :delete, class: 'remove' %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <p>Sign in through one of these services:</p>
+<% else %>
+  <p>Add another service to sign in with:</p>
+<% end %>
+
+<ul>
+  <li><%= link_to 'Facebook', '/auth/facebook', class: 'auth-provider facebook' %></li>
+</ul>
+
+<% unless user_signed_in? %>
+  <h2>Don't use these services?</h2>
+  <p>
+    <%= link_to 'Login', new_user_session_path, class: 'modal' %>
+    or
+    <%= link_to 'Create an account', new_user_registration_path, class: 'modal' %>
+  </p>
+<% end %>

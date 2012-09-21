@@ -1,0 +1,81 @@
+#sidebar {
+
+  #expand-all-categories {
+    display: none;
+  }
+
+  .nav_widget {
+    ul {
+      margin-bottom: 30px;
+      margin-top: 15px;
+      padding-left: 15px;
+    }
+    li a {
+      display: block;
+      padding-left: 30px;
+      color: #d4d6d8;
+      text-decoration: none;
+      line-height: 37px;
+      font-size: 12px;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+
+      &:hover {
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16), 0 2px 2px rgba(255, 255, 255, 0.26) inset;
+
+        background: -moz-linear-gradient(top, rgba(255,255,255,0.16) 0%, rgba(0,0,0,0.15) 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.16)), color-stop(100%,rgba(0,0,0,0.15))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, rgba(255,255,255,0.16) 0%,rgba(0,0,0,0.15) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, rgba(255,255,255,0.16) 0%,rgba(0,0,0,0.15) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, rgba(255,255,255,0.16) 0%,rgba(0,0,0,0.15) 100%); /* IE10+ */
+        background: linear-gradient(top, rgba(255,255,255,0.16) 0%,rgba(0,0,0,0.15) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#29ffffff', endColorstr='#26000000',GradientType=0 ); /* IE6-9 */
+
+        background-color: #6a6b79;
+        color: #fff;
+      }
+    }
+  }
+
+  .user_widget {
+    background: #424248;
+    border-radius: 5px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(255, 255, 255, 0.2) inset;
+    min-height: 64px;
+    margin: 0 15px 5px 30px;
+
+    img {
+      width: 64px;
+      height: 64px;
+      border-radius: 5px;
+      float: left;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+      margin-right: 10px;
+    }
+
+    h1, h2 {
+      float: left;
+      text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      font-size: 16px;
+      color: #fff;
+    }
+
+    h1 {
+      font-weight: normal;
+      font-size: 14px;
+      color: #969696;
+      margin: 10px 0;
+    }
+
+    .merchant-switcher {
+      padding: 5px;
+
+      select {
+        width: 100%;
+        padding: 3px;
+      }
+    }
+  }
+}

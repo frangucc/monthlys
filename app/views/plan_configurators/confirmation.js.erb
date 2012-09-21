@@ -1,0 +1,5 @@
+$('#confirmation').html("<%= escape_javascript render(partial: 'confirmation', locals: {
+  totals_pricing: @totals_pricing,
+  plan_recurrence: @plan_recurrence,
+  coupon: @coupon
+}) %>");

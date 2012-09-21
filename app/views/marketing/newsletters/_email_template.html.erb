@@ -1,0 +1,44 @@
+<%
+  # Locals
+  #   - browser_url
+%>
+<div style="width: 100%; padding: 0 0 100px; background: #e5f3f6;">
+  <table style="width: 622px; margin: auto;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>
+        <p style="font-size: 12px; font-family: Helvetica, Arial, sans-serif; color: #dbc1c7; margin: 30px 0 20px; text-align: center; text-shadow: 0 1px 0 #fff;">Having trouble reading this? <a style="font-weight: bold; color: #dbc1c7; text-decoration: none;" href="<%= browser_url %>" target="_blank">View it in your browser</a></p>
+      </td>
+    </tr>
+    <!-- header -->
+    <tr>
+      <td>
+        <div style="width: 632px; height: 80px; background: url(http://monthlys.com/assets/marketing/newsletters/default/header.png); position: relative;">
+        </div>
+      </td>
+    </tr>
+    <!-- Main Content -->
+    <%= yield(:content) %>
+
+    <!-- footer -->
+    <tr>
+      <td>
+        <div style="width: 560px; padding: 35px 30px 28px 30px; background: #f8fafb; border-top: 1px solid #EDEDED; border-left: 1px solid #dbeef2; border-right: 1px solid #dbeef2;">
+          <table cellpadding="0" cellspacing="0">
+            <tr valign="middle">
+              <td width="100%">
+                <h3 style="padding: 0; margin: 0; font-family: Helvetica, Arial, sans-serif; color: #343638; font-size: 18px; font-weight: normal;">Stay in touch with us! Get the latest news and discounts</h3>
+              </td>
+              <td>
+                <a href="http://twitter.com/monthlysinc" target="_blank" style="display: block; padding-left: 10px;"><img src="http://monthlys.com/assets/marketing/newsletters/default/footer_twitter.png" /></a>
+              </td>
+              <td>
+                <a href="http://www.facebook.com/pages/Monthlys/166280233483003" target="_blank" style="display: block; padding-left: 10px;"><img src="http://monthlys.com/assets/marketing/newsletters/default/footer_facebook.png" /></a>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <img style="display: block;" src="http://monthlys.com/assets/marketing/newsletters/default/footer.png" />
+      </td>
+    </tr>
+  </table>
+</div>

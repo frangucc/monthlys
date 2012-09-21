@@ -1,0 +1,126 @@
+<%= render partial: 'shared/head', locals: { type: :merchant_storefront } %>
+
+  <body class="<%= body_class %> <%= yield :body_class %>">
+    <header class="main">
+      <div class="wrapper">
+        <h1>
+          <% if @merchant.storefront_logo? %>
+            <%= link_to image_tag(@merchant.storefront_logo.url, alt: "#{@merchant.business_name}"), merchant_storefront_path(@merchant.custom_site_url), class: 'logo', title: @merchant.business_name %>
+          <% else %>
+            <%= link_to @merchant.business_name, merchant_storefront_path(@merchant.custom_site_url), class: 'text' %>
+          <% end %>
+        </h1>
+
+        <nav>
+          <h1 class="hidden">Main navigation</h1>
+          <ul>
+            <li><%= link_to 'About us', merchant_storefront_about_path(@merchant.custom_site_url), class: 'nav-item about' %></li>
+            <li><%= link_to "#{ (@merchant.has_one_plan_only?) ? 'Plan Details' : 'Our Plans'}", merchant_storefront_plans_path(@merchant.custom_site_url), class: "nav-item #{ (@merchant.has_one_plan_only?) ? 'plan-detail' : 'plans'}" %></li>
+            <li><%= link_to 'How it works', merchant_storefront_how_it_works_path(@merchant.custom_site_url), class: 'nav-item how-it-works' %></li>
+            <% if user_signed_in? %>
+              <li><%= link_to 'My subscriptions', ms_path(subscriptions_path), class: 'nav-item subscriptions' %></li>
+              <li><%= link_to 'Settings', ms_path(edit_settings_path), class: 'nav-item settings' %></li>
+              <li><%= link_to 'Sign Out', ms_path(destroy_user_session_path), class: 'nav-item' %></li>
+            <% else %>
+              <li class="connect">
+                <%= link_to new_user_session_path, class: 'nav-item', id: 'sign-in-link' do %>
+                  <span>Connect with</span> <strong>Monthlys</strong>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </nav>
+      </header> <!-- header.main -->
+
+      <section class="main">
+        <div class="wrapper">
+          <%= display_flash unless hide_flash? %>
+        </div>
+        <% if storefront_controller? %>
+          <%= yield %>
+        <% else %>
+          <div class="wrapper"><%= yield %></div>
+        <% end %>
+      </section>
+
+      <footer class="main">
+        <div class="wrapper">
+          <%= yield :additional_footer_content %>
+          <h1 class="hidden">Tertiary Navigation</h1>
+          <ul class="nav">
+            <li><%= link_to_unless_current 'Home', merchant_storefront_path(@merchant.custom_site_url), class: 'home' %></li>
+            <li><%= link_to_unless_current "#{ (@merchant.has_one_plan_only?) ? 'Plan Details' : 'Our Plans'}", merchant_storefront_plans_path(@merchant.custom_site_url), class: "#{ (@merchant.has_one_plan_only?) ? 'plan-detail' : 'plans'}" %></li>
+            <li><%= link_to_unless_current 'About Us', merchant_storefront_about_path(@merchant.custom_site_url), class: 'about' %></li>
+            <li class="last"><%= link_to_unless_current 'Contact', merchant_storefront_contact_path(@merchant.custom_site_url), class: 'contact' %></li>
+          </ul>
+          <p class="copyright"><%= @merchant.custom_site_url %> &copy; 2012. All Rights Reserved. Powered by <%= link_to 'Monthlys', root_path %></p>
+        </div>
+      </footer> <!-- footer.main -->
+    </div>
+
+    <% if @merchant.related_plans.any? %>
+    <!-- Modal popup -->
+    <div id="mouseoffviewport-modal">
+      <section>
+        <hgroup>
+          <h1>Wait, there's more!</h1>
+          <h2>Here are other innovative services in your area! Sign up for more promos.</h2>
+        </hgroup>
+
+        <% if false %>
+          <div class="learnmore">
+            <form>
+              <input type="email" class="email" name="" placeholder="Your Email Address" />
+              <input type="submit" value="Subscribe" class="btn-subscribe" />
+            </form>
+            <span class="or">or</span>
+            <%= link_to 'Learn More', root_path, class: 'btn-light' %>
+          </div>
+        <% end %>
+
+        <div class="plans">
+          <ul>
+            <% @merchant.related_plans.has_status(:active).limit(6).each do |plan| %>
+            <li>
+              <%= link_to plan_path(plan) do %>
+                <article>
+                  <div class="image">
+                    <%= image_tag plan.thumbnail.url, alt: plan.name %>
+                    <p><span class="btn-yellow">Plan Details</span></p>
+                  </div>
+                  <h1><%= plan.name %></h1>
+                  <p><%= plan.merchant.business_name %></p>
+                </article>
+              <% end %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <% end %>
+
+    <%= yield :javascript_inclusions %>
+    <%= javascript_tag do %>
+      <%= requirejs('app/ajax_signup') %>
+      <%= yield :javascript %>
+    <% end %>
+
+    <%= javascript_tag do %>
+      /**
+       * This code right here fixes the problem with all the modals in the site,
+       * that load content via ajax. It calls the resize function of colorbox to
+       * recalculate the height of the modal box, as it comes out with a white
+       * space below.
+       */
+      if (typeof $ !== 'undefined' && typeof $.colorbox !== 'undefined') {
+        $(document).bind({
+          cbox_complete: function () {
+            setTimeout($.colorbox.resize, 500);
+          }
+        })
+      }
+    <% end %>
+
+  </body>
+</html>

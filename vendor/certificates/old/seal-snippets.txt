@@ -1,0 +1,35 @@
+Largest Seal
+---------
+
+<script language="javascript"
+src="https://seal.entrust.net/seal.js?domain=*.monthlys.com&img=9"></script>
+<a href="http://www.entrust.net">SSL</a>
+<script language="javascript"
+type="text/javascript">goEntrust();</script>
+
+Large Seal
+----------
+
+<script language="javascript"
+src="https://seal.entrust.net/seal.js?domain=*.monthlys.com&img=7"></script>
+<a href="http://www.entrust.net">SSL</a>
+<script language="javascript"
+type="text/javascript">goEntrust();</script>
+
+
+Medium Seal
+-----------
+<script language="javascript"
+src="https://seal.entrust.net/seal.js?domain=*.monthlys.com&img=11"></script>
+<a href="http://www.entrust.net">SSL</a>
+<script language="javascript"
+type="text/javascript">goEntrust();</script>
+
+
+Smallest Seal
+-------------
+<script language="javascript"
+src="https://seal.entrust.net/seal.js?domain=*.monthlys.com&img=16"></script>
+<a href="http://www.entrust.net">SSL</a>
+<script language="javascript"
+type="text/javascript">goEntrust();</script>

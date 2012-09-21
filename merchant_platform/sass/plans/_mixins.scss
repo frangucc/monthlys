@@ -1,0 +1,84 @@
+@mixin embed-formset-add {
+  &.field {
+    .formset-fields {
+      float: left;
+      width: 500px;
+    }
+
+    .formset-wrapper {
+      float: left;
+      width: 100%;
+      padding: 15px 0 20px;
+      border: 1px solid #dbdbdb;
+      border-radius: 5px;
+      background: #f8f8f8;
+      margin-bottom: 15px;
+      position: relative;
+
+      label {
+        width: 85px;
+      }
+
+      .control {
+        width: 385px;
+      }
+
+      .remove {
+        position: absolute;
+        right: -1px;
+        bottom: -1px;
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border: 1px solid #d9d9d9;
+        font-size: 11px;
+        color: #f75757;
+        text-decoration: none;
+        padding: 10px 10px 9px 25px;
+        background: url(/mp/img/wizard-form-question-remove.png) no-repeat 6px 8px;
+
+        &:hover {
+          background-color: #fff;
+        }
+      }
+
+      .field.error {
+        .control {
+          width: 354px;
+        }
+      }
+
+    }
+
+    .add {
+      display: block;
+      clear: both;
+      width: 190px;
+      height: 43px;
+      border: 1px solid #c7c7c7;
+      border-radius: 3px;
+      /* Gradient BG and fallback */
+      background: #ffffff; /* Old browsers */
+      background: -moz-linear-gradient(top, #ffffff 0%, #ececec 100%); /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ececec)); /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top, #ffffff 0%,#ececec 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top, #ffffff 0%,#ececec 100%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(top, #ffffff 0%,#ececec 100%); /* IE10+ */
+      background: linear-gradient(top, #ffffff 0%,#ececec 100%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ececec',GradientType=0 ); /* IE6-9 */
+      line-height: 43px;
+      color: #565656;
+      font-size: 14px;
+      text-decoration: none;
+
+      .icon {
+        display: block;
+        float: left;
+        width: 42px;
+        height: 42px;
+        border-right: 1px solid #c7c7c7;
+        background: url(/mp/img/wizard-form-document-add.png) no-repeat center center;
+        margin-right: 15px;
+      }
+    }
+  }
+}

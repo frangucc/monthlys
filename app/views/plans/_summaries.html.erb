@@ -1,0 +1,20 @@
+<%#
+  Locals:
+
+  - plans_list
+%>
+
+<ul>
+  <% plans_list.each do |plan| %>
+    <li>
+      <div class="left">
+        <%= link_to plan_path(plan) do image_tag plan.thumbnail.url end %>
+      </div>
+      <div class="info">
+        <h2><%= link_to plan.name, plan_path(plan) %></h2>
+        <p><%= starting_at_price(plan) %></p>
+        <%= link_to 'Subscription Details', plan_path(plan), class: 'btn secondary' %>
+      </div>
+    </li>
+  <% end %>
+</ul>

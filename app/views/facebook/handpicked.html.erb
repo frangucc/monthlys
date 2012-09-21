@@ -1,0 +1,35 @@
+<section class="handpicked main">
+  <%= link_to(plan_path(32), target: '_blank') do %>
+    <h1 class="banner">Handpicked products delivered to your doorstep</h1>
+  <% end %>
+
+  <section class="subscriptions">
+    <hgroup class="plan-list-heading">
+      <h1>Discover unique subscriptions at Monthlys</h1>
+      <h2>With Monthlys, turn on what you need, turn off what you don't</h2>
+    </hgroup>
+
+    <%
+      plans = []
+      plans << Plan.find_by_id(56)
+      plans << Plan.find_by_id(146)
+      plans << Plan.find_by_id(22)
+      plans << Plan.find_by_id(83)
+    %>
+    <ul class="plan-list">
+      <% plans.each do |plan| %>
+      <li>
+        <article>
+          <div class="image">
+            <%= image_tag(plan.thumbnail.url) %>
+            <%= link_to('', plan_path(plan), class: 'shadow') %>
+          </div>
+          <h1><%= link_to(plan.name, plan_path(plan)) %></h1>
+          <p><span>from <strong><%= plan.merchant.business_name %></strong></span> - <span class="price">$<%= pretty_price(plan.cheapest_plan_recurrence.amount) %> <%= plan.cheapest_plan_recurrence.billing_desc %></span></p>
+        </article>
+      </li>
+      <% end %>
+    </ul>
+    <div class="clearfix"></div>
+  </section>
+</section>

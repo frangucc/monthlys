@@ -1,0 +1,95 @@
+body.coupons-index {
+  ul.navigation li.coupons {
+    font-weight: bold;
+  }
+
+  section.content {
+    li {
+      list-style: none;
+      border-top: 1px solid #dededd;
+      padding: 30px 25px;
+
+      h1 {
+        font-size: 18px;
+        color: #000;
+        margin-bottom: 0;
+      }
+      p {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 0;
+      }
+      .code {
+        float: right;
+        border: 2px solid #e2dfc0;
+        background: #fffbdf;
+        border-radius: 5px;
+        padding: 0 15px;
+        color: #666;
+        text-transform: uppercase;
+        font-size: 14px;
+        line-height: 35px;
+      }
+      &.first {
+        border: 0;
+      }
+      &.redeemed, &.expired {
+        background: #f6f8f9;
+        border-color: #eff0f2;
+        position: relative;
+
+        h1 {
+          color: #bcbdbf;
+        }
+        p {
+          color: #d6d8d9;
+        }
+        .code {
+          border-color: #eeefeb;
+          background: #f7f7f2;
+          color: #d3d5d6;
+        }
+        .seal {
+          position: absolute;
+          top: 0;
+          right: 0;
+          text-indent: -9999px;
+          text-transform: uppercase;
+        }
+      }
+      &.redeemed {
+        .seal {
+          width: 101px;
+          height: 81px;
+          background: url(/assets/coupon_redeemed.png);
+        }
+      }
+      &.expired {
+        .seal {
+          width: 87px;
+          height: 80px;
+          background: url(coupon_expired.png);
+          right: 7px;
+        }
+      }
+    }
+
+    section.invite-your-friends {
+      padding: 25px;
+
+      h1 {
+        font-size: 24px;
+        color: #054356;
+        margin-bottom: 10px;
+        line-height: 25px;
+      }
+      p {
+        font-size: 16px;
+        color: #808182;
+        margin: 0;
+        line-height: 22px;
+      }
+    }
+
+  }
+}

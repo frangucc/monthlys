@@ -1,0 +1,118 @@
+body {
+  background:url(/mp/img/login-bg-2.png) repeat-x, #202020 url(/mp/img/login-bg.png);
+}
+.sidebar {
+  float: left;
+  width: 250px;
+  padding: 30px 0 0;
+}
+.sidebar .user {
+  background: #424248;
+  border-radius: 5px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(255, 255, 255, 0.2) inset;
+  min-height: 64px;
+  margin: 0 15px 5px 30px;
+}
+.sidebar .user .logo {
+  float: left;
+  width: 64px;
+  height: 64px;
+  overflow: hidden;
+  margin-right: 7px;
+}
+.sidebar .user .logo img {
+  width: 64px;
+  height: 64px;
+  border-radius: 5px;
+  float: left;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  margin-right: 10px;
+}
+.sidebar .user .name {
+  float: left;
+  padding-top: 13px;
+}
+.sidebar .user .name h2 {
+  font-size: 14px;
+  font-weight: normal;
+  color: #909090;
+  text-shadow: 0 1px 0 #000;
+  margin-bottom: 9px;
+}
+.sidebar .user .name h1 {
+  font-size: 16px;
+  color: #fff;
+  text-shadow: 0 1px 0 #000;
+}
+.sidebar .nav ul {
+  margin-bottom: 30px;
+  margin-top: 15px;
+}
+.sidebar .nav li {
+  font-size: 13px;
+  padding-left: 30px;
+}
+.sidebar .nav li:hover {
+  background: -moz-linear-gradient(top, rgba(255,255,255,0.16) 0%, rgba(0,0,0,0.15) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.16)), color-stop(100%,rgba(0,0,0,0.15))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(255,255,255,0.16) 0%,rgba(0,0,0,0.15) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(255,255,255,0.16) 0%,rgba(0,0,0,0.15) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(255,255,255,0.16) 0%,rgba(0,0,0,0.15) 100%); /* IE10+ */
+  background: linear-gradient(top, rgba(255,255,255,0.16) 0%,rgba(0,0,0,0.15) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#29ffffff', endColorstr='#26000000',GradientType=0 ); /* IE6-9 */
+  background-color: #6a6b79;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16), 0 2px 2px rgba(255, 255, 255, 0.26) inset;
+}
+.sidebar .nav li:hover a {
+  opacity: 1;
+}
+.sidebar .nav li a {
+  line-height: 37px;
+  font-size: 12px;
+  color: #d4d6d8;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  display: block;
+  text-decoration: none;
+  background: url(../images/icons.png) no-repeat -53px 11px;
+  padding-left: 25px;
+  opacity: 0.6;
+}
+.sidebar .nav li.order_management a {
+  background-position: -53px -24px;
+}
+.sidebar .nav li.members a {
+  background-position: -53px -59px;
+}
+.sidebar .nav li.reports a {
+  background-position: -53px -93px;
+}
+.sidebar .nav li.subscriptions a {
+  background-position: -53px -128px;
+}
+.sidebar .nav li.plans a {
+  background-position: -53px -164px;
+}
+.sidebar .nav li.marketing_tools a {
+  background-position: -53px -199px;
+}
+.sidebar .nav li.admin a {
+  background-position: -53px -269px;
+}
+.sidebar .nav li.storefront a {
+  background-position: -53px -303px;
+}
+.sidebar .nav li.users a {
+  background-position: -53px -339px;
+}
+.sidebar .nav li.account_settings a {
+  background-position: -52px -373px;
+}
+
+.content-wrapper {
+  margin-left: 250px;
+  padding: 30px 30px 30px 0;
+}
+.content {
+  float: left;
+  padding-bottom: 30px;
+}

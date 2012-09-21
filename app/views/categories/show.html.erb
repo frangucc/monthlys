@@ -1,0 +1,55 @@
+<% content_for(:title) { "#{@category.name} plans listing!" } %>
+
+<%= render partial: 'shared/get_started' %>
+<%= render partial: 'shared/sidebar' %>
+
+<section class="plan-grid category">
+  <div class="main-banner">
+    <% if @category.header_image.blank? %>
+      <%= image_tag(@category.image.url, alt: @category.name) %>
+    <% else %>
+      <%= image_tag(@category.header_image.url, alt: @category.name) %>
+    <% end %>
+    <hgroup>
+      <h1><%= @category.name %></h1>
+      <h2><%= breadcrumbs_for(:category, @category) %></h2>
+    </hgroup>
+  </div>
+
+  <% if false %>
+    <div class="select-view">
+      <h2>of the Month clubs</h2>
+      <a href="#" class="list">List</a>
+      <a href="#" class="grid">Grid</a>
+      <span>View</span>
+    </div>
+  <% end %>
+
+  <%= render partial: 'plans/list', locals: { plans: @plans } %>
+
+  <section class="new-plans plan-thumbnail-list">
+    <h1>Latest Plans</h1>
+    <%= render partial: 'plans/summaries', locals: { plans_list: @latest_plans } %>
+  </section>
+
+  <% if @related_categories.any? %>
+    <section class="related-categories">
+      <h1 class="secondary-heading">Related Categories</h1>
+      <ul>
+        <% @related_categories.each do |category| %>
+        <li class="first">
+          <%= link_to category.name, category %>
+          <ul class="details">
+            <li><%= category.plans.count %> plans</li>
+            <li class="last"><%= pluralize(category.subscriptions_count, "member") %></li>
+          </ul>
+        </li>
+        <% end %>
+      </ul>
+    </section>
+  <% end %>
+</section>
+
+<% content_for :javascript do %>
+  <%= requirejs('categories/show'); %>
+<% end %>

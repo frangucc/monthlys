@@ -1,0 +1,17 @@
+Shipping information changed
+
+<%= @user.full_name || @user.email %> changed one of his shipping information.
+Find the new shipping info information below.
+
+His previous shipping info was:
+<%= @old_shipping_info_desc.join("\n").html_safe %>
+
+His new shipping info is:
+<%= @new_shipping_info_desc.join("\n").html_safe %>
+
+Subscriptions affected were:
+<% @subscriptions.each do |subscription| %>
+  <%= subscription.plan.name %> for <%= subscription.plan_recurrence.pretty_explanation %>
+<% end %>
+
+Monthlys 2012. All Rights Reserved. 1-866-797-7954
